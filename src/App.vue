@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <v-app id="app">
         <header>
             <h1>Use.cash</h1>
 
@@ -9,12 +9,14 @@
             </div>
         </header>
 
-        <router-view/>
+        <v-main>
+            <router-view />
+        </v-main>
 
         <footer>
             Copyright &copy; 2021. Use.cash. All rights reserved.
         </footer>
-    </div>
+    </v-app>
 </template>
 
 <script>
@@ -22,8 +24,11 @@
 
 export default {
     components: {
-        // MVP,
-    }
+        //
+    },
+    data: () => ({
+      //
+    }),
 }
 </script>
 
@@ -43,17 +48,20 @@ export default {
 header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 80vw;
     height: 70px;
+    padding: 0 15px;
 }
 
 footer {
     margin: 15px 0;
     font-size: 0.9em;
+    /* padding: 0 15px; */
 }
 
 #nav {
-    padding: 30px;
+    /* padding: 30px; */
 }
 
 #nav a {
