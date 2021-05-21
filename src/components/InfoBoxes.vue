@@ -27,9 +27,9 @@ export default {
 <style scoped>
 .info-boxes {
     margin: 30px 0;
-    padding: 0 15px;
+    /* padding: 0 15px; */
     display: flex;
-    width: 80vw;
+    /* width: 80%; */
     justify-content: space-between;
 }
 .info-boxes div {

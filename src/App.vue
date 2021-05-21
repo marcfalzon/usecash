@@ -15,6 +15,8 @@
 
         <footer>
             Copyright &copy; 2021. Use.cash. All rights reserved.
+
+            <router-link to="/mod">Mod</router-link>
         </footer>
     </v-app>
 </template>
@@ -55,9 +57,14 @@ header {
 }
 
 footer {
+    display: flex;
+    justify-content: space-between;
     margin: 15px 0;
     font-size: 0.9em;
-    /* padding: 0 15px; */
+}
+footer a {
+    text-decoration: none;
+    font-size: 0.8em;
 }
 
 #nav {

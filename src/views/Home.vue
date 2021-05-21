@@ -1,10 +1,10 @@
 <template>
     <div class="">
-        <Search />
+        <Search id="search" />
 
-        <Map />
+        <Map id="map" />
 
-        <InfoBoxes />
+        <InfoBoxes id="info-boxes" />
     </div>
 </template>
 
@@ -23,5 +23,12 @@ export default {
 </script>
 
 <style scoped>
-/*  */
+#search {
+    margin-top: 20px;
+    padding: 0 15px;
+}
+
+#map {
+    margin-top: 30px;
+}
 </style>
