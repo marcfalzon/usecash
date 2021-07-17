@@ -1,13 +1,11 @@
 <template>
-    <v-app>
+    <main>
         <Header />
 
-        <v-main>
-            <router-view />
-        </v-main>
+        <router-view />
 
         <Footer />
-    </v-app>
+    </main>
 </template>
 
 <script>
@@ -72,5 +70,9 @@ footer a {
 
 #nav a.router-link-exact-active {
     color: #42b983;
+}
+
+.page-container {
+    padding: 15px;
 }
 </style>

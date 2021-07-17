@@ -1,6 +1,6 @@
 <template>
-    <main>
-        <h1>Frequently Asked Questions</h1>
+    <main class="page-container">
+        <h1 class="text-xl">Help &amp; Support</h1>
 
     </main>
 </template>

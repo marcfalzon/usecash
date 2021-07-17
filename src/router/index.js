@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Add from '../views/Add.vue'
-import FAQ from '../views/FAQ.vue'
+import Help from '../views/Help.vue'
 import Home from '../views/Home.vue'
 import Mod from '../views/Mod.vue'
 import Profile from '../views/Profile.vue'
@@ -27,13 +27,13 @@ const routes = [
         component: Add
     },
     {
-        path: '/mod',
-        component: Mod
+        /* Help */
+        path: '/help',
+        component: Help
     },
     {
-        /* FAQ */
-        path: '/faq',
-        component: FAQ
+        path: '/mod',
+        component: Mod
     },
     {
         /* (Wildcard) Account Profile */
