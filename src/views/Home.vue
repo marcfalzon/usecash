@@ -26,9 +26,11 @@ export default {
 #search {
     margin-top: 20px;
     padding: 0 15px;
+    z-index: 1000;
 }
 
 #map {
     margin-top: 30px;
+    margin: 30px 15px 0;
 }
 </style>

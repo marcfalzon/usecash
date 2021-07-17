@@ -1,32 +1,23 @@
 <template>
-    <v-app id="app">
-        <header>
-            <h1>Use.cash</h1>
-
-            <div id="nav">
-                <router-link to="/">Map</router-link> |
-                <router-link to="/add">Submit a Business</router-link>
-            </div>
-        </header>
+    <v-app>
+        <Header />
 
         <v-main>
             <router-view />
         </v-main>
 
-        <footer>
-            Copyright &copy; 2021. Use.cash. All rights reserved.
-
-            <router-link to="/mod">Mod</router-link>
-        </footer>
+        <Footer />
     </v-app>
 </template>
 
 <script>
-// import MVP from '@/components/MVP'
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
 
 export default {
     components: {
-        //
+        Footer,
+        Header,
     },
     data: () => ({
       //
@@ -35,11 +26,13 @@ export default {
 </script>
 
 <style>
-#app {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+body {
+    margin: 0;
+    padding: 0;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* align-items: center; */
 
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

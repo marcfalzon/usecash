@@ -10,14 +10,14 @@
         hide-selected
         item-text="name"
         item-value="symbol"
-        label="Search for a coin..."
+        label="Search for a local business..."
         solo
     >
         <template v-slot:no-data>
             <v-list-item>
                 <v-list-item-title>
-                    Search for your favorite
-                    <strong>Cryptocurrency</strong>
+                    Where would you like to spend your
+                    <strong>Bitcoin</strong> today?
                 </v-list-item-title>
             </v-list-item>
         </template>
