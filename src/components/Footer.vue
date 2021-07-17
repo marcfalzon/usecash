@@ -4,7 +4,7 @@
             Copyright &copy; {{curYear}}. Use.cash. All rights reserved.
         </div>
 
-        <div>
+        <div class="hidden sm:block">
             Built and maintained by <a href="https://modenero.com/" target="_blank">Modenero</a>
         </div>
     </footer>

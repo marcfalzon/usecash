@@ -36,6 +36,10 @@ const routes = [
         component: Mod
     },
     {
+        path: '/profile',
+        component: Profile
+    },
+    {
         /* (Wildcard) Account Profile */
         // NOTE: Avoid other wildcard conflicts.
         path: '/@*',
