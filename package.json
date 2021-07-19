@@ -1,6 +1,6 @@
 {
   "name": "use-cash",
-  "version": "21.7.16",
+  "version": "21.7.18",
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,6 +12,10 @@
   "dependencies": {
     "core-js": "3.6.5",
     "leaflet": "1.7.1",
+    "moment": "2.29.1",
+    "numeral": "2.0.6",
+    "superagent": "6.1.0",
+    "uuid": "8.3.2",
     "vue": "2.6.11",
     "vue-router": "3.2.0",
     "vue2-leaflet": "2.7.0",

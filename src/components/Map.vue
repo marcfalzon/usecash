@@ -66,6 +66,7 @@ export default {
     data() {
         return {
             zoom: 15,
+            // zoom: 2,
             currentZoom: null,
 
             center: latLng(LOCATION.lat, LOCATION.lng),
@@ -106,7 +107,8 @@ export default {
     border: 2pt solid rgba(90, 90, 90, 0.5);
     background-color: rgba(90, 90, 90, 0.1);
     /* width: 80vw; */
-    height: 350px;
+    /* height: 350px; */
+    height: 60vh;
     border-radius: 5px;
 }
 </style>

@@ -1,5 +1,14 @@
 <template>
-    <v-autocomplete
+    <main>
+        <input
+            v-model="search"
+            placeholder="Search for a local business..."
+            type="text"
+            name="email-address"
+            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+        >
+    </main>
+    <!-- <v-autocomplete
         v-model="model"
         :items="items"
         :loading="isLoading"
@@ -54,10 +63,16 @@
                 <v-icon>mdi-bitcoin</v-icon>
             </v-list-item-action>
         </template>
-    </v-autocomplete>
+    </v-autocomplete> -->
 </template>
 
 <script>
+/* Import modules. */
+import superagent from 'superagent'
+
+// const API_ENDPOINT = `https://api.use.cash/v1`
+const API_ENDPOINT = `http://localhost:8080/v1`
+
 export default {
     data: () => ({
         isLoading: false,
@@ -66,31 +81,27 @@ export default {
         search: null,
         tab: null,
     }),
-
     watch: {
-        model (val) {
-            if (val != null) this.tab = 0
+        model (_val) {
+            if (_val != null) this.tab = 0
             else this.tab = null
         },
-        search (val) {
-            console.log('search (val):', val)
-            // Items have already been loaded
-            if (this.items.length > 0) return
+        search (_val) {
+            console.log('search (val):', _val)
 
-            this.isLoading = true
-
-            // Lazily load input items
-            fetch('https://api.coingecko.com/api/v3/coins/list')
-                .then(res => res.clone().json())
-                .then(res => {
-                    this.items = res
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-                .finally(() => (this.isLoading = false))
+            if (_val) {
+                this.handleSearch(_val)
+            }
         },
     },
+    modules: {
+        async handleSearch(_val) {
+            console.log('HANDLE SEARCH', _val)
+
+            const result = await superagent.get(`${API_ENDPOINT}/search/${_val}`)
+            console.log('RESULT', result)
+        }
+    }
 }
 </script>
 
