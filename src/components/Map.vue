@@ -1,6 +1,13 @@
 <template>
-    <div class="map">
+    <main>
+        <div class="full-screen text-right">
+            <button>
+                OPEN FULL SCREEN MAP
+            </button>
+        </div>
+
         <l-map
+            class="map"
             v-if="showMap"
             :zoom="zoom"
             :center="center"
@@ -24,17 +31,42 @@
             </l-marker>
 
             <l-marker :lat-lng="withTooltip">
-                <l-popup>
-                    <div @click="innerClick">
-                        <h2>Cloud99 Vapes</h2>
-                        <br>Accepting: BCH
-                        <br>Last updated: 12 hours ago
+                <l-popup class="marker">
+                    <div @click="innerClick" class="grid grid-cols-2 gap-4">
+                        <div>
+                            <img class="marker-thumbnail" src="https://i.imgur.com/trTOx15.jpg" />
+
+                            <h1>Cloud99 Vapes</h1>
+
+                            <p class="description">
+                                Cloud99 Vapes is the largest vape shop serving Rockland County, NY and surrounding areas.
+                                We have all types of e-cigarettes, e-juices, dry herb vaporizers and more.
+                                <!-- New flavors and lines are added every week. -->
+                                <!-- Over 200 flavors of juice in over 30 lines. -->
+                            </p>
+                        </div>
+
+                        <div>
+                            <p class="address text-right">
+                                351 W Rte 59
+                                <br />Nanuet, NY 10954
+                            </p>
+
+                            <p class="accepting text-right">
+                                <strong>ACCEPTING</strong>
+                                <br />BCH, BTC, DASH
+                            </p>
+
+                            <div class="activity text-right">
+                                Last <strong>BITCOIN</strong> Transaction
+                                <h2>12 <small>HOURS AGO</small></h2>
+                            </div>
+                        </div>
                     </div>
                 </l-popup>
             </l-marker>
-
         </l-map>
-    </div>
+    </main>
 </template>
 
 <script>
@@ -103,6 +135,11 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+    margin-top: 10px;
+    font-size: 1.5em;
+}
+
 .map {
     border: 2pt solid rgba(90, 90, 90, 0.5);
     background-color: rgba(90, 90, 90, 0.1);
@@ -110,5 +147,51 @@ export default {
     /* height: 350px; */
     height: 60vh;
     border-radius: 5px;
+}
+
+.marker {
+    width: 300px;
+}
+.marker-thumbnail {
+    background-color: pink;
+    /* width: 200px; */
+    border: 1pt solid rgba(180, 180, 180, 0.8);
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.address {
+    font-size: 0.9em;
+}
+
+.description {
+    margin-top: 5px;
+    font-size: 0.8em;
+    height: 4.0em;
+    overflow: hidden;
+}
+
+.accepting {
+    font-size: 0.8em;
+}
+
+.activity {
+    font-size: 0.8em;
+}
+.activity h2 {
+    font-size: 1.2em;
+    font-weight: 800;
+}
+
+.full-screen {
+    margin: -15px 10px 15px 0;
+}
+.full-screen button {
+    border: 5px solid rgba(240, 90, 240, 1.0);
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgba(60, 120, 180, 0.5);
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.8);
 }
 </style>
