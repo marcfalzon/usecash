@@ -1,18 +1,21 @@
 <template>
     <main class="page-container">
-        <Details v-if="profileid" />
+        <Basic v-if="profileid" />
+        <!-- <Details v-if="profileid" /> -->
         <Signin v-if="!profileid" />
     </main>
 </template>
 
 <script>
 /* Import components. */
-import Details from '@/components/profile/Details'
+import Basic from '@/components/profile/Basic'
+// import Details from '@/components/profile/Details'
 import Signin from '@/components/profile/Signin'
 
 export default {
     components: {
-        Details,
+        Basic,
+        // Details,
         Signin,
     },
     data: () => ({
