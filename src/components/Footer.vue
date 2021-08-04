@@ -1,5 +1,5 @@
 <template>
-    <footer>
+    <footer v-if="isShown">
         <div>
             Copyright &copy; {{curYear}}. Use.cash. All rights reserved.
         </div>
@@ -24,10 +24,17 @@ export default {
         },
     },
     data: () => ({
-        //
+        isShown: null,
     }),
     created: function () {
-        //
+        const path = this.$route.path
+        console.log('PATH', path)
+
+        if (path === '/mod') {
+            this.isShown = false
+        } else {
+            this.isShown = true
+        }
     },
     mounted: function () {
         //

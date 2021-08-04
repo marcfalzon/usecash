@@ -4,8 +4,15 @@ import VueRouter from 'vue-router'
 import Add from '../views/Add.vue'
 import Help from '../views/Help.vue'
 import Home from '../views/Home.vue'
-import Mod from '../views/Mod.vue'
 import Profile from '../views/Profile.vue'
+
+import Mod from '../views/Mod.vue'
+import ModDashboard from '../views/mod/Dashboard.vue'
+import ModEvents from '../views/mod/Events.vue'
+import ModUsers from '../views/mod/Users.vue'
+import ModSearch from '../views/mod/Search.vue'
+import ModAlerts from '../views/mod/Alerts.vue'
+import ModTools from '../views/mod/Tools.vue'
 
 Vue.use(VueRouter)
 
@@ -33,7 +40,33 @@ const routes = [
     },
     {
         path: '/mod',
-        component: Mod
+        component: Mod,
+        children: [
+            {
+                path: '',
+                component: ModDashboard,
+            },
+            {
+                path: 'events',
+                component: ModEvents,
+            },
+            {
+                path: 'users',
+                component: ModUsers,
+            },
+            {
+                path: 'search',
+                component: ModSearch,
+            },
+            {
+                path: 'alerts',
+                component: ModAlerts,
+            },
+            {
+                path: 'tools',
+                component: ModTools,
+            },
+        ]
     },
     {
         path: '/profile',
@@ -61,8 +94,8 @@ const router = new VueRouter({
         }
     },
     // mode: process.env.BASE_URL === '/' ? 'history': 'hash',
-    // mode: 'hash',
-    mode: 'history',
+    mode: 'hash',
+    // mode: 'history',
     base: process.env.BASE_URL,
     routes,
 })
