@@ -32,7 +32,8 @@
                 <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex-shrink-0 flex items-center" @click="home">
                         <img class="block lg:hidden h-8 w-auto" src="@/assets/bitcoin-cash-bch-logo.svg" alt="Use.cash">
-                        <img class="hidden lg:block h-8 w-auto" src="@/assets/workflow-logo-indigo-500-mark-white-text.svg" alt="Use.cash">
+                        <!-- <img class="hidden lg:block h-8 w-auto" src="@/assets/workflow-logo-indigo-500-mark-white-text.svg" alt="Use.cash"> -->
+                        <img class="hidden lg:block h-8 w-auto" src="@/assets/use-cash-logo.svg" alt="Use.cash">
                     </div>
 
                     <div class="hidden sm:block sm:ml-6">
