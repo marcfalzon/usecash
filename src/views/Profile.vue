@@ -61,19 +61,31 @@ export default {
 
                     if (this.profileid === 'homemade-crypto') {
                         this.profile = {
+                            id: 'homemade-crypto',
                             name: `Homemade Crypto`,
                             email: 'info@homemadecrypto.com',
                         }
                     }
                     if (this.profileid === 'marc') {
                         this.profile = {
+                            id: 'marc',
                             name: `Marc Falzon`,
                             email: 'marc@falzon.co',
-                            thumbnail: 'https://pbs.twimg.com/profile_images/1261408850852405249/NQgUWcnP.jpg',
+                            avatar: 'https://pbs.twimg.com/profile_images/1261408850852405249/NQgUWcnP.jpg',
+                        }
+                    }
+                    if (this.profileid === 'nyusternie') {
+                        this.profile = {
+                            id: 'nyusternie',
+                            name: `Shomari`,
+                            email: 'nyusternie@sdot.io',
+                            avatar: 'https://pbs.twimg.com/profile_images/617458563/profile5_400x400.jpg',
+                            twitter: 'ShomariPrince',
                         }
                     }
                     if (this.profileid === 'satoshi') {
                         this.profile = {
+                            id: 'satoshi',
                             name: `Satoshi Nakamoto`,
                             email: 'satoshi@bitcoin.com',
                         }

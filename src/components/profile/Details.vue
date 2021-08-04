@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form action="#" method="POST">
+                    <form action="javascript://" method="POST">
                         <div class="shadow sm:rounded-md sm:overflow-hidden">
                             <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                 <div class="grid grid-cols-3 gap-6">
@@ -171,7 +171,7 @@
                                         </span>
                                     </div>
                                     <div class="ml-4 flex-shrink-0">
-                                        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                                        <a href="javascript://" class="font-medium text-indigo-600 hover:text-indigo-500">
                                             Download
                                         </a>
                                     </div>
@@ -187,7 +187,7 @@
                                         </span>
                                     </div>
                                     <div class="ml-4 flex-shrink-0">
-                                        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                                        <a href="javascript://" class="font-medium text-indigo-600 hover:text-indigo-500">
                                             Download
                                         </a>
                                     </div>

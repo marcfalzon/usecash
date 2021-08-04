@@ -14,7 +14,7 @@
                     </p>
                 </div>
 
-                <form class="mt-8 space-y-6" action="#" method="POST">
+                <form class="mt-8 space-y-6" action="javascript://" method="POST">
                     <input type="hidden" name="remember" value="true">
 
                     <div class="rounded-md shadow-sm -space-y-px">
@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="text-sm">
-                            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                            <a href="javascript://" class="font-medium text-indigo-600 hover:text-indigo-500">
                                 Forgot your password?
                             </a>
                         </div>

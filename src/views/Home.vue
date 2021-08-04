@@ -6,11 +6,16 @@
 
         <InfoBoxes id="info-boxes" />
 
+        <hr class="mt-3 mb-10" />
+
+        <Feeds id="feeds" />
+
         <Onboarding />
     </div>
 </template>
 
 <script>
+import Feeds from '@/components/Feeds'
 import InfoBoxes from '@/components/InfoBoxes'
 import Map from '@/components/Map'
 import Onboarding from '@/components/Onboarding'
@@ -18,6 +23,7 @@ import Search from '@/components/Search'
 
 export default {
     components: {
+        Feeds,
         InfoBoxes,
         Map,
         Onboarding,

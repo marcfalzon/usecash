@@ -6,24 +6,25 @@
             <!-- Activity Feed -->
             <div class="mt-6 flow-root">
                 <ul class="-mb-8">
+
                     <li>
                         <div class="relative pb-8">
                             <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
                             <div class="relative flex space-x-3">
                                 <div>
-                                    <span class="h-8 w-8 rounded-full bg-gray-400 flex items-center justify-center ring-8 ring-white">
-                                        <!-- Heroicon name: solid/user -->
+                                    <span class="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center ring-8 ring-white">
+                                        <!-- Heroicon name: solid/check -->
                                         <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                         </svg>
                                     </span>
                                 </div>
                                 <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
                                     <div>
-                                        <p class="text-sm text-gray-500">Applied to <a href="#" class="font-medium text-gray-900">Front End Developer</a></p>
+                                        <p class="text-sm text-gray-500">Purchase made at <a href="javascript://" class="font-medium text-gray-900">Buffalo Wild Wings</a> using Bitcoin Cash</p>
                                     </div>
                                     <div class="text-right text-sm whitespace-nowrap text-gray-500">
-                                        <time datetime="2020-09-20">Sep 20</time>
+                                        <time datetime="2020-09-28">Aug 4</time>
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +47,7 @@
                                 </div>
                                 <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
                                     <div>
-                                        <p class="text-sm text-gray-500">Advanced to phone screening by <a href="#" class="font-medium text-gray-900">Bethany Blake</a></p>
+                                        <p class="text-sm text-gray-500"><router-link to="@marc" class="font-medium text-gray-900">@marc</router-link> changed status of <router-link to="@homemade-crypto" class="font-medium text-gray-900">Homemade Crypto</router-link> to verified</p>
                                     </div>
                                     <div class="text-right text-sm whitespace-nowrap text-gray-500">
                                         <time datetime="2020-09-22">Sep 22</time>
@@ -61,19 +62,19 @@
                             <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
                             <div class="relative flex space-x-3">
                                 <div>
-                                    <span class="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center ring-8 ring-white">
-                                        <!-- Heroicon name: solid/check -->
+                                    <span class="h-8 w-8 rounded-full bg-gray-400 flex items-center justify-center ring-8 ring-white">
+                                        <!-- Heroicon name: solid/user -->
                                         <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
                                         </svg>
                                     </span>
                                 </div>
                                 <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
                                     <div>
-                                        <p class="text-sm text-gray-500">Completed phone screening with <a href="#" class="font-medium text-gray-900">Martha Gardner</a></p>
+                                        <p class="text-sm text-gray-500">Added new merchant <router-link to="@homemade-crypto" class="font-medium text-gray-900">Homemade Crypto</router-link> from Atlanta, GA</p>
                                     </div>
                                     <div class="text-right text-sm whitespace-nowrap text-gray-500">
-                                        <time datetime="2020-09-28">Sep 28</time>
+                                        <time datetime="2020-09-20">Sep 20</time>
                                     </div>
                                 </div>
                             </div>
@@ -83,6 +84,30 @@
                     <li>
                         <div class="relative pb-8">
                             <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                            <div class="relative flex space-x-3">
+                                <div>
+                                    <span class="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center ring-8 ring-white">
+                                        <!-- Heroicon name: solid/check -->
+                                        <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                    <div>
+                                        <p class="text-sm text-gray-500">Purchase made at <a href="javascript://" class="font-medium text-gray-900">Massage Envy</a> using Dash</p>
+                                    </div>
+                                    <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                                        <time datetime="2020-09-28">Aug 4</time>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="relative pb-8">
+                            <!-- <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span> -->
                             <div class="relative flex space-x-3">
                                 <div>
                                     <span class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center ring-8 ring-white">
@@ -96,46 +121,25 @@
                                 </div>
                                 <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
                                     <div>
-                                        <p class="text-sm text-gray-500">Advanced to interview by <a href="#" class="font-medium text-gray-900">Bethany Blake</a></p>
+                                        <p class="text-sm text-gray-500"><router-link to="@marc" class="font-medium text-gray-900">@marc</router-link> has started following <router-link to="@nyusternie" class="font-medium text-gray-900">@nyusternie</router-link></p>
                                     </div>
                                     <div class="text-right text-sm whitespace-nowrap text-gray-500">
-                                        <time datetime="2020-09-30">Sep 30</time>
+                                        <time datetime="2020-09-22">Sep 22</time>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </li>
 
-                    <li>
-                        <div class="relative pb-8">
-                            <div class="relative flex space-x-3">
-                                <div>
-                                    <span class="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center ring-8 ring-white">
-                                        <!-- Heroicon name: solid/check -->
-                                        <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                        </svg>
-                                    </span>
-                                </div>
-                                <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
-                                    <div>
-                                        <p class="text-sm text-gray-500">Completed interview with <a href="#" class="font-medium text-gray-900">Katherine Snyder</a></p>
-                                    </div>
-                                    <div class="text-right text-sm whitespace-nowrap text-gray-500">
-                                        <time datetime="2020-10-04">Oct 4</time>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
                 </ul>
             </div>
+
             <div class="mt-6 flex flex-col justify-stretch">
                 <button
                     type="button"
                     class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
-                    Advance to offer
+                    Show all activity
                 </button>
             </div>
         </div>

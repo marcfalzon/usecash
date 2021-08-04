@@ -61,6 +61,11 @@ footer a {
     font-size: 0.8em;
 }
 
+h1 {
+    font-size: 1.5em !important;
+    margin-bottom: 5px !important;
+}
+
 #nav {
     /* padding: 30px; */
 }
