@@ -79,6 +79,10 @@ export default {
                             email: 'nyusternie@sdot.io',
                             avatar: 'https://pbs.twimg.com/profile_images/617458563/profile5_400x400.jpg',
                             twitter: 'ShomariPrince',
+                            merchants: [
+                                'homemade-crypto',
+                                'atlanta-bitcoin-club',
+                            ],
                         }
                     }
                     if (this.profileid === 'satoshi') {

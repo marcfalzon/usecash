@@ -5,17 +5,23 @@
         <router-view />
 
         <Footer />
+        <Modals />
+        <Notifs />
     </main>
 </template>
 
 <script>
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
+import Modals from '@/components/Modals'
+import Notifs from '@/components/Notifs'
 
 export default {
     components: {
         Footer,
         Header,
+        Modals,
+        Notifs,
     },
     data: () => ({
       //

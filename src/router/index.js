@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Add from '../views/Add.vue'
-import Help from '../views/Help.vue'
+import Learn from '../views/Learn.vue'
 import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
 
@@ -35,9 +35,9 @@ const routes = [
         component: Add
     },
     {
-        /* Help */
-        path: '/help',
-        component: Help
+        /* Learn */
+        path: '/learn',
+        component: Learn
     },
     {
         path: '/mod',

@@ -1,6 +1,6 @@
 <template>
     <main class="mt-8 max-w-5xl mx-auto px-4 pb-12 sm:px-6 lg:px-8">
-        <h2 class="text-sm font-medium text-gray-500">Merchants onboarded</h2>
+        <h2 class="text-sm font-medium text-gray-500">{{profile.name}} has onboarded {{profile.merchants ? profile.merchants.length : 0}} merchants over the past year</h2>
         <div class="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500">
                 <div class="flex-shrink-0">
@@ -80,7 +80,7 @@
 
 export default {
     props: {
-        //
+        profile: Object,
     },
     computed: {
         //

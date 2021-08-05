@@ -36,7 +36,7 @@ export default {
 #search {
     margin-top: 20px;
     padding: 0 15px;
-    z-index: 1000;
+    z-index: 100;
 }
 
 #map {
