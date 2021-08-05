@@ -6,6 +6,11 @@
             </button>
         </div>
 
+        <div class="full-screen">
+            Please place a pin on the location of the merchant you are adding to our database.
+            <br>Latitude: <strong>{{pinLat ? pinLat.toFixed(4) : 'n/a'}}</strong> | Longitude: <strong>{{pinLng ? pinLng.toFixed(4) : 'n/a'}}</strong>
+        </div>
+
         <l-map
             v-if="showMap"
             class="map"
@@ -21,48 +26,18 @@
                 :attribution="attribution"
             />
 
-            <l-marker :lat-lng="withPopup">
+            <l-circle
+                :lat-lng="circle.center"
+                :radius="circle.radius"
+                :color="circle.color"
+            />
+
+            <l-marker ref="marker" :lat-lng="activeLoc" :draggable=true>
                 <l-popup>
                     <div @click="innerClick">
                         <h2>Armani Exchange</h2>
                         <br>Accepting: BCH, BTC, DASH
                         <br>Last updated: 3 days ago
-                    </div>
-                </l-popup>
-            </l-marker>
-
-            <l-marker :lat-lng="withTooltip">
-                <l-popup class="marker">
-                    <div @click="innerClick" class="grid grid-cols-2 gap-4">
-                        <div>
-                            <img class="marker-thumbnail" src="https://i.imgur.com/trTOx15.jpg" />
-
-                            <h1>Cloud99 Vapes</h1>
-
-                            <p class="description">
-                                Cloud99 Vapes is the largest vape shop serving Rockland County, NY and surrounding areas.
-                                We have all types of e-cigarettes, e-juices, dry herb vaporizers and more.
-                                <!-- New flavors and lines are added every week. -->
-                                <!-- Over 200 flavors of juice in over 30 lines. -->
-                            </p>
-                        </div>
-
-                        <div>
-                            <p class="address text-right">
-                                351 W Rte 59
-                                <br />Nanuet, NY 10954
-                            </p>
-
-                            <p class="accepting text-right">
-                                <strong>ACCEPTING</strong>
-                                <br />BCH, BTC, DASH
-                            </p>
-
-                            <div class="activity text-right">
-                                Last <strong>BITCOIN</strong> Transaction
-                                <h2>12 <small>HOURS AGO</small></h2>
-                            </div>
-                        </div>
                     </div>
                 </l-popup>
             </l-marker>
@@ -72,7 +47,7 @@
 
 <script>
 import { Icon, latLng } from 'leaflet'
-import { LMap, LTileLayer, LMarker, LPopup } from 'vue2-leaflet'
+import { LMap, LTileLayer, LMarker, LPopup, LCircle } from 'vue2-leaflet'
 
 // NOTE: This is a fix for webpack
 //       (https://vue2-leaflet.netlify.app/quickstart/#marker-icons-are-missing)
@@ -100,6 +75,7 @@ export default {
         LTileLayer,
         LMarker,
         LPopup,
+        LCircle,
     },
     watch: {
         startPos: function (_latlng) {
@@ -108,14 +84,16 @@ export default {
             const lat = _latlng.split(',')[0]
             const lng = _latlng.split(',')[1]
 
-            this.map.setView({ lat, lng }, 12)
+            this.map.setView({ lat, lng }, 14)
+            this.circle.center = latLng(lat, lng)
         },
     },
     data() {
         return {
             map: null,
+            marker: null,
 
-            zoom: 15,
+            zoom: 14,
             currentZoom: null,
 
             center: latLng(LOCATION.lat, LOCATION.lng),
@@ -125,19 +103,52 @@ export default {
             attribution:
                 '&copy; <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a>',
 
-            withPopup: latLng(40.7244012, -73.997503),
-            withTooltip: latLng(40.7253863, -73.9897977),
+            activeLoc: latLng(45.4985, -73.5710),
 
             mapOptions: {
                 zoomSnap: 1.0
             },
-            showMap: true
+            showMap: true,
+            circle: {
+                center: latLng(LOCATION.lat, LOCATION.lng),
+                radius: 1000,
+                color: 'green'
+            },
+            pinLat: null,
+            pinLng: null,
         };
     },
     methods: {
         init() {
             /* Initialize map object. */
             this.map = this.$refs.map.mapObject
+
+            /* Initialize map object. */
+            this.marker = this.$refs.marker.mapObject
+
+            /* Handle map clicks. */
+            this.map.on('click', (event) => {
+                // console.log('MAP WAS CLICKED. DROP A PIN!')
+
+                const position = event.latlng
+                // console.log('POSITION', position)
+
+                this.pinLat = position.lat
+                this.pinLng = position.lng
+
+                /* Update active location. */
+                this.activeLoc = position
+            })
+
+            /* Handle draggable marker. */
+            this.marker.on('dragend', () => {
+                // const position = marker.getLatLng()
+                const position = this.marker.getLatLng()
+                // console.log('POSITION', position)
+
+                this.pinLat = position.lat
+                this.pinLng = position.lng
+            })
 
         },
 
@@ -151,7 +162,7 @@ export default {
 
         innerClick() {
 
-            alert(`Click!`)
+            alert(`Marker inner clicked!`)
         }
     },
     created: function () {
