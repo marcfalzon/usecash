@@ -181,13 +181,8 @@
                                         <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
                                             <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
                                                 <div class="w-0 flex-1 flex items-center">
-                                                    <!-- Heroicon name: solid/paper-clip -->
-                                                    <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                        <path
-                                                            fill-rule="evenodd"
-                                                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                                                            clip-rule="evenodd"
-                                                        />
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 h-5 w-5 text-gray-400 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                                                     </svg>
                                                     <span class="ml-2 flex-1 w-0 truncate">
                                                         Website
@@ -202,13 +197,8 @@
 
                                             <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
                                                 <div class="w-0 flex-1 flex items-center">
-                                                    <!-- Heroicon name: solid/paper-clip -->
-                                                    <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                        <path
-                                                            fill-rule="evenodd"
-                                                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                                                            clip-rule="evenodd"
-                                                        />
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                                     </svg>
                                                     <span class="ml-2 flex-1 w-0 truncate">
                                                         YouTube
@@ -278,7 +268,11 @@
                 <Comments />
             </div>
 
-            <ActivityFeed />
+            <div class="lg:col-span-2">
+                <ActivityFeed />
+
+                <Follow />
+            </div>
         </div>
     </main>
 </template>
@@ -290,6 +284,7 @@
 /* Import components. */
 import ActivityFeed from '@/components/profile/ActivityFeed'
 import Comments from '@/components/profile/Comments'
+import Follow from '@/components/profile/Follow'
 
 export default {
     props: {
@@ -299,6 +294,7 @@ export default {
     components: {
         ActivityFeed,
         Comments,
+        Follow,
     },
     computed: {
         displayName() {
