@@ -10,7 +10,7 @@ import Mod from '../views/Mod.vue'
 import ModDashboard from '../views/mod/Dashboard.vue'
 import ModMerchants from '../views/mod/Merchants.vue'
 import ModUsers from '../views/mod/Users.vue'
-// import ModSearch from '../views/mod/Search.vue'
+import ModIssues from '../views/mod/Issues.vue'
 import ModNotifs from '../views/mod/Notifs.vue'
 import ModMapTools from '../views/mod/MapTools.vue'
 import ModDbTools from '../views/mod/DbTools.vue'
@@ -55,10 +55,10 @@ const routes = [
                 path: 'users',
                 component: ModUsers,
             },
-            // {
-            //     path: 'search',
-            //     component: ModSearch,
-            // },
+            {
+                path: 'issues',
+                component: ModIssues,
+            },
             {
                 path: 'notifs',
                 component: ModNotifs,

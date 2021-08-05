@@ -99,6 +99,20 @@
                                         My currencies
                                     </dt>
 
+                                    <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                            <label for="company-website" class="block text-sm font-medium text-gray-700">
+                                                Bitcoin Cash Address
+                                            </label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                                <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                                    bitcoincash:
+                                                </span>
+                                                <input type="text" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="qqfc3lxxylme0w87c5j2wdmsqln6e844xcmsdssvzy">
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <dd class="mt-1 text-sm text-gray-900">
                                         <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
                                             <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
@@ -262,6 +276,8 @@
                         <!-- <div>
                             <a href="javascript://" class="block bg-gray-50 text-sm font-medium text-gray-500 text-center px-4 py-4 hover:text-gray-700 sm:rounded-b-lg">Read full application</a>
                         </div> -->
+
+                        <Onboarding />
                     </div>
                 </section>
 
@@ -285,6 +301,7 @@
 import ActivityFeed from '@/components/profile/ActivityFeed'
 import Comments from '@/components/profile/Comments'
 import Follow from '@/components/profile/Follow'
+import Onboarding from '@/components/profile/Onboarding'
 
 export default {
     props: {
@@ -295,6 +312,7 @@ export default {
         ActivityFeed,
         Comments,
         Follow,
+        Onboarding,
     },
     computed: {
         displayName() {
