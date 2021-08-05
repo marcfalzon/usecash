@@ -8,11 +8,12 @@ import Profile from '../views/Profile.vue'
 
 import Mod from '../views/Mod.vue'
 import ModDashboard from '../views/mod/Dashboard.vue'
-import ModEvents from '../views/mod/Events.vue'
+import ModMerchants from '../views/mod/Merchants.vue'
 import ModUsers from '../views/mod/Users.vue'
-import ModSearch from '../views/mod/Search.vue'
-import ModAlerts from '../views/mod/Alerts.vue'
-import ModTools from '../views/mod/Tools.vue'
+// import ModSearch from '../views/mod/Search.vue'
+import ModNotifs from '../views/mod/Notifs.vue'
+import ModMapTools from '../views/mod/MapTools.vue'
+import ModDbTools from '../views/mod/DbTools.vue'
 
 Vue.use(VueRouter)
 
@@ -47,24 +48,28 @@ const routes = [
                 component: ModDashboard,
             },
             {
-                path: 'events',
-                component: ModEvents,
+                path: 'merchants',
+                component: ModMerchants,
             },
             {
                 path: 'users',
                 component: ModUsers,
             },
+            // {
+            //     path: 'search',
+            //     component: ModSearch,
+            // },
             {
-                path: 'search',
-                component: ModSearch,
+                path: 'notifs',
+                component: ModNotifs,
             },
             {
-                path: 'alerts',
-                component: ModAlerts,
+                path: 'map-tools',
+                component: ModMapTools,
             },
             {
-                path: 'tools',
-                component: ModTools,
+                path: 'db-tools',
+                component: ModDbTools,
             },
         ]
     },

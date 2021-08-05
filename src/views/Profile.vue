@@ -22,19 +22,19 @@ export default {
         profileid: null,
         profile: null,
     }),
-    beforeRouteEnter (to, from, next) {
-        console.log('BEFORE ROUTER ENTER', to, from);
-        // getPost(to.params.id, (err, post) => {
-        //     next(vm => vm.setData(err, post))
-        // })
-        if (this) this.init(to)
-
-        next()
-    },
+    // beforeRouteEnter (to, from, next) {
+    //     console.log('BEFORE ROUTER ENTER', to, from);
+    //     // getPost(to.params.id, (err, post) => {
+    //     //     next(vm => vm.setData(err, post))
+    //     // })
+    //     if (this) this.init(to)
+    //
+    //     next()
+    // },
     // when route changes and this component is already rendered,
     // the logic will be slightly different.
     beforeRouteUpdate (to, from, next) {
-        console.log('BEFORE ROUTE UPDATE', to, from);
+        console.log('BEFORE ROUTE UPDATE (profile)', to, from);
         // this.post = null
         // getPost(to.params.id, (err, post) => {
         //     this.setData(err, post)
