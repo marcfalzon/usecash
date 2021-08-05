@@ -90,14 +90,24 @@
                                     </dd>
                                 </div>
 
-                                <div class="sm:col-span-3">
-                                    <hr />
+                                <div class="relative sm:col-span-3">
+                                    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                                        <div class="w-full border-t border-gray-300"></div>
+                                    </div>
+                                    <div class="relative flex justify-center">
+                                        <span class="px-2 bg-white text-sm text-gray-500">
+                                            My currencies
+                                        </span>
+                                    </div>
                                 </div>
+                                <!-- <div class="sm:col-span-3">
+                                    <hr />
+                                </div> -->
 
                                 <div class="sm:col-span-2">
-                                    <dt class="text-sm font-medium text-gray-500">
+                                    <!-- <dt class="text-sm font-medium text-gray-500">
                                         My currencies
-                                    </dt>
+                                    </dt> -->
 
                                     <div class="grid grid-cols-3 gap-6">
                                         <div class="col-span-3 sm:col-span-2">
@@ -182,14 +192,24 @@
                                     </select>
                                 </div>
 
-                                <div class="sm:col-span-3">
-                                    <hr />
+                                <div class="relative sm:col-span-3">
+                                    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                                        <div class="w-full border-t border-gray-300"></div>
+                                    </div>
+                                    <div class="relative flex justify-center">
+                                        <span class="px-2 bg-white text-sm text-gray-500">
+                                            My favorite links
+                                        </span>
+                                    </div>
                                 </div>
+                                <!-- <div class="sm:col-span-3">
+                                    <hr />
+                                </div> -->
 
                                 <div class="sm:col-span-2">
-                                    <dt class="text-sm font-medium text-gray-500">
+                                    <!-- <dt class="text-sm font-medium text-gray-500">
                                         My links
-                                    </dt>
+                                    </dt> -->
 
                                     <dd class="mt-1 text-sm text-gray-900">
                                         <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">

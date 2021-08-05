@@ -4,6 +4,7 @@
             <div class="pl-4 pr-6 pt-4 pb-4 border-b border-t border-gray-200 sm:pl-6 lg:pl-8 xl:pl-6 xl:pt-6 xl:border-t-0">
                 <div class="flex items-center">
                     <h1 class="flex-1 text-lg font-medium">Notifications</h1>
+
                     <div class="relative">
                         <button
                             type="button"
@@ -43,7 +44,8 @@
                     </div>
                 </div>
             </div>
-            <ul class="relative z-0 divide-y divide-gray-200 border-b border-gray-200">
+
+            <ul class="hidden relative z-0 divide-y divide-gray-200 border-b border-gray-200">
 
                 <li class="relative pl-4 pr-6 py-5 hover:bg-gray-50 sm:py-6 sm:pl-6 lg:pl-8 xl:pl-6">
                     <div class="flex items-center justify-between space-x-4">
@@ -186,11 +188,19 @@
                 <!-- More projects... -->
             </ul>
         </div>
+
+        <Flipstarter class="m-5" />
     </main>
 </template>
 
 <script>
+/* Import components. */
+import Flipstarter from '@/components/Flipstarter'
+
 export default {
+    components: {
+        Flipstarter,
+    },
     data: () => ({
         //
     }),
