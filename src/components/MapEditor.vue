@@ -64,6 +64,8 @@ const LOCATION = {
     lng: -73.99860620,
 }
 
+const DEFAULT_ZOOM = 15
+
 export default {
     props: {
         startPos: String,
@@ -84,7 +86,7 @@ export default {
             const lat = _latlng.split(',')[0]
             const lng = _latlng.split(',')[1]
 
-            this.map.setView({ lat, lng }, 14)
+            this.map.setView({ lat, lng }, DEFAULT_ZOOM)
             this.circle.center = latLng(lat, lng)
         },
     },
@@ -93,7 +95,7 @@ export default {
             map: null,
             marker: null,
 
-            zoom: 14,
+            zoom: DEFAULT_ZOOM,
             currentZoom: null,
 
             center: latLng(LOCATION.lat, LOCATION.lng),
