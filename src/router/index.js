@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Add from '../views/Add.vue'
+import FAQ from '../views/FAQ.vue'
 import Learn from '../views/Learn.vue'
 import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
@@ -33,6 +34,11 @@ const routes = [
     {
         path: '/add',
         component: Add
+    },
+    {
+        /* FAQ */
+        path: '/faq',
+        component: FAQ
     },
     {
         /* Learn */

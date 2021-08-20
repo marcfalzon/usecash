@@ -21,13 +21,12 @@
                     </button>
                 </div>
 
-                <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start cursor-pointer">
                     <div class="flex-shrink-0 flex items-center" @click="home">
                         <img class="block lg:hidden h-8 w-auto" src="@/assets/bitcoin-cash-bch-logo.svg" alt="Use.cash">
                         <!-- <img class="hidden lg:block h-8 w-auto" src="@/assets/workflow-logo-indigo-500-mark-white-text.svg" alt="Use.cash"> -->
                         <img class="hidden lg:block h-8 w-auto" src="@/assets/use-cash-logo.svg" alt="Use.cash">
                     </div>
-
                 </div>
 
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -45,7 +44,7 @@
                         </svg>
                     </button>
 
-                    <button @click="learn" class="sm:mr-2 bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none">
+                    <button @click="info" class="sm:mr-2 bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none">
                         <span class="sr-only">Learn more about crypto</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -124,8 +123,9 @@ export default {
             this.$router.push('/add')
         },
 
-        learn() {
-            this.$router.push('/learn')
+        info() {
+            this.$router.push('/faq')
+            // this.$router.push('/learn')
         },
 
         home() {
