@@ -36,9 +36,9 @@
                         >
                             <div class="py-1" role="none">
                                 <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                                <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="sort-menu-item-0">Name</a>
-                                <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="sort-menu-item-1">Date modified</a>
-                                <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="sort-menu-item-2">Date created</a>
+                                <a href="javascript://" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="sort-menu-item-0">Name</a>
+                                <a href="javascript://" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="sort-menu-item-1">Date modified</a>
+                                <a href="javascript://" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="sort-menu-item-2">Date created</a>
                             </div>
                         </div>
                     </div>
@@ -58,14 +58,14 @@
 
                                 <span class="block">
                                     <h2 class="text-sm font-medium">
-                                        <a href="#">
+                                        <a href="javascript://">
                                             <span class="absolute inset-0" aria-hidden="true"></span>
                                             Workcation <span class="sr-only">Running</span>
                                         </a>
                                     </h2>
                                 </span>
                             </div>
-                            <a href="#" class="relative group flex items-center space-x-2.5">
+                            <a href="javascript://" class="relative group flex items-center space-x-2.5">
                                 <svg class="flex-shrink-0 w-5 h-5 text-gray-400 group-hover:text-gray-500" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                     <path
                                         fill-rule="evenodd"
@@ -88,7 +88,7 @@
                         <!-- Repo meta info -->
                         <div class="hidden sm:flex flex-col flex-shrink-0 items-end space-y-3">
                             <p class="flex items-center space-x-4">
-                                <a href="#" class="relative text-sm text-gray-500 hover:text-gray-900 font-medium">
+                                <a href="javascript://" class="relative text-sm text-gray-500 hover:text-gray-900 font-medium">
                                     Visit site
                                 </a>
                                 <button class="relative bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" type="button">
@@ -127,14 +127,14 @@
 
                                 <span class="block">
                                     <h2 class="text-sm font-medium">
-                                        <a href="#">
+                                        <a href="javascript://">
                                             <span class="absolute inset-0" aria-hidden="true"></span>
                                             Easywire <span class="sr-only">Running</span>
                                         </a>
                                     </h2>
                                 </span>
                             </div>
-                            <a href="#" class="relative group flex items-center space-x-2.5">
+                            <a href="javascript://" class="relative group flex items-center space-x-2.5">
                                 <svg class="flex-shrink-0 w-5 h-5 text-gray-400 group-hover:text-gray-500" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                     <path
                                         fill-rule="evenodd"
@@ -157,7 +157,7 @@
                         <!-- Repo meta info -->
                         <div class="hidden sm:flex flex-col flex-shrink-0 items-end space-y-3">
                             <p class="flex items-center space-x-4">
-                                <a href="#" class="relative text-sm text-gray-500 hover:text-gray-900 font-medium">
+                                <a href="javascript://" class="relative text-sm text-gray-500 hover:text-gray-900 font-medium">
                                     Visit site
                                 </a>
                                 <button class="relative bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" type="button">

@@ -102,7 +102,7 @@
                         </div>
                         <div class="bg-gray-50 px-5 py-3">
                             <div class="text-sm">
-                                <a href="#" class="font-medium text-blue-700 hover:text-blue-900">
+                                <a href="javascript://" class="font-medium text-blue-700 hover:text-blue-900">
                                     View all
                                 </a>
                             </div>
@@ -121,7 +121,7 @@
             <div class="shadow sm:hidden">
                 <ul class="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
                     <li>
-                        <a href="#" class="block px-4 py-4 bg-white hover:bg-gray-50">
+                        <a href="javascript://" class="block px-4 py-4 bg-white hover:bg-gray-50">
                             <span class="flex items-center space-x-4">
                                 <span class="flex-1 flex space-x-2 truncate">
                                     <!-- Heroicon name: solid/cash -->
@@ -151,10 +151,10 @@
 
                 <nav class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200" aria-label="Pagination">
                     <div class="flex-1 flex justify-between">
-                        <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">
+                        <a href="javascript://" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">
                             Previous
                         </a>
-                        <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">
+                        <a href="javascript://" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">
                             Next
                         </a>
                     </div>
@@ -187,7 +187,7 @@
                                     <tr class="bg-white">
                                         <td class="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             <div class="flex">
-                                                <a href="#" class="group inline-flex space-x-2 truncate text-sm">
+                                                <a href="javascript://" class="group inline-flex space-x-2 truncate text-sm">
                                                     <!-- Heroicon name: solid/cash -->
                                                     <svg class="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                         <path
@@ -233,10 +233,10 @@
                                     </p>
                                 </div>
                                 <div class="flex-1 flex justify-between sm:justify-end">
-                                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                    <a href="javascript://" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                                         Previous
                                     </a>
-                                    <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                    <a href="javascript://" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                                         Next
                                     </a>
                                 </div>

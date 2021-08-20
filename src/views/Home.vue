@@ -18,7 +18,7 @@
 /* Import components. */
 import Feeds from '@/components/Feeds'
 import InfoBoxes from '@/components/InfoBoxes'
-import Map from '@/components/Map'
+import Map from '@/components/MapOSM'
 import Onboarding from '@/components/Onboarding'
 import Search from '@/components/Search'
 

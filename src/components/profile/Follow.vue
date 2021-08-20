@@ -13,10 +13,10 @@
                             </div>
                             <div class="min-w-0 flex-1">
                                 <p class="text-sm font-medium text-gray-900">
-                                    <a href="#">Leonard Krasner</a>
+                                    <a href="javascript://">Leonard Krasner</a>
                                 </p>
                                 <p class="text-sm text-gray-500">
-                                    <a href="#">@leonardkrasner</a>
+                                    <a href="javascript://">@leonardkrasner</a>
                                 </p>
                             </div>
                             <div class="flex-shrink-0">
@@ -36,7 +36,7 @@
                     </ul>
                 </div>
                 <div class="mt-6">
-                    <a href="#" class="w-full block text-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                    <a href="javascript://" class="w-full block text-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                         View all
                     </a>
                 </div>

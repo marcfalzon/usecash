@@ -28,7 +28,7 @@
                                     <div class="min-w-0 flex-1">
                                         <div>
                                             <div class="text-sm">
-                                                <a href="#" class="font-medium text-gray-900">Eduardo Benz</a>
+                                                <a href="javascript://" class="font-medium text-gray-900">Eduardo Benz</a>
                                             </div>
                                             <p class="mt-0.5 text-sm text-gray-500">
                                                 Commented 6d ago
@@ -64,9 +64,9 @@
                                     </div>
                                     <div class="min-w-0 flex-1 py-1.5">
                                         <div class="text-sm text-gray-500">
-                                            <a href="#" class="font-medium text-gray-900">Hilary Mahy</a>
+                                            <a href="javascript://" class="font-medium text-gray-900">Hilary Mahy</a>
                                             assigned
-                                            <a href="#" class="font-medium text-gray-900">Kristin Watson</a>
+                                            <a href="javascript://" class="font-medium text-gray-900">Kristin Watson</a>
                                             <span class="whitespace-nowrap">2d ago</span>
                                         </div>
                                     </div>
@@ -91,17 +91,17 @@
                                     <div class="min-w-0 flex-1 py-0">
                                         <div class="text-sm leading-8 text-gray-500">
                                             <span class="mr-0.5">
-                                                <a href="#" class="font-medium text-gray-900">Hilary Mahy</a>
+                                                <a href="javascript://" class="font-medium text-gray-900">Hilary Mahy</a>
                                                 added tags
                                             </span>
                                             <span class="mr-0.5">
-                                                <a href="#" class="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5 text-sm">
+                                                <a href="javascript://" class="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5 text-sm">
                                                     <span class="absolute flex-shrink-0 flex items-center justify-center">
                                                         <span class="h-1.5 w-1.5 rounded-full bg-rose-500" aria-hidden="true"></span>
                                                     </span>
                                                     <span class="ml-3.5 font-medium text-gray-900">Bug</span>
                                                 </a>
-                                                <a href="#" class="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5 text-sm">
+                                                <a href="javascript://" class="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5 text-sm">
                                                     <span class="absolute flex-shrink-0 flex items-center justify-center">
                                                         <span class="h-1.5 w-1.5 rounded-full bg-indigo-500" aria-hidden="true"></span>
                                                     </span>
@@ -135,7 +135,7 @@
                                     <div class="min-w-0 flex-1">
                                         <div>
                                             <div class="text-sm">
-                                                <a href="#" class="font-medium text-gray-900">Jason Meyers</a>
+                                                <a href="javascript://" class="font-medium text-gray-900">Jason Meyers</a>
                                             </div>
                                             <p class="mt-0.5 text-sm text-gray-500">
                                                 Commented 2h ago
@@ -184,7 +184,7 @@
                                     <div class="min-w-0 flex-1">
                                         <div>
                                             <div class="text-sm">
-                                                <a href="#" class="font-medium text-gray-900">Eduardo Benz</a>
+                                                <a href="javascript://" class="font-medium text-gray-900">Eduardo Benz</a>
                                             </div>
                                             <p class="mt-0.5 text-sm text-gray-500">
                                                 Commented 6d ago
@@ -220,9 +220,9 @@
                                     </div>
                                     <div class="min-w-0 flex-1 py-1.5">
                                         <div class="text-sm text-gray-500">
-                                            <a href="#" class="font-medium text-gray-900">Hilary Mahy</a>
+                                            <a href="javascript://" class="font-medium text-gray-900">Hilary Mahy</a>
                                             assigned
-                                            <a href="#" class="font-medium text-gray-900">Kristin Watson</a>
+                                            <a href="javascript://" class="font-medium text-gray-900">Kristin Watson</a>
                                             <span class="whitespace-nowrap">2d ago</span>
                                         </div>
                                     </div>
@@ -247,17 +247,17 @@
                                     <div class="min-w-0 flex-1 py-0">
                                         <div class="text-sm leading-8 text-gray-500">
                                             <span class="mr-0.5">
-                                                <a href="#" class="font-medium text-gray-900">Hilary Mahy</a>
+                                                <a href="javascript://" class="font-medium text-gray-900">Hilary Mahy</a>
                                                 added tags
                                             </span>
                                             <span class="mr-0.5">
-                                                <a href="#" class="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5 text-sm">
+                                                <a href="javascript://" class="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5 text-sm">
                                                     <span class="absolute flex-shrink-0 flex items-center justify-center">
                                                         <span class="h-1.5 w-1.5 rounded-full bg-rose-500" aria-hidden="true"></span>
                                                     </span>
                                                     <span class="ml-3.5 font-medium text-gray-900">Bug</span>
                                                 </a>
-                                                <a href="#" class="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5 text-sm">
+                                                <a href="javascript://" class="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5 text-sm">
                                                     <span class="absolute flex-shrink-0 flex items-center justify-center">
                                                         <span class="h-1.5 w-1.5 rounded-full bg-indigo-500" aria-hidden="true"></span>
                                                     </span>
@@ -291,7 +291,7 @@
                                     <div class="min-w-0 flex-1">
                                         <div>
                                             <div class="text-sm">
-                                                <a href="#" class="font-medium text-gray-900">Jason Meyers</a>
+                                                <a href="javascript://" class="font-medium text-gray-900">Jason Meyers</a>
                                             </div>
                                             <p class="mt-0.5 text-sm text-gray-500">
                                                 Commented 2h ago

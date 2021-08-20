@@ -99,7 +99,7 @@
                     </nav>
                 </div>
 
-                <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
+                <!-- <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
                     <a href="javascript://" class="flex-shrink-0 group block">
                         <div class="flex items-center">
                             <div>
@@ -115,7 +115,7 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> -->
             </div>
 
             <div class="flex-shrink-0 w-14" aria-hidden="true">
@@ -211,7 +211,8 @@
                             </div>
                         </nav>
                     </div>
-                    <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
+
+                    <!-- <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
                         <a href="javascript://" class="flex-shrink-0 w-full group block">
                             <div class="flex items-center">
                                 <div>
@@ -227,7 +228,8 @@
                                 </div>
                             </div>
                         </a>
-                    </div>
+                    </div> -->
+
                 </div>
             </div>
         </div>

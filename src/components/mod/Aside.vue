@@ -34,7 +34,7 @@
                         <h2 class="text-sm font-medium text-gray-500">Assignees</h2>
                         <ul class="mt-3 space-y-3">
                             <li class="flex justify-start">
-                                <a href="#" class="flex items-center space-x-3">
+                                <a href="javascript://" class="flex items-center space-x-3">
                                     <div class="flex-shrink-0">
                                         <img class="h-5 w-5 rounded-full" src="https://images.unsplash.com/photo-1520785643438-5bf77931f493?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80" alt="" />
                                     </div>
@@ -47,7 +47,7 @@
                         <h2 class="text-sm font-medium text-gray-500">Tags</h2>
                         <ul class="mt-2 leading-8">
                             <li class="inline">
-                                <a href="#" class="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5">
+                                <a href="javascript://" class="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5">
                                     <div class="absolute flex-shrink-0 flex items-center justify-center">
                                         <span class="h-1.5 w-1.5 rounded-full bg-rose-500" aria-hidden="true"></span>
                                     </div>
@@ -55,7 +55,7 @@
                                 </a>
                             </li>
                             <li class="inline">
-                                <a href="#" class="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5">
+                                <a href="javascript://" class="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5">
                                     <div class="absolute flex-shrink-0 flex items-center justify-center">
                                         <span class="h-1.5 w-1.5 rounded-full bg-indigo-500" aria-hidden="true"></span>
                                     </div>
@@ -75,7 +75,7 @@
                         <li class="py-5">
                             <div class="relative focus-within:ring-2 focus-within:ring-cyan-500">
                                 <h3 class="text-sm font-semibold text-gray-800">
-                                    <a href="#" class="hover:underline focus:outline-none">
+                                    <a href="javascript://" class="hover:underline focus:outline-none">
                                         <!-- Extend touch target to entire panel -->
                                         <span class="absolute inset-0" aria-hidden="true"></span>
                                         Office closed on July 2nd
@@ -90,7 +90,7 @@
                         <li class="py-5">
                             <div class="relative focus-within:ring-2 focus-within:ring-cyan-500">
                                 <h3 class="text-sm font-semibold text-gray-800">
-                                    <a href="#" class="hover:underline focus:outline-none">
+                                    <a href="javascript://" class="hover:underline focus:outline-none">
                                         <!-- Extend touch target to entire panel -->
                                         <span class="absolute inset-0" aria-hidden="true"></span>
                                         New password policy
@@ -103,11 +103,10 @@
                             </div>
                         </li>
 
-                        <li class="py-5">
+                        <!-- <li class="py-5">
                             <div class="relative focus-within:ring-2 focus-within:ring-cyan-500">
                                 <h3 class="text-sm font-semibold text-gray-800">
-                                    <a href="#" class="hover:underline focus:outline-none">
-                                        <!-- Extend touch target to entire panel -->
+                                    <a href="javascript://" class="hover:underline focus:outline-none">
                                         <span class="absolute inset-0" aria-hidden="true"></span>
                                         Office closed on July 2nd
                                     </a>
@@ -117,7 +116,8 @@
                                     dicta et. Consequatur quis dignissimos voluptatem nisi.
                                 </p>
                             </div>
-                        </li>
+                        </li> -->
+
                     </ul>
                 </div>
             </section>

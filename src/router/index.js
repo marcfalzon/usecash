@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Add from '../views/Add.vue'
+import Auth from '../views/Auth.vue'
 import FAQ from '../views/FAQ.vue'
 import Learn from '../views/Learn.vue'
 import Home from '../views/Home.vue'
@@ -34,6 +35,14 @@ const routes = [
     {
         path: '/add',
         component: Add
+    },
+    {
+        path: '/auth',
+        component: Auth
+    },
+    {
+        path: '/auth/:authKey',
+        component: Auth
     },
     {
         /* FAQ */

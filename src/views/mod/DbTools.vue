@@ -47,6 +47,7 @@
                             <option value="" disabled>Please choose one:</option>
                             <option value="stats">Display database statistics</option>
                             <option value="merchants" selected>Select all merchants</option>
+                            <option value="coinmap">Select all Coinmap</option>
                             <option value="users">Select all users</option>
                             <option value="adv">Run advanced (geo) query</option>
                         </select>
@@ -78,7 +79,7 @@
                     Cancel
                 </button>
                 <button
-                    type="submit"
+                    @click="run"
                     class="ml-5 bg-blue-700 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
                 >
                     Run query
@@ -261,11 +262,51 @@
 </template>
 
 <script>
+/* Import modules. */
+import superagent from 'superagent'
+
+// const API_ENDPOINT = `https://api.use.cash/v1`
+const API_ENDPOINT = `http://localhost:8080/v1`
+
 export default {
     data: () => ({
         query: null,
         selectedQuery: null,
     }),
+    watch: {
+        selectedQuery() {
+            if (this.selectedQuery === 'stats') {
+                this.query = {
+                    index: 'merchants',
+                    dsl: {
+                        query: {
+                            match_all: {}
+                        }
+                    }
+                }
+            } else if (this.selectedQuery === 'coinmap') {
+                this.query = {
+                    index: 'coinmap',
+                    dsl: {
+                        query: {
+                            match_all: {}
+                        }
+                    }
+                }
+            } else if (this.selectedQuery === 'merchants') {
+                this.query = {
+                    index: 'merchants',
+                    dsl: {
+                        query: {
+                            match_all: {}
+                        }
+                    }
+                }
+            } else {
+                // return 'loading...'
+            }
+        }
+    },
     computed: {
         displayQuery() {
             // console.log('this.selectedQuery', this.selectedQuery);
@@ -274,6 +315,16 @@ export default {
             } else if (this.selectedQuery === 'merchants') {
                 return `
 GET merchants/_search?track_total_hits=true
+{
+  "timeout": "2s",
+  "query": {
+    "match_all": {}
+  }
+}
+                `.trim()
+            } else if (this.selectedQuery === 'coinmap') {
+                return `
+GET coinmap/_search?track_total_hits=true
 {
   "timeout": "2s",
   "query": {
@@ -329,6 +380,16 @@ GET geo/_search?track_total_hits=true
         //     console.log('QUERY', _query)
         //     alert(_query)
         // },
+
+        async run() {
+            console.log('RUNNING QUERY', this.query)
+
+            const result = await superagent
+                .post(`${API_ENDPOINT}/admin/query`)
+                .send(this.query)
+            console.log('RESULT', result.body)
+
+        },
 
     },
     created: function () {
