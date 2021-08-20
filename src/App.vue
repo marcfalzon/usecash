@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Footer from '@/components/Footer'
+import Footer from '@/components/Footer2'
 import Header from '@/components/Header'
 import Modals from '@/components/Modals'
 import Notifs from '@/components/Notifs'

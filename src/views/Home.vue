@@ -6,9 +6,9 @@
 
         <InfoBoxes id="info-boxes" />
 
-        <hr class="mt-3 mb-10" />
+        <hr class="mt-3 mb-10 hidden" />
 
-        <Feeds id="feeds" />
+        <Feeds id="feeds" class="hidden" />
 
         <Onboarding />
     </div>
