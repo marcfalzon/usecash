@@ -1,8 +1,8 @@
 <template>
     <main>
-        <Header />
+        <Header :isMenuOpen="isMenuOpen" @openMenu="openMenu" />
 
-        <router-view />
+        <router-view :isMenuOpen="isMenuOpen" @closeMenu="closeMenu" />
 
         <Footer />
         <Modals />
@@ -24,8 +24,22 @@ export default {
         Notifs,
     },
     data: () => ({
-      //
+        isMenuOpen: null,
     }),
+    methods: {
+        openMenu() {
+            // console.log('OPEN MENU');
+            this.isMenuOpen = true
+        },
+
+        closeMenu() {
+            // console.log('CLOSE MENU');
+            this.isMenuOpen = false
+        },
+    },
+    created: function () {
+        this.isMenuOpen = false
+    },
 }
 </script>
 

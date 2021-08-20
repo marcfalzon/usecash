@@ -2,7 +2,7 @@
     <main class="mod-container">
 
         <div class="h-screen flex overflow-hidden bg-white">
-            <Menu :isOpen="isOpen" @close="close" />
+            <Menu :isOpen="isOpen" :isMenuOpen="isMenuOpen" @close="close" />
 
             <div class="flex flex-col min-w-0 flex-1 overflow-hidden">
                 <!-- <div class="lg:hidden">
@@ -23,9 +23,9 @@
                 </div> -->
 
                 <div class="flex-1 relative z-0 flex overflow-hidden">
-                    <router-view></router-view>
+                    <router-view :isMenuOpen="isMenuOpen"></router-view>
 
-                    <Aside />
+                    <Aside :isMenuOpen="isMenuOpen" />
                 </div>
 
             </div>
@@ -42,13 +42,16 @@ import Aside from '@/components/mod/Aside'
 import Menu from '@/components/mod/Menu'
 
 export default {
+    props: {
+        isMenuOpen: Boolean,
+    },
     components: {
         Aside,
         // Dashboard,
         Menu,
     },
     data: () => ({
-        isOpen: null,
+        // isOpen: null,
 
         // loading: false,
         // selection: 1,
@@ -64,11 +67,12 @@ export default {
         },
 
         open() {
-            this.isOpen = true
+            // this.isOpen = true
         },
 
         close() {
-            this.isOpen = false
+            // this.isOpen = false
+            this.$emit('closeMenu')
         },
 
     },

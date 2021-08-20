@@ -136,6 +136,9 @@
 
 <script>
 export default {
+    props: {
+        isMenuOpen: Boolean,
+    },
     data: () => ({
         content: null,
         pageid: null,

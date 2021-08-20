@@ -1,6 +1,6 @@
 <template>
     <main class="flex">
-        <div v-if="isOpen" class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true">
+        <div v-if="isMenuOpen" class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true">
             <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
 
             <div class="relative flex-1 flex flex-col max-w-xs w-full bg-white focus:outline-none">
@@ -240,6 +240,7 @@
 export default {
     props: {
         isOpen: Boolean,
+        isMenuOpen: Boolean,
     },
     data: () => ({
         // isOpen: null,
