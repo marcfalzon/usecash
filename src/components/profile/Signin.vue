@@ -45,7 +45,7 @@
                     </div>
 
                     <div>
-                        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <button @click="signin" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                                 <!-- Heroicon name: solid/lock-closed -->
                                 <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -62,6 +62,9 @@
 </template>
 
 <script>
+/* Initialize vuex. */
+import { mapActions, mapGetters } from 'vuex'
+
 /* Import modules. */
 // import moment from 'moment'
 
@@ -69,14 +72,27 @@ export default {
     props: {
         //
     },
-    computed: {
-        //
-    },
     data: () => ({
         //
     }),
+    computed: {
+        ...mapGetters('profile', [
+            'getSessions',
+        ]),
+    },
+    methods: {
+        ...mapActions('profile', [
+            'addSession',
+        ]),
+
+        signin() {
+            this.addSession()
+        },
+
+    },
     created: function () {
-        //
+        const sessions = this.getSessions
+        console.log('SESSIONS (signin)', sessions)
     },
     mounted: function () {
         //

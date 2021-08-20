@@ -6,12 +6,23 @@
 </template>
 
 <script>
+/* Initialize vuex. */
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
     data: () => ({
         //
     }),
+    computed: {
+        ...mapGetters('profile', [
+            // 'getSessions',
+        ]),
+    },
     methods: {
-        //
+        ...mapActions('profile', [
+            // 'addSession',
+        ]),
+
     },
     created: function () {
         //

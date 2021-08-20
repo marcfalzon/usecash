@@ -10,7 +10,6 @@ import 'leaflet/dist/leaflet.css'
 
 /* Import tailwind. */
 import 'tailwindcss/tailwind.css'
-// import '@/assets/css/tailwind.css'
 
 Vue.config.productionTip = false
 
