@@ -1,6 +1,6 @@
 <template>
     <main>
-        <div class="full-screen text-right">
+        <div class="hidden full-screen text-right">
             <button>
                 OPEN FULL SCREEN MAP
             </button>
@@ -24,9 +24,13 @@
             <l-marker :lat-lng="withPopup">
                 <l-popup>
                     <div @click="innerClick">
-                        <h2>Armani Exchange</h2>
-                        <br>Accepting: BCH, BTC, DASH
-                        <br>Last updated: 3 days ago
+                        <h2 class="text-xl">Vape Supply Company</h2>
+                        <h3 class="font-bold">
+                            40 Bushwick Avenue
+                            <br />New York City, 11211
+                        </h3>
+                        <br>Accepting: <span class="text-red-600 font-bold">BCH, BTC, DASH</span>
+                        <br>Last updated: <span class="text-green-600 font-bold">3 days ago</span>
                     </div>
                 </l-popup>
             </l-marker>

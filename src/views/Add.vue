@@ -15,7 +15,7 @@
                 <MapEditor id="map-editor" :startPos="startPos" />
 
                 <div class="px-32 mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                    <div class="sm:col-span-4">
+                    <!-- <div class="sm:col-span-4">
                         <label for="username" class="block text-sm font-medium text-gray-700">
                             Username
                         </label>
@@ -25,9 +25,9 @@
                             </span>
                             <input type="text" name="username" id="username" autocomplete="username" class="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300" />
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="sm:col-span-6">
+                    <!-- <div class="sm:col-span-6">
                         <label for="about" class="block text-sm font-medium text-gray-700">
                             About
                         </label>
@@ -35,9 +35,9 @@
                             <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
                         </div>
                         <p class="mt-2 text-sm text-gray-500">Write a few sentences about yourself.</p>
-                    </div>
+                    </div> -->
 
-                    <div class="sm:col-span-6">
+                    <!-- <div class="sm:col-span-6">
                         <label for="photo" class="block text-sm font-medium text-gray-700">
                             Photo
                         </label>
@@ -54,11 +54,11 @@
                                 Change
                             </button>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="sm:col-span-6">
                         <label for="cover-photo" class="block text-sm font-medium text-gray-700">
-                            Cover photo
+                            Merchant storefront
                         </label>
                         <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
@@ -92,7 +92,7 @@
             <div class="px-32 pt-8">
                 <div>
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                        Personal Information
+                        Merchant Details
                     </h3>
                     <p class="mt-1 text-sm text-gray-500">
                         Use a permanent address where you can receive mail.
@@ -101,30 +101,30 @@
                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                     <div class="sm:col-span-3">
                         <label for="first-name" class="block text-sm font-medium text-gray-700">
-                            First name
+                            Business name
                         </label>
                         <div class="mt-1">
                             <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
                         </div>
                     </div>
 
-                    <div class="sm:col-span-3">
+                    <!-- <div class="sm:col-span-3">
                         <label for="last-name" class="block text-sm font-medium text-gray-700">
                             Last name
                         </label>
                         <div class="mt-1">
                             <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="sm:col-span-4">
+                    <!-- <div class="sm:col-span-4">
                         <label for="email" class="block text-sm font-medium text-gray-700">
                             Email address
                         </label>
                         <div class="mt-1">
                             <input id="email" name="email" type="email" autocomplete="email" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="sm:col-span-3">
                         <label for="country" class="block text-sm font-medium text-gray-700">
@@ -221,7 +221,8 @@
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset class="mt-6">
+
+                    <!-- <fieldset class="mt-6">
                         <div>
                             <legend class="text-base font-medium text-gray-900">
                                 Push Notifications
@@ -248,7 +249,7 @@
                                 </label>
                             </div>
                         </div>
-                    </fieldset>
+                    </fieldset> -->
                 </div>
             </div>
         </div>

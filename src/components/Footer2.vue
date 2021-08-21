@@ -27,9 +27,9 @@
                 </div>
 
                 <div class="px-5 py-2">
-                    <a href="javascript://" class="text-base text-gray-500 hover:text-gray-900">
-                        Accessibility
-                    </a>
+                    <router-link to="/learn" class="text-base text-gray-500 hover:text-gray-900">
+                        Learn
+                    </router-link>
                 </div>
 
                 <div class="px-5 py-2">

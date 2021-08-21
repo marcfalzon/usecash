@@ -4,9 +4,14 @@
             v-model="search"
             placeholder="Search for a local business..."
             type="text"
+            @focus="showMessage = true"
             name="email-address"
             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
         >
+
+        <div v-if="showMessage" class="px-5 mt-3 text-red-600 font-extrabold">
+            NOTICE: Search is temporarily off-line during system upgrade
+        </div>
     </main>
     <!-- <v-autocomplete
         v-model="model"
@@ -80,6 +85,7 @@ export default {
         model: null,
         search: null,
         tab: null,
+        showMessage: null,
     }),
     watch: {
         model (_val) {
@@ -101,7 +107,10 @@ export default {
             const result = await superagent.get(`${API_ENDPOINT}/search/${_val}`)
             console.log('RESULT', result)
         }
-    }
+    },
+    created: function () {
+        this.showMessage = false
+    },
 }
 </script>
 
