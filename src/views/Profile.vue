@@ -69,47 +69,47 @@ export default {
                 const sessions = this.getSessions
                 console.log('SESSIONS (profile)', sessions)
 
-                // if (params && params.pathMatch) {
-                //     this.profileid = params.pathMatch
-                //
-                //     if (this.profileid === 'homemade-crypto') {
-                //         this.profile = {
-                //             id: 'homemade-crypto',
-                //             name: `Homemade Crypto`,
-                //             email: 'info@homemadecrypto.com',
-                //         }
-                //     }
-                //     if (this.profileid === 'marc') {
-                //         this.profile = {
-                //             id: 'marc',
-                //             name: `Marc Falzon`,
-                //             email: 'marc@falzon.co',
-                //             avatar: 'https://pbs.twimg.com/profile_images/1261408850852405249/NQgUWcnP.jpg',
-                //         }
-                //     }
-                //     if (this.profileid === 'nyusternie') {
-                //         this.profile = {
-                //             id: 'nyusternie',
-                //             name: `Shomari`,
-                //             email: 'nyusternie@sdot.io',
-                //             avatar: 'https://pbs.twimg.com/profile_images/617458563/profile5_400x400.jpg',
-                //             twitter: 'ShomariPrince',
-                //             merchants: [
-                //                 'homemade-crypto',
-                //                 'atlanta-bitcoin-club',
-                //             ],
-                //         }
-                //     }
-                //     if (this.profileid === 'satoshi') {
-                //         this.profile = {
-                //             id: 'satoshi',
-                //             name: `Satoshi Nakamoto`,
-                //             email: 'satoshi@bitcoin.com',
-                //         }
-                //     }
-                //
-                //
-                // }
+                if (params && params.pathMatch) {
+                    this.profileid = params.pathMatch
+
+                    if (this.profileid === 'homemade-crypto') {
+                        this.profile = {
+                            id: 'homemade-crypto',
+                            name: `Homemade Crypto`,
+                            email: 'info@homemadecrypto.com',
+                        }
+                    }
+                    if (this.profileid === 'marc') {
+                        this.profile = {
+                            id: 'marc',
+                            name: `Marc Falzon`,
+                            email: 'marc@falzon.co',
+                            avatar: 'https://pbs.twimg.com/profile_images/1261408850852405249/NQgUWcnP.jpg',
+                        }
+                    }
+                    if (this.profileid === 'nyusternie') {
+                        this.profile = {
+                            id: 'nyusternie',
+                            name: `Shomari`,
+                            email: 'nyusternie@sdot.io',
+                            avatar: 'https://pbs.twimg.com/profile_images/617458563/profile5_400x400.jpg',
+                            twitter: 'ShomariPrince',
+                            merchants: [
+                                'homemade-crypto',
+                                'atlanta-bitcoin-club',
+                            ],
+                        }
+                    }
+                    if (this.profileid === 'satoshi') {
+                        this.profile = {
+                            id: 'satoshi',
+                            name: `Satoshi Nakamoto`,
+                            email: 'satoshi@bitcoin.com',
+                        }
+                    }
+
+
+                }
             }
 
         },
