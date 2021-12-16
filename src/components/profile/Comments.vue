@@ -4,8 +4,9 @@
         <div class="bg-white shadow sm:rounded-lg sm:overflow-hidden">
             <div class="divide-y divide-gray-200">
                 <div class="px-4 py-5 sm:px-6">
-                    <h2 id="notes-title" class="text-lg font-medium text-gray-900">Comments</h2>
+                    <h2 id="notes-title" class="text-lg font-medium text-gray-900">Recent Comments</h2>
                 </div>
+
                 <div class="px-4 py-6 sm:px-6">
                     <ul class="space-y-8">
                         <li>
@@ -17,13 +18,16 @@
                                         alt=""
                                     />
                                 </div>
+
                                 <div>
                                     <div class="text-sm">
                                         <a href="javascript://" class="font-medium text-gray-900">Leslie Alexander</a>
                                     </div>
+
                                     <div class="mt-1 text-sm text-gray-700">
                                         <p>Ducimus quas delectus ad maxime totam doloribus reiciendis ex. Tempore dolorem maiores. Similique voluptatibus tempore non ut.</p>
                                     </div>
+
                                     <div class="mt-2 text-sm space-x-2">
                                         <span class="text-gray-500 font-medium">4d ago</span>
                                         <span class="text-gray-500 font-medium">&middot;</span>
@@ -42,13 +46,16 @@
                                         alt=""
                                     />
                                 </div>
+
                                 <div>
                                     <div class="text-sm">
                                         <a href="javascript://" class="font-medium text-gray-900">Michael Foster</a>
                                     </div>
+
                                     <div class="mt-1 text-sm text-gray-700">
                                         <p>Et ut autem. Voluptatem eum dolores sint necessitatibus quos. Quis eum qui dolorem accusantium voluptas voluptatem ipsum. Quo facere iusto quia accusamus veniam id explicabo et aut.</p>
                                     </div>
+
                                     <div class="mt-2 text-sm space-x-2">
                                         <span class="text-gray-500 font-medium">4d ago</span>
                                         <span class="text-gray-500 font-medium">&middot;</span>
@@ -67,13 +74,16 @@
                                         alt=""
                                     />
                                 </div>
+
                                 <div>
                                     <div class="text-sm">
                                         <a href="javascript://" class="font-medium text-gray-900">Dries Vincent</a>
                                     </div>
+
                                     <div class="mt-1 text-sm text-gray-700">
                                         <p>Expedita consequatur sit ea voluptas quo ipsam recusandae. Ab sint et voluptatem repudiandae voluptatem et eveniet. Nihil quas consequatur autem. Perferendis rerum et.</p>
                                     </div>
+
                                     <div class="mt-2 text-sm space-x-2">
                                         <span class="text-gray-500 font-medium">4d ago</span>
                                         <span class="text-gray-500 font-medium">&middot;</span>
@@ -85,11 +95,13 @@
                     </ul>
                 </div>
             </div>
+
             <div class="bg-gray-50 px-4 py-6 sm:px-6">
                 <div class="flex space-x-3">
                     <div class="flex-shrink-0">
-                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80" alt="" />
+                        <img class="h-10 w-10 rounded-full" src="https://pbs.twimg.com/profile_images/617458563/profile5_400x400.jpg" alt="" />
                     </div>
+
                     <div class="min-w-0 flex-1">
                         <form action="javascript://">
                             <div>
@@ -102,6 +114,7 @@
                                     placeholder="Add a comment"
                                 ></textarea>
                             </div>
+
                             <div class="mt-3 flex items-center justify-between">
                                 <a href="javascript://" class="group inline-flex items-start text-sm space-x-2 text-gray-500 hover:text-gray-900">
                                     <!-- Heroicon name: solid/question-mark-circle -->
@@ -116,6 +129,7 @@
                                         Some HTML is okay.
                                     </span>
                                 </a>
+
                                 <button
                                     type="submit"
                                     class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"

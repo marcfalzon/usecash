@@ -1,11 +1,11 @@
 <template>
     <!-- <form class="space-y-8 divide-y divide-gray-200"> -->
-    <main class="px-40 py-10">
+    <main class="px-5 sm:px-40 py-10">
         <div class="space-y-8 divide-y divide-gray-200">
             <div>
                 <div>
-                    <h3 class="text-lg leading-6 font-medium text-gray-900">
-                        Profile
+                    <h3 class="text-2xl leading-6 font-medium text-gray-900">
+                        Add New Merchant
                     </h3>
                     <p class="mt-1 text-sm text-gray-500">
                         This information will be displayed publicly so be careful what you share.
@@ -14,7 +14,7 @@
 
                 <MapEditor id="map-editor" :startPos="startPos" />
 
-                <div class="px-32 mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                <div class="px-5 sm:px-32 mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                     <!-- <div class="sm:col-span-4">
                         <label for="username" class="block text-sm font-medium text-gray-700">
                             Username
@@ -89,7 +89,7 @@
                 </div>
             </div>
 
-            <div class="px-32 pt-8">
+            <div class="px-5 sm:px-32 pt-8">
                 <div>
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Merchant Details
@@ -177,7 +177,7 @@
                 </div>
             </div>
 
-            <div class="px-32 pt-8">
+            <div class="px-5 sm:px-32 pt-8">
                 <div>
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Notifications
@@ -186,6 +186,7 @@
                         We'll always let you know about important changes, but you pick what else you want to hear about.
                     </p>
                 </div>
+
                 <div class="mt-6">
                     <fieldset>
                         <legend class="text-base font-medium text-gray-900">
@@ -197,8 +198,8 @@
                                     <input id="comments" name="comments" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                 </div>
                                 <div class="ml-3 text-sm">
-                                    <label for="comments" class="font-medium text-gray-700">Comments</label>
-                                    <p class="text-gray-500">Get notified when someones posts a comment on a posting.</p>
+                                    <label for="comments" class="font-medium text-gray-700">Accepted</label>
+                                    <p class="text-gray-500">Get notified when this merchant is approved.</p>
                                 </div>
                             </div>
                             <div class="relative flex items-start">
@@ -206,11 +207,11 @@
                                     <input id="candidates" name="candidates" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                 </div>
                                 <div class="ml-3 text-sm">
-                                    <label for="candidates" class="font-medium text-gray-700">Candidates</label>
-                                    <p class="text-gray-500">Get notified when a candidate applies for a job.</p>
+                                    <label for="candidates" class="font-medium text-gray-700">Activity</label>
+                                    <p class="text-gray-500">Receive a monthly summary of this merchant's activity.</p>
                                 </div>
                             </div>
-                            <div class="relative flex items-start">
+                            <!-- <div class="relative flex items-start">
                                 <div class="flex items-center h-5">
                                     <input id="offers" name="offers" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                 </div>
@@ -218,7 +219,7 @@
                                     <label for="offers" class="font-medium text-gray-700">Offers</label>
                                     <p class="text-gray-500">Get notified when a candidate accepts or rejects an offer.</p>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </fieldset>
 
@@ -254,7 +255,7 @@
             </div>
         </div>
 
-        <div class="px-32 pt-5">
+        <div class="px-5 sm:px-32 pt-5">
             <div class="flex justify-end">
                 <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Cancel

@@ -90,7 +90,7 @@ Icon.Default.mergeOptions({
 // NOTE: Times Square, NYC
 const LOCATION = {
     lat: 40.72833199,
-    lng: -73.99860620,
+    lng: -73.99360620,
 }
 
 export default {

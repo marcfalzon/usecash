@@ -84,7 +84,7 @@ export default {
                             id: 'marc',
                             name: `Marc Falzon`,
                             email: 'marc@falzon.co',
-                            avatar: 'https://pbs.twimg.com/profile_images/1261408850852405249/NQgUWcnP.jpg',
+                            avatar: 'https://i.imgur.com/enD1jUY.png',
                         }
                     }
                     if (this.profileid === 'nyusternie') {

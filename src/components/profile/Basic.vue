@@ -47,7 +47,7 @@
 
                         <!-- <div class="border-t border-gray-200 px-4 py-5 sm:px-6"> -->
                         <div class="px-4 py-5 sm:px-6">
-                            <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+                            <dl class="sm:grid gap-x-4 gap-y-8 sm:grid-cols-2">
                                 <!-- <div class="sm:col-span-1">
                                     <dt class="text-sm font-medium text-gray-500">
                                         Application for
@@ -72,7 +72,7 @@
                                         $120,000
                                     </dd>
                                 </div> -->
-                                <div class="sm:col-span-1">
+                                <div class="mt-3 sm:mt-0 sm:col-span-1">
                                     <dt class="text-sm font-medium text-gray-500">
                                         Twitter
                                     </dt>
@@ -80,7 +80,8 @@
                                         <a :href="'https://twitter.com/' + displayTwitter" target="_blank">{{displayTwitter}}</a>
                                     </dd>
                                 </div>
-                                <div class="sm:col-span-2">
+
+                                <div class="mt-3 sm:mt-0 sm:col-span-2">
                                     <dt class="text-sm font-medium text-gray-500">
                                         About me
                                     </dt>
@@ -90,7 +91,7 @@
                                     </dd>
                                 </div>
 
-                                <div class="relative sm:col-span-3">
+                                <div class="mt-3 sm:mt-0 relative sm:col-span-3">
                                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
                                         <div class="w-full border-t border-gray-300"></div>
                                     </div>
@@ -104,7 +105,7 @@
                                     <hr />
                                 </div> -->
 
-                                <div class="sm:col-span-2">
+                                <div class="mt-3 sm:mt-0 sm:col-span-2">
                                     <!-- <dt class="text-sm font-medium text-gray-500">
                                         My currencies
                                     </dt> -->
@@ -123,11 +124,10 @@
                                         </div>
                                     </div>
 
-                                    <dd class="mt-1 text-sm text-gray-900">
+                                    <!-- <dd class="mt-1 text-sm text-gray-900">
                                         <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
                                             <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
                                                 <div class="w-0 flex-1 flex items-center">
-                                                    <!-- Heroicon name: solid/paper-clip -->
                                                     <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                         <path
                                                             fill-rule="evenodd"
@@ -148,7 +148,6 @@
 
                                             <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
                                                 <div class="w-0 flex-1 flex items-center">
-                                                    <!-- Heroicon name: solid/paper-clip -->
                                                     <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                         <path
                                                             fill-rule="evenodd"
@@ -167,10 +166,10 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                    </dd>
+                                    </dd> -->
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
+                                <div class="mt-3 sm:mt-0 col-span-6 sm:col-span-3">
                                     <label for="country" class="block text-sm font-medium text-gray-700">Add a new currency</label>
                                     <select
                                         id="currency"
@@ -192,7 +191,7 @@
                                     </select>
                                 </div>
 
-                                <div class="relative sm:col-span-3">
+                                <div class="mt-3 relative sm:col-span-3">
                                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
                                         <div class="w-full border-t border-gray-300"></div>
                                     </div>
@@ -206,7 +205,7 @@
                                     <hr />
                                 </div> -->
 
-                                <div class="sm:col-span-2">
+                                <div class="mt-3 sm:mt-0 sm:col-span-2">
                                     <!-- <dt class="text-sm font-medium text-gray-500">
                                         My links
                                     </dt> -->
@@ -248,7 +247,7 @@
                                     </dd>
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
+                                <div class="mt-3 sm:mt-0 col-span-6 sm:col-span-3">
                                     <label for="country" class="block text-sm font-medium text-gray-700">Add a new link</label>
                                     <select
                                         id="social-links"

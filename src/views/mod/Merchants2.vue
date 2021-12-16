@@ -30,7 +30,7 @@
                                                 Status
                                             </th>
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Role
+                                                Category
                                             </th>
                                             <th scope="col" class="relative px-6 py-3">
                                                 <span class="sr-only">Edit</span>
@@ -44,23 +44,23 @@
                                                     <div class="flex-shrink-0 h-10 w-10">
                                                         <img
                                                             class="h-10 w-10 rounded-full"
-                                                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
+                                                            src="https://i.imgur.com/CWca7ZC.png"
                                                             alt=""
                                                         />
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900">
-                                                            Jane Cooper
+                                                            NocRoom Voice &amp; Data
                                                         </div>
                                                         <div class="text-sm text-gray-500">
-                                                            jane.cooper@example.com
+                                                            info@e.nocroom.com
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm text-gray-900">Regional Paradigm Technician</div>
-                                                <div class="text-sm text-gray-500">Optimization</div>
+                                                <div class="text-sm text-gray-900">Horatio Street 14</div>
+                                                <div class="text-sm text-gray-500">10014 New York City</div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -68,7 +68,7 @@
                                                 </span>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                Admin
+                                                Default
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <a href="javascript://" class="text-indigo-600 hover:text-indigo-900">Edit</a>
@@ -81,23 +81,23 @@
                                                     <div class="flex-shrink-0 h-10 w-10">
                                                         <img
                                                             class="h-10 w-10 rounded-full"
-                                                            src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
+                                                            src="https://i.imgur.com/CWca7ZC.png"
                                                             alt=""
                                                         />
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900">
-                                                            Cody Fisher
+                                                            Armani Exchange
                                                         </div>
                                                         <div class="text-sm text-gray-500">
-                                                            cody.fisher@example.com
+                                                            https://www.coinsetter.com
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm text-gray-900">Product Directives Officer</div>
-                                                <div class="text-sm text-gray-500">Intranet</div>
+                                                <div class="text-sm text-gray-900">3rd Avenue 708</div>
+                                                <div class="text-sm text-gray-500">10017 New York</div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -105,7 +105,7 @@
                                                 </span>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                Owner
+                                                Default
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <a href="javascript://" class="text-indigo-600 hover:text-indigo-900">Edit</a>
@@ -118,23 +118,23 @@
                                                     <div class="flex-shrink-0 h-10 w-10">
                                                         <img
                                                             class="h-10 w-10 rounded-full"
-                                                            src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
+                                                            src="https://i.imgur.com/CWca7ZC.png"
                                                             alt=""
                                                         />
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900">
-                                                            Esther Howard
+                                                            World Class Domina
                                                         </div>
                                                         <div class="text-sm text-gray-500">
-                                                            esther.howard@example.com
+                                                            +1 646 807 5467
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm text-gray-900">Forward Response Developer</div>
-                                                <div class="text-sm text-gray-500">Directives</div>
+                                                <div class="text-sm text-gray-900">East 79th Street 508</div>
+                                                <div class="text-sm text-gray-500">NY 10075 New York</div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -142,7 +142,7 @@
                                                 </span>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                Member
+                                                Default
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <a href="javascript://" class="text-indigo-600 hover:text-indigo-900">Edit</a>
@@ -155,23 +155,23 @@
                                                     <div class="flex-shrink-0 h-10 w-10">
                                                         <img
                                                             class="h-10 w-10 rounded-full"
-                                                            src="https://images.unsplash.com/photo-1498551172505-8ee7ad69f235?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
+                                                            src="https://i.imgur.com/CWca7ZC.png"
                                                             alt=""
                                                         />
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900">
-                                                            Jenny Wilson
+                                                            Baron Fig Notebooks
                                                         </div>
                                                         <div class="text-sm text-gray-500">
-                                                            jenny.wilson@example.com
+                                                            212-390-0103
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm text-gray-900">Central Security Manager</div>
-                                                <div class="text-sm text-gray-500">Program</div>
+                                                <div class="text-sm text-gray-900">4301 21st Street Suite 205A</div>
+                                                <div class="text-sm text-gray-500">11101 Long Island City</div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -179,7 +179,7 @@
                                                 </span>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                Member
+                                                Default
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <a href="javascript://" class="text-indigo-600 hover:text-indigo-900">Edit</a>
@@ -192,23 +192,23 @@
                                                     <div class="flex-shrink-0 h-10 w-10">
                                                         <img
                                                             class="h-10 w-10 rounded-full"
-                                                            src="https://images.unsplash.com/photo-1532417344469-368f9ae6d187?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
+                                                            src="https://i.imgur.com/CWca7ZC.png"
                                                             alt=""
                                                         />
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900">
-                                                            Kristin Watson
+                                                            The Eco Laundry Company
                                                         </div>
                                                         <div class="text-sm text-gray-500">
-                                                            kristin.watson@example.com
+                                                            info@ecolaundrycompany.com
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm text-gray-900">Lead Implementation Liaison</div>
-                                                <div class="text-sm text-gray-500">Mobility</div>
+                                                <div class="text-sm text-gray-900">3rd Ave. 236</div>
+                                                <div class="text-sm text-gray-500">10003 New York City</div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -216,44 +216,7 @@
                                                 </span>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                Admin
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="javascript://" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="flex items-center">
-                                                    <div class="flex-shrink-0 h-10 w-10">
-                                                        <img
-                                                            class="h-10 w-10 rounded-full"
-                                                            src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-                                                            alt=""
-                                                        />
-                                                    </div>
-                                                    <div class="ml-4">
-                                                        <div class="text-sm font-medium text-gray-900">
-                                                            Cameron Williamson
-                                                        </div>
-                                                        <div class="text-sm text-gray-500">
-                                                            cameron@example.com
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm text-gray-900">Internal Applications Engineer</div>
-                                                <div class="text-sm text-gray-500">Security</div>
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                    Active
-                                                </span>
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                Member
+                                                Default
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <a href="javascript://" class="text-indigo-600 hover:text-indigo-900">Edit</a>

@@ -1,14 +1,15 @@
 <template>
     <main>
-        <div id="mapContainer" class="basemap"></div>
+        <div id="mapContainer" class="w-full h-96 border-2 border-red-500 rounded-xl"></div>
     </main>
-</template>        <div id="map"></div>
+</template>
 
 
 <script>
-import mapboxgl from 'mapbox-gl'
+import Mapbox from 'mapbox-gl'
 
-const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2tza3hsazR0MGVkazJ2dGVwOXhpaDkzeiJ9.Ogmv-xLwll3Z_1uuCItolg'
+// const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2t0eGI3NGF1MnJzdDJ3cHFhZzlmMWprZCJ9.3QRaaXo16d1-PjgoRgGu-A' // prod
+const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2tza3hsazR0MGVkazJ2dGVwOXhpaDkzeiJ9.Ogmv-xLwll3Z_1uuCItolg' // localhost
 
 export default {
     props: {
@@ -65,10 +66,11 @@ export default {
             // this.map = this.$refs.map.mapObject
 
             /* Initialize map object. */
-            new mapboxgl.Map({
+            new Mapbox.Map({
                 container: 'mapContainer',
                 style: 'mapbox://styles/mapbox/streets-v11',
                 center: [ 103.811279, 1.345399 ],
+                // center: [ 40.758896, -73.985130 ],
                 zoom: 12,
                 maxBounds: [
                     [ 103.6, 1.1704753 ],
@@ -93,7 +95,7 @@ export default {
     },
     created: function () {
         //
-        mapboxgl.accessToken = this.accessToken
+        Mapbox.accessToken = this.accessToken
     },
     mounted: function () {
         // NOTE: Wait for map object to become available
@@ -106,10 +108,3 @@ export default {
     },
 }
 </script>
-
-<style lang="scss" scoped>
-.basemap {
-    width: 100%;
-    height: 100%;
-}
-</style>

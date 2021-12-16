@@ -1,10 +1,10 @@
 <template>
     <main>
-        <div class="full-screen text-right">
+        <!-- <div class="full-screen text-right">
             <button>
                 OPEN FULL SCREEN MAP
             </button>
-        </div>
+        </div> -->
 
         <div class="full-screen">
             Please place a pin on the location of the merchant you are adding to our database.
@@ -228,7 +228,7 @@ h1 {
 }
 
 .full-screen {
-    margin: -15px 10px 15px 0;
+    margin: 15px 10px 15px 0;
 }
 .full-screen button {
     border: 5px solid rgba(240, 90, 240, 1.0);

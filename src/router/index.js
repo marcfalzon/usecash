@@ -113,8 +113,8 @@ const router = new VueRouter({
             return { x: 0, y: 0 }
         }
     },
-    // mode: process.env.BASE_URL === '/' ? 'history': 'hash',
-    mode: 'hash',
+    mode: process.env.BASE_URL === '/' ? 'history': 'hash',
+    // mode: 'hash',
     // mode: 'history',
     base: process.env.BASE_URL,
     routes,

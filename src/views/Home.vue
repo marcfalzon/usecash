@@ -2,7 +2,7 @@
     <div class="">
         <Search id="search" />
 
-        <Map id="map" />
+        <Map id="border-4 border-yellow-500" />
 
         <InfoBoxes id="info-boxes" />
 
@@ -18,7 +18,8 @@
 /* Import components. */
 import Feeds from '@/components/Feeds'
 import InfoBoxes from '@/components/InfoBoxes'
-import Map from '@/components/MapOSM'
+// import Map from '@/components/MapOSM'
+import Map from '@/components/Mapbox'
 import Onboarding from '@/components/Onboarding'
 import Search from '@/components/Search'
 
@@ -41,7 +42,7 @@ export default {
 }
 
 #map {
-    margin-top: 30px;
-    margin: 30px 15px 0;
+    /* margin-top: 30px;
+    margin: 30px 15px 0; */
 }
 </style>

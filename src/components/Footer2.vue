@@ -14,11 +14,11 @@
                     </a>
                 </div>
 
-                <div class="px-5 py-2">
+                <!-- <div class="px-5 py-2">
                     <a href="javascript://" class="text-base text-gray-500 hover:text-gray-900">
                         Jobs
                     </a>
-                </div>
+                </div> -->
 
                 <div class="px-5 py-2">
                     <a href="javascript://" class="text-base text-gray-500 hover:text-gray-900">
@@ -38,6 +38,7 @@
                     </a>
                 </div>
             </nav>
+
             <div class="mt-8 flex justify-center space-x-6">
                 <a href="javascript://" class="text-gray-400 hover:text-gray-500">
                     <span class="sr-only">Facebook</span>
@@ -96,7 +97,7 @@
                 &copy; 2020 Workflow, Inc. All rights reserved.
             </p> -->
 
-            <p class="mt-8 text-base text-gray-400 xl:text-center">
+            <p class="mt-8 text-sm sm:text-base text-gray-400 xl:text-center">
                 Copyright &copy; {{curYear}}. Use.cash. All rights reserved.
             </p>
 
