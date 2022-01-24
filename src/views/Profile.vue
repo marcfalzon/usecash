@@ -7,9 +7,6 @@
 </template>
 
 <script>
-/* Initialize vuex. */
-import { mapActions, mapGetters } from 'vuex'
-
 /* Import components. */
 import Basic from '@/components/profile/Basic'
 import Signin from '@/components/profile/Signin'
@@ -46,15 +43,9 @@ export default {
         next()
     },
     computed: {
-        ...mapGetters('profile', [
-            'getSessions',
-        ]),
+        //
     },
     methods: {
-        ...mapActions('profile', [
-            // 'addSession',
-        ]),
-
         init(_route) {
             this.profileid = null
             this.profile = null

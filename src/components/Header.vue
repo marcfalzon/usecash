@@ -140,7 +140,13 @@ export default {
 
         profile() {
             // this.$router.push('/@nyusternie')
-            this.$router.push('/@marc')
+            // this.$router.push('/@marc')
+            /* Request login. */
+            this.$store.dispatch('login', {
+                // email: this.email,
+                email: 'info@modenero.com',
+            })
+
         },
 
         open() {

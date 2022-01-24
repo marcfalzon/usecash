@@ -14,7 +14,7 @@ import superagent from 'superagent'
 // const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2t0eHAxY2JjMDh3MTJ0b3FleGdhYWk4bSJ9.2WOkhBYSiCSd6mW74ocbcQ' // prod
 const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2tza3hsazR0MGVkazJ2dGVwOXhpaDkzeiJ9.Ogmv-xLwll3Z_1uuCItolg' // localhost
 
-// const API_ENDPOINT = `https://api.panmoni.com/v1`
+// const API_ENDPOINT = `https://api.use.cash/v1`
 const API_ENDPOINT = `http://localhost:8080/v1`
 
 export default {

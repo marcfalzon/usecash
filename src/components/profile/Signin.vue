@@ -76,9 +76,6 @@
 </template>
 
 <script>
-/* Initialize vuex. */
-import { mapActions, mapGetters } from 'vuex'
-
 /* Import modules. */
 // import moment from 'moment'
 
@@ -90,23 +87,13 @@ export default {
         //
     }),
     computed: {
-        ...mapGetters('profile', [
-            'getSessions',
-        ]),
+        //
     },
     methods: {
-        ...mapActions('profile', [
-            'addSession',
-        ]),
-
-        signin() {
-            this.addSession()
-        },
-
+        //
     },
     created: function () {
-        const sessions = this.getSessions
-        console.log('SESSIONS (signin)', sessions)
+        // 
     },
     mounted: function () {
         //

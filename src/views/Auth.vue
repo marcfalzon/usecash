@@ -41,23 +41,14 @@
 </template>
 
 <script>
-/* Initialize vuex. */
-import { mapActions, mapGetters } from 'vuex'
-
 export default {
     data: () => ({
         authKey: null,
     }),
     computed: {
-        ...mapGetters('profile', [
-            // 'getSessions',
-        ]),
+        //
     },
     methods: {
-        ...mapActions('profile', [
-            // 'addSession',
-        ]),
-
         loadProfile() {
             console.log('TODO: LOAD PROFILE')
         },
