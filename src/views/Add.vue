@@ -1,6 +1,5 @@
 <template>
-    <!-- <form class="space-y-8 divide-y divide-gray-200"> -->
-    <main class="px-5 sm:px-40 py-10">
+    <main class="px-5 lg:px-40 py-10">
         <div class="space-y-8 divide-y divide-gray-200">
             <div>
                 <div>
@@ -12,54 +11,14 @@
                     </p>
                 </div>
 
-                <MapEditor id="map-editor" :startPos="startPos" />
+                <MapEditor id="map-editor" :startPos="startPos" @updateLoc="updateLoc" />
 
-                <div class="px-5 sm:px-32 mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                    <!-- <div class="sm:col-span-4">
-                        <label for="username" class="block text-sm font-medium text-gray-700">
-                            Username
-                        </label>
-                        <div class="mt-1 flex rounded-md shadow-sm">
-                            <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
-                                workcation.com/
-                            </span>
-                            <input type="text" name="username" id="username" autocomplete="username" class="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300" />
-                        </div>
-                    </div> -->
-
-                    <!-- <div class="sm:col-span-6">
-                        <label for="about" class="block text-sm font-medium text-gray-700">
-                            About
-                        </label>
-                        <div class="mt-1">
-                            <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
-                        </div>
-                        <p class="mt-2 text-sm text-gray-500">Write a few sentences about yourself.</p>
-                    </div> -->
-
-                    <!-- <div class="sm:col-span-6">
-                        <label for="photo" class="block text-sm font-medium text-gray-700">
-                            Photo
-                        </label>
-                        <div class="mt-1 flex items-center">
-                            <span class="h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-                                <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                </svg>
-                            </span>
-                            <button
-                                type="button"
-                                class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                            >
-                                Change
-                            </button>
-                        </div>
-                    </div> -->
-
-                    <div class="sm:col-span-6">
+                <div class="px-5 lg:px-32 mt-6 grid grid-cols-1 gap-y-6 gap-x-4 lg:grid-cols-6">
+                    <div class="lg:col-span-6">
                         <label for="cover-photo" class="block text-sm font-medium text-gray-700">
                             Merchant storefront
                         </label>
+
                         <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
                                 <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
@@ -70,6 +29,7 @@
                                         stroke-linejoin="round"
                                     />
                                 </svg>
+
                                 <div class="flex text-sm text-gray-600">
                                     <label
                                         for="file-upload"
@@ -80,6 +40,7 @@
                                     </label>
                                     <p class="pl-1">or drag and drop</p>
                                 </div>
+
                                 <p class="text-xs text-gray-500">
                                     PNG, JPG, GIF up to 10MB
                                 </p>
@@ -89,95 +50,79 @@
                 </div>
             </div>
 
-            <div class="px-5 sm:px-32 pt-8">
+            <div class="px-5 lg:px-32 pt-8">
                 <div>
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Merchant Details
                     </h3>
-                    <p class="mt-1 text-sm text-gray-500">
-                        Use a permanent address where you can receive mail.
-                    </p>
+
+                    <!-- <p class="mt-1 text-sm text-gray-500">
+                        NOTE: Please use a permanent address where the merchant receives mail.
+                    </p> -->
                 </div>
-                <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                    <div class="sm:col-span-3">
+
+                <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 lg:grid-cols-6">
+                    <div class="lg:col-span-3">
                         <label for="first-name" class="block text-sm font-medium text-gray-700">
-                            Business name
+                            Merchant name
                         </label>
+
                         <div class="mt-1">
-                            <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                            <input type="text" v-model="merchantName" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
                         </div>
                     </div>
 
-                    <!-- <div class="sm:col-span-3">
-                        <label for="last-name" class="block text-sm font-medium text-gray-700">
-                            Last name
-                        </label>
-                        <div class="mt-1">
-                            <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
-                        </div>
-                    </div> -->
-
-                    <!-- <div class="sm:col-span-4">
-                        <label for="email" class="block text-sm font-medium text-gray-700">
-                            Email address
-                        </label>
-                        <div class="mt-1">
-                            <input id="email" name="email" type="email" autocomplete="email" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
-                        </div>
-                    </div> -->
-
-                    <div class="sm:col-span-3">
+                    <div class="lg:col-span-3">
                         <label for="country" class="block text-sm font-medium text-gray-700">
                             Country / Region
                         </label>
+
                         <div class="mt-1">
-                            <select id="country" name="country" autocomplete="country" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                <option>United States</option>
-                                <option>Canada</option>
-                                <option>Mexico</option>
+                            <select id="country" name="country" autocomplete="country" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md">
+                                <option v-for="country in countries" :key="country" :value="country">{{country}}</option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="sm:col-span-6">
+                    <div class="lg:col-span-6">
                         <label for="street-address" class="block text-sm font-medium text-gray-700">
                             Street address
                         </label>
                         <div class="mt-1">
-                            <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                            <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
                         </div>
                     </div>
 
-                    <div class="sm:col-span-2">
+                    <div class="lg:col-span-2">
                         <label for="city" class="block text-sm font-medium text-gray-700">
                             City
                         </label>
                         <div class="mt-1">
-                            <input type="text" name="city" id="city" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                            <input type="text" name="city" id="city" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
                         </div>
                     </div>
 
-                    <div class="sm:col-span-2">
+                    <div class="lg:col-span-2">
                         <label for="state" class="block text-sm font-medium text-gray-700">
                             State / Province
                         </label>
                         <div class="mt-1">
-                            <input type="text" name="state" id="state" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                            <input type="text" name="state" id="state" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
                         </div>
                     </div>
 
-                    <div class="sm:col-span-2">
+                    <div class="lg:col-span-2">
                         <label for="zip" class="block text-sm font-medium text-gray-700">
                             ZIP / Postal
                         </label>
                         <div class="mt-1">
-                            <input type="text" name="zip" id="zip" autocomplete="postal-code" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                            <input type="text" name="zip" id="zip" autocomplete="postal-code" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="px-5 sm:px-32 pt-8">
+            <div class="px-5 lg:px-32 pt-8">
                 <div>
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Notifications
@@ -211,95 +156,316 @@
                                     <p class="text-gray-500">Receive a monthly summary of this merchant's activity.</p>
                                 </div>
                             </div>
-                            <!-- <div class="relative flex items-start">
-                                <div class="flex items-center h-5">
-                                    <input id="offers" name="offers" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
-                                </div>
-                                <div class="ml-3 text-sm">
-                                    <label for="offers" class="font-medium text-gray-700">Offers</label>
-                                    <p class="text-gray-500">Get notified when a candidate accepts or rejects an offer.</p>
-                                </div>
-                            </div> -->
                         </div>
                     </fieldset>
 
-                    <!-- <fieldset class="mt-6">
-                        <div>
-                            <legend class="text-base font-medium text-gray-900">
-                                Push Notifications
-                            </legend>
-                            <p class="text-sm text-gray-500">These are delivered via SMS to your mobile phone.</p>
-                        </div>
-                        <div class="mt-4 space-y-4">
-                            <div class="flex items-center">
-                                <input id="push-everything" name="push-notifications" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                                <label for="push-everything" class="ml-3 block text-sm font-medium text-gray-700">
-                                    Everything
-                                </label>
-                            </div>
-                            <div class="flex items-center">
-                                <input id="push-email" name="push-notifications" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                                <label for="push-email" class="ml-3 block text-sm font-medium text-gray-700">
-                                    Same as email
-                                </label>
-                            </div>
-                            <div class="flex items-center">
-                                <input id="push-nothing" name="push-notifications" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                                <label for="push-nothing" class="ml-3 block text-sm font-medium text-gray-700">
-                                    No push notifications
-                                </label>
-                            </div>
-                        </div>
-                    </fieldset> -->
                 </div>
             </div>
         </div>
 
-        <div class="px-5 sm:px-32 pt-5">
+        <div class="px-5 lg:px-32 pt-5">
             <div class="flex justify-end">
                 <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Cancel
                 </button>
 
                 <button
-                    type="submit"
+                    @click="addMerchant"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                     Submit New Merchant
                 </button>
             </div>
         </div>
-    <!-- </form> -->
     </main>
 
 </template>
 
 <script>
 /* Import modules. */
+import superagent from 'superagent'
 import { v4 as uuidv4 } from 'uuid'
 
 /* Import components. */
 import MapEditor from '@/components/MapEditor'
+
+// const API_ENDPOINT = `https://api.use.cash/v1`
+// const API_ENDPOINT = `https://usecash-api.modenero.dev/v1`
+const API_ENDPOINT = `http://localhost:9090/v1`
 
 export default {
     components: {
         MapEditor,
     },
     data: () => ({
-        // rules: [v => v.length <= 200 || 'Max 200 characters'],
-        // description: '',
         lat: null,
         lng: null,
         startPos: null,
+
+        merchantName: null,
     }),
     computed: {
-        //
+        countries() {
+            return [
+                `Afghanistan`,
+                `Åland Islands`,
+                `Albania`,
+                `Algeria`,
+                `American Samoa`,
+                `Andorra`,
+                `Angola`,
+                `Anguilla`,
+                `Antarctica`,
+                `Antigua and Barbuda`,
+                `Argentina`,
+                `Armenia`,
+                `Aruba`,
+                `Australia`,
+                `Austria`,
+                `Azerbaijan`,
+                `Bahamas`,
+                `Bahrain`,
+                `Bangladesh`,
+                `Barbados`,
+                `Belarus`,
+                `Belgium`,
+                `Belize`,
+                `Benin`,
+                `Bermuda`,
+                `Bhutan`,
+                `Bolivia (Plurinational State of)`,
+                `Bonaire, Sint Eustatius and Saba`,
+                `Bosnia and Herzegovina`,
+                `Botswana`,
+                `Bouvet Island`,
+                `Brazil`,
+                `British Indian Ocean Territory`,
+                `United States Minor Outlying Islands`,
+                `Virgin Islands (British)`,
+                `Virgin Islands (U.S.)`,
+                `Brunei Darussalam`,
+                `Bulgaria`,
+                `Burkina Faso`,
+                `Burundi`,
+                `Cambodia`,
+                `Cameroon`,
+                `Canada`,
+                `Cabo Verde`,
+                `Cayman Islands`,
+                `Central African Republic`,
+                `Chad`,
+                `Chile`,
+                `China`,
+                `Christmas Island`,
+                `Cocos (Keeling) Islands`,
+                `Colombia`,
+                `Comoros`,
+                `Congo`,
+                `Congo (Democratic Republic of the)`,
+                `Cook Islands`,
+                `Costa Rica`,
+                `Croatia`,
+                `Cuba`,
+                `Curaçao`,
+                `Cyprus`,
+                `Czech Republic`,
+                `Denmark`,
+                `Djibouti`,
+                `Dominica`,
+                `Dominican Republic`,
+                `Ecuador`,
+                `Egypt`,
+                `El Salvador`,
+                `Equatorial Guinea`,
+                `Eritrea`,
+                `Estonia`,
+                `Ethiopia`,
+                `Falkland Islands (Malvinas)`,
+                `Faroe Islands`,
+                `Fiji`,
+                `Finland`,
+                `France`,
+                `French Guiana`,
+                `French Polynesia`,
+                `French Southern Territories`,
+                `Gabon`,
+                `Gambia`,
+                `Georgia`,
+                `Germany`,
+                `Ghana`,
+                `Gibraltar`,
+                `Greece`,
+                `Greenland`,
+                `Grenada`,
+                `Guadeloupe`,
+                `Guam`,
+                `Guatemala`,
+                `Guernsey`,
+                `Guinea`,
+                `Guinea-Bissau`,
+                `Guyana`,
+                `Haiti`,
+                `Heard Island and McDonald Islands`,
+                `Holy See`,
+                `Honduras`,
+                `Hong Kong`,
+                `Hungary`,
+                `Iceland`,
+                `India`,
+                `Indonesia`,
+                `Côte d'Ivoire`,
+                `Iran (Islamic Republic of)`,
+                `Iraq`,
+                `Ireland`,
+                `Isle of Man`,
+                `Israel`,
+                `Italy`,
+                `Jamaica`,
+                `Japan`,
+                `Jersey`,
+                `Jordan`,
+                `Kazakhstan`,
+                `Kenya`,
+                `Kiribati`,
+                `Kuwait`,
+                `Kyrgyzstan`,
+                `Lao People's Democratic Republic`,
+                `Latvia`,
+                `Lebanon`,
+                `Lesotho`,
+                `Liberia`,
+                `Libya`,
+                `Liechtenstein`,
+                `Lithuania`,
+                `Luxembourg`,
+                `Macao`,
+                `Macedonia (the former Yugoslav Republic of)`,
+                `Madagascar`,
+                `Malawi`,
+                `Malaysia`,
+                `Maldives`,
+                `Mali`,
+                `Malta`,
+                `Marshall Islands`,
+                `Martinique`,
+                `Mauritania`,
+                `Mauritius`,
+                `Mayotte`,
+                `Mexico`,
+                `Micronesia (Federated States of)`,
+                `Moldova (Republic of)`,
+                `Monaco`,
+                `Mongolia`,
+                `Montenegro`,
+                `Montserrat`,
+                `Morocco`,
+                `Mozambique`,
+                `Myanmar`,
+                `Namibia`,
+                `Nauru`,
+                `Nepal`,
+                `Netherlands`,
+                `New Caledonia`,
+                `New Zealand`,
+                `Nicaragua`,
+                `Niger`,
+                `Nigeria`,
+                `Niue`,
+                `Norfolk Island`,
+                `Korea (Democratic People's Republic of)`,
+                `Northern Mariana Islands`,
+                `Norway`,
+                `Oman`,
+                `Pakistan`,
+                `Palau`,
+                `Palestine, State of`,
+                `Panama`,
+                `Papua New Guinea`,
+                `Paraguay`,
+                `Peru`,
+                `Philippines`,
+                `Pitcairn`,
+                `Poland`,
+                `Portugal`,
+                `Puerto Rico`,
+                `Qatar`,
+                `Republic of Kosovo`,
+                `Réunion`,
+                `Romania`,
+                `Russian Federation`,
+                `Rwanda`,
+                `Saint Barthélemy`,
+                `Saint Helena, Ascension and Tristan da Cunha`,
+                `Saint Kitts and Nevis`,
+                `Saint Lucia`,
+                `Saint Martin (French part)`,
+                `Saint Pierre and Miquelon`,
+                `Saint Vincent and the Grenadines`,
+                `Samoa`,
+                `San Marino`,
+                `Sao Tome and Principe`,
+                `Saudi Arabia`,
+                `Senegal`,
+                `Serbia`,
+                `Seychelles`,
+                `Sierra Leone`,
+                `Singapore`,
+                `Sint Maarten (Dutch part)`,
+                `Slovakia`,
+                `Slovenia`,
+                `Solomon Islands`,
+                `Somalia`,
+                `South Africa`,
+                `South Georgia and the South Sandwich Islands`,
+                `Korea (Republic of)`,
+                `South Sudan`,
+                `Spain`,
+                `Sri Lanka`,
+                `Sudan`,
+                `Suriname`,
+                `Svalbard and Jan Mayen`,
+                `Swaziland`,
+                `Sweden`,
+                `Switzerland`,
+                `Syrian Arab Republic`,
+                `Taiwan`,
+                `Tajikistan`,
+                `Tanzania, United Republic of`,
+                `Thailand`,
+                `Timor-Leste`,
+                `Togo`,
+                `Tokelau`,
+                `Tonga`,
+                `Trinidad and Tobago`,
+                `Tunisia`,
+                `Turkey`,
+                `Turkmenistan`,
+                `Turks and Caicos Islands`,
+                `Tuvalu`,
+                `Uganda`,
+                `Ukraine`,
+                `United Arab Emirates`,
+                `United Kingdom of Great Britain and Northern Ireland`,
+                `United States of America`,
+                `Uruguay`,
+                `Uzbekistan`,
+                `Vanuatu`,
+                `Venezuela (Bolivarian Republic of)`,
+                `Viet Nam`,
+                `Wallis and Futuna`,
+                `Western Sahara`,
+                `Yemen`,
+                `Zambia`,
+                `Zimbabwe`,
+            ]
+        },
+
     },
     methods: {
-        save() {
+        async addMerchant() {
             const merchant = {
                 id: uuidv4(),
-                companyName: null,
+                name: this.merchantName,
                 streetAddress: null,
                 streetOther: null,
                 city: null,
@@ -307,8 +473,16 @@ export default {
                 postalCode: null,
                 country: null,
                 website: null,
+                lat: this.lat,
+                lng: this.lng,
             }
             console.log('MERCHANT', merchant)
+
+            const result = await superagent
+                .post(`${API_ENDPOINT}/merchants`)
+                .send(merchant)
+                .set('accept', 'json')
+            console.log('ADD MERCHANT RESULT', result)
         },
 
         requestLocation() {
@@ -340,6 +514,13 @@ export default {
 
                 // work with this information however you'd like!
             })
+        },
+
+        updateLoc(_newLoc) {
+            console.log('NEW LOCATION RECIEVED', _newLoc)
+
+            this.lat = _newLoc.lat
+            this.lng = _newLoc.lng
         },
     },
     created: function () {

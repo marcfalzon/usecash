@@ -15,7 +15,8 @@ import superagent from 'superagent'
 const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2tza3hsazR0MGVkazJ2dGVwOXhpaDkzeiJ9.Ogmv-xLwll3Z_1uuCItolg' // localhost
 
 // const API_ENDPOINT = `https://api.use.cash/v1`
-const API_ENDPOINT = `http://localhost:8080/v1`
+const API_ENDPOINT = `https://usecash-api.modenero.dev/v1`
+// const API_ENDPOINT = `http://localhost:9090/v1`
 
 export default {
     props: {
@@ -28,8 +29,6 @@ export default {
     },
     watch: {
         startPos: function (_latlng) {
-            // console.log('I JUST SAW THE COORDS CHANGE:', _latlng)
-
             if (!_latlng) {
                 return console.error('NO coordinates', _latlng)
             }
@@ -45,14 +44,6 @@ export default {
 
             /* Set map center. */
             this.map.setCenter(center)
-
-            /* Request zoom. */
-            // const zoom = this.map.getZoom()
-
-            // this.map.easeTo({
-            //     center,
-            //     zoom,
-            // })
 
         },
     },
@@ -84,15 +75,6 @@ export default {
                 showZoom: true,
                 visualizePitch: false,
             }))
-
-            /* Add geolocator control. */
-            // this.map.addControl(new Mapbox.GeolocateControl({
-            //     positionOptions: {
-            //         enableHighAccuracy: true
-            //     },
-            //     trackUserLocation: true,
-            //     showUserHeading: true,
-            // }))
 
             /* Handle map movement. */
             this.map.on('moveend', async () => {
@@ -135,9 +117,6 @@ export default {
 
                 this.map.on('click', 'unclustered-bch-point', (e) => {
                     // console.log('CLICKED POINT', e)
-
-                    // const features = this.map.querySourceFeatures('vendors')
-                    // console.log('MAP FEATURES (vendors):', features)
 
                     // Copy coordinates array.
                     const coordinates = e.features[0].geometry.coordinates.slice()
@@ -223,9 +202,6 @@ export default {
                         /* Add ATM marker. */
                         this.map.addImage('atm-marker', _image)
 
-                        /* Manage map. */
-                        // this.mapManager()
-
                         // this.map.loadImage('https://i.imgur.com/CvdwMwu.png', // BCH icon 40 px
                         this.map.loadImage('https://i.imgur.com/9zOS6wv.png', // BCH icon 32 px
                             (_error, _image) => {
@@ -241,7 +217,6 @@ export default {
                                 this.mapManager()
                             }
                         )
-
 
                     }
                 )
@@ -292,45 +267,42 @@ export default {
                 .send(pkg)
                 .set('accept', 'json')
 
-            const body = result.body
-            // console.log('VENDOR LOCATIONS (body):', body)
+            /* Set vendors. */
+            const vendors = result.body
+            console.log('VENDORS:', vendors)
 
-            /* Validate body. */
-            if (body) {
+            /* Validate vendors. */
+            if (vendors) {
                 /* Send vendors back home. */
-                this.$emit('onUpdate', body)
+                this.$emit('onUpdate', vendors)
 
                 /* Clear vendors. */
                 this.vendors = []
 
-                body.forEach(vendor => {
-                    /* Set venue. */
-                    const venue = vendor._source
-                    // console.log('VENUE', venue)
-
+                vendors.forEach(vendor => {
                     /* Initialize details. */
                     let details = '<main class="border-2 border-indigo-200 rounded-xl bg-indigo-50 p-3">'
 
-                    /* Validate venue. */
-                    if (venue) {
+                    /* Validate vendor. */
+                    if (vendor) {
                         /* Initialize address. */
                         let address = ''
 
                         /* Initialize map link. */
                         let mapLink
 
-                        if (venue.houseno && venue.street) {
-                            address += `${venue.houseno} ${venue.street}<br>`
-                        } else if (venue.streetAddress) {
-                            address += `${venue.streetAddress}<br>`
-                        } else if (venue.street) {
-                            address += `${venue.street}<br>`
+                        if (vendor.houseno && vendor.street) {
+                            address += `${vendor.houseno} ${vendor.street}<br>`
+                        } else if (vendor.streetAddress) {
+                            address += `${vendor.streetAddress}<br>`
+                        } else if (vendor.street) {
+                            address += `${vendor.street}<br>`
                         }
 
-                        if (venue.city && venue.state && venue.postcode) {
-                            address += `${venue.city}, ${venue.state} ${venue.postcode}<br>`
-                        } else if (venue.city && venue.state && venue.postalCode) {
-                            address += `${venue.city}, ${venue.state} ${venue.postalCode}<br>`
+                        if (vendor.city && vendor.state && vendor.postcode) {
+                            address += `${vendor.city}, ${vendor.state} ${vendor.postcode}<br>`
+                        } else if (vendor.city && vendor.state && vendor.postalCode) {
+                            address += `${vendor.city}, ${vendor.state} ${vendor.postalCode}<br>`
                         }
 
                         /* Handle iOS devices. */
@@ -345,24 +317,24 @@ export default {
                             mapLink = `https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${address}`
                         }
 
-                        details += `<div class="text-center text-lg text-gray-800 font-extrabold">${vendor._source.name || vendor._source.companyName}</div>`
+                        details += `<div class="text-center text-lg text-gray-800 font-extrabold">${vendor.name || vendor.companyName}</div>`
 
-                        details += `<div class="text-right"><span class="text-xs text-gray-500 font-medium">${vendor._source.category === 'default' ? 'BUSINESS' : Array.isArray(vendor._source.category) ? vendor._source.category[0].toUpperCase() : vendor._source.category.toUpperCase()}</span></div>`
+                        details += `<div class="text-right"><span class="text-xs text-gray-500 font-medium">${vendor.category === 'default' ? 'BUSINESS' : Array.isArray(vendor.category) ? vendor.category[0].toUpperCase() : vendor.category.toUpperCase()}</span></div>`
 
                         if (address) {
                             details += `<a class="text-blue-500 hover:underline font-medium mt-3" href="${mapLink}" target="_blank">${address}</a><br>`
                         }
 
-                        if (venue.phone) {
-                            details += `<a class="text-blue-500 hover:underline" href="tel:${venue.phone}">${venue.phone}</a><br>`
+                        if (vendor.phone) {
+                            details += `<a class="text-blue-500 hover:underline" href="tel:${vendor.phone}">${vendor.phone}</a><br>`
                         }
 
-                        if (venue.email) {
-                            details += `<a class="text-blue-500 hover:underline" href="mailto:${venue.email}">${venue.email}</a><br>`
+                        if (vendor.email) {
+                            details += `<a class="text-blue-500 hover:underline" href="mailto:${vendor.email}">${vendor.email}</a><br>`
                         }
 
-                        if (venue.googleBusiness) {
-                            details += `<div class="text-center"><a class="text-blue-500 hover:underline text-base font-bold" href="${venue.googleBusiness}" target="_blank">Google Business (link)</a></div>`
+                        if (vendor.googleBusiness) {
+                            details += `<div class="text-center"><a class="text-blue-500 hover:underline text-base font-bold" href="${vendor.googleBusiness}" target="_blank">Google Business (link)</a></div>`
                         }
 
                         details += '</main>'
@@ -374,17 +346,15 @@ export default {
                     // console.log('DETAILS', details);
 
                     this.vendors.push({
-                        id: vendor._source.id,
-                        cat: vendor._source.category,
-                        lat: vendor._source.lat,
-                        lng: vendor._source.lng,
-                        latlng: [ vendor._source.lat, vendor._source.lng ],
+                        id: vendor.id,
+                        cat: vendor.category,
+                        lat: vendor.lat,
+                        lng: vendor.lng,
+                        latlng: [ vendor.lat, vendor.lng ],
                         details,
                     })
 
                 })
-                // this.vendors = body
-                // console.log('MAPBOX (vendors):', this.vendors)
 
                 /* Initialize features. */
                 const features = []
@@ -426,10 +396,6 @@ export default {
          * Set map sources, markers and layers.
          */
         updateMap(_data) {
-            // console.log('LOAD IMAGE', img)
-            // const bounds = this.map.getBounds()
-            // console.log('BOUNDS', bounds)
-
             /* Set source. */
             const source = this.map.getSource('vendors')
 
@@ -513,19 +479,6 @@ export default {
                     'text-size': 12
                 }
             })
-
-            // this.map.addLayer({
-            //     id: 'unclustered-point',
-            //     type: 'circle',
-            //     source: 'vendors',
-            //     filter: ['!', ['has', 'point_count']],
-            //     paint: {
-            //         'circle-color': '#11b4da',
-            //         'circle-radius': 12,
-            //         'circle-stroke-width': 1,
-            //         'circle-stroke-color': '#fff'
-            //     }
-            // })
 
             this.map.addLayer({
                 id: 'unclustered-atm-point',

@@ -76,7 +76,8 @@
 import superagent from 'superagent'
 
 // const API_ENDPOINT = `https://api.use.cash/v1`
-const API_ENDPOINT = `http://localhost:8080/v1`
+// const API_ENDPOINT = `https://usecash-api.modenero.dev/v1`
+const API_ENDPOINT = `http://localhost:9090/v1`
 
 export default {
     data: () => ({

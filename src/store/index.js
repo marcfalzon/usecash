@@ -50,7 +50,8 @@ export default new Vuex.Store({
 
                 /* Send DID token to server. */
                 const result = await superagent
-                    .post('https://api.use.cash/v1/magiclink')
+                    // .post('https://api.use.cash/v1/magiclink')
+                    .post('https://usecash-api.modenero.dev/v1/magiclink')
                     .send({ did })
                     .set('accept', 'json')
                     .catch(err => console.error(err))
@@ -63,7 +64,7 @@ export default new Vuex.Store({
 
                 commit('setEmail', data.email)
 
-                await router.push({ name: 'Admin' })
+                await router.push('/mod')
             } catch (error) {
                 console.error(error)
                 // if (error instanceof SDKError) {

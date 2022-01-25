@@ -8,7 +8,10 @@
 
         <div class="full-screen">
             Please place a pin on the location of the merchant you are adding to our database.
-            <br>Latitude: <strong>{{pinLat ? pinLat.toFixed(4) : 'n/a'}}</strong> | Longitude: <strong>{{pinLng ? pinLng.toFixed(4) : 'n/a'}}</strong>
+            <div class="block">
+                Latitude: <strong class="text-red-500">{{pinLat ? pinLat.toFixed(4) : 'n/a'}}</strong> |
+                Longitude: <strong class="text-red-500">{{pinLng ? pinLng.toFixed(4) : 'n/a'}}</strong>
+            </div>
         </div>
 
         <l-map
@@ -34,10 +37,10 @@
 
             <l-marker ref="marker" :lat-lng="activeLoc" :draggable=true>
                 <l-popup>
-                    <div @click="innerClick">
-                        <h2>Armani Exchange</h2>
-                        <br>Accepting: BCH, BTC, DASH
-                        <br>Last updated: 3 days ago
+                    <div @click="newMerchantHandler">
+                        <h2 class="text-center font-bold text-blue-500 uppercase">New Merchant Location</h2>
+                        <span class="block">Accepting: <strong>BCH, BTC, DASH</strong></span>
+                        <span class="block">Last updated: <strong>just now</strong></span>
                     </div>
                 </l-popup>
             </l-marker>
@@ -87,6 +90,7 @@ export default {
             const lng = _latlng.split(',')[1]
 
             this.map.setView({ lat, lng }, DEFAULT_ZOOM)
+
             this.circle.center = latLng(lat, lng)
         },
     },
@@ -130,8 +134,7 @@ export default {
 
             /* Handle map clicks. */
             this.map.on('click', (event) => {
-                // console.log('MAP WAS CLICKED. DROP A PIN!')
-
+                /* Set pin position. */
                 const position = event.latlng
                 // console.log('POSITION', position)
 
@@ -140,16 +143,25 @@ export default {
 
                 /* Update active location. */
                 this.activeLoc = position
+
+                /* Update pin position. */
+                this.$emit('updateLoc', position)
             })
 
             /* Handle draggable marker. */
             this.marker.on('dragend', () => {
-                // const position = marker.getLatLng()
+                /* Set pin position. */
                 const position = this.marker.getLatLng()
                 // console.log('POSITION', position)
 
                 this.pinLat = position.lat
                 this.pinLng = position.lng
+
+                /* Update active location. */
+                this.activeLoc = position
+
+                /* Update pin position. */
+                this.$emit('updateLoc', position)
             })
 
         },
@@ -162,9 +174,11 @@ export default {
             this.currentCenter = _center
         },
 
-        innerClick() {
-
-            alert(`Marker inner clicked!`)
+        /**
+         * New Merchant Handler
+         */
+        newMerchantHandler() {
+            alert(`This merchant has NOT YET been added to the community.`)
         }
     },
     created: function () {

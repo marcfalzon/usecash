@@ -107,8 +107,6 @@ export default {
     },
     watch: {
         startPos: function (_latlng) {
-            console.log('I JUST SAW THE COORDS CHANGE:', _latlng)
-
             const lat = _latlng.split(',')[0]
             const lng = _latlng.split(',')[1]
 
