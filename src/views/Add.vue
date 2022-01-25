@@ -30,16 +30,25 @@
                                     />
                                 </svg>
 
+                                <form enctype="multipart/form-data" novalidate>
                                 <div class="flex text-sm text-gray-600">
                                     <label
                                         for="file-upload"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                                     >
                                         <span>Upload a file</span>
-                                        <input id="file-upload" name="file-upload" type="file" class="sr-only" />
+                                        <!-- <input v-model="merchantStorefrontPhoto" type="file" class="sr-only" /> -->
+                                        <input
+                                            type="file"
+                                            :name="uploadFieldName"
+                                            :disabled="isSaving"
+                                            @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
+                                            accept="image/*" class="input-file"
+                                        >
                                     </label>
                                     <p class="pl-1">or drag and drop</p>
                                 </div>
+                                </form>
 
                                 <p class="text-xs text-gray-500">
                                     PNG, JPG, GIF up to 10MB
@@ -190,8 +199,10 @@ import { v4 as uuidv4 } from 'uuid'
 import MapEditor from '@/components/MapEditor'
 
 // const API_ENDPOINT = `https://api.use.cash/v1`
-// const API_ENDPOINT = `https://usecash-api.modenero.dev/v1`
-const API_ENDPOINT = `http://localhost:9090/v1`
+const API_ENDPOINT = `https://usecash-api.modenero.dev/v1`
+// const API_ENDPOINT = `http://localhost:9090/v1`
+
+const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
 
 export default {
     components: {
@@ -203,7 +214,47 @@ export default {
         startPos: null,
 
         merchantName: null,
+
+        merchantStorefrontPhoto: [],
+        merchantStorefrontPhotoId: null,
+        merchantStorefrontPhotoUrl: null,
+
+        // uploadFieldName: null,
+        isSaving: null,
+
+        uploadedFiles: [],
+        uploadError: null,
+        currentStatus: null,
+        uploadFieldName: 'photos',
+
     }),
+    watch: {
+        merchantStorefrontPhoto(_val) {
+            // console.log('MERCHANT STOREFRONT PHOTO CHANGED', _val)
+
+            if (_val && _val[0]) {
+                const fileReader = new FileReader()
+                fileReader.addEventListener('load', async () => {
+                    this.merchantStorefrontPhotoUrl = fileReader.result
+
+                    this.merchantStorefrontPhotoId = uuidv4()
+
+                    const imageBuffer = this.dataUrlToBlob(this.merchantStorefrontPhotoUrl)
+                    console.log('IMAGE BUFFER', imageBuffer)
+
+                    const response = await superagent
+                        .post(`${API_ENDPOINT}/admin/media`)
+                        .attach('storefront', imageBuffer, this.merchantStorefrontPhotoId)
+                        .catch(console.error)
+                    console.log('RESPONSE', response)
+                })
+                fileReader.readAsDataURL(this.merchantStorefrontPhoto[0])
+            } else {
+                this.merchantStorefrontPhotoUrl = null
+            }
+        },
+
+    },
     computed: {
         countries() {
             return [
@@ -460,6 +511,19 @@ export default {
             ]
         },
 
+        isInitial() {
+            return this.currentStatus === STATUS_INITIAL;
+        },
+        isSaving() {
+            return this.currentStatus === STATUS_SAVING;
+        },
+        isSuccess() {
+            return this.currentStatus === STATUS_SUCCESS;
+        },
+        isFailed() {
+            return this.currentStatus === STATUS_FAILED;
+        },
+
     },
     methods: {
         async addMerchant() {
@@ -473,6 +537,7 @@ export default {
                 postalCode: null,
                 country: null,
                 website: null,
+                storefront: `${API_ENDPOINT}/media/${this.merchantStorefrontPhotoId}.jpg`,
                 lat: this.lat,
                 lng: this.lng,
             }
@@ -483,6 +548,12 @@ export default {
                 .send(merchant)
                 .set('accept', 'json')
             console.log('ADD MERCHANT RESULT', result)
+
+            /* Validate result. */
+            if (result) {
+                alert('New merchant submitted for review.')
+            }
+
         },
 
         requestLocation() {
@@ -517,11 +588,89 @@ export default {
         },
 
         updateLoc(_newLoc) {
-            console.log('NEW LOCATION RECIEVED', _newLoc)
+            // console.log('NEW LOCATION RECIEVED', _newLoc, this.startPos)
 
             this.lat = _newLoc.lat
             this.lng = _newLoc.lng
         },
+
+        // filesChange(_file) {
+        //     console.log('FILES CHANGED', _file);
+        //     console.log('STORE PHOTO', this.merchantStorefrontPhoto);
+        //
+        //     const fileReader = new FileReader()
+        //     fileReader.addEventListener('load', async () => {
+        //         this.merchantStorefrontPhotoUrl = fileReader.result
+        //
+        //         this.merchantStorefrontPhotoId = uuidv4()
+        //
+        //         const imageBuffer = this.dataUrlToBlob(this.merchantStorefrontPhotoUrl)
+        //         console.log('IMAGE BUFFER', imageBuffer)
+        //
+        //         // const response = await superagent
+        //         //     .post(`${API_ENDPOINT}/admin/media`)
+        //         //     .attach('storefront', imageBuffer, this.merchantStorefrontPhotoId)
+        //         //     .catch(console.error)
+        //         // console.log('RESPONSE', response)
+        //     })
+        //     fileReader.readAsDataURL(this.merchantStorefrontPhoto[0])
+        // },
+
+        reset() {
+            // reset form to initial state
+            this.currentStatus = STATUS_INITIAL;
+            this.uploadedFiles = [];
+            this.uploadError = null;
+        },
+        async save(formData) {
+            console.log('FORM DATA', formData);
+            // upload data to the server
+            this.currentStatus = STATUS_SAVING;
+
+            // const response = await superagent
+            //     .post(`${API_ENDPOINT}/admin/media`)
+            //     .attach('storefront', formData, '1234')
+            //     .catch(console.error)
+            // console.log('RESPONSE', response)
+
+            // upload(formData)
+            //     .then(x => {
+            //         this.uploadedFiles = [].concat(x);
+            //         this.currentStatus = STATUS_SUCCESS;
+            //     })
+            //     .catch(err => {
+            //         this.uploadError = err.response;
+            //         this.currentStatus = STATUS_FAILED;
+            //     });
+        },
+        async filesChange(fieldName, fileList) {
+            console.log('FILES CHANGED (fieldName):', fieldName);
+            console.log('FILES CHANGED (fileList):', fileList);
+            // handle file changes
+            // const formData = new FormData();
+
+            if (!fileList.length) return;
+
+            this.merchantStorefrontPhotoId = uuidv4()
+
+            const response = await superagent
+                .post(`${API_ENDPOINT}/admin/media`)
+                .attach('storefront', fileList[0], this.merchantStorefrontPhotoId)
+                .catch(console.error)
+            console.log('RESPONSE', response)
+
+            // append the files to FormData
+            // Array
+            //     .from(Array(fileList.length).keys())
+            //     .map(x => {
+            //         formData.append(fieldName, fileList[x], fileList[x].name);
+            //     });
+            //
+            // // save it
+            // // this.save(formData);
+            // this.save(fileList[0]);
+        }
+
     },
     created: function () {
         //

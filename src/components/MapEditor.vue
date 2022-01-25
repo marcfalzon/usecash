@@ -30,6 +30,7 @@
             />
 
             <l-circle
+                @click="handleValidPin"
                 :lat-lng="circle.center"
                 :radius="circle.radius"
                 :color="circle.color"
@@ -122,6 +123,7 @@ export default {
             },
             pinLat: null,
             pinLng: null,
+            isValidPin: null,
         };
     },
     methods: {
@@ -138,14 +140,18 @@ export default {
                 const position = event.latlng
                 // console.log('POSITION', position)
 
-                this.pinLat = position.lat
-                this.pinLng = position.lng
-
-                /* Update active location. */
-                this.activeLoc = position
-
                 /* Update pin position. */
-                this.$emit('updateLoc', position)
+                if (this.isValidPin) {
+                    this.pinLat = position.lat
+                    this.pinLng = position.lng
+
+                    /* Update active location. */
+                    this.activeLoc = position
+
+                    this.$emit('updateLoc', position)
+                } else {
+                    alert('Invalid pin position.\nYou MUST travel closer to the merchant.')
+                }
             })
 
             /* Handle draggable marker. */
@@ -154,14 +160,18 @@ export default {
                 const position = this.marker.getLatLng()
                 // console.log('POSITION', position)
 
-                this.pinLat = position.lat
-                this.pinLng = position.lng
-
-                /* Update active location. */
-                this.activeLoc = position
-
                 /* Update pin position. */
-                this.$emit('updateLoc', position)
+                if (this.isValidPin) {
+                    this.pinLat = position.lat
+                    this.pinLng = position.lng
+
+                    /* Update active location. */
+                    this.activeLoc = position
+
+                    this.$emit('updateLoc', position)
+                } else {
+                    alert('Invalid pin position.\nYou MUST travel closer to the merchant.')
+                }
             })
 
         },
@@ -179,7 +189,18 @@ export default {
          */
         newMerchantHandler() {
             alert(`This merchant has NOT YET been added to the community.`)
-        }
+        },
+
+        handleValidPin() {
+            setTimeout(() => {
+                /* Set valid pin flag. */
+                this.isValidPin = false
+            }, 500)
+
+            /* Set valid pin flag. */
+            this.isValidPin = true
+        },
+
     },
     created: function () {
         //
