@@ -122,6 +122,7 @@ export default {
     },
     methods: {
         add() {
+            // FIXME: Are we signed in??
             this.$router.push('/add')
         },
 
@@ -135,6 +136,7 @@ export default {
         },
 
         mod() {
+            // FIXME: Are we signed in??
             this.$router.push('/mod')
         },
 
@@ -142,10 +144,13 @@ export default {
             // this.$router.push('/@nyusternie')
             // this.$router.push('/@marc')
             /* Request login. */
-            this.$store.dispatch('login', {
-                // email: this.email,
-                email: 'info@modenero.com',
-            })
+            // this.$store.dispatch('login', {
+            //     // email: this.email,
+            //     email: 'info@modenero.com',
+            // })
+
+            // FIXME: Are we signed in??
+            this.$emit('openMagicLink')
 
         },
 

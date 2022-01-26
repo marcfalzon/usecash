@@ -1,18 +1,34 @@
 <template>
     <main>
-        <Header :isMenuOpen="isMenuOpen" @openMenu="openMenu" />
+        <Header
+            :isMenuOpen="isMenuOpen"
+            @openMenu="openMenu"
+            @openMagicLink="openMagicLink"
+            @closeMagicLink="closeMagicLink"
+        />
 
-        <router-view :isMenuOpen="isMenuOpen" @closeMenu="closeMenu" />
+        <router-view
+            :isMenuOpen="isMenuOpen"
+            @closeMenu="closeMenu"
+            @openMagicLink="openMagicLink"
+            @closeMagicLink="closeMagicLink"
+        />
 
         <Footer />
         <Modals />
         <Notifs />
+
+        <MagicLinkWin
+            v-if="showMagicLinkWin"
+            @closeMagicLink="closeMagicLink"
+        />
     </main>
 </template>
 
 <script>
 import Footer from '@/components/Footer2'
 import Header from '@/components/Header'
+import MagicLinkWin from '@/components/MagicLinkWin'
 import Modals from '@/components/Modals'
 import Notifs from '@/components/Notifs'
 
@@ -20,11 +36,13 @@ export default {
     components: {
         Footer,
         Header,
+        MagicLinkWin,
         Modals,
         Notifs,
     },
     data: () => ({
         isMenuOpen: null,
+        showMagicLinkWin: null,
     }),
     methods: {
         openMenu() {
@@ -35,6 +53,14 @@ export default {
         closeMenu() {
             // console.log('CLOSE MENU');
             this.isMenuOpen = false
+        },
+
+        openMagicLink() {
+            this.showMagicLinkWin = true
+        },
+
+        closeMagicLink() {
+            this.showMagicLinkWin = false
         },
     },
     created: function () {

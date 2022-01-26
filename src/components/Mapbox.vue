@@ -635,8 +635,8 @@ export default {
                 }
 
                 /* Initialize map. */
-                // NOTE: Set to Caracas, Venezuela.
-                this.init([ -66.888721, 10.505399 ], zoom)
+                // NOTE: Set to Jersey City, New Jersey.
+                this.init([ -74.1389426, 40.7152232 ], zoom)
             }, options)
         }
 
