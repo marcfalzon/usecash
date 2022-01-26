@@ -11,7 +11,11 @@
                     </p>
                 </div>
 
-                <MapEditor id="map-editor" :startPos="startPos" @updateLoc="updateLoc" />
+                <MapEditor
+                    id="map-editor"
+                    :startPos="startPos"
+                    @updateLoc="updateLoc"
+                />
 
                 <div class="px-5 lg:px-32 mt-6 grid grid-cols-1 gap-y-6 gap-x-4 lg:grid-cols-6">
                     <div class="lg:col-span-6">
@@ -611,43 +615,21 @@ export default {
                     'timestamp', timestamp,
                 )
 
-                this.lat = latitude
-                this.lng = longitude
-
-                this.startPos = this.lat + ',' + this.lng
-
-                // work with this information however you'd like!
+                /* Set starting position. */
+                this.startPos = latitude + ',' + longitude
             })
         },
 
+        /**
+         * Update Location
+         */
         updateLoc(_newLoc) {
-            // console.log('NEW LOCATION RECIEVED', _newLoc, this.startPos)
-
+            /* Set latitude. */
             this.lat = _newLoc.lat
+
+            /* Set longitude. */
             this.lng = _newLoc.lng
         },
-
-        // filesChange(_file) {
-        //     console.log('FILES CHANGED', _file);
-        //     console.log('STORE PHOTO', this.merchantStorefrontPhoto);
-        //
-        //     const fileReader = new FileReader()
-        //     fileReader.addEventListener('load', async () => {
-        //         this.merchantStorefrontPhotoUrl = fileReader.result
-        //
-        //         this.merchantStorefrontPhotoId = uuidv4()
-        //
-        //         const imageBuffer = this.dataUrlToBlob(this.merchantStorefrontPhotoUrl)
-        //         console.log('IMAGE BUFFER', imageBuffer)
-        //
-        //         // const response = await superagent
-        //         //     .post(`${API_ENDPOINT}/admin/media`)
-        //         //     .attach('storefront', imageBuffer, this.merchantStorefrontPhotoId)
-        //         //     .catch(console.error)
-        //         // console.log('RESPONSE', response)
-        //     })
-        //     fileReader.readAsDataURL(this.merchantStorefrontPhoto[0])
-        // },
 
         reset() {
             // reset form to initial state
@@ -655,35 +637,36 @@ export default {
             this.uploadedFiles = [];
             this.uploadError = null;
         },
-        async save(formData) {
-            console.log('FORM DATA', formData);
-            // upload data to the server
-            this.currentStatus = STATUS_SAVING;
-
-            // const response = await superagent
-            //     .post(`${API_ENDPOINT}/admin/media`)
-            //     .attach('storefront', formData, '1234')
-            //     .catch(console.error)
-            // console.log('RESPONSE', response)
-
-            // upload(formData)
-            //     .then(x => {
-            //         this.uploadedFiles = [].concat(x);
-            //         this.currentStatus = STATUS_SUCCESS;
-            //     })
-            //     .catch(err => {
-            //         this.uploadError = err.response;
-            //         this.currentStatus = STATUS_FAILED;
-            //     });
-        },
+        // async save(formData) {
+        //     console.log('FORM DATA', formData);
+        //     // upload data to the server
+        //     this.currentStatus = STATUS_SAVING;
+        //
+        //     // const response = await superagent
+        //     //     .post(`${API_ENDPOINT}/admin/media`)
+        //     //     .attach('storefront', formData, '1234')
+        //     //     .catch(console.error)
+        //     // console.log('RESPONSE', response)
+        //
+        //     // upload(formData)
+        //     //     .then(x => {
+        //     //         this.uploadedFiles = [].concat(x);
+        //     //         this.currentStatus = STATUS_SUCCESS;
+        //     //     })
+        //     //     .catch(err => {
+        //     //         this.uploadError = err.response;
+        //     //         this.currentStatus = STATUS_FAILED;
+        //     //     });
+        // },
         async filesChange(fieldName, fileList) {
-            console.log('FILES CHANGED (fieldName):', fieldName);
-            console.log('FILES CHANGED (fileList):', fileList);
+            console.log('FILES CHANGED (fieldName):', fieldName)
+            console.log('FILES CHANGED (fileList):', fileList)
             // handle file changes
             // const formData = new FormData();
 
-            if (!fileList.length) return;
+            if (!fileList.length) return
 
+            /* Generate new photo id. */
             this.merchantStorefrontPhotoId = uuidv4()
 
             const response = await superagent
@@ -691,17 +674,6 @@ export default {
                 .attach('storefront', fileList[0], this.merchantStorefrontPhotoId)
                 .catch(console.error)
             console.log('RESPONSE', response)
-
-            // append the files to FormData
-            // Array
-            //     .from(Array(fileList.length).keys())
-            //     .map(x => {
-            //         formData.append(fieldName, fileList[x], fileList[x].name);
-            //     });
-            //
-            // // save it
-            // // this.save(formData);
-            // this.save(fileList[0]);
         }
 
     },
