@@ -102,11 +102,18 @@
 </template>
 
 <script>
+/* Import modules. */
+import { Magic } from 'magic-sdk'
+
+/* Initialize magic key. */
+const magicKey = new Magic(process.env.VUE_APP_MAGIC_API_KEY)
+
 export default {
     props: {
         isMenuOpen: Boolean,
     },
     data: () => ({
+        isLoggedIn: null,
         showMenu: null,
     }),
     computed: {
@@ -122,36 +129,31 @@ export default {
     },
     methods: {
         add() {
-            // FIXME: Are we signed in??
             this.$router.push('/add')
         },
 
         info() {
             this.$router.push('/faq')
-            // this.$router.push('/learn')
         },
 
         home() {
             this.$router.push('/')
         },
 
-        mod() {
-            // FIXME: Are we signed in??
-            this.$router.push('/mod')
+        async mod() {
+            if (this.isLoggedIn) {
+                this.$router.push('/mod')
+            } else {
+                this.$emit('openMagicLink')
+            }
         },
 
-        profile() {
-            // this.$router.push('/@nyusternie')
-            // this.$router.push('/@marc')
-            /* Request login. */
-            // this.$store.dispatch('login', {
-            //     // email: this.email,
-            //     email: 'info@modenero.com',
-            // })
-
-            // FIXME: Are we signed in??
-            this.$emit('openMagicLink')
-
+        async profile() {
+            if (this.isLoggedIn) {
+                this.$router.push('/mod')
+            } else {
+                this.$emit('openMagicLink')
+            }
         },
 
         open() {
@@ -159,8 +161,13 @@ export default {
         },
 
     },
-    created: function () {
+    created: async function () {
         this.showMenu = false
+
+        /* Validate magic login. */
+        this.isLoggedIn = await magicKey.user.isLoggedIn()
+            .catch(err => console.error(err))
+        console.log('MAGIC (isLoggedIn):', this.isLoggedIn)
     },
     mounted: function () {
         //

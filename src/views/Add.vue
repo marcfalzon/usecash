@@ -87,7 +87,7 @@
                         </label>
 
                         <div class="mt-1">
-                            <select id="country" name="country" autocomplete="country" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md">
+                            <select v-model="country" autocomplete="country" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md">
                                 <option v-for="country in countries" :key="country" :value="country">{{country}}</option>
                             </select>
                         </div>
@@ -98,7 +98,7 @@
                             Street address
                         </label>
                         <div class="mt-1">
-                            <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
+                            <input type="text" v-model="streetAddress" autocomplete="street-address" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
                         </div>
                     </div>
 
@@ -192,6 +192,7 @@
 
 <script>
 /* Import modules. */
+import { Magic } from 'magic-sdk'
 import superagent from 'superagent'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -204,11 +205,15 @@ const API_ENDPOINT = `https://usecash-api.modenero.dev/v1`
 
 const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
 
+/* Initialize magic key. */
+const magicKey = new Magic(process.env.VUE_APP_MAGIC_API_KEY)
+
 export default {
     components: {
         MapEditor,
     },
     data: () => ({
+        isLoggedIn: null,
         lat: null,
         lng: null,
         startPos: null,
@@ -220,12 +225,15 @@ export default {
         merchantStorefrontPhotoUrl: null,
 
         // uploadFieldName: null,
-        isSaving: null,
+        // isSaving: null,
 
         uploadedFiles: [],
         uploadError: null,
         currentStatus: null,
         uploadFieldName: 'photos',
+
+        country: null,
+        streetAddress: null,
 
     }),
     watch: {
@@ -258,6 +266,7 @@ export default {
     computed: {
         countries() {
             return [
+                `United States of America`,
                 `Afghanistan`,
                 `Åland Islands`,
                 `Albania`,
@@ -497,7 +506,6 @@ export default {
                 `Ukraine`,
                 `United Arab Emirates`,
                 `United Kingdom of Great Britain and Northern Ireland`,
-                `United States of America`,
                 `Uruguay`,
                 `Uzbekistan`,
                 `Vanuatu`,
@@ -527,15 +535,40 @@ export default {
     },
     methods: {
         async addMerchant() {
+            /* Validate user. */
+            if (!this.isLoggedIn) {
+                return alert(`You MUST first sign in to ADD a new merchant.`)
+            }
+
+            /* Validate merchant name. */
+            if (!this.lat || !this.lng) {
+                return alert(`You MUST click a point on the map to continue.`)
+            }
+
+            /* Validate merchant name. */
+            if (!this.merchantName) {
+                return alert(`You MUST enter a 'Merchant Name' to continue.`)
+            }
+
+            /* Validate merchant storefront photo id. */
+            if (!this.merchantStorefrontPhotoId) {
+                return alert(`You MUST add a 'Storefront Photo' to continue.`)
+            }
+
+            /* Validate country. */
+            if (!this.country) {
+                return alert(`You MUST enter a 'Country' to continue.`)
+            }
+
             const merchant = {
                 id: uuidv4(),
                 name: this.merchantName,
-                streetAddress: null,
+                streetAddress: this.streetAddress,
                 streetOther: null,
                 city: null,
                 state: null,
                 postalCode: null,
-                country: null,
+                country: this.country,
                 website: null,
                 storefront: `${API_ENDPOINT}/media/${this.merchantStorefrontPhotoId}.jpg`,
                 lat: this.lat,
@@ -551,7 +584,7 @@ export default {
 
             /* Validate result. */
             if (result) {
-                alert('New merchant submitted for review.')
+                alert('New merchant submitted for review. Thank you!')
             }
 
         },
@@ -672,8 +705,11 @@ export default {
         }
 
     },
-    created: function () {
-        //
+    created: async function () {
+        /* Validate magic login. */
+        this.isLoggedIn = await magicKey.user.isLoggedIn()
+            .catch(err => console.error(err))
+        console.log('MAGIC (isLoggedIn):', this.isLoggedIn)
     },
     mounted: function () {
         this.requestLocation()

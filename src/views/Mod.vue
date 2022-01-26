@@ -36,10 +36,15 @@
 </template>
 
 <script>
+/* Import modules. */
+import { Magic } from 'magic-sdk'
+
 /* Import components. */
 import Aside from '@/components/mod/Aside'
-// import Dashboard from '@/components/mod/Dashboard'
 import Menu from '@/components/mod/Menu'
+
+/* Initialize magic key. */
+const magicKey = new Magic(process.env.VUE_APP_MAGIC_API_KEY)
 
 export default {
     props: {
@@ -51,10 +56,8 @@ export default {
         Menu,
     },
     data: () => ({
-        // isOpen: null,
-
-        // loading: false,
-        // selection: 1,
+        isLoggedIn: null,
+        meta: null,
     }),
     methods: {
         /**
@@ -76,25 +79,42 @@ export default {
         },
 
     },
-    created: function () {
-        /* Initialize menu state. */
-        this.isOpen = false
+    async beforeRouteEnter(to, from, next) {
+        /* Validate magic login. */
+        this.isLoggedIn = await magicKey.user.isLoggedIn()
+            .catch(err => console.error(err))
+        console.log('MAGIC (isLoggedIn):', this.isLoggedIn)
 
-        const route = this.$route
-        console.log('ROUTE', route)
-
-        if (route && route.params) {
-            const params = route.params
-            console.log('PARAMS', params)
-
-            if (params && params.pageid) {
-                const pageid = params.pageid
-                console.log('PAGE ID', pageid)
-            }
+        if (this.isLoggedIn) {
+            next()
+        } else {
+            next('/')
         }
     },
-    mounted: function () {
+    created: async function () {
+        /* Request metadata. */
+        this.meta = await magicKey.user.getMetadata()
+            .catch(err => console.error(err))
+        console.log('MAGIC (meta):', this.meta)
 
+        /* Initialize menu state. */
+        // this.isOpen = false
+
+        // const route = this.$route
+        // console.log('ROUTE', route)
+
+        // if (route && route.params) {
+        //     const params = route.params
+        //     console.log('PARAMS', params)
+        //
+        //     if (params && params.pageid) {
+        //         const pageid = params.pageid
+        //         console.log('PAGE ID', pageid)
+        //     }
+        // }
+    },
+    mounted: function () {
+        //
     },
 }
 </script>
