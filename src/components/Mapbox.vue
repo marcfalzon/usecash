@@ -28,7 +28,11 @@ export default {
         //
     },
     watch: {
+        /**
+         * Start Position
+         */
         startPos: function (_latlng) {
+            /* Validate center. */
             if (!_latlng) {
                 return console.error('NO coordinates', _latlng)
             }
@@ -44,7 +48,6 @@ export default {
 
             /* Set map center. */
             this.map.setCenter(center)
-
         },
     },
     data() {
@@ -86,12 +89,8 @@ export default {
             this.map.on('load', async () => {
                 // When a click event occurs on a feature in the vendors layer, open a popup at the
                 // location of the feature, with description HTML from its properties.
-                // this.map.on('click', 'vendors', (e) => {
                 this.map.on('click', 'unclustered-atm-point', (e) => {
                     // console.log('CLICKED POINT', e)
-
-                    // const features = this.map.querySourceFeatures('vendors')
-                    // console.log('MAP FEATURES (vendors):', features)
 
                     // Copy coordinates array.
                     const coordinates = e.features[0].geometry.coordinates.slice()
@@ -116,6 +115,31 @@ export default {
                 })
 
                 this.map.on('click', 'unclustered-bch-point', (e) => {
+                    // console.log('CLICKED POINT', e)
+
+                    // Copy coordinates array.
+                    const coordinates = e.features[0].geometry.coordinates.slice()
+                    const description = e.features[0].properties.description
+
+                    // Ensure that if the map is zoomed out such that multiple
+                    // copies of the feature are visible, the popup appears
+                    // over the copy being pointed to.
+                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
+                    }
+
+                    /* Add popup. */
+                    new Mapbox.Popup({
+                        className: 'mapbox-popup',
+                        maxWidth: '320px',
+                        closeButton: false,
+                    })
+                    .setLngLat(coordinates)
+                    .setHTML(description)
+                    .addTo(this.map)
+                })
+
+                this.map.on('click', 'unclustered-exclusive-point', (e) => {
                     // console.log('CLICKED POINT', e)
 
                     // Copy coordinates array.
@@ -165,29 +189,35 @@ export default {
                         )
                 })
 
-                /* Handle mouse enter. */
+                /* Handle mouse events. */
                 this.map.on('mouseenter', 'clusters', () => {
                     this.map.getCanvas().style.cursor = 'pointer'
                 })
-
-                /* Handle mouse exit. */
                 this.map.on('mouseleave', 'clusters', () => {
                     this.map.getCanvas().style.cursor = ''
                 })
 
-                // Change the cursor to a pointer when the mouse is over the vendors layer.
+                /* Handle mouse events. */
                 this.map.on('mouseenter', 'unclustered-atm-point', () => {
                     this.map.getCanvas().style.cursor = 'pointer'
                 })
-                this.map.on('mouseenter', 'unclustered-bch-point', () => {
-                    this.map.getCanvas().style.cursor = 'pointer'
-                })
-
-                // Change it back to a pointer when it leaves.
                 this.map.on('mouseleave', 'unclustered-atm-point', () => {
                     this.map.getCanvas().style.cursor = ''
                 })
+
+                /* Handle mouse events. */
+                this.map.on('mouseenter', 'unclustered-bch-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
                 this.map.on('mouseleave', 'unclustered-bch-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+
+                /* Handle mouse events. */
+                this.map.on('mouseenter', 'unclustered-exclusive-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-exclusive-point', () => {
                     this.map.getCanvas().style.cursor = ''
                 })
 
@@ -213,8 +243,21 @@ export default {
                                 /* Add ATM marker. */
                                 this.map.addImage('bch-marker', _image)
 
-                                /* Manage map. */
-                                this.mapManager()
+                                this.map.loadImage('https://i.imgur.com/1r1YifH.png', // Exclusive icon 32 px
+                                    (_error, _image) => {
+                                        // console.log('ERROR', _error)
+                                        // console.log('IMAGE', _image)
+
+                                        if (_error) throw _error
+
+                                        /* Add exclusive marker. */
+                                        this.map.addImage('exclusive-marker', _image)
+
+                                        /* Manage map. */
+                                        this.mapManager()
+                                    }
+                                )
+
                             }
                         )
 
@@ -319,7 +362,7 @@ export default {
 
                         details += `<div class="text-center text-lg text-gray-800 font-extrabold">${vendor.name || vendor.companyName}</div>`
 
-                        details += `<div class="text-right"><span class="text-xs text-gray-500 font-medium">${vendor.category === 'default' ? 'BUSINESS' : Array.isArray(vendor.category) ? vendor.category[0].toUpperCase() : vendor.category.toUpperCase()}</span></div>`
+                        details += `<div class="text-right"><span class="text-xs text-gray-500 font-medium uppercase">${vendor.category === 'default' ? 'BUSINESS' : Array.isArray(vendor.category) ? vendor.category[0] : vendor.category}</span></div>`
 
                         if (address) {
                             details += `<a class="text-blue-500 hover:underline font-medium mt-3" href="${mapLink}" target="_blank">${address}</a><br>`
@@ -348,6 +391,7 @@ export default {
                     this.vendors.push({
                         id: vendor.id,
                         cat: vendor.category,
+                        isExclusive: vendor.users ? true : false, // FIXME: Is this a sufficient flag.
                         lat: vendor.lat,
                         lng: vendor.lng,
                         latlng: [ vendor.lat, vendor.lng ],
@@ -367,10 +411,11 @@ export default {
                         'properties': {
                             'category': _vendor.cat,
                             'description': _vendor.details,
+                            'isExclusive': _vendor.isExclusive,
                         },
                         'geometry': {
                             'type': 'Point',
-                            'coordinates': [_vendor.lng, _vendor.lat]
+                            'coordinates': [ _vendor.lng, _vendor.lat ] // NOTE: Center coords are reversed.
                         }
                     }
 
@@ -501,9 +546,25 @@ export default {
                 filter: ['all',
                     ['!', ['has', 'point_count']],
                     ['!=', ['get', 'category'], 'atm'],
+                    ['!=', ['get', 'isExclusive'], true],
                 ],
                 layout: {
                     'icon-image': 'bch-marker',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            this.map.addLayer({
+                id: 'unclustered-exclusive-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['!=', ['get', 'category'], 'atm'],
+                    ['==', ['get', 'isExclusive'], true],
+                ],
+                layout: {
+                    'icon-image': 'exclusive-marker',
                     'icon-allow-overlap': true,
                 }
             })
@@ -584,19 +645,12 @@ export default {
 </script>
 
 <style>
-#marker-atm {
-    background-image: url('../assets/atm.png');
-    background-size: cover;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-}
-
-div.mapboxgl-popup-tip: {
+/* FIXME: DO WE STILL NEED THESE STYLES?? */
+/* div.mapboxgl-popup-tip: {
     background-color: #3333FF !important;
-}
+} */
 
-div.mapboxgl-popup-content: {
+/* div.mapboxgl-popup-content: {
     background-color: #3399FF !important;
-}
+} */
 </style>
