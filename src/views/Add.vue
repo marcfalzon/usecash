@@ -97,6 +97,71 @@
                         </div>
                     </div>
 
+                    <div class="lg:col-span-3">
+                        <label for="country" class="block text-sm font-medium text-gray-700">
+                            Category
+                        </label>
+
+                        <div class="mt-1">
+                            <select v-model="category" autocomplete="category" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md">
+                                <option value="atm">ATM</option>
+                                <option value="shopping">Shopping</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-3">
+                        <fieldset>
+                            <legend class="text-lg font-medium text-gray-900">Accepted Crypto</legend>
+                            <div class="mt-4 border-t border-b border-gray-200 divide-y divide-gray-200">
+                                <div class="relative flex items-start py-4">
+                                    <div class="min-w-0 flex-1 text-sm">
+                                        <label for="person-1" class="font-medium text-gray-700 select-none">Bitcoin (BTC)</label>
+                                    </div>
+                                    <div class="ml-3 flex items-center h-5">
+                                        <input type="checkbox" v-model="crypto.BTC" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
+                                    </div>
+                                </div>
+
+                                <div class="relative flex items-start py-4">
+                                    <div class="min-w-0 flex-1 text-sm">
+                                        <label for="person-2" class="font-medium text-gray-700 select-none">Bitcoin Cash (BCH)</label>
+                                    </div>
+                                    <div class="ml-3 flex items-center h-5">
+                                        <input type="checkbox" v-model="crypto.BCH" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
+                                    </div>
+                                </div>
+
+                                <div class="relative flex items-start py-4">
+                                    <div class="min-w-0 flex-1 text-sm">
+                                        <label for="person-3" class="font-medium text-gray-700 select-none">Dash (DASH)</label>
+                                    </div>
+                                    <div class="ml-3 flex items-center h-5">
+                                        <input type="checkbox" v-model="crypto.DASH" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
+                                    </div>
+                                </div>
+
+                                <div class="relative flex items-start py-4">
+                                    <div class="min-w-0 flex-1 text-sm">
+                                        <label for="person-4" class="font-medium text-gray-700 select-none">Ethereum (ETH)</label>
+                                    </div>
+                                    <div class="ml-3 flex items-center h-5">
+                                        <input type="checkbox" v-model="crypto.ETH" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
+                                    </div>
+                                </div>
+
+                                <div class="relative flex items-start py-4">
+                                    <div class="min-w-0 flex-1 text-sm">
+                                        <label for="person-5" class="font-medium text-gray-700 select-none">Other Cryptos</label>
+                                    </div>
+                                    <div class="ml-3 flex items-center h-5">
+                                        <input type="checkbox" v-model="crypto.OTHER" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
                     <div class="lg:col-span-6">
                         <label for="street-address" class="block text-sm font-medium text-gray-700">
                             Street address
@@ -111,7 +176,7 @@
                             City
                         </label>
                         <div class="mt-1">
-                            <input type="text" name="city" id="city" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
+                            <input type="text" v-model="city" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
                         </div>
                     </div>
 
@@ -120,7 +185,7 @@
                             State / Province
                         </label>
                         <div class="mt-1">
-                            <input type="text" name="state" id="state" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
+                            <input type="text" v-model="state" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
                         </div>
                     </div>
 
@@ -129,7 +194,16 @@
                             ZIP / Postal
                         </label>
                         <div class="mt-1">
-                            <input type="text" name="zip" id="zip" autocomplete="postal-code" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
+                            <input type="text" v-model="postal" autocomplete="postal-code" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-3">
+                        <label for="website" class="block text-sm font-medium text-gray-700">
+                            Website
+                        </label>
+                        <div class="mt-1">
+                            <input type="text" v-model="website" autocomplete="website" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
                         </div>
                     </div>
                 </div>
@@ -218,6 +292,8 @@ export default {
     },
     data: () => ({
         isLoggedIn: null,
+        didToken: null,
+
         lat: null,
         lng: null,
         startPos: null,
@@ -228,16 +304,20 @@ export default {
         merchantStorefrontPhotoId: null,
         merchantStorefrontPhotoUrl: null,
 
-        // uploadFieldName: null,
-        // isSaving: null,
-
         uploadedFiles: [],
         uploadError: null,
         currentStatus: null,
         uploadFieldName: 'photos',
 
-        country: null,
         streetAddress: null,
+        city: null,
+        state: null,
+        postal: null,
+        country: null,
+
+        category: null,
+        crypto: null,
+        website: null,
 
     }),
     watch: {
@@ -259,6 +339,11 @@ export default {
                         .attach('storefront', imageBuffer, this.merchantStorefrontPhotoId)
                         .catch(console.error)
                     console.log('RESPONSE', response)
+
+                    if (!response) {
+                        // FIXME: We need to better handle errors AND completion success.
+                        alert('Upload failed!')
+                    }
                 })
                 fileReader.readAsDataURL(this.merchantStorefrontPhoto[0])
             } else {
@@ -554,9 +639,39 @@ export default {
                 return alert(`You MUST enter a 'Merchant Name' to continue.`)
             }
 
+            /* Validate category. */
+            if (!this.category) {
+                return alert(`You MUST choose a 'Category' to continue.`)
+            }
+
+            /* Validate merchant storefront photo id. */
+            if (!Object.keys(this.crypto).length) {
+                return alert(`You MUST select at least one cryptocurrency accepted.`)
+            }
+
             /* Validate merchant storefront photo id. */
             if (!this.merchantStorefrontPhotoId) {
                 return alert(`You MUST add a 'Storefront Photo' to continue.`)
+            }
+
+            /* Validate street address. */
+            if (!this.streetAddress) {
+                return alert(`You MUST enter a 'Street Address' to continue.`)
+            }
+
+            /* Validate city. */
+            if (!this.city) {
+                return alert(`You MUST enter a 'City' to continue.`)
+            }
+
+            /* Validate state. */
+            if (!this.state) {
+                return alert(`You MUST enter a 'State / Province' to continue.`)
+            }
+
+            /* Validate postal code. */
+            if (!this.postal) {
+                return alert(`You MUST enter a 'Zip / Postal' to continue.`)
             }
 
             /* Validate country. */
@@ -566,15 +681,19 @@ export default {
 
             const merchant = {
                 id: uuidv4(),
+                category: this.category,
+                crypto: this.crypto,
                 name: this.merchantName,
                 streetAddress: this.streetAddress,
-                streetOther: null,
-                city: null,
-                state: null,
-                postalCode: null,
+                // streetOther: null,
+                city: this.city,
+                state: this.state,
+                postalCode: this.postal,
                 country: this.country,
-                website: null,
-                storefront: `${API_ENDPOINT}/media/${this.merchantStorefrontPhotoId}.jpg`,
+                website: this.website,
+                media: {
+                    storefront: `${API_ENDPOINT}/media/${this.merchantStorefrontPhotoId}.jpg`,
+                },
                 lat: this.lat,
                 lng: this.lng,
             }
@@ -582,6 +701,7 @@ export default {
 
             const result = await superagent
                 .post(`${API_ENDPOINT}/merchants`)
+                .set('authorization', `Bearer ${this.didToken}`)
                 .send(merchant)
                 .set('accept', 'json')
             console.log('ADD MERCHANT RESULT', result)
@@ -595,24 +715,39 @@ export default {
 
         requestLocation() {
             navigator.geolocation.getCurrentPosition(position => {
+                /* Set latitude. */
                 const latitude = position.coords.latitude
+
+                /* Set longitude. */
                 const longitude = position.coords.longitude
+
+                /* Set altitude. */
                 const altitude = position.coords.altitude
+
+                /* Set accuracy. */
                 const accuracy = position.coords.accuracy
+
+                /* Set altitude accuracy. */
                 const altitudeAccuracy = position.coords.altitudeAccuracy
+
+                /* Set heading. */
                 const heading = position.coords.height
+
+                /* Set speed. */
                 const speed = position.coords.speed
+
+                /* Set timestamp. */
                 const timestamp = position.timestamp
 
-                console.log(
-                    'latitude', latitude,
-                    'longitude', longitude,
-                    'altitude', altitude,
-                    'accuracy', accuracy,
-                    'altitudeAccuracy', altitudeAccuracy,
-                    'heading', heading,
-                    'speed', speed,
-                    'timestamp', timestamp,
+                console.info(
+                    'Latitude', latitude,
+                    'Longitude', longitude,
+                    'Altitude', altitude,
+                    'Accuracy', accuracy,
+                    'Altitude Accuracy', altitudeAccuracy,
+                    'Heading', heading,
+                    'Speed', speed,
+                    'Timestamp', timestamp,
                 )
 
                 /* Set starting position. */
@@ -671,6 +806,7 @@ export default {
 
             const response = await superagent
                 .post(`${API_ENDPOINT}/admin/media`)
+                .set('authorization', `Bearer ${this.didToken}`)
                 .attach('storefront', fileList[0], this.merchantStorefrontPhotoId)
                 .catch(console.error)
             console.log('RESPONSE', response)
@@ -678,10 +814,23 @@ export default {
 
     },
     created: async function () {
+        /* Initialize (accepted) crypto. */
+        this.crypto = {
+            'BTC': false,
+            'BCH': false,
+            'DASH': false,
+            'ETH': false,
+            'OTHER': false,
+        }
+
         /* Validate magic login. */
         this.isLoggedIn = await magicKey.user.isLoggedIn()
             .catch(err => console.error(err))
         console.log('MAGIC (isLoggedIn):', this.isLoggedIn)
+
+        this.didToken = await magicKey.user.getIdToken()
+            .catch(err => console.error(err))
+        console.log('MAGIC (didToken):', this.didToken)
     },
     mounted: function () {
         this.requestLocation()

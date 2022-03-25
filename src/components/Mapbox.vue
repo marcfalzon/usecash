@@ -8,7 +8,9 @@
 
 
 <script>
+/* Import modules. */
 import Mapbox from 'mapbox-gl'
+import moment from 'moment'
 import superagent from 'superagent'
 
 // const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2t0eHAxY2JjMDh3MTJ0b3FleGdhYWk4bSJ9.2WOkhBYSiCSd6mW74ocbcQ' // prod
@@ -323,31 +325,48 @@ export default {
                 this.vendors = []
 
                 vendors.forEach(vendor => {
-                    /* Initialize details. */
-                    let details = '<main class="border-2 border-indigo-200 rounded-xl bg-indigo-50 p-3">'
+                    /* Initialize display. */
+                    let address = ''
+                    let display
+                    let lastTxTime
+                    let mapLink
+                    let name
+                    let storefront
+                    let summary
 
-                    /* Validate vendor. */
-                    if (vendor) {
-                        /* Initialize address. */
-                        let address = ''
+                    if (vendor.name) {
+                        name = vendor.name
+                    } else if (vendor.companyName) {
+                        name = vendor.companyName
+                    }
 
-                        /* Initialize map link. */
-                        let mapLink
+                    if (vendor.media && vendor.media.storefront) {
+                        storefront = vendor.media.storefront
+                    } else {
+                        storefront = 'https://i.imgur.com/cCEY2PM.png'
+                    }
 
-                        if (vendor.houseno && vendor.street) {
-                            address += `${vendor.houseno} ${vendor.street}<br>`
-                        } else if (vendor.streetAddress) {
-                            address += `${vendor.streetAddress}<br>`
-                        } else if (vendor.street) {
-                            address += `${vendor.street}<br>`
-                        }
+                    if (vendor.summary) {
+                        summary = vendor.summary
+                    } else {
+                        summary = 'not available'
+                    }
 
-                        if (vendor.city && vendor.state && vendor.postcode) {
-                            address += `${vendor.city}, ${vendor.state} ${vendor.postcode}<br>`
-                        } else if (vendor.city && vendor.state && vendor.postalCode) {
-                            address += `${vendor.city}, ${vendor.state} ${vendor.postalCode}<br>`
-                        }
+                    if (vendor.houseno && vendor.street) {
+                        address += `${vendor.houseno} ${vendor.street}<br>`
+                    } else if (vendor.streetAddress) {
+                        address += `${vendor.streetAddress}<br>`
+                    } else if (vendor.street) {
+                        address += `${vendor.street}<br>`
+                    }
 
+                    if (vendor.city && vendor.state && vendor.postcode) {
+                        address += `${vendor.city}, ${vendor.state} ${vendor.postcode}<br>`
+                    } else if (vendor.city && vendor.state && vendor.postalCode) {
+                        address += `${vendor.city}, ${vendor.state} ${vendor.postalCode}<br>`
+                    }
+
+                    if (address) {
                         /* Handle iOS devices. */
                         if( (navigator.platform.indexOf('iPhone') != -1)
                             || (navigator.platform.indexOf('iPod') != -1)
@@ -359,35 +378,84 @@ export default {
                             // FIXME: Make sure this works with alternative Android maps.
                             mapLink = `https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${address}`
                         }
+                    }
 
-                        details += `<div class="text-center text-lg text-gray-800 font-extrabold">${vendor.name || vendor.companyName}</div>`
+                    const cryptos = `BCH, BTC, DASH`
 
-                        details += `<div class="text-right"><span class="text-xs text-gray-500 font-medium uppercase">${vendor.category === 'default' ? 'BUSINESS' : Array.isArray(vendor.category) ? vendor.category[0] : vendor.category}</span></div>`
+                    const lastTxCurrency = 'BITCOIN'
 
-                        if (address) {
-                            details += `<a class="text-blue-500 hover:underline font-medium mt-3" href="${mapLink}" target="_blank">${address}</a><br>`
-                        }
+                    // const lastTxTime = '8'
+                    const lastTxTimeDetail = ''
+
+                    if (vendor.updated_on) {
+                        lastTxTime = moment.unix(vendor.updated_on).fromNow()
+                    } else if (vendor.updatedAt) {
+                        lastTxTime = moment.unix(vendor.updatedAt).fromNow()
+                    } else if (vendor.createdAt) {
+                        lastTxTime = moment.unix(vendor.createdAt).fromNow()
+                    } else {
+                        lastTxTime = 'Unknown'
+                    }
+
+
+                    /* Start building the display. */
+                    display = `
+                    <div @click="innerClick" class="grid grid-cols-5 gap-4 rounded-xl">
+                        <div class="col-span-3">
+                            <h1 class="text-center text-lg text-gray-800 font-extrabold uppercase">
+                                ${name}
+                            </h1>
+                            <h3 class="-mt-3 text-center text-xs text-gray-500 font-medium uppercase">
+                                ${vendor.category === 'default' ? 'BUSINESS' : Array.isArray(vendor.category) ? vendor.category[0] : vendor.category}
+                            </h3>
+
+                            <img class="p-1 border-2 border-gray-300 rounded" src="${storefront}" />
+
+                            <div class="mt-1 pl-2 text-xs">
+                                ${summary}
+                            </div>
+                        </div>
+
+                        <div class="col-span-2">
+                            <p class="text-right">
+                                <a class="text-blue-500 text-right hover:underline font-extrabold mt-3" href="${mapLink}" target="_blank">
+                                    ${address}
+                                </a>
+                            </p>
+
+                            <p class="mt-2 text-right">
+                                <strong>ACCEPTING</strong>
+                                <br />${cryptos}
+                            </p>
+
+                            <div class="mt-2 text-right">
+                                Last <strong>${lastTxCurrency}</strong> Transaction
+                                <h2>${lastTxTime} <small>${lastTxTimeDetail}</small></h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    `
+
+                    if (vendor === 'abc') {
 
                         if (vendor.phone) {
-                            details += `<a class="text-blue-500 hover:underline" href="tel:${vendor.phone}">${vendor.phone}</a><br>`
+                            display += `<a class="text-blue-500 hover:underline" href="tel:${vendor.phone}">${vendor.phone}</a><br>`
                         }
 
                         if (vendor.email) {
-                            details += `<a class="text-blue-500 hover:underline" href="mailto:${vendor.email}">${vendor.email}</a><br>`
+                            display += `<a class="text-blue-500 hover:underline" href="mailto:${vendor.email}">${vendor.email}</a><br>`
                         }
 
                         if (vendor.googleBusiness) {
-                            details += `<div class="text-center"><a class="text-blue-500 hover:underline text-base font-bold" href="${vendor.googleBusiness}" target="_blank">Google Business (link)</a></div>`
+                            display += `<div class="text-center"><a class="text-blue-500 hover:underline text-base font-bold" href="${vendor.googleBusiness}" target="_blank">Google Business (link)</a></div>`
                         }
 
-                        details += '</main>'
+                        display += '</main>'
 
-                        /* Update details. */
-                        // $('div#vendor-details-' + venueid)
-                        //     .html(details)
                     }
-                    // console.log('DETAILS', details);
 
+                    /* Add vendor to array. */
                     this.vendors.push({
                         id: vendor.id,
                         cat: vendor.category,
@@ -395,7 +463,7 @@ export default {
                         lat: vendor.lat,
                         lng: vendor.lng,
                         latlng: [ vendor.lat, vendor.lng ],
-                        details,
+                        display,
                     })
 
                 })
@@ -410,7 +478,7 @@ export default {
                         'type': 'Feature',
                         'properties': {
                             'category': _vendor.cat,
-                            'description': _vendor.details,
+                            'description': _vendor.display,
                             'isExclusive': _vendor.isExclusive,
                         },
                         'geometry': {
@@ -617,12 +685,14 @@ export default {
 
             /* Handle geolocation. */
             navigator.geolocation.getCurrentPosition(_position => {
-                // console.log('POSITION', _position)
+                console.log('POSITION', _position)
 
                 const lat = _position.coords.latitude
+                // const lat = 33.945524 // TEMP: ATL (for DEV ONLY)
                 // console.log('LAT', lat)
 
                 const lng = _position.coords.longitude
+                // const lng = -84.2220694 // TEMP: ATL (for DEV ONLY)
                 // console.log('LNG', lng)
 
                 /* Initialize map. */

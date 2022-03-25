@@ -33,16 +33,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-#search {
-    margin-top: 20px;
-    padding: 0 15px;
-    z-index: 100;
-}
-
-#map {
-    /* margin-top: 30px;
-    margin: 30px 15px 0; */
-}
-</style>

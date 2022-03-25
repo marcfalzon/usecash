@@ -56,6 +56,7 @@ export default {
         Menu,
     },
     data: () => ({
+        isOpen: null,
         isLoggedIn: null,
         meta: null,
     }),
@@ -70,35 +71,41 @@ export default {
         },
 
         open() {
-            // this.isOpen = true
+            this.isOpen = true
         },
 
         close() {
-            // this.isOpen = false
+            this.isOpen = false
             this.$emit('closeMenu')
         },
 
     },
     async beforeRouteEnter(to, from, next) {
         /* Validate magic login. */
-        this.isLoggedIn = await magicKey.user.isLoggedIn()
+        const isLoggedIn = await magicKey.user.isLoggedIn()
             .catch(err => console.error(err))
-        console.log('MAGIC (isLoggedIn):', this.isLoggedIn)
+        console.log('MAGIC (isLoggedIn):', isLoggedIn)
 
-        if (this.isLoggedIn) {
+        /* Validate user login. */
+        if (isLoggedIn) {
             next()
         } else {
             next('/')
         }
     },
     created: async function () {
+        /* Validate magic login. */
+        this.isLoggedIn = await magicKey.user.isLoggedIn()
+            .catch(err => console.error(err))
+        console.log('MAGIC (isLoggedIn):', this.isLoggedIn)
+
         /* Request metadata. */
         this.meta = await magicKey.user.getMetadata()
             .catch(err => console.error(err))
         console.log('MAGIC (meta):', this.meta)
 
         /* Initialize menu state. */
-        // this.isOpen = false
+        this.isOpen = false
 
         // const route = this.$route
         // console.log('ROUTE', route)

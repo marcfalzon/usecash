@@ -85,13 +85,18 @@ export default {
     },
     watch: {
         startPos: function (_latlng) {
-            console.log('I JUST SAW THE COORDS CHANGE:', _latlng)
+            // console.log('I JUST SAW THE COORDS CHANGE:', _latlng)
 
+            /* Set latitude. */
             const lat = _latlng.split(',')[0]
+
+            /* Set longitude. */
             const lng = _latlng.split(',')[1]
 
+            /* Set ma view. */
             this.map.setView({ lat, lng }, DEFAULT_ZOOM)
 
+            /* Set circle center. */
             this.circle.center = latLng(lat, lng)
         },
     },
@@ -127,6 +132,9 @@ export default {
         };
     },
     methods: {
+        /**
+         * Map Editor Initialization
+         */
         init() {
             /* Initialize map object. */
             this.map = this.$refs.map.mapObject
@@ -141,6 +149,7 @@ export default {
                 // console.log('POSITION', position)
 
                 /* Update pin position. */
+                // NOTE: This flag is set when the user clicks within the circle region.
                 if (this.isValidPin) {
                     this.pinLat = position.lat
                     this.pinLng = position.lng
@@ -161,6 +170,7 @@ export default {
                 // console.log('POSITION', position)
 
                 /* Update pin position. */
+                // NOTE: This flag is set when the user clicks within the circle region.
                 if (this.isValidPin) {
                     this.pinLat = position.lat
                     this.pinLng = position.lng
@@ -176,10 +186,16 @@ export default {
 
         },
 
+        /**
+         * Zoom Update
+         */
         zoomUpdate(_zoom) {
             this.currentZoom = _zoom
         },
 
+        /**
+         * Center Update
+         */
         centerUpdate(_center) {
             this.currentCenter = _center
         },
@@ -191,6 +207,12 @@ export default {
             alert(`This merchant has NOT YET been added to the community.`)
         },
 
+        /**
+         * Handle Valid Pin
+         *
+         * We set a temporary flag to detect a user click within
+         * the acceptable map marker region.
+         */
         handleValidPin() {
             setTimeout(() => {
                 /* Set valid pin flag. */
@@ -208,69 +230,15 @@ export default {
     mounted: function () {
         // NOTE: Wait for map object to become available
         this.$nextTick(this.init)
-
     },
 }
 </script>
 
 <style scoped>
-h1 {
-    margin-top: 10px;
-    font-size: 1.5em;
-}
-
 .map {
     border: 2pt solid rgba(90, 90, 90, 0.5);
     background-color: rgba(90, 90, 90, 0.1);
-    /* width: 80vw; */
-    /* height: 350px; */
     height: 60vh;
     border-radius: 5px;
-}
-
-.marker {
-    width: 300px;
-}
-.marker-thumbnail {
-    background-color: pink;
-    /* width: 200px; */
-    border: 1pt solid rgba(180, 180, 180, 0.8);
-    padding: 3px;
-    border-radius: 5px;
-}
-
-.address {
-    font-size: 0.9em;
-}
-
-.description {
-    margin-top: 5px;
-    font-size: 0.8em;
-    height: 4.0em;
-    overflow: hidden;
-}
-
-.accepting {
-    font-size: 0.8em;
-}
-
-.activity {
-    font-size: 0.8em;
-}
-.activity h2 {
-    font-size: 1.2em;
-    font-weight: 800;
-}
-
-.full-screen {
-    margin: 15px 10px 15px 0;
-}
-.full-screen button {
-    border: 5px solid rgba(240, 90, 240, 1.0);
-    padding: 5px 10px;
-    border-radius: 5px;
-    background-color: rgba(60, 120, 180, 0.5);
-    font-weight: 800;
-    color: rgba(255, 255, 255, 0.8);
 }
 </style>
