@@ -14,6 +14,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                         </svg>
                     </div>
+
                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                         <div class="text-sm text-gray-500">
                             <h5 class="font-semibold text-lg">
@@ -21,12 +22,12 @@
                             </h5>
 
                             <p class="text-lg text-gray-500 mt-3">
-                                Enter your "registered" email address below to login:
+                                Please enter your "registered" email address below, then request a Magic Link to sign-in to your account:
                             </p>
 
                             <div class="mt-4">
                                 <div class="mt-1">
-                                    <input type="email" v-model="email" autocomplete="email" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <input type="email" v-model="email" autocomplete="email" placeholder="Email address" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
                             </div>
 
