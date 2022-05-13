@@ -50,8 +50,9 @@ export default new Vuex.Store({
 
                 /* Send DID token to server. */
                 const result = await superagent
-                    // .post('https://api.use.cash/v1/magiclink')
-                    .post('https://usecash-api.modenero.dev/v1/magiclink')
+                    .post('http://127.0.0.1:9090/v1/magiclink')
+                    // .post('https://api.usecash.com/v1/magiclink')
+                    // .post('https://usecash-api.modenero.dev/v1/magiclink')
                     .send({ did })
                     .set('accept', 'json')
                     .catch(err => console.error(err))
