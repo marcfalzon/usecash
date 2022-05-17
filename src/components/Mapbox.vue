@@ -20,6 +20,59 @@ const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2tza3hsazR0MGVkazJ2
 const API_ENDPOINT = `https://usecash-api.modenero.dev/v1`
 // const API_ENDPOINT = `http://localhost:9090/v1`
 
+class MyCustomControl {
+    onAdd(_map) {
+        /* Set map. */
+        this.map = _map
+
+        /* Set div container. */
+        this.container = document.createElement('div')
+
+        /* Add control class. */
+        // NOTE: Required for events.
+        this.container.className = 'mapboxgl-ctrl'
+
+        /* Add Tailwind styling. */
+        this.container.classList.add('px-3')
+        this.container.classList.add('py-1')
+        this.container.classList.add('border-2')
+        this.container.classList.add('border-pink-500')
+        this.container.classList.add('bg-pink-200')
+        this.container.classList.add('text-xl')
+        this.container.classList.add('text-pink-500')
+        this.container.classList.add('rounded-xl')
+        this.container.classList.add('shadow-lg')
+        this.container.classList.add('cursor-pointer')
+
+        this.container.addEventListener('click', function () {
+            alert('Hi there')
+        })
+
+        this.container.addEventListener('mouseover', () => {
+            this.container.classList.remove('bg-pink-200')
+            this.container.classList.add('bg-yellow-500')
+
+            this.container.classList.add('font-bold')
+        })
+
+        this.container.addEventListener('mouseout', () => {
+            this.container.classList.remove('bg-yellow-500')
+            this.container.classList.add('bg-pink-200')
+
+            this.container.classList.remove('font-bold')
+        })
+
+        this.container.textContent = 'MENU'
+
+        return this.container
+    }
+
+    onRemove(){
+        this.container.parentNode.removeChild(this.container)
+        this.map = undefined
+    }
+}
+
 export default {
     props: {
         startPos: String,
@@ -72,14 +125,16 @@ export default {
             this.map = new Mapbox.Map(config)
 
             /* Add full screen control. */
-            this.map.addControl(new Mapbox.FullscreenControl())
+            this.map.addControl(new Mapbox.FullscreenControl(), 'bottom-right')
 
             /* Add navigation control. */
             this.map.addControl(new Mapbox.NavigationControl({
                 showCompass: true,
                 showZoom: true,
                 visualizePitch: false,
-            }))
+            }), 'bottom-right')
+
+            this.map.addControl(new MyCustomControl(this.map))
 
             /* Handle map movement. */
             this.map.on('moveend', async () => {
