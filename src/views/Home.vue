@@ -1,35 +1,38 @@
 <template>
     <div class="">
-        <Search id="search" />
+        <!-- <Search id="search" /> -->
 
-        <Map id="border-4 border-yellow-500" />
+        <Map />
 
-        <InfoBoxes id="info-boxes" />
+        <!-- <InfoBoxes id="info-boxes" /> -->
 
-        <hr class="mt-3 mb-10 hidden" />
+        <!-- <hr class="mt-3 mb-10 hidden" /> -->
 
-        <Feeds id="feeds" class="hidden" />
+        <!-- <Feeds id="feeds" class="hidden" /> -->
 
-        <Onboarding />
+        <!-- <Onboarding /> -->
+        <SidePanel class="hidden" />
     </div>
 </template>
 
 <script>
 /* Import components. */
-import Feeds from '@/components/Feeds'
-import InfoBoxes from '@/components/InfoBoxes'
+// import Feeds from '@/components/Feeds'
+// import InfoBoxes from '@/components/InfoBoxes'
 // import Map from '@/components/MapOSM'
 import Map from '@/components/Mapbox'
-import Onboarding from '@/components/Onboarding'
-import Search from '@/components/Search'
+// import Onboarding from '@/components/Onboarding'
+// import Search from '@/components/Search'
+import SidePanel from '@/components/SidePanel'
 
 export default {
     components: {
-        Feeds,
-        InfoBoxes,
+        // Feeds,
+        // InfoBoxes,
         Map,
-        Onboarding,
-        Search,
+        // Onboarding,
+        // Search,
+        SidePanel,
     }
 }
 </script>

@@ -1,20 +1,20 @@
 <template>
     <main>
-        <Header
+        <!-- <Header
             :isMenuOpen="isMenuOpen"
             @openMenu="openMenu"
             @openMagicLink="openMagicLink"
             @closeMagicLink="closeMagicLink"
-        />
+        /> -->
 
-        <router-view
+        <Home
             :isMenuOpen="isMenuOpen"
             @closeMenu="closeMenu"
             @openMagicLink="openMagicLink"
             @closeMagicLink="closeMagicLink"
         />
 
-        <Footer />
+        <!-- <Footer /> -->
         <Modals />
         <Notifs />
 
@@ -26,16 +26,15 @@
 </template>
 
 <script>
-import Footer from '@/components/Footer2'
-import Header from '@/components/Header'
+import Home from './views/Home'
+
 import MagicLinkWin from '@/components/MagicLinkWin'
 import Modals from '@/components/Modals'
 import Notifs from '@/components/Notifs'
 
 export default {
     components: {
-        Footer,
-        Header,
+        Home,
         MagicLinkWin,
         Modals,
         Notifs,
@@ -83,20 +82,18 @@ body {
     -moz-osx-font-smoothing: grayscale;
 
     color: #2c3e50;
-
-    overflow-y:scroll;
 }
 
-header {
+/* header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 80vw;
     height: 70px;
     padding: 0 15px;
-}
+} */
 
-footer {
+/* footer {
     display: flex;
     justify-content: space-between;
     margin: 15px 0;
@@ -105,28 +102,28 @@ footer {
 footer a {
     text-decoration: none;
     font-size: 0.8em;
-}
+} */
 
-h1 {
+/* h1 {
     font-size: 1.5em !important;
     margin-bottom: 5px !important;
-}
+} */
 
-#nav {
-    /* padding: 30px; */
-}
+/* #nav {
+    padding: 30px;
+} */
 
-#nav a {
+/* #nav a {
     font-weight: bold;
     color: #2c3e50;
     text-decoration: none;
-}
+} */
 
-#nav a.router-link-exact-active {
+/* #nav a.router-link-exact-active {
     color: #42b983;
-}
+} */
 
-.page-container {
+/* .page-container {
     padding: 15px;
-}
+} */
 </style>

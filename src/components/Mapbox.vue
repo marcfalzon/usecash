@@ -1,6 +1,6 @@
 <template>
     <main>
-        <div id="map" class="w-full h-96">
+        <div id="map" class="w-screen h-screen">
             <!-- Mapbox container. -->
         </div>
     </main>
