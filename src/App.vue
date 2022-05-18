@@ -1,14 +1,14 @@
 <template>
     <main>
         <!-- <Header
-            :isMenuOpen="isMenuOpen"
+            :isPanelOpen="isPanelOpen"
             @openMenu="openMenu"
             @openMagicLink="openMagicLink"
             @closeMagicLink="closeMagicLink"
         /> -->
 
         <Map
-            :isMenuOpen="isMenuOpen"
+            :isPanelOpen="isPanelOpen"
             @closeMenu="closeMenu"
             @openMagicLink="openMagicLink"
             @closeMagicLink="closeMagicLink"
@@ -18,7 +18,12 @@
         <!-- <Footer /> -->
         <Modals />
         <Notifs />
-        <SidePanel class="hidden" />
+        <SidePanel
+            class="transition ease-in-out duration-500 sm:duration-700"
+            :class="[{ 'hidden': isPanelHidden }, isPanelVisible]"
+            :isPanelOpen="isPanelOpen"
+            @toggleMenu="toggleMenu"
+        />
 
         <MagicLinkWin
             v-if="showMagicLinkWin"
@@ -43,18 +48,24 @@ export default {
         SidePanel,
     },
     data: () => ({
-        isMenuOpen: null,
+        isPanelOpen: null,
+        isPanelHidden: null,
         showMagicLinkWin: null,
     }),
+    computed: {
+        isPanelVisible() {
+            return this.isPanelOpen ? 'opacity-100' : 'opacity-0'
+        }
+    },
     methods: {
         openMenu() {
             // console.log('OPEN MENU');
-            this.isMenuOpen = true
+            this.isPanelOpen = true
         },
 
         closeMenu() {
             // console.log('CLOSE MENU');
-            this.isMenuOpen = false
+            this.isPanelOpen = false
         },
 
         openMagicLink() {
@@ -66,11 +77,20 @@ export default {
         },
 
         toggleMenu() {
-            alert('toggle dat shit NOW!')
+            this.isPanelOpen = !this.isPanelOpen
+
+            if (this.isPanelOpen) {
+                this.isPanelHidden = false
+            } else {
+                setTimeout(() => {
+                    this.isPanelHidden = true
+                }, 500)
+            }
         },
     },
     created: function () {
-        this.isMenuOpen = false
+        this.isPanelHidden = true
+        this.isPanelOpen = false
     },
 }
 </script>

@@ -16,13 +16,13 @@
                 From: "translate-x-0"
                 To: "translate-x-full"
             -->
-                    <div class="pointer-events-auto w-screen max-w-md">
+                    <div class="pointer-events-auto w-screen max-w-md transform transition ease-in-out duration-500 sm:duration-700" :class="ani">
                         <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                             <div class="px-4 py-6 sm:px-6">
                                 <div class="flex items-start justify-between">
                                     <h2 id="slide-over-heading" class="text-lg font-medium text-gray-900">Profile</h2>
                                     <div class="ml-3 flex h-7 items-center">
-                                        <button type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500">
+                                        <button @click="$emit('toggleMenu')" type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500">
                                             <span class="sr-only">Close panel</span>
                                             <!-- Heroicon name: outline/x -->
                                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -149,8 +149,28 @@
 <script>
 export default {
     props: {
-        //
-    }
+        isPanelOpen: Boolean,
+    },
+    data: () => ({
+        ani: null,
+    }),
+    watch: {
+        isPanelOpen: function (_isOpen) {
+            if (_isOpen) {
+                setTimeout(() => {
+                    this.ani = 'translate-x-0'
+                }, 10)
+            } else {
+                setTimeout(() => {
+                    this.ani = 'translate-x-full'
+                }, 10)
+            }
+        }
+    },
+    created: function () {
+        // this.ani = 'translate-x-0'
+        this.ani = 'translate-x-full'
+    },
 }
 </script>
 
