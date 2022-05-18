@@ -5,7 +5,6 @@ import Add from '../views/Add.vue'
 import Auth from '../views/Auth.vue'
 import FAQ from '../views/FAQ.vue'
 import Learn from '../views/Learn.vue'
-import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
 
 import Mod from '../views/Mod.vue'
@@ -22,7 +21,7 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        component: Home
+        component: Profile
     },
     // {
     //     path: '/@*/rewards',
@@ -101,7 +100,7 @@ const routes = [
     {
         /* 404 Error */
         path: '*',
-        component: Home
+        component: Profile
     }
 ]
 

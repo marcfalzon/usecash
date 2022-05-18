@@ -21,6 +21,10 @@ const API_ENDPOINT = `https://usecash-api.modenero.dev/v1`
 // const API_ENDPOINT = `http://localhost:9090/v1`
 
 class MyCustomControl {
+    constructor(_vue) {
+        this.vue = _vue
+    }
+
     onAdd(_map) {
         /* Set map. */
         this.map = _map
@@ -28,24 +32,30 @@ class MyCustomControl {
         /* Set div container. */
         this.container = document.createElement('div')
 
+        const img = document.createElement('img')
+        img.src = 'https://i.imgur.com/BvoXJUJ.png'
+        img.classList.add('w-6')
+        this.container.appendChild(img)
+
         /* Add control class. */
         // NOTE: Required for events.
         this.container.className = 'mapboxgl-ctrl'
 
         /* Add Tailwind styling. */
-        this.container.classList.add('px-3')
+        this.container.classList.add('px-2')
         this.container.classList.add('py-1')
         this.container.classList.add('border-2')
-        this.container.classList.add('border-pink-500')
-        this.container.classList.add('bg-pink-200')
+        this.container.classList.add('border-blue-300')
+        this.container.classList.add('bg-blue-100')
         this.container.classList.add('text-xl')
         this.container.classList.add('text-pink-500')
         this.container.classList.add('rounded-xl')
         this.container.classList.add('shadow-lg')
         this.container.classList.add('cursor-pointer')
 
-        this.container.addEventListener('click', function () {
-            alert('Hi there')
+        this.container.addEventListener('click', () => {
+            // this.vue.toggleMenu()
+            this.vue.$emit('toggleMenu')
         })
 
         this.container.addEventListener('mouseover', () => {
@@ -62,7 +72,7 @@ class MyCustomControl {
             this.container.classList.remove('font-bold')
         })
 
-        this.container.textContent = 'MENU'
+        // this.container.textContent = 'MENU'
 
         return this.container
     }
@@ -134,7 +144,8 @@ export default {
                 visualizePitch: false,
             }), 'bottom-right')
 
-            this.map.addControl(new MyCustomControl(this.map))
+            // const that = this
+            this.map.addControl(new MyCustomControl(this))
 
             /* Handle map movement. */
             this.map.on('moveend', async () => {
