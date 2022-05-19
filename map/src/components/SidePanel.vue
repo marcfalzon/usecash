@@ -1,7 +1,7 @@
 <template>
     <main class="relative z-10" role="dialog" aria-modal="true">
         <!-- Background backdrop, show/hide based on slide-over state. -->
-        <div class="fixed inset-0 bg-blue-500"></div>
+        <div class="fixed inset-0 bg-blue-500 opacity-80"></div>
 
         <div class="fixed inset-0 overflow-hidden">
             <div class="absolute inset-0 overflow-hidden">
