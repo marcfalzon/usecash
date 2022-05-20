@@ -7,11 +7,11 @@ const { v4: uuidv4 } = require('uuid')
 
 const { Magic } = require('@magic-sdk/admin')
 
-const mAdmin = new Magic('sk_live_???')
+const magicAdmin = new Magic(process.env.MAGIC_KEY)
 
 /* Initialize databases. */
-const sessionsDb = new PouchDB('http://api:???@localhost:5984/sessions')
-const logsDb = new PouchDB('http://api:???@localhost:5984/logs')
+const sessionsDb = new PouchDB(`http://api:${process.env.DB_AUTH}@localhost:5984/sessions`)
+const logsDb = new PouchDB(`http://api:${process.env.DB_AUTH}@localhost:5984/logs`)
 
 /**
  * Magic Module
@@ -55,13 +55,13 @@ const magic = async function (req, res) {
     }
 
     /* Set issuer. */
-    const issuer = mAdmin.token.getIssuer(did)
+    const issuer = magicAdmin.token.getIssuer(did)
 
     /* Set (public) address. */
-    const address = mAdmin.token.getPublicAddress(did)
+    const address = magicAdmin.token.getPublicAddress(did)
 
     /* Set issuer metadata. */
-    const metadata = await mAdmin.users.getMetadataByIssuer(issuer)
+    const metadata = await magicAdmin.users.getMetadataByIssuer(issuer)
     console.log('MAGIC LOGIN (data):', JSON.stringify(metadata, null, 4))
 
     /* Set email address. */

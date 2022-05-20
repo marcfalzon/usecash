@@ -5,8 +5,8 @@ const superagent = require('superagent')
 const util = require('util')
 
 /* Initialize databases. */
-const coinmapDb = new PouchDB('http://api:???@localhost:5984/coinmap')
-const merchantsDb = new PouchDB('http://api:???@localhost:5984/merchants')
+const coinmapDb = new PouchDB(`http://api:${process.env.DB_AUTH}@localhost:5984/coinmap`)
+const merchantsDb = new PouchDB(`http://api:${process.env.DB_AUTH}@localhost:5984/merchants`)
 
 /* Initialize cache. */
 let cache = {}

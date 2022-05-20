@@ -6,11 +6,11 @@ const superagent = require('superagent')
 const util = require('util')
 const { v4: uuidv4 } = require('uuid')
 
-const mAdmin = new Magic('sk_live_???')
+const magicAdmin = new Magic(process.env.MAGIC_KEY)
 
 /* Initialize databases. */
-const merchantsDb = new PouchDB('http://api:???@localhost:5984/merchants')
-const logsDb = new PouchDB('http://api:???@localhost:5984/logs')
+const merchantsDb = new PouchDB(`http://api:${process.env.DB_AUTH}@localhost:5984/merchants`)
+const logsDb = new PouchDB(`http://api:${process.env.DB_AUTH}@localhost:5984/logs`)
 
 /**
  * Merchants Module
@@ -108,7 +108,7 @@ const merchants = async function (req, res) {
             }
 
             /* Set issuer. */
-            const issuer = mAdmin.token.getIssuer(token)
+            const issuer = magicAdmin.token.getIssuer(token)
 
             /* Validate issuer. */
             if (!issuer) {
@@ -122,7 +122,7 @@ const merchants = async function (req, res) {
             }
 
             /* Set issuer metadata. */
-            const metadata = await mAdmin.users.getMetadataByIssuer(issuer)
+            const metadata = await magicAdmin.users.getMetadataByIssuer(issuer)
             // console.log('MAGIC LOGIN (data):', JSON.stringify(metadata, null, 4))
 
             /* Validate metadata. */
