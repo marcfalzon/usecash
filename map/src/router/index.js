@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Add from '../views/Add.vue'
 import Auth from '../views/Auth.vue'
 import FAQ from '../views/FAQ.vue'
+import Guide from '../views/Guide.vue'
 import Learn from '../views/Learn.vue'
 import Profile from '../views/Profile.vue'
 
@@ -21,7 +22,7 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        component: Profile
+        component: Guide
     },
     // {
     //     path: '/@*/rewards',

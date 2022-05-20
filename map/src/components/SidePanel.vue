@@ -20,8 +20,8 @@
                         <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                             <div class="px-4 py-6 sm:px-6">
                                 <div class="flex items-start justify-between">
-                                    <h2 id="slide-over-heading" class="text-lg font-medium text-gray-900">
-                                        Map Menu
+                                    <h2 id="slide-over-heading" class="text-xl font-medium text-gray-900">
+                                        Map Guide
                                     </h2>
 
                                     <div class="ml-3 flex h-7 items-center">
