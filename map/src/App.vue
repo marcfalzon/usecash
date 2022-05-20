@@ -1,12 +1,5 @@
 <template>
     <main>
-        <!-- <Header
-            :isPanelOpen="isPanelOpen"
-            @openMenu="openMenu"
-            @openMagicLink="openMagicLink"
-            @closeMagicLink="closeMagicLink"
-        /> -->
-
         <Map
             :isPanelOpen="isPanelOpen"
             @closeMenu="closeMenu"
@@ -33,6 +26,7 @@
 </template>
 
 <script>
+/* Import components. */
 import MagicLinkWin from '@/components/MagicLinkWin'
 import Map from '@/components/Mapbox'
 import Modals from '@/components/Modals'
