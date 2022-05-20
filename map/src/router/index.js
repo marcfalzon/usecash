@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 import Add from '../views/Add.vue'
 import Auth from '../views/Auth.vue'
 import FAQ from '../views/FAQ.vue'
-import Guide from '../views/Guide.vue'
+import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
 
 import Mod from '../views/Mod.vue'
@@ -21,7 +21,7 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        component: Guide
+        component: Home
     },
     {
         path: '/add',
