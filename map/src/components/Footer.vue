@@ -203,7 +203,7 @@
 
             <div class="mt-12 border-t border-gray-200 pt-8">
                 <p class="text-base text-gray-400 xl:text-center">
-                    Copyright &copy; {{curYear}}. Use.cash. All rights reserved.
+                    Copyright &copy; {{curYear}}. Use Cash. All rights reserved.
                 </p>
 
                 <p class="hidden sm:block text-base text-gray-400 xl:text-center">

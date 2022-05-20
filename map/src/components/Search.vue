@@ -11,7 +11,7 @@
         >
 
         <div v-if="showMessage" class="px-5 mt-3 text-red-500 font-extrabold">
-            NOTICE: Search is coming soon for Use.cash. Help support!
+            NOTICE: Search is coming soon for Use Cash. Help support!
         </div>
     </main>
     <!-- <v-autocomplete

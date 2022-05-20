@@ -29,7 +29,7 @@
                         </dt>
                         <dd class="mt-2 ml-16 text-base text-gray-500">
                             A community-curated list of merchants that accept Bitcoin Cash, a peer-to-peer electronic cash system.
-                            Unlike other Bitcoin maps, Use.cash is a closely-curated list of "verified" Bitcoin Cash merchants.
+                            Unlike other Bitcoin maps, Use Cash is a closely-curated list of "verified" Bitcoin Cash merchants.
                         </dd>
                     </div>
 

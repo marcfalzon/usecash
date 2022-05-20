@@ -5,7 +5,6 @@ import Add from '../views/Add.vue'
 import Auth from '../views/Auth.vue'
 import FAQ from '../views/FAQ.vue'
 import Guide from '../views/Guide.vue'
-import Learn from '../views/Learn.vue'
 import Profile from '../views/Profile.vue'
 
 import Mod from '../views/Mod.vue'
@@ -24,14 +23,6 @@ const routes = [
         path: '/',
         component: Guide
     },
-    // {
-    //     path: '/@*/rewards',
-    //     component: AccountRewards
-    // },
-    // {
-    //     path: '/@*/wallet',
-    //     component: AccountWallet
-    // },
     {
         path: '/add',
         component: Add
@@ -48,11 +39,6 @@ const routes = [
         /* FAQ */
         path: '/faq',
         component: FAQ
-    },
-    {
-        /* Learn */
-        path: '/learn',
-        component: Learn
     },
     {
         path: '/mod',
@@ -114,8 +100,6 @@ const router = new VueRouter({
         }
     },
     mode: process.env.BASE_URL === '/' ? 'history': 'hash',
-    // mode: 'hash',
-    // mode: 'history',
     base: process.env.BASE_URL,
     routes,
 })
