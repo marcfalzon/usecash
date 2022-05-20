@@ -20,9 +20,13 @@
                         <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                             <div class="px-4 py-6 sm:px-6">
                                 <div class="flex items-start justify-between">
-                                    <h2 id="slide-over-heading" class="text-xl font-medium text-gray-900">
-                                        Map Guide
-                                    </h2>
+                                    <div class="flex flex-row gap-2 items-center">
+                                        <svg class="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12 1.586l-4 4v12.828l4-4V1.586zM3.707 3.293A1 1 0 002 4v10a1 1 0 00.293.707L6 18.414V5.586L3.707 3.293zM17.707 5.293L14 1.586v12.828l2.293 2.293A1 1 0 0018 16V6a1 1 0 00-.293-.707z" clip-rule="evenodd"></path></svg>
+
+                                        <h2 id="slide-over-heading" class="text-xl font-medium text-gray-500">
+                                            Map Guide
+                                        </h2>
+                                    </div>
 
                                     <div class="ml-3 flex h-7 items-center">
                                         <button @click="$emit('toggleMenu')" type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500">
@@ -38,7 +42,6 @@
 
                             <Header
                                 :isPanelOpen="isPanelOpen"
-                                @openMenu="openMenu"
                                 @openMagicLink="openMagicLink"
                                 @closeMagicLink="closeMagicLink"
                             />
