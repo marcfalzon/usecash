@@ -10,7 +10,7 @@ const { v4: uuidv4 } = require('uuid')
 let cache
 
 /* Initialize databases. */
-const coinmapDb = new PouchDB(`http://api:${process.env.DB_AUTH}@localhost:5984/coinmap`)
+const coinmapDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/coinmap`)
 
 /**
  * Sleep

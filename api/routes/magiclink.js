@@ -7,11 +7,11 @@ const { v4: uuidv4 } = require('uuid')
 
 const { Magic } = require('@magic-sdk/admin')
 
-const magicAdmin = new Magic(process.env.MAGIC_KEY)
+const magicAdmin = new Magic(process.env.MAGIC_LINK_KEY)
 
 /* Initialize databases. */
-const sessionsDb = new PouchDB(`http://api:${process.env.DB_AUTH}@localhost:5984/sessions`)
-const logsDb = new PouchDB(`http://api:${process.env.DB_AUTH}@localhost:5984/logs`)
+const sessionsDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/sessions`)
+const logsDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/logs`)
 
 /**
  * Magic Module

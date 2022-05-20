@@ -6,11 +6,11 @@ const superagent = require('superagent')
 const util = require('util')
 const { v4: uuidv4 } = require('uuid')
 
-const magicAdmin = new Magic(process.env.MAGIC_KEY)
+const magicAdmin = new Magic(process.env.MAGIC_LINK_KEY)
 
 /* Initialize databases. */
-const merchantsDb = new PouchDB(`http://api:${process.env.DB_AUTH}@localhost:5984/merchants`)
-const logsDb = new PouchDB(`http://api:${process.env.DB_AUTH}@localhost:5984/logs`)
+const merchantsDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/merchants`)
+const logsDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/logs`)
 
 /**
  * Merchants Module
