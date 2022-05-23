@@ -98,9 +98,6 @@ import { Magic } from 'magic-sdk'
 const magicKey = new Magic(process.env.VUE_APP_MAGIC_API_KEY)
 
 export default {
-    props: {
-        isMenuOpen: Boolean,
-    },
     data: () => ({
         gravatarUrl: null,
         magicUser: null,

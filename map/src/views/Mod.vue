@@ -1,7 +1,7 @@
 <template>
-    <main class="max-5-5xl mx-auto px-3">
+    <main class="px-3">
 
-        <div class="h-screen flex overflow-hidden bg-white">
+        <div class="h-screen flex overflow-hidden">
             <Menu
                 :isOpen="isOpen"
                 :isMenuOpen="isMenuOpen"
@@ -14,8 +14,6 @@
                         :magicUser="magicUser"
                         :isMenuOpen="isMenuOpen"
                     ></router-view>
-
-                    <Aside :isMenuOpen="isMenuOpen" />
                 </div>
 
             </div>
@@ -30,25 +28,21 @@
 import { Magic } from 'magic-sdk'
 
 /* Import components. */
-import Aside from '@/components/mod/Aside'
 import Menu from '@/components/mod/Menu'
 
 /* Initialize magic key. */
 const magicKey = new Magic(process.env.VUE_APP_MAGIC_API_KEY)
 
 export default {
-    props: {
-        isMenuOpen: Boolean,
-    },
     components: {
-        Aside,
-        // Dashboard,
         Menu,
     },
     data: () => ({
+        magicUser: null,
+
         isOpen: null,
         isLoggedIn: null,
-        magicUser: null,
+        isMenuOpen: null,
     }),
     methods: {
         /**
