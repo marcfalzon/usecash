@@ -1,11 +1,12 @@
 <template>
-    <main class="px-5 lg:px-40 py-10">
+    <main class="px-5 py-10">
         <div class="space-y-8 divide-y divide-gray-200">
             <div>
                 <div>
                     <h3 class="text-2xl leading-6 font-medium text-gray-900">
                         Add New Merchant
                     </h3>
+
                     <p class="mt-1 text-sm text-gray-500">
                         This information will be displayed publicly so be careful what you share.
                     </p>
@@ -17,8 +18,8 @@
                     @updateLoc="updateLoc"
                 />
 
-                <div class="px-5 lg:px-32 mt-6 grid grid-cols-1 gap-y-6 gap-x-4 lg:grid-cols-6">
-                    <div class="lg:col-span-6">
+                <div class="px-5 mt-6 grid grid-cols-1 gap-y-6 gap-x-4">
+                    <div class="">
                         <label for="cover-photo" class="block text-sm font-medium text-gray-700">
                             Merchant storefront
                         </label>
@@ -63,7 +64,7 @@
                 </div>
             </div>
 
-            <div class="px-5 lg:px-32 pt-8">
+            <div class="px-5 pt-8">
                 <div>
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Merchant Details
@@ -74,43 +75,43 @@
                     </p> -->
                 </div>
 
-                <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 lg:grid-cols-6">
-                    <div class="lg:col-span-3">
+                <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4">
+                    <div class="">
                         <label for="first-name" class="block text-sm font-medium text-gray-700">
                             Merchant name
                         </label>
 
                         <div class="mt-1">
-                            <input type="text" v-model="merchantName" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
+                            <input type="text" v-model="merchantName" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
                         </div>
                     </div>
 
-                    <div class="lg:col-span-3">
+                    <div class="">
                         <label for="country" class="block text-sm font-medium text-gray-700">
                             Country / Region
                         </label>
 
                         <div class="mt-1">
-                            <select v-model="country" autocomplete="country" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md">
+                            <select v-model="country" autocomplete="country" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md">
                                 <option v-for="country in countries" :key="country" :value="country">{{country}}</option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="lg:col-span-3">
+                    <div class="">
                         <label for="country" class="block text-sm font-medium text-gray-700">
                             Category
                         </label>
 
                         <div class="mt-1">
-                            <select v-model="category" autocomplete="category" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md">
+                            <select v-model="category" autocomplete="category" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md">
                                 <option value="atm">ATM</option>
                                 <option value="shopping">Shopping</option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="lg:col-span-3">
+                    <div class="">
                         <fieldset>
                             <legend class="text-lg font-medium text-gray-900">Accepted Crypto</legend>
                             <div class="mt-4 border-t border-b border-gray-200 divide-y divide-gray-200">
@@ -162,54 +163,54 @@
                         </fieldset>
                     </div>
 
-                    <div class="lg:col-span-6">
+                    <div class="">
                         <label for="street-address" class="block text-sm font-medium text-gray-700">
                             Street address
                         </label>
                         <div class="mt-1">
-                            <input type="text" v-model="streetAddress" autocomplete="street-address" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
+                            <input type="text" v-model="streetAddress" autocomplete="street-address" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
                         </div>
                     </div>
 
-                    <div class="lg:col-span-2">
+                    <div class="">
                         <label for="city" class="block text-sm font-medium text-gray-700">
                             City
                         </label>
                         <div class="mt-1">
-                            <input type="text" v-model="city" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
+                            <input type="text" v-model="city" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
                         </div>
                     </div>
 
-                    <div class="lg:col-span-2">
+                    <div class="">
                         <label for="state" class="block text-sm font-medium text-gray-700">
                             State / Province
                         </label>
                         <div class="mt-1">
-                            <input type="text" v-model="state" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
+                            <input type="text" v-model="state" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
                         </div>
                     </div>
 
-                    <div class="lg:col-span-2">
+                    <div class="">
                         <label for="zip" class="block text-sm font-medium text-gray-700">
                             ZIP / Postal
                         </label>
                         <div class="mt-1">
-                            <input type="text" v-model="postal" autocomplete="postal-code" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
+                            <input type="text" v-model="postal" autocomplete="postal-code" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
                         </div>
                     </div>
 
-                    <div class="lg:col-span-3">
+                    <div class="">
                         <label for="website" class="block text-sm font-medium text-gray-700">
                             Website
                         </label>
                         <div class="mt-1">
-                            <input type="text" v-model="website" autocomplete="website" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:text-sm border-gray-300 rounded-md" />
+                            <input type="text" v-model="website" autocomplete="website" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="px-5 lg:px-32 pt-8">
+            <div class="px-5 pt-8">
                 <div>
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Notifications
@@ -250,7 +251,7 @@
             </div>
         </div>
 
-        <div class="px-5 lg:px-32 pt-5">
+        <div class="px-5 pt-5">
             <div class="flex justify-end">
                 <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Cancel

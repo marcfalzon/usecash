@@ -1,6 +1,10 @@
 <template>
     <main class="page-container">
-        <Basic v-if="profileid" :profile="profile" />
+        <Basic
+            v-if="profileid"
+            :magicUser="magicUser" 
+            :profile="profile"
+        />
 
         <Signin v-if="!profileid" />
     </main>
@@ -12,6 +16,9 @@ import Basic from '@/components/profile/Basic'
 import Signin from '@/components/profile/Signin'
 
 export default {
+    props: {
+        magicUser: Object,
+    },
     components: {
         Basic,
         Signin,
