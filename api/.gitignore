@@ -20,7 +20,5 @@ yarn-error.log*
 *.sln
 *.sw?
 
-NOTES
 backup
-data
 media
