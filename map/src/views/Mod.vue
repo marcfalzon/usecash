@@ -2,28 +2,18 @@
     <main class="max-5-5xl mx-auto px-3">
 
         <div class="h-screen flex overflow-hidden bg-white">
-            <Menu :isOpen="isOpen" :isMenuOpen="isMenuOpen" @close="close" />
+            <Menu
+                :isOpen="isOpen"
+                :isMenuOpen="isMenuOpen"
+                @close="close"
+            />
 
             <div class="flex flex-col min-w-0 flex-1 overflow-hidden">
-                <!-- <div class="lg:hidden">
-                    <div class="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
-                        <div>
-                            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow" />
-                        </div>
-
-                        <div>
-                            <button @click="open" type="button" class="-mr-3 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900">
-                                <span class="sr-only">Open sidebar</span>
-                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div> -->
-
                 <div class="flex-1 relative z-0 flex overflow-hidden">
-                    <router-view :isMenuOpen="isMenuOpen"></router-view>
+                    <router-view
+                        :magicUser="magicUser"
+                        :isMenuOpen="isMenuOpen"
+                    ></router-view>
 
                     <Aside :isMenuOpen="isMenuOpen" />
                 </div>
@@ -58,7 +48,7 @@ export default {
     data: () => ({
         isOpen: null,
         isLoggedIn: null,
-        meta: null,
+        magicUser: null,
     }),
     methods: {
         /**
@@ -99,10 +89,10 @@ export default {
             .catch(err => console.error(err))
         console.log('MAGIC (isLoggedIn):', this.isLoggedIn)
 
-        /* Request metadata. */
-        this.meta = await magicKey.user.getMetadata()
+        /* Request magic user data. */
+        this.magicUser = await magicKey.user.getMetadata()
             .catch(err => console.error(err))
-        console.log('MAGIC (meta):', this.meta)
+        console.log('MAGIC (user):', this.magicUser)
 
         /* Initialize menu state. */
         this.isOpen = false

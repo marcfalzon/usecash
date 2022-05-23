@@ -50,8 +50,7 @@
                     <div class="ml-2 mr-2 relative">
                         <button @click="profile" type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                             <span class="sr-only">Open profile menu</span>
-                            <!-- <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""> -->
-                            <img class="h-8 w-8 rounded-full" src="https://i.imgur.com/enD1jUY.png" alt="">
+                            <img class="h-8 w-8 rounded-full" :src="avatar" alt="">
                         </button>
 
                         <div v-if="showMenu" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
@@ -92,6 +91,7 @@
 
 <script>
 /* Import modules. */
+import gravatar from 'gravatar'
 import { Magic } from 'magic-sdk'
 
 /* Initialize magic key. */
@@ -102,10 +102,19 @@ export default {
         isMenuOpen: Boolean,
     },
     data: () => ({
+        gravatarUrl: null,
+        magicUser: null,
         isLoggedIn: null,
         showMenu: null,
     }),
     computed: {
+        avatar() {
+            if (this.gravatarUrl) {
+                return this.gravatarUrl
+            } else {
+                return null
+            }
+        },
         selected()  {
             // return `bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium` // small
             return `bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium`
@@ -149,6 +158,14 @@ export default {
         this.isLoggedIn = await magicKey.user.isLoggedIn()
             .catch(err => console.error(err))
         console.log('MAGIC (isLoggedIn):', this.isLoggedIn)
+
+        /* Request magic user data. */
+        this.magicUser = await magicKey.user.getMetadata()
+            .catch(err => console.error(err))
+        console.log('MAGIC (user):', this.magicUser)
+
+        this.gravatarUrl = gravatar.url(this.magicUser.email)
+        console.log('GRAVATAR (url):', this.gravatarUrl)
     },
     mounted: function () {
         //

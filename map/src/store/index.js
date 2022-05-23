@@ -18,17 +18,16 @@ const magicKey = new Magic(process.env.VUE_APP_MAGIC_API_KEY)
 export default new Vuex.Store({
     state: {
         user: null,
-        // address: null,
+        address: null,
         email: null,
-        // test: 'hi there!',
     },
     getters: {
         isAdmin(_state) {
-            if (_state.email === 'info@modenero.com') {
-                return true
-            }
-
-            if (_state.email === 'mark') {
+            if (
+                _state.email === 'support@modenero.com'
+                || _state.email === 'info@modenero.com'
+                || _state.email === 'marc@falzon.co'
+            ) {
                 return true
             }
 
@@ -37,12 +36,9 @@ export default new Vuex.Store({
 
     },
     actions: {
-        /* Set network. */
-        // setNetwork({ commit }, _network) {
-        //     commit('setNetwork', _network)
-        // },
-
         async signin({ commit }, _email) {
+            // FIXME: Add email verification.
+
             try {
                 /* Request magic login. */
                 const did = await magicKey.auth.loginWithMagicLink(_email)
@@ -55,16 +51,19 @@ export default new Vuex.Store({
                     .send({ did })
                     .set('accept', 'json')
                     .catch(err => console.error(err))
-                console.log('DID TOKEN (result):', result)
+                console.log('DID TOKEN??? (result):', result)
 
                 const data = await magicKey.user.getMetadata()
                 console.log('MAGIC LOGIN (data):', data)
 
-                commit('setUser', data)
+                /* Set (profile) user data. */
+                commit('saveUser', data)
 
-                commit('setEmail', data.email)
+                /* Set (profile) email. */
+                commit('saveEmail', data.email)
 
-                await router.push('/mod')
+                /* Go to profile. */
+                await router.push('/profile')
             } catch (error) {
                 console.error(error)
                 // if (error instanceof SDKError) {
@@ -86,27 +85,22 @@ export default new Vuex.Store({
             await magicKey.user.logout()
 
             /* Clear user. */
-            commit('setUser', null)
+            commit('saveUser', null)
 
             /* Clear email. */
-            commit('setEmail', null)
+            commit('saveEmail', null)
 
             /* Go home. */
-            await router.push({ name: 'Home' })
+            await router.push('/')
         },
 
     },
     mutations: {
-        /* Set network. */
-        // setNetwork(_state, _network) {
-        //     _state.network = _network
-        // },
-
-        setUser(_state, _userData) {
+        saveUser(_state, _userData) {
             _state.user = _userData
         },
 
-        setEmail(_state, _email) {
+        saveEmail(_state, _email) {
             _state.email = _email
         },
 
@@ -114,5 +108,7 @@ export default new Vuex.Store({
     modules: {
         //
     },
-    plugins: [createPersistedState()],
+    plugins: [
+        createPersistedState(),
+    ],
 })

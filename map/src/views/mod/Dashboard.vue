@@ -9,22 +9,25 @@
                         <div class="flex items-center">
                             <img
                                 class="hidden h-16 w-16 rounded-full sm:block"
-                                src="https://i.imgur.com/enD1jUY.png"
+                                :src="avatar"
                                 alt=""
                             />
+
                             <div>
                                 <div class="flex items-center">
                                     <img
                                         class="h-16 w-16 rounded-full sm:hidden"
-                                        src="https://i.imgur.com/enD1jUY.png"
+                                        :src="avatar"
                                         alt=""
                                     />
                                     <h1 class="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:leading-9 sm:truncate">
-                                        Good morning Marc Falzon!
+                                        Welcome back!
                                     </h1>
                                 </div>
+
                                 <dl class="mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
                                     <dt class="sr-only">Company</dt>
+
                                     <dd class="flex items-center text-sm text-gray-500 font-medium capitalize sm:mr-6">
                                         <!-- Heroicon name: solid/office-building -->
                                         <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -36,7 +39,9 @@
                                         </svg>
                                         Duke street studio
                                     </dd>
+
                                     <dt class="sr-only">Account status</dt>
+
                                     <dd class="mt-3 flex items-center text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
                                         <!-- Heroicon name: solid/check-circle -->
                                         <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -48,6 +53,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="mt-6 flex space-x-3 md:mt-0 md:ml-4">
                         <button
                             type="button"
@@ -324,12 +330,37 @@
 </template>
 
 <script>
+/* Import modules. */
+import gravatar from 'gravatar'
+
 export default {
+    props: {
+        magicUser: Object,
+    },
     data: () => ({
-        //
+        gravatarUrl: null,
     }),
-    methods: {
-        //
+    watch: {
+        magicUser: function (_user) {
+            if (_user) {
+                // console.log('USER CHANGED', _user);
+
+                /* Validate email. */
+                if (_user.email) {
+                    this.gravatarUrl = gravatar.url(_user.email)
+                    // console.log('GRAVATAR (url):', this.gravatarUrl)
+                }
+            }
+        }
+    },
+    computed: {
+        avatar() {
+            if (this.gravatarUrl) {
+                return this.gravatarUrl
+            } else {
+                return null
+            }
+        },
     },
     created: function () {
         //

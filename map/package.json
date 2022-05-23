@@ -1,6 +1,6 @@
 {
   "name": "use-cash-map",
-  "version": "22.5.12",
+  "version": "22.5.22",
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "core-js": "3.6.5",
+    "gravatar": "1.8.2",
     "leaflet": "1.7.1",
     "magic-sdk": "7.0.0",
     "mapbox-gl": "2.4.1",
