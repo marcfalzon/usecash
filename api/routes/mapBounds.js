@@ -105,9 +105,9 @@ const mapBounds = async function (req, res) {
     // console.log('COINMAP', coinmap.length)
 
     /* Request merchant venues. */
-    results = await merchantsDb.query('api/byGeo', {
-        startkey: [ parseFloat(sw.lat) ],
-        endkey: [ parseFloat(ne.lat) ],
+    results = await merchantsDb.query('api/byLat', {
+        startkey: parseFloat(sw.lat),
+        endkey: parseFloat(ne.lat),
         include_docs: true,
     })
     .catch(err => {

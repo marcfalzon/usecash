@@ -470,7 +470,8 @@ export default {
                             <h1 class="text-center text-lg text-gray-800 font-extrabold uppercase">
                                 ${name}
                             </h1>
-                            <h3 class="-mt-3 text-center text-xs text-gray-500 font-medium uppercase">
+
+                            <h3 class="-mt-1 text-center text-xs text-gray-500 font-medium uppercase">
                                 ${vendor.category === 'default' ? 'BUSINESS' : Array.isArray(vendor.category) ? vendor.category[0] : vendor.category}
                             </h3>
 
@@ -483,7 +484,7 @@ export default {
 
                         <div class="col-span-2">
                             <p class="text-right">
-                                <a class="text-blue-500 text-right hover:underline font-extrabold mt-3" href="${mapLink}" target="_blank">
+                                <a class="mt-3 leading-3 text-blue-500 text-right hover:underline font-extrabold" href="${mapLink}" target="_blank">
                                     ${address}
                                 </a>
                             </p>

@@ -25,10 +25,13 @@ const media = async function (req, res) {
     file.mv(path, (err) => {
         if (err) {
             console.log(err)
-            return res.status(500).send(err);
+            return res.status(500).send(err)
         }
 
-        return res.send({ status: 'success', path: path });
+        return res.json({
+            status: 'success',
+            path: path,
+        })
     })
 
     // res.end('done!')
