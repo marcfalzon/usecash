@@ -3,8 +3,6 @@
         <Map
             :isPanelOpen="isPanelOpen"
             @closeMenu="closeMenu"
-            @openMagicLink="openMagicLink"
-            @closeMagicLink="closeMagicLink"
             @toggleMenu="toggleMenu"
         />
 
@@ -17,17 +15,11 @@
             :isPanelOpen="isPanelOpen"
             @toggleMenu="toggleMenu"
         />
-
-        <MagicLinkWin
-            v-if="showMagicLinkWin"
-            @closeMagicLink="closeMagicLink"
-        />
     </main>
 </template>
 
 <script>
 /* Import components. */
-import MagicLinkWin from '@/components/MagicLinkWin'
 import Map from '@/components/Mapbox'
 import Modals from '@/components/Modals'
 import Notifs from '@/components/Notifs'
@@ -35,7 +27,6 @@ import SidePanel from '@/components/SidePanel'
 
 export default {
     components: {
-        MagicLinkWin,
         Map,
         Modals,
         Notifs,
@@ -60,14 +51,6 @@ export default {
         closeMenu() {
             // console.log('CLOSE MENU');
             this.isPanelOpen = false
-        },
-
-        openMagicLink() {
-            this.showMagicLinkWin = true
-        },
-
-        closeMagicLink() {
-            this.showMagicLinkWin = false
         },
 
         toggleMenu() {

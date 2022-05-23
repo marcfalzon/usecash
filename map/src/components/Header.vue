@@ -130,19 +130,11 @@ export default {
         },
 
         async mod() {
-            if (this.isLoggedIn) {
-                this.$router.push('/mod')
-            } else {
-                this.$emit('openMagicLink')
-            }
+            this.$router.push('/mod')
         },
 
         async profile() {
-            if (this.isLoggedIn) {
-                this.$router.push('/mod')
-            } else {
-                this.$emit('openMagicLink')
-            }
+            this.$router.push('/profile')
         },
 
         open() {
@@ -163,7 +155,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-/*  */
-</style>

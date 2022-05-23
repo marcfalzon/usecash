@@ -369,7 +369,7 @@ export default {
                 // cat: 'atm',
                 bounds,
             }
-            console.log('PKG', pkg)
+            // console.log('PKG', pkg)
 
             // console.log('SENDING', `${API_ENDPOINT}/search/map`, pkg, JSON.stringify(pkg))
             const result = await superagent
@@ -379,7 +379,7 @@ export default {
 
             /* Set vendors. */
             const vendors = result.body
-            console.log('VENDORS:', vendors)
+            // console.log('VENDORS:', vendors)
 
             /* Validate vendors. */
             if (vendors) {

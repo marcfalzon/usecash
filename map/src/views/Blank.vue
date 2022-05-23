@@ -14,7 +14,7 @@ export default {
         //
     },
     methods: {
-        // 
+        //
     },
     created: function () {
         //
@@ -24,7 +24,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-/*  */
-</style>

@@ -108,18 +108,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-footer {
-    display: flex;
-    justify-content: space-between;
-}
-
-div {
-    font-size: 1.0em;
-    padding: 0 15px;
-}
-div a {
-    font-size: 1.0em;
-}
-</style>

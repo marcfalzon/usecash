@@ -42,7 +42,7 @@ export default new Vuex.Store({
         //     commit('setNetwork', _network)
         // },
 
-        async login({ commit }, _email) {
+        async signin({ commit }, _email) {
             try {
                 /* Request magic login. */
                 const did = await magicKey.auth.loginWithMagicLink(_email)

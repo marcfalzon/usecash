@@ -1,5 +1,5 @@
 <template>
-    <main class="mod-container">
+    <main class="max-5-5xl mx-auto px-3">
 
         <div class="h-screen flex overflow-hidden bg-white">
             <Menu :isOpen="isOpen" :isMenuOpen="isMenuOpen" @close="close" />
@@ -125,13 +125,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-.mod-container {
-    width: 100%;
-}
-
-.description {
-    padding: 0 300px 0 30px;
-}
-</style>

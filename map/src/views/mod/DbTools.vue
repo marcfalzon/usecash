@@ -400,7 +400,3 @@ GET geo/_search?track_total_hits=true
     },
 }
 </script>
-
-<style scoped>
-/*  */
-</style>
