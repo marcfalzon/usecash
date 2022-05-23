@@ -5,7 +5,7 @@ const express = require('express')
 
 /* Set constants. */
 const HOST = '0.0.0.0'
-const PORT = 8080
+const PORT = 9090
 
 /* Initialize application. */
 const app = express()

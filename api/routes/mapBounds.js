@@ -81,18 +81,23 @@ const mapBounds = async function (req, res) {
 
         /* Parse longitude. */
         if (venue.lon >= parseFloat(sw.lng) && venue.lon <= parseFloat(ne.lng)) {
-            return venue
+            return true
+        } else {
+            return false
         }
     })
 
     /* Update venues. */
     // NOTE: Added to improve data compatibility.
     venues = venues.map(_venue => {
+        /* Set venue. */
+        const venue = _venue.doc
+
         /* Add (alt) longitude. */
-        _venue.lng = _venue.lon
+        venue.lng = venue.lon
 
         /* Return venue. */
-        return _venue
+        return venue
     })
     console.log('FOUND', venues.length, 'venues')
 

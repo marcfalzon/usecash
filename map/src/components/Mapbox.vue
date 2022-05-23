@@ -16,8 +16,7 @@ import superagent from 'superagent'
 // const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2t0eHAxY2JjMDh3MTJ0b3FleGdhYWk4bSJ9.2WOkhBYSiCSd6mW74ocbcQ' // prod
 const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2tza3hsazR0MGVkazJ2dGVwOXhpaDkzeiJ9.Ogmv-xLwll3Z_1uuCItolg' // localhost
 
-// const API_ENDPOINT = `https://api.use.cash/v1`
-const API_ENDPOINT = `https://usecash-api.modenero.dev/v1`
+const API_ENDPOINT = `https://api.usecash.com/v1`
 // const API_ENDPOINT = `http://localhost:9090/v1`
 
 class MyCustomControl {
@@ -367,10 +366,10 @@ export default {
             // console.log('BOUNDS', 'ne', bounds.ne, 'sw', bounds.sw)
 
             const pkg = {
-                cat: 'atm',
+                // cat: 'atm',
                 bounds,
             }
-            // console.log('PKG', pkg)
+            console.log('PKG', pkg)
 
             // console.log('SENDING', `${API_ENDPOINT}/search/map`, pkg, JSON.stringify(pkg))
             const result = await superagent

@@ -42,8 +42,6 @@
 
                             <Header
                                 :isPanelOpen="isPanelOpen"
-                                @openMagicLink="openMagicLink"
-                                @closeMagicLink="closeMagicLink"
                             />
 
                             <router-view />

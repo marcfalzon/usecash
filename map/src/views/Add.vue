@@ -277,8 +277,7 @@ import { v4 as uuidv4 } from 'uuid'
 /* Import components. */
 import MapEditor from '@/components/MapEditor'
 
-// const API_ENDPOINT = `https://api.use.cash/v1`
-const API_ENDPOINT = `https://usecash-api.modenero.dev/v1`
+const API_ENDPOINT = `https://api.usecash.com/v1`
 // const API_ENDPOINT = `http://localhost:9090/v1`
 
 const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
