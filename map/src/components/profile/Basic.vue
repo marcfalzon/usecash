@@ -5,7 +5,7 @@
             <div class="flex items-center space-x-5">
                 <div class="flex-shrink-0">
                     <div class="relative">
-                        <img class="h-16 w-16 rounded-full" :src="avatar" alt="" />
+                        <img class="h-16 w-16 object-cover rounded-full" :src="avatar" alt="" />
                         <span class="absolute inset-0 shadow-inner rounded-full" aria-hidden="true"></span>
                     </div>
                 </div>
@@ -220,7 +220,7 @@
 
 <script>
 /* Import modules. */
-// import moment from 'moment'
+import gravatar from 'gravatar'
 
 /* Import components. */
 import ActivityFeed from '@/components/profile/ActivityFeed'
@@ -231,6 +231,7 @@ import Onboarding from '@/components/profile/Onboarding'
 export default {
     props: {
         hasAuth: Boolean,
+        magicUser: Object,
         profile: Object,
     },
     components: {
@@ -239,13 +240,33 @@ export default {
         // Follow,
         Onboarding,
     },
+    data: () => ({
+        gravatarUrl: null,
+    }),
+    watch: {
+        magicUser: function (_user) {
+            this.gravatarUrl = gravatar.url(_user.email)
+            console.log('GRAVATAR (url) CHANGED:', this.gravatarUrl)
+
+        }
+    },
     computed: {
+        avatar() {
+            if (this.profile && this.profile.avatar) {
+                return this.profile.avatar
+            } else if (this.gravatarUrl) {
+                return this.gravatarUrl
+            } else {
+                return 'https://i.imgur.com/EQzgTPo.png'
+            }
+        },
+
         displayName() {
             if (this.profile && this.profile.name) {
                 return `${this.profile.name} (@${this.profile.id})`
             }
 
-            return 'Unknown user'
+            return 'Anonymous user'
         },
 
         displayEmail() {
@@ -269,22 +290,12 @@ export default {
             return 'n/a'
         },
 
-        avatar() {
-            if (this.profile && this.profile.avatar) {
-                return this.profile.avatar
-            } else {
-                return 'https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80'
-            }
-        },
     },
-    data: () => ({
-        //
-    }),
     methods: {
         //
     },
     created: function () {
-        //
+        console.log('BASIC (magicUser):', this.magicUser)
     },
     mounted: function () {
         //

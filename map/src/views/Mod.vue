@@ -34,12 +34,13 @@ import Menu from '@/components/mod/Menu'
 const magicKey = new Magic(process.env.VUE_APP_MAGIC_API_KEY)
 
 export default {
+    props: {
+        magicUser: Object,
+    },
     components: {
         Menu,
     },
     data: () => ({
-        magicUser: null,
-
         isOpen: null,
         isLoggedIn: null,
         isMenuOpen: null,
@@ -79,14 +80,14 @@ export default {
     },
     created: async function () {
         /* Validate magic login. */
-        this.isLoggedIn = await magicKey.user.isLoggedIn()
-            .catch(err => console.error(err))
-        console.log('MAGIC (isLoggedIn):', this.isLoggedIn)
+        // this.isLoggedIn = await magicKey.user.isLoggedIn()
+        //     .catch(err => console.error(err))
+        // console.log('MAGIC (isLoggedIn):', this.isLoggedIn)
 
         /* Request magic user data. */
-        this.magicUser = await magicKey.user.getMetadata()
-            .catch(err => console.error(err))
-        console.log('MAGIC (user):', this.magicUser)
+        // this.magicUser = await magicKey.user.getMetadata()
+        //     .catch(err => console.error(err))
+        // console.log('MAGIC (user):', this.magicUser)
 
         /* Initialize menu state. */
         this.isOpen = false

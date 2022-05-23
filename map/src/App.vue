@@ -1,6 +1,7 @@
 <template>
     <main>
         <Map
+            :magicUser="magicUser"
             :isPanelOpen="isPanelOpen"
             @closeMenu="closeMenu"
             @toggleMenu="toggleMenu"
@@ -12,6 +13,7 @@
         <SidePanel
             class="transition ease-in-out duration-500 sm:duration-700"
             :class="[{ 'hidden': isPanelHidden }, isPanelVisible]"
+            :magicUser="magicUser"
             :isPanelOpen="isPanelOpen"
             @toggleMenu="toggleMenu"
         />
@@ -19,11 +21,17 @@
 </template>
 
 <script>
+/* Import modules. */
+import { Magic } from 'magic-sdk'
+
 /* Import components. */
 import Map from '@/components/Mapbox'
 import Modals from '@/components/Modals'
 import Notifs from '@/components/Notifs'
 import SidePanel from '@/components/SidePanel'
+
+/* Initialize magic key. */
+const magicKey = new Magic(process.env.VUE_APP_MAGIC_API_KEY)
 
 export default {
     components: {
@@ -33,6 +41,8 @@ export default {
         SidePanel,
     },
     data: () => ({
+        magicUser: null,
+
         isPanelOpen: null,
         isPanelHidden: null,
         showMagicLinkWin: null,
@@ -43,6 +53,24 @@ export default {
         }
     },
     methods: {
+        async init() {
+            if (!magicKey) {
+                throw new Error(`Oops! You're missing a Magic API Key.`)
+            }
+
+            /* Validate magic login. */
+            const isLoggedIn = await magicKey.user.isLoggedIn()
+                .catch(err => console.error(err))
+            console.log('MAGIC (isLoggedIn):', isLoggedIn)
+
+            if (isLoggedIn) {
+                /* Request magic user data. */
+                this.magicUser = await magicKey.user.getMetadata()
+                    .catch(err => console.error(err))
+                console.log('MAGIC (user):', this.magicUser)
+            }
+        },
+
         openMenu() {
             // console.log('OPEN MENU');
             this.isPanelOpen = true
@@ -68,6 +96,9 @@ export default {
     created: function () {
         this.isPanelHidden = true
         this.isPanelOpen = false
+
+        /* Initialization. */
+        this.init()
     },
 }
 </script>

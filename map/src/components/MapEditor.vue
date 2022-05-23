@@ -6,17 +6,19 @@
             </button>
         </div> -->
 
-        <div class="full-screen">
+        <div class="full-screen mt-3 text-gray-700">
             Please place a pin on the location of the merchant you are adding to our database.
-            <div class="block">
-                Latitude: <strong class="text-red-500">{{pinLat ? pinLat.toFixed(4) : 'n/a'}}</strong> |
-                Longitude: <strong class="text-red-500">{{pinLng ? pinLng.toFixed(4) : 'n/a'}}</strong>
+
+            <div class="block text-xs text-gray-500">
+                LAT: <strong class="text-base text-red-500">{{pinLat ? pinLat.toFixed(4) : 'n/a'}}</strong>
+                &bullet; &middot; &bullet;
+                LON: <strong class="text-base text-red-500">{{pinLng ? pinLng.toFixed(4) : 'n/a'}}</strong>
             </div>
         </div>
 
         <l-map
             v-if="showMap"
-            class="map"
+            class="map mt-3 border-4 border-yellow-500 rounded-xl shadow-lg"
             ref="map"
             :zoom="zoom"
             :center="center"
@@ -236,9 +238,9 @@ export default {
 
 <style scoped>
 .map {
-    border: 2pt solid rgba(90, 90, 90, 0.5);
+    /* border: 2pt solid rgba(90, 90, 90, 0.5); */
     background-color: rgba(90, 90, 90, 0.1);
     height: 60vh;
-    border-radius: 5px;
+    /* border-radius: 5px; */
 }
 </style>

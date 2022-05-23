@@ -41,10 +41,13 @@
                             </div>
 
                             <Header
+                                :magicUser="magicUser"
                                 :isPanelOpen="isPanelOpen"
                             />
 
-                            <router-view />
+                            <router-view
+                                :magicUser="magicUser"
+                            />
 
                         </div>
                     </div>
@@ -60,6 +63,7 @@ import Header from '@/components/Header'
 
 export default {
     props: {
+        magicUser: Object,
         isPanelOpen: Boolean,
     },
     components: {

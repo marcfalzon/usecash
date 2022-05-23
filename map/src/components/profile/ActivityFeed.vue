@@ -7,7 +7,7 @@
             <div class="mt-6 flow-root">
                 <ul class="-mb-8">
 
-                    <li>
+                    <li v-for="event of events" :key="event.id">
                         <div class="relative pb-8">
                             <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
                             <div class="relative flex space-x-3">
@@ -24,7 +24,7 @@
                                         <p class="text-sm text-gray-500">Purchase made at <a href="javascript://" class="font-medium text-gray-900">Buffalo Wild Wings</a> using Bitcoin Cash</p>
                                     </div>
                                     <div class="text-right text-sm whitespace-nowrap text-gray-500">
-                                        <time datetime="2020-09-28">Aug 4</time>
+                                        <time datetime="2020-09-28">{{event.timestamp}}</time>
                                     </div>
                                 </div>
                             </div>
@@ -105,32 +105,6 @@
                         </div>
                     </li>
 
-                    <li>
-                        <div class="relative pb-8">
-                            <!-- <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span> -->
-                            <div class="relative flex space-x-3">
-                                <div>
-                                    <span class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center ring-8 ring-white">
-                                        <!-- Heroicon name: solid/thumb-up -->
-                                        <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path
-                                                d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"
-                                            />
-                                        </svg>
-                                    </span>
-                                </div>
-                                <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
-                                    <div>
-                                        <p class="text-sm text-gray-500"><router-link to="@marc" class="font-medium text-gray-900">@marc</router-link> has started following <router-link to="@nyusternie" class="font-medium text-gray-900">@nyusternie</router-link></p>
-                                    </div>
-                                    <div class="text-right text-sm whitespace-nowrap text-gray-500">
-                                        <time datetime="2020-09-22">Sep 22</time>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
                 </ul>
             </div>
 
@@ -149,13 +123,18 @@
 <script>
 export default {
     data: () => ({
-        //
+        events: null,
     }),
     methods: {
         //
     },
     created: function () {
-        //
+        this.events = []
+
+        this.events.push({
+            id: '7a903fba-79a0-42bd-a1c2-f30334d2eeb3',
+            timestamp: 'Aug 4!!'
+        })
     },
     mounted: function () {
         //

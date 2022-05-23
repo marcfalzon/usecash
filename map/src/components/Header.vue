@@ -50,7 +50,7 @@
                     <div class="ml-2 mr-2 relative">
                         <button @click="profile" type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                             <span class="sr-only">Open profile menu</span>
-                            <img class="h-8 w-8 rounded-full" :src="avatar" alt="">
+                            <img class="h-8 w-8 object-cover rounded-full" :src="avatar" alt="">
                         </button>
 
                         <div v-if="showMenu" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
@@ -98,18 +98,27 @@ import { Magic } from 'magic-sdk'
 const magicKey = new Magic(process.env.VUE_APP_MAGIC_API_KEY)
 
 export default {
+    props: {
+        magicUser: Object,
+    },
     data: () => ({
         gravatarUrl: null,
-        magicUser: null,
         isLoggedIn: null,
         showMenu: null,
     }),
+    watch: {
+        magicUser: function (_user) {
+            this.gravatarUrl = gravatar.url(_user.email)
+            console.log('GRAVATAR (url) CHANGED:', this.gravatarUrl)
+
+        }
+    },
     computed: {
         avatar() {
             if (this.gravatarUrl) {
                 return this.gravatarUrl
             } else {
-                return null
+                return 'https://i.imgur.com/EQzgTPo.png'
             }
         },
         selected()  {
@@ -156,13 +165,6 @@ export default {
             .catch(err => console.error(err))
         console.log('MAGIC (isLoggedIn):', this.isLoggedIn)
 
-        /* Request magic user data. */
-        this.magicUser = await magicKey.user.getMetadata()
-            .catch(err => console.error(err))
-        console.log('MAGIC (user):', this.magicUser)
-
-        this.gravatarUrl = gravatar.url(this.magicUser.email)
-        console.log('GRAVATAR (url):', this.gravatarUrl)
     },
     mounted: function () {
         //
