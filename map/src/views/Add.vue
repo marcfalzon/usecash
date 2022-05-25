@@ -1,6 +1,6 @@
 <template>
     <main class="px-5 py-10">
-        <div class="space-y-8 divide-y divide-gray-200">
+        <div class="space-y-8">
             <section>
                 <div>
                     <h3 class="text-2xl leading-6 font-medium text-gray-900">
@@ -18,209 +18,280 @@
                     @updateLoc="updateLoc"
                 />
 
-                <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4">
-                    <div class="">
-                        <label for="cover-photo" class="block text-lg font-medium text-gray-700">
-                            Merchant storefront
+                <div class="mt-6 space-y-4">
+                    <div class="flex justify-center">
+                        <label for="cover-photo" class="block text-xl leading-6 font-medium text-gray-900">
+                            Merchant Storefront
                         </label>
+                    </div>
 
-                        <div class="mt-1 flex justify-center border-2 border-gray-300 border-dashed rounded-md">
-                            <div class="space-y-1 text-center py-5">
-                                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                    <path
-                                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                </svg>
+                    <div class="mt-0 flex justify-center border-2 border-gray-300 border-dashed rounded-md">
+                        <div class="space-y-1 text-center py-5">
+                            <h2 class="block text-xl text-purple-500 font-bold">
+                                Upload a Photo
+                            </h2>
 
-                                <form enctype="multipart/form-data" novalidate class="">
-                                    <label
-                                        for="file-upload"
-                                        class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-                                    >
-                                        <span class="text-lg">
-                                            Upload a file
-                                        </span>
-                                        <!-- <input v-model="merchantStorefrontPhoto" type="file" class="sr-only" /> -->
+                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                <path
+                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
 
-                                    </label>
+                            <div>
+                                <input
+                                    type="file"
+                                    :name="uploadFieldName"
+                                    :disabled="isSaving"
+                                    @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
+                                    accept="image/*"
+                                    class="input-file text-sm"
+                                >
 
-                                    <input
-                                        type="file"
-                                        :name="uploadFieldName"
-                                        :disabled="isSaving"
-                                        @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
-                                        accept="image/*"
-                                        class="input-file text-sm"
-                                    >
-
-                                    <div class="p-2">
-                                        or drag and drop
-                                    </div>
-                                </form>
-
-                                <div class="text-xs text-gray-500">
-                                    PNG, JPG, GIF up to 10MB
+                                <div class="p-2">
+                                    or drag and drop
                                 </div>
+                            </div>
+
+                            <div class="text-xs text-gray-500">
+                                PNG, JPG, GIF up to 5MB
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="pt-8">
-                <div>
-                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+            <section class="mt-3 space-y-4">
+                <div class="flex justify-center">
+                    <h3 class="text-xl leading-6 font-medium text-gray-900">
                         Merchant Details
                     </h3>
-
-                    <!-- <p class="mt-1 text-sm text-gray-500">
-                        NOTE: Please use a permanent address where the merchant receives mail.
-                    </p> -->
                 </div>
 
-                <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4">
-                    <div class="">
-                        <label for="first-name" class="block text-sm font-medium text-gray-700">
-                            Merchant name
-                        </label>
+                <div class="">
+                    <label for="merchant-name" class="block text-lg font-medium text-gray-500">
+                        Merchant name
+                        <small class="text-red-300">(required)</small>
+                    </label>
 
-                        <div class="mt-1">
-                            <input type="text" v-model="merchantName" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
-                        </div>
+                    <div class="mt-1">
+                        <input type="text" v-model="merchantName" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
                     </div>
+                </div>
 
-                    <div class="">
-                        <label for="country" class="block text-sm font-medium text-gray-700">
-                            Country / Region
-                        </label>
+                <div class="">
+                    <label for="cateogry" class="block text-lg font-medium text-gray-500">
+                        Category
+                        <small class="text-red-300">(required)</small>
+                    </label>
 
-                        <div class="mt-1">
-                            <select v-model="country" autocomplete="country" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md">
-                                <option v-for="country in countries" :key="country" :value="country">{{country}}</option>
-                            </select>
-                        </div>
+                    <div class="mt-1">
+                        <select v-model="category" autocomplete="category" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md">
+                            <option value="atm">ATM &amp; Vending Machine</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="restaurants">Restaurants</option>
+                            <option value="professional-services">Professional Services</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="grocery">Grocery &amp; Farmers Market</option>
+                            <option value="bar">Bar</option>
+                            <option value="auto">Automotive Shops &amp; Services</option>
+                            <option value="cafe">Cafe</option>
+                            <option value="sports">Sports &amp; Outdoor</option>
+                            <option value="beauty">Beauty, Barber &amp; Spas</option>
+                            <option value="health">Health &amp; Medical</option>
+                            <option value="flower-gifts">Flower and Gifts</option>
+                            <option value="fast-food">Fast Food</option>
+                            <option value="hotels">Hotels &amp; Hostels</option>
+                            <option value="home-services">Home Services</option>
+                            <option value="entertainment">Entertainment &amp; Media</option>
+                            <option value="financial">Financial Services</option>
+                            <option value="travel">Travel &amp; Agency</option>
+                            <option value="desserts">Desserts and Bakery</option>
+                            <option value="cannabis">Cannabis Dispensaries</option>
+                            <option value="art">Arts</option>
+                            <option value="souvenir">Souvenir Store</option>
+                            <option value="public-services">Public Services</option>
+                            <option value="edu">Education</option>
+                            <option value="real-estate">Real estate</option>
+                            <option value="transportation">Transportation</option>
+                            <option value="adult">Adult Entertainment</option>
+                            <option value="liquor">Liquor Store</option>
+                            <option value="toys">Toys and Hobbies</option>
+                            <option value="rental-services">Rental Services</option>
+                            <option value="food-truck">Food Truck and Stands</option>
+                            <option value="pets">Pets &amp; Services</option>
+                            <option value="taxi">Taxi Services</option>
+                            <option value="bike">Bike, Scooter and Motorcycle Shop</option>
+                            <option value="pizza">Pizza and Sandwiches</option>
+                            <option value="books">Books and Magazines</option>
+                            <option value="catering-services">Catering Services</option>
+                            <option value="event-planning">Event Planning</option>
+                            <option value="brewery">Brewery</option>
+                            <option value="religion">Religion and Spiritual</option>
+                            <option value="music">Music and Video</option>
+                            <option value="ice-cream">Ice Cream &amp; Frozen Yogurt</option>
+                            <option value="jewelry">Jewelry &amp; Watches</option>
+                            <option value="event-venue">Event Venue</option>
+                            <option value="lids">Kids</option>
+                            <option value="mini-marts">Mini-marts &amp; Convenience Stores</option>
+                            <option value="nightlife">Nightlife</option>
+                            <option value="museum">Museum</option>
+                            <option value="comic-books">Comic Books</option>
+                            <option value="travel">Airlines &amp; Charters</option>
+                        </select>
                     </div>
+                </div>
 
-                    <div class="">
-                        <label for="country" class="block text-sm font-medium text-gray-700">
-                            Category
-                        </label>
+                <div class="">
+                    <label for="country" class="block text-lg font-medium text-gray-500">
+                        Country / Region
+                        <small class="text-red-300">(required)</small>
+                    </label>
 
-                        <div class="mt-1">
-                            <select v-model="category" autocomplete="category" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md">
-                                <option value="atm">ATM</option>
-                                <option value="shopping">Shopping</option>
-                            </select>
-                        </div>
+                    <div class="mt-1">
+                        <select v-model="country" autocomplete="country" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md">
+                            <option v-for="country in countries" :key="country" :value="country">{{country}}</option>
+                        </select>
                     </div>
+                </div>
 
-                    <div class="">
-                        <fieldset>
-                            <legend class="text-lg font-medium text-gray-900">Accepted Crypto</legend>
-                            <div class="mt-4 border-t border-b border-gray-200 divide-y divide-gray-200">
-                                <div class="relative flex items-start py-4">
-                                    <div class="min-w-0 flex-1 text-sm">
-                                        <label for="person-1" class="font-medium text-gray-700 select-none">Bitcoin (BTC)</label>
-                                    </div>
-                                    <div class="ml-3 flex items-center h-5">
-                                        <input type="checkbox" v-model="crypto.BTC" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
-                                    </div>
-                                </div>
+                <div class="">
+                    <label for="street-address" class="block text-lg font-medium text-gray-500">
+                        Street address
+                        <small class="text-red-300">(required)</small>
+                    </label>
 
-                                <div class="relative flex items-start py-4">
-                                    <div class="min-w-0 flex-1 text-sm">
-                                        <label for="person-2" class="font-medium text-gray-700 select-none">Bitcoin Cash (BCH)</label>
-                                    </div>
-                                    <div class="ml-3 flex items-center h-5">
-                                        <input type="checkbox" v-model="crypto.BCH" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
-                                    </div>
-                                </div>
-
-                                <div class="relative flex items-start py-4">
-                                    <div class="min-w-0 flex-1 text-sm">
-                                        <label for="person-3" class="font-medium text-gray-700 select-none">Dash (DASH)</label>
-                                    </div>
-                                    <div class="ml-3 flex items-center h-5">
-                                        <input type="checkbox" v-model="crypto.DASH" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
-                                    </div>
-                                </div>
-
-                                <div class="relative flex items-start py-4">
-                                    <div class="min-w-0 flex-1 text-sm">
-                                        <label for="person-4" class="font-medium text-gray-700 select-none">Ethereum (ETH)</label>
-                                    </div>
-                                    <div class="ml-3 flex items-center h-5">
-                                        <input type="checkbox" v-model="crypto.ETH" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
-                                    </div>
-                                </div>
-
-                                <div class="relative flex items-start py-4">
-                                    <div class="min-w-0 flex-1 text-sm">
-                                        <label for="person-5" class="font-medium text-gray-700 select-none">Other Cryptos</label>
-                                    </div>
-                                    <div class="ml-3 flex items-center h-5">
-                                        <input type="checkbox" v-model="crypto.OTHER" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
+                    <div class="mt-1">
+                        <input type="text" v-model="streetAddress" autocomplete="street-address" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
                     </div>
+                </div>
 
-                    <div class="">
-                        <label for="street-address" class="block text-sm font-medium text-gray-700">
-                            Street address
-                        </label>
-                        <div class="mt-1">
-                            <input type="text" v-model="streetAddress" autocomplete="street-address" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
-                        </div>
+                <div class="">
+                    <label for="city" class="block text-lg font-medium text-gray-500">
+                        City
+                        <small class="text-red-300">(required)</small>
+                    </label>
+
+                    <div class="mt-1">
+                        <input type="text" v-model="city" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
                     </div>
+                </div>
 
-                    <div class="">
-                        <label for="city" class="block text-sm font-medium text-gray-700">
-                            City
-                        </label>
-                        <div class="mt-1">
-                            <input type="text" v-model="city" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
-                        </div>
+                <div class="">
+                    <label for="state" class="block text-lg font-medium text-gray-500">
+                        State / Province
+                        <small class="text-red-300">(required)</small>
+                    </label>
+
+                    <div class="mt-1">
+                        <input type="text" v-model="state" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
                     </div>
+                </div>
 
-                    <div class="">
-                        <label for="state" class="block text-sm font-medium text-gray-700">
-                            State / Province
-                        </label>
-                        <div class="mt-1">
-                            <input type="text" v-model="state" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
-                        </div>
+                <div class="">
+                    <label for="postal" class="block text-lg font-medium text-gray-500">
+                        ZIP / Postal
+                        <small class="text-red-300">(required)</small>
+                    </label>
+
+                    <div class="mt-1">
+                        <input type="text" v-model="postal" autocomplete="postal-code" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
                     </div>
+                </div>
 
-                    <div class="">
-                        <label for="zip" class="block text-sm font-medium text-gray-700">
-                            ZIP / Postal
-                        </label>
-                        <div class="mt-1">
-                            <input type="text" v-model="postal" autocomplete="postal-code" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
-                        </div>
-                    </div>
+                <div class="">
+                    <label for="website" class="block text-lg font-medium text-gray-500">
+                        Website
+                    </label>
 
-                    <div class="">
-                        <label for="website" class="block text-sm font-medium text-gray-700">
-                            Website
-                        </label>
-                        <div class="mt-1">
-                            <input type="text" v-model="website" autocomplete="website" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
-                        </div>
+                    <div class="mt-1">
+                        <input type="text" v-model="website" autocomplete="website" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
                     </div>
                 </div>
             </section>
 
-            <section class="pt-8">
-                <div>
-                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+            <section class="p-3 bg-yellow-100 border-4 border-yellow-500 rounded-xl">
+                <h3 class="text-lg sm:text-xl font-medium text-gray-900 text-center">
+                    Which Cryptos Are Accepted?
+                </h3>
+
+                <div class="mt-4 border-t-2 border-yellow-500 divide-y divide-yellow-300">
+                    <div class="relative flex items-center py-3">
+                        <div class="min-w-0 flex-1 text-sm">
+                            <label for="person-1" class="text-lg font-medium text-gray-700 select-none">
+                                Bitcoin (BTC)
+                            </label>
+                        </div>
+
+                        <div class="ml-3 flex items-center h-5">
+                            <input type="checkbox" v-model="crypto.BTC" class="focus:ring-indigo-500 h-6 w-6 text-indigo-600 border-4 border-yellow-500 rounded" />
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center py-3">
+                        <div class="min-w-0 flex-1 text-sm">
+                            <label for="person-2" class="text-lg font-medium text-gray-700 select-none">
+                                Bitcoin Cash (BCH)
+                            </label>
+                        </div>
+
+                        <div class="ml-3 flex items-center h-5">
+                            <input type="checkbox" v-model="crypto.BCH" class="focus:ring-indigo-500 h-6 w-6 text-indigo-600 border-4 border-yellow-500 rounded" />
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center py-3">
+                        <div class="min-w-0 flex-1 text-sm">
+                            <label for="person-3" class="text-lg font-medium text-gray-700 select-none">
+                                Dash (DASH)
+                            </label>
+                        </div>
+
+                        <div class="ml-3 flex items-center h-5">
+                            <input type="checkbox" v-model="crypto.DASH" class="focus:ring-indigo-500 h-6 w-6 text-indigo-600 border-4 border-yellow-500 rounded" />
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center py-3">
+                        <div class="min-w-0 flex-1 text-sm">
+                            <label for="person-4" class="text-lg font-medium text-gray-700 select-none">
+                                Ethereum (ETH)
+                            </label>
+                        </div>
+
+                        <div class="ml-3 flex items-center h-5">
+                            <input type="checkbox" v-model="crypto.ETH" class="focus:ring-indigo-500 h-6 w-6 text-indigo-600 border-4 border-yellow-500 rounded" />
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center py-3">
+                        <div class="min-w-0 flex-1 text-sm">
+                            <label for="person-5" class="text-lg font-medium text-gray-700 select-none">
+                                Other Cryptos
+                            </label>
+                        </div>
+
+                        <div class="ml-3 flex items-center h-5">
+                            <input type="checkbox" v-model="crypto.OTHER" class="focus:ring-indigo-500 h-6 w-6 text-indigo-600 border-4 border-yellow-500 rounded" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <small class="text-red-500 italic font-medium">
+                        * Please check all that apply
+                    </small>
+                </div>
+            </section>
+
+            <section class="mt-3">
+                <div class="flex flex-col items-center">
+                    <h3 class="text-xl leading-6 font-medium text-gray-900">
                         Notifications
                     </h3>
+
                     <p class="mt-1 text-sm text-gray-500">
                         We'll always let you know about important changes, but you pick what else you want to hear about.
                     </p>
@@ -231,20 +302,24 @@
                         <legend class="text-base font-medium text-gray-900">
                             By Email
                         </legend>
+
                         <div class="mt-4 space-y-4">
                             <div class="relative flex items-start">
                                 <div class="flex items-center h-5">
-                                    <input id="comments" name="comments" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
+                                    <input type="checkbox" v-model="notifs.StatusChange" class="focus:ring-indigo-500 h-6 w-6 text-indigo-600 border-4 border-indigo-300 rounded" />
                                 </div>
+
                                 <div class="ml-3 text-sm">
                                     <label for="comments" class="font-medium text-gray-700">Accepted</label>
                                     <p class="text-gray-500">Get notified when this merchant is approved.</p>
                                 </div>
                             </div>
+
                             <div class="relative flex items-start">
                                 <div class="flex items-center h-5">
-                                    <input id="candidates" name="candidates" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
+                                    <input type="checkbox" v-model="notifs.Activity" class="focus:ring-indigo-500 h-6 w-6 text-indigo-600 border-4 border-indigo-300 rounded" />
                                 </div>
+
                                 <div class="ml-3 text-sm">
                                     <label for="candidates" class="font-medium text-gray-700">Activity</label>
                                     <p class="text-gray-500">Receive a monthly summary of this merchant's activity.</p>
@@ -323,6 +398,7 @@ export default {
 
         category: null,
         crypto: null,
+        notifs: null,
         website: null,
 
     }),
@@ -640,6 +716,11 @@ export default {
                 return alert(`You MUST click a point on the map to continue.`)
             }
 
+            /* Validate merchant storefront photo id. */
+            if (!this.merchantStorefrontPhotoId) {
+                return alert(`You MUST add a 'Storefront Photo' to continue.`)
+            }
+
             /* Validate merchant name. */
             if (!this.merchantName) {
                 return alert(`You MUST enter a 'Merchant Name' to continue.`)
@@ -650,14 +731,9 @@ export default {
                 return alert(`You MUST choose a 'Category' to continue.`)
             }
 
-            /* Validate merchant storefront photo id. */
-            if (!Object.keys(this.crypto).length) {
-                return alert(`You MUST select at least one cryptocurrency accepted.`)
-            }
-
-            /* Validate merchant storefront photo id. */
-            if (!this.merchantStorefrontPhotoId) {
-                return alert(`You MUST add a 'Storefront Photo' to continue.`)
+            /* Validate country. */
+            if (!this.country) {
+                return alert(`You MUST enter a 'Country' to continue.`)
             }
 
             /* Validate street address. */
@@ -680,9 +756,19 @@ export default {
                 return alert(`You MUST enter a 'Zip / Postal' to continue.`)
             }
 
-            /* Validate country. */
-            if (!this.country) {
-                return alert(`You MUST enter a 'Country' to continue.`)
+            /* Validate merchant storefront photo id. */
+            if (Object.keys(this.crypto).length) {
+                /* Search for selected crypto. */
+                const isFound = Object.keys(this.crypto).find(_crypto => {
+                    // console.log('CRYPTO', _crypto, this.crypto[_crypto])
+                    return this.crypto[_crypto]
+                })
+                // console.log('IS FOUND', isFound)
+
+                /* Validate selected crypto. */
+                if (!isFound) {
+                    return alert(`You MUST select at least one crypto currency accepted.`)
+                }
             }
 
             const merchant = {
@@ -702,6 +788,7 @@ export default {
                 },
                 lat: this.lat,
                 lng: this.lng,
+                notifs: this.notifs,
             }
             console.log('MERCHANT', merchant)
 
@@ -714,7 +801,7 @@ export default {
 
             /* Validate result. */
             if (result) {
-                alert('New merchant submitted for review.\nThank you!')
+                alert(`${this.merchantName} has been submitted for review.\nThank you!\n\nCheck your profile for 'Rewards' status.`)
             }
 
         },
@@ -827,6 +914,12 @@ export default {
             'DASH': false,
             'ETH': false,
             'OTHER': false,
+        }
+
+        /* Initialize (user) notifications. */
+        this.notifs = {
+            'Activity': true,
+            'StatusChange': true,
         }
 
         /* Validate magic login. */
