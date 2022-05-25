@@ -309,49 +309,26 @@ export default {
                     this.map.getCanvas().style.cursor = ''
                 })
 
-                /* Load image. */
-                this.map.loadImage('https://i.imgur.com/A9jVeq1.png', // ATM icon 32 px
-                    (_error, _image) => {
-                        // console.log('ERROR', _error)
-                        console.log('IMAGE', _image)
-
-                        if (_error) throw _error
-
-                        /* Add ATM marker. */
-                        this.map.addImage('atm-marker', _image)
-
-                        // this.map.loadImage('https://i.imgur.com/CvdwMwu.png', // BCH icon 40 px
-                        this.map.loadImage('https://i.imgur.com/9zOS6wv.png', // BCH icon 32 px
-                            (_error, _image) => {
-                                // console.log('ERROR', _error)
-                                // console.log('IMAGE', _image)
-
-                                if (_error) throw _error
-
-                                /* Add ATM marker. */
-                                this.map.addImage('bch-marker', _image)
-
-                                this.map.loadImage('https://i.imgur.com/1r1YifH.png', // Exclusive icon 32 px
-                                    (_error, _image) => {
-                                        // console.log('ERROR', _error)
-                                        // console.log('IMAGE', _image)
-
-                                        if (_error) throw _error
-
-                                        /* Add exclusive marker. */
-                                        this.map.addImage('exclusive-marker', _image)
-
-                                        /* Manage map. */
-                                        this.mapManager()
-                                    }
-                                )
-
-                            }
-                        )
-
-                    }
+                /* Add image. */
+                await this.addImage(
+                    'atm-marker',
+                    'https://i.imgur.com/A9jVeq1.png',
                 )
 
+                /* Add image. */
+                await this.addImage(
+                    'bch-marker',
+                    'https://i.imgur.com/9zOS6wv.png',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'exclusive-marker',
+                    'https://i.imgur.com/1r1YifH.png',
+                )
+
+                /* Manage map. */
+                this.mapManager()
             })
         },
 
@@ -365,9 +342,24 @@ export default {
             this.currentCenter = _center
         },
 
-        /* Handle inner click. */
-        innerClick() {
-            alert(`Click!`)
+        async addImage(_imageid, _imageUrl) {
+            /* Initialize promise. */
+            return new Promise((resolve, reject) => {
+                /* Load image. */
+                this.map.loadImage(_imageUrl, (err, image) => {
+                    // console.log('ERROR', err)
+                    // console.log('IMAGE', image)
+
+                    if (err) {
+                        return reject(err)
+                    }
+
+                    /* Add image to map. */
+                    this.map.addImage(_imageid, image)
+
+                    return resolve(image)
+                })
+            })
         },
 
         /**
@@ -566,7 +558,7 @@ export default {
                         'properties': {
                             'id': _vendor.id,
                             'category': _vendor.cat,
-                            'description': _vendor.display,
+                            // 'description': _vendor.display,
                             'isExclusive': _vendor.isExclusive,
                         },
                         'geometry': {
@@ -801,24 +793,3 @@ export default {
     },
 }
 </script>
-
-<style>
-/* FIXME: DO WE STILL NEED THESE STYLES?? */
-/* div.mapboxgl-popup-tip: {
-    background-color: #3333FF !important;
-} */
-
-/* div.mapboxgl-popup-content: {
-    background-color: #3399FF !important;
-} */
-mapbox-popup {
-    font-size: 3em;
-    width: 700px !important;
-    background-color: #593940 !important;
-    /* background-color: #3399FF !important; */
-}
-div.mapboxgl-popup-content: {
-    background-color: #593940 !important;
-    /* background-color: #3399FF !important; */
-}
-</style>
