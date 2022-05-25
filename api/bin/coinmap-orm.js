@@ -39,9 +39,8 @@ const loadCoinmap = async function () {
     cache = response.body.venues
     // console.log('CACHE', cache)
 
-    let count = 0
     /* Handle merchants. */
-    for (let i = 12200; i < cache.length; i++) {
+    for (let i = 0; i < cache.length; i++) {
         /* Initialize vendor. */
         let vendor = cache[i]
         // console.log('\nVENDOR-1', vendor)
