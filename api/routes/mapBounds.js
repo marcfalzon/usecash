@@ -15,15 +15,13 @@ let cache = {}
  * Map Bounds
  */
 const mapBounds = async function (req, res) {
-    let endpoint
     let results
-
     let merchants = []
     let venues = []
 
     /* Set body. */
-    let body = req.body
-    console.log('BODY', body, typeof body)
+    const body = req.body
+    // console.log('BODY', body, typeof body)
 
     /* Validate query. */
     if (!body) {
@@ -36,11 +34,16 @@ const mapBounds = async function (req, res) {
         })
     }
 
-    /* Set index. */
-    const index = 'coinmap'
+    /* Validate map boundries. */
+    if (!body.bounds) {
+        /* Set status. */
+        res.status(400)
 
-    /* Set endpoint. */
-    endpoint = `http://127.0.0.1:9200/${index}/_search`
+        /* Return error. */
+        return res.json({
+            error: 'Missing map boundries.'
+        })
+    }
 
     /* Set north-east. */
     const ne = body.bounds.ne

@@ -9,16 +9,15 @@ const { v4: uuidv4 } = require('uuid')
 const magicAdmin = new Magic(process.env.MAGIC_LINK_KEY)
 
 /* Initialize databases. */
-const coinmapDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/coinmap`)
-const merchantsDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/merchants`)
+const usersDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/users`)
 const logsDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/logs`)
 
 /**
- * Merchants Module
+ * Users Module
  */
-const merchants = async function (req, res) {
-    const merchantid = req.params.id
-    console.log('MERCHANT ID', merchantid)
+const users = async function (req, res) {
+    const userid = req.params.id
+    console.log('USER ID', userid)
 
     const body = req.body
     console.log('BODY', body)
@@ -35,61 +34,44 @@ const merchants = async function (req, res) {
             createdAt,
         }
 
-        results = await logsDb
-            .put(pkg)
+        results = await logsDb.put(pkg)
             .catch(err => console.error('LOGS ERROR:', err))
     }
 
+
     if (req.method === 'GET') {
-        /* Validate merchant id. */
-        if (merchantid) {
-            /* Request merchant venues. */
-            results = await merchantsDb.get(merchantid, {
-                include_docs: true,
-            }).catch(err => {
-                console.error('DATA ERROR:', err)
-            })
-            // console.log('MERCHANTS RESULT (byId)', util.inspect(results, false, null, true))
+        let endpoint = `http://127.0.0.1:9200/coinmap/_search`
+        console.log('ENDPOINT', endpoint)
 
-            if (!results) {
-                /* Request coinmap venues. */
-                results = await coinmapDb.get(merchantid, {
-                    include_docs: true,
-                }).catch(err => {
-                    console.error('DATA ERROR:', err)
-                })
-                // console.log('COINMAP RESULT (byId)', util.inspect(results, false, null, true))
+        const dslQuery = {
+            query: {
+                // match: { id }
+                match_all: {}
             }
-
-            if (!results) {
-                /* Set status. */
-                res.status(400)
-
-                /* Return error. */
-                return res.json([])
-            }
-
-            /* Build data package. */
-            const pkg = {
-                category: results.category,
-                crypto: results.crypto,
-                name: results.name,
-                streetAddress: results.streetAddress,
-                city: results.city,
-                state: results.state,
-                postalCode: results.postalCode,
-                country: results.country,
-                website: results.website,
-                media: results.media,
-                lat: results.lat,
-                lng: results.lng,
-                createdAt: results.createdAt,
-            }
-
-            return res.json(pkg)
         }
+        console.log('\nDSL QUERY', dslQuery)
 
-        return res.json([])
+        /* Request Elasticsearch query. */
+        let response = await superagent
+            .post(endpoint)
+            .send(dslQuery)
+            .set('accept', 'json')
+        console.log('\nRESPONSE', response.body)
+
+        const hits = response.body.hits.hits
+        console.log('\nHITS', hits)
+
+        const source = hits[0]._source
+        console.log('\nSOURCE', source)
+
+        /* Aggregate results from hits. */
+        const results = hits.map(hit => {
+            return hit._source
+        })
+
+        /* Return results. */
+        return res.json(results)
+
     } else if (req.method === 'POST') {
         /* Initialize email. */
         let email
@@ -129,8 +111,7 @@ const merchants = async function (req, res) {
             }
 
             /* Set issuer. */
-            const issuer = magicAdmin.token
-                .getIssuer(token)
+            const issuer = magicAdmin.token.getIssuer(token)
 
             /* Validate issuer. */
             if (!issuer) {
@@ -144,8 +125,7 @@ const merchants = async function (req, res) {
             }
 
             /* Set issuer metadata. */
-            const metadata = await magicAdmin.users
-                .getMetadataByIssuer(issuer)
+            const metadata = await magicAdmin.users.getMetadataByIssuer(issuer)
             // console.log('MAGIC LOGIN (data):', JSON.stringify(metadata, null, 4))
 
             /* Validate metadata. */
@@ -179,7 +159,6 @@ const merchants = async function (req, res) {
         /* Set merchant. */
         const merchant = body
 
-        /* Build data package. */
         const pkg = {
             _id: uuidv4(),
             ...merchant,
@@ -190,8 +169,7 @@ const merchants = async function (req, res) {
         }
 
         /* Retrieve results. */
-        results = await merchantsDb
-            .put(pkg)
+        results = await usersDb.put(pkg)
             .catch(err => {
                 console.error('AUTH ERROR:', err)
             })
@@ -205,4 +183,4 @@ const merchants = async function (req, res) {
 }
 
 /* Export module. */
-module.exports = merchants
+module.exports = users
