@@ -25,7 +25,7 @@
               To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           -->
                 <div @click.stop="noop" class="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full sm:p-6">
-                    <div class="absolute top-0 right-0 pt-4 pr-4">
+                    <div class="absolute top-0 right-0 pt-3 pr-3">
                         <button @click="report" type="button" class="flex items-center bg-white rounded-md text-xs text-gray-400 hover:text-gray-500">
                             <span class="sr-only">Report</span>
                             REPORT
@@ -38,53 +38,42 @@
                             <svg class="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z" clip-rule="evenodd"></path><path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path></svg>
                         </div>
 
-                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                            <h3 class="text-3xl leading-6 font-medium text-gray-900" id="modal-title">
+                        <div class="mt-3 text-center sm:mt-1 sm:ml-4 sm:text-left">
+                            <h1 class="text-2xl sm:text-3xl leading-7 font-medium text-gray-900" id="modal-title">
                                 {{name}}
-                                <small class="block text-xs text-gray-300">{{vendorid}}</small>
-                            </h3>
 
-                            <div class="mt-2">
-                                <p class="text-sm text-gray-500">
-                                    Are you sure you want to deactivate your account? All of your data will be permanently removed from our servers forever. This action cannot be undone.
-                                </p>
-                            </div>
-
-                            <section class="w-full">
-                                <div class="bg-pink-500 grid grid-cols-5 gap-4 rounded-xl">
-                                <div class="col-span-3">
-                                <h1 class="text-center text-lg text-gray-800 font-extrabold uppercase leading-5">
-                                Funzone 3
-                                </h1>
-
-                                <h3 class="-mt-1 text-center text-xs text-gray-500 font-medium uppercase">
-                                adult
+                                <h3 class="block text-sm text-gray-400 uppercase">
+                                    {{category}}
                                 </h3>
+                            </h1>
 
-                                <img class="p-1 border-2 border-gray-300 rounded" src="https://api.usecash.com/v1/media/ba21a841-0c09-4f6c-a5df-f3561b26921b.jpg" />
+                            <section class="mt-3 w-full">
+                                <div class="grid grid-cols-5 gap-4 rounded-xl">
+                                    <div class="col-span-3">
+                                        <img class="p-1 border-2 border-gray-300 rounded" src="https://api.usecash.com/v1/media/ba21a841-0c09-4f6c-a5df-f3561b26921b.jpg" />
 
-                                <div class="mt-1 pl-2 text-xs">
-                                not available
-                                </div>
-                                </div>
+                                        <div class="mt-1 pl-2 text-xs">
+                                            not available
+                                        </div>
+                                    </div>
 
-                                <div class="col-span-2">
-                                <p class="text-right">
-                                <a class="mt-3 leading-3 text-blue-500 text-right hover:underline font-extrabold" href="https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=123 Main Street<br>New York, NY 10012<br>" target="_blank">
-                                123 Main Street<br>New York, NY 10012<br>
-                                </a>
-                                </p>
+                                    <div class="col-span-2">
+                                        <p class="text-right">
+                                            <a class="mt-3 leading-3 text-blue-500 text-right hover:underline font-extrabold" href="https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=123 Main Street<br>New York, NY 10012<br>" target="_blank">
+                                                123 Main Street<br>New York, NY 10012<br>
+                                            </a>
+                                        </p>
 
-                                <p class="mt-2 text-right">
-                                <strong>ACCEPTING</strong>
-                                <br />BCH, BTC, DASH
-                                </p>
+                                        <p class="mt-2 text-right">
+                                            <strong>ACCEPTING</strong>
+                                            <br />BCH, BTC, DASH
+                                        </p>
 
-                                <div class="mt-2 text-right">
-                                Last <strong>BITCOIN</strong> Transaction
-                                <h2>an hour ago <small></small></h2>
-                                </div>
-                                </div>
+                                        <div class="mt-2 text-right">
+                                            Last <strong>BITCOIN</strong> Transaction
+                                            <h2>an hour ago <small></small></h2>
+                                        </div>
+                                    </div>
                                 </div>
                             </section>
 
@@ -126,6 +115,7 @@ export default {
     },
     data: () => ({
         name: null,
+        category: null,
     }),
     computed: {
         //
@@ -159,6 +149,7 @@ export default {
             console.log('POPUP BODY', body)
 
             this.name = body.name
+            this.category = body.category
         }
 
     },

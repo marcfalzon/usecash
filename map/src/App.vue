@@ -92,7 +92,7 @@ export default {
             this.isPanelOpen = false
         },
 
-        openPopup(_vendorid, _coordinates) {
+        openPopup(_vendorid) {
             // console.log('POPUP DETAILS', _vendorid, _coordinates)
             this.vendorid = _vendorid
         },

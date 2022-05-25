@@ -159,58 +159,7 @@ export default {
                 this.map.on('click', 'unclustered-atm-point', (e) => {
                     // console.log('CLICKED POINT', e)
 
-                    // Copy coordinates array.
-                    const coordinates = e.features[0].geometry.coordinates.slice()
-                    const description = e.features[0].properties.description
-
-                    // Ensure that if the map is zoomed out such that multiple
-                    // copies of the feature are visible, the popup appears
-                    // over the copy being pointed to.
-                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
-                    }
-
-                    /* Add popup. */
-                    new Mapbox.Popup({
-                        className: 'mapbox-popup',
-                        maxWidth: '90%',
-                        closeButton: false,
-                        anchor: 'bottom',
-                    })
-                    .setLngLat(coordinates)
-                    .setHTML(description)
-                    .addTo(this.map)
-                })
-
-                this.map.on('click', 'unclustered-bch-point', (e) => {
-                    // console.log('CLICKED POINT', e)
-
-                    // Copy coordinates array.
-                    const coordinates = e.features[0].geometry.coordinates.slice()
-                    const description = e.features[0].properties.description
-
-                    // Ensure that if the map is zoomed out such that multiple
-                    // copies of the feature are visible, the popup appears
-                    // over the copy being pointed to.
-                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
-                    }
-
-                    /* Add popup. */
-                    new Mapbox.Popup({
-                        className: 'mapbox-popup',
-                        maxWidth: '90%',
-                        closeButton: false,
-                        anchor: 'bottom',
-                    })
-                    .setLngLat(coordinates)
-                    .setHTML(description)
-                    .addTo(this.map)
-                })
-
-                this.map.on('click', 'unclustered-exclusive-point', (e) => {
-                    // console.log('CLICKED POINT', e)
-
+                    /* Set vendor id. */
                     const vendorid = e.features[0].properties.id
 
                     // Copy coordinates array.
@@ -224,6 +173,71 @@ export default {
                         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
                     }
 
+                    /* Open (modal) popup. */
+                    this.$emit('openPopup', vendorid, coordinates)
+
+                    /* Add popup. */
+                    // new Mapbox.Popup({
+                    //     className: 'mapbox-popup',
+                    //     maxWidth: '90%',
+                    //     closeButton: false,
+                    //     anchor: 'bottom',
+                    // })
+                    // .setLngLat(coordinates)
+                    // .setHTML(description)
+                    // .addTo(this.map)
+                })
+
+                this.map.on('click', 'unclustered-bch-point', (e) => {
+                    // console.log('CLICKED POINT', e)
+
+                    /* Set vendor id. */
+                    const vendorid = e.features[0].properties.id
+
+                    // Copy coordinates array.
+                    const coordinates = e.features[0].geometry.coordinates.slice()
+                    // const description = e.features[0].properties.description
+
+                    // Ensure that if the map is zoomed out such that multiple
+                    // copies of the feature are visible, the popup appears
+                    // over the copy being pointed to.
+                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
+                    }
+
+                    /* Open (modal) popup. */
+                    this.$emit('openPopup', vendorid, coordinates)
+
+                    /* Add popup. */
+                    // new Mapbox.Popup({
+                    //     className: 'mapbox-popup',
+                    //     maxWidth: '90%',
+                    //     closeButton: false,
+                    //     anchor: 'bottom',
+                    // })
+                    // .setLngLat(coordinates)
+                    // .setHTML(description)
+                    // .addTo(this.map)
+                })
+
+                this.map.on('click', 'unclustered-exclusive-point', (e) => {
+                    // console.log('CLICKED POINT', e)
+
+                    /* Set vendor id. */
+                    const vendorid = e.features[0].properties.id
+
+                    // Copy coordinates array.
+                    const coordinates = e.features[0].geometry.coordinates.slice()
+                    // const description = e.features[0].properties.description
+
+                    // Ensure that if the map is zoomed out such that multiple
+                    // copies of the feature are visible, the popup appears
+                    // over the copy being pointed to.
+                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
+                    }
+
+                    /* Open (modal) popup. */
                     this.$emit('openPopup', vendorid, coordinates)
 
                     /* Add popup. */
