@@ -173,8 +173,9 @@ export default {
                     /* Add popup. */
                     new Mapbox.Popup({
                         className: 'mapbox-popup',
-                        maxWidth: '320px',
+                        maxWidth: '90%',
                         closeButton: false,
+                        anchor: 'bottom',
                     })
                     .setLngLat(coordinates)
                     .setHTML(description)
@@ -198,8 +199,9 @@ export default {
                     /* Add popup. */
                     new Mapbox.Popup({
                         className: 'mapbox-popup',
-                        maxWidth: '320px',
+                        maxWidth: '90%',
                         closeButton: false,
+                        anchor: 'bottom',
                     })
                     .setLngLat(coordinates)
                     .setHTML(description)
@@ -209,9 +211,11 @@ export default {
                 this.map.on('click', 'unclustered-exclusive-point', (e) => {
                     // console.log('CLICKED POINT', e)
 
+                    const vendorid = e.features[0].properties.id
+
                     // Copy coordinates array.
                     const coordinates = e.features[0].geometry.coordinates.slice()
-                    const description = e.features[0].properties.description
+                    // const description = e.features[0].properties.description
 
                     // Ensure that if the map is zoomed out such that multiple
                     // copies of the feature are visible, the popup appears
@@ -220,15 +224,18 @@ export default {
                         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
                     }
 
+                    this.$emit('openPopup', vendorid, coordinates)
+
                     /* Add popup. */
-                    new Mapbox.Popup({
-                        className: 'mapbox-popup',
-                        maxWidth: '320px',
-                        closeButton: false,
-                    })
-                    .setLngLat(coordinates)
-                    .setHTML(description)
-                    .addTo(this.map)
+                    // new Mapbox.Popup({
+                    //     className: 'mapbox-popup',
+                    //     maxWidth: '90%',
+                    //     closeButton: false,
+                    //     anchor: 'bottom',
+                    // })
+                    // .setLngLat(coordinates)
+                    // .setHTML(description)
+                    // .addTo(this.map)
                 })
 
                 // inspect a cluster on click
@@ -292,7 +299,7 @@ export default {
                 this.map.loadImage('https://i.imgur.com/A9jVeq1.png', // ATM icon 32 px
                     (_error, _image) => {
                         // console.log('ERROR', _error)
-                        // console.log('IMAGE', _image)
+                        console.log('IMAGE', _image)
 
                         if (_error) throw _error
 
@@ -465,9 +472,9 @@ export default {
 
                     /* Start building the display. */
                     display = `
-                    <div @click="innerClick" class="grid grid-cols-5 gap-4 rounded-xl">
+                    <div @click="innerClick" class="w-3/12 bg-pink-500 grid grid-cols-5 gap-4 rounded-xl">
                         <div class="col-span-3">
-                            <h1 class="text-center text-lg text-gray-800 font-extrabold uppercase">
+                            <h1 class="text-center text-lg text-gray-800 font-extrabold uppercase leading-5">
                                 ${name}
                             </h1>
 
@@ -523,7 +530,7 @@ export default {
 
                     /* Add vendor to array. */
                     this.vendors.push({
-                        id: vendor.id,
+                        id: vendor._id,
                         cat: vendor.category,
                         isExclusive: vendor.users ? true : false, // FIXME: Is this a sufficient flag.
                         lat: vendor.lat,
@@ -543,6 +550,7 @@ export default {
                     const feature = {
                         'type': 'Feature',
                         'properties': {
+                            'id': _vendor.id,
                             'category': _vendor.cat,
                             'description': _vendor.display,
                             'isExclusive': _vendor.isExclusive,
@@ -789,4 +797,14 @@ export default {
 /* div.mapboxgl-popup-content: {
     background-color: #3399FF !important;
 } */
+mapbox-popup {
+    font-size: 3em;
+    width: 700px !important;
+    background-color: #593940 !important;
+    /* background-color: #3399FF !important; */
+}
+div.mapboxgl-popup-content: {
+    background-color: #593940 !important;
+    /* background-color: #3399FF !important; */
+}
 </style>

@@ -5,11 +5,19 @@
             :isPanelOpen="isPanelOpen"
             @closeMenu="closeMenu"
             @toggleMenu="toggleMenu"
+            @openPopup="openPopup"
         />
 
-        <!-- <Footer /> -->
         <Modals />
+
+        <Popup
+            v-if="vendorid"
+            :vendorid="vendorid"
+            @close="closePopup"
+        />
+
         <Notifs />
+
         <SidePanel
             class="transition ease-in-out duration-500 sm:duration-700"
             :class="[{ 'hidden': isPanelHidden }, isPanelVisible]"
@@ -27,6 +35,7 @@ import { Magic } from 'magic-sdk'
 /* Import components. */
 import Map from '@/components/Mapbox'
 import Modals from '@/components/Modals'
+import Popup from '@/components/Popup'
 import Notifs from '@/components/Notifs'
 import SidePanel from '@/components/SidePanel'
 
@@ -37,11 +46,13 @@ export default {
     components: {
         Map,
         Modals,
+        Popup,
         Notifs,
         SidePanel,
     },
     data: () => ({
         magicUser: null,
+        vendorid: null,
 
         isPanelOpen: null,
         isPanelHidden: null,
@@ -79,6 +90,15 @@ export default {
         closeMenu() {
             // console.log('CLOSE MENU');
             this.isPanelOpen = false
+        },
+
+        openPopup(_vendorid, _coordinates) {
+            // console.log('POPUP DETAILS', _vendorid, _coordinates)
+            this.vendorid = _vendorid
+        },
+
+        closePopup() {
+            this.vendorid = null
         },
 
         toggleMenu() {

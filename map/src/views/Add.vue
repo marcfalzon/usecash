@@ -772,7 +772,7 @@ export default {
             }
 
             const merchant = {
-                id: uuidv4(),
+                // id: uuidv4(),
                 category: this.category,
                 crypto: this.crypto,
                 name: this.merchantName,
