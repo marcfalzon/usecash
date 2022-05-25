@@ -19,7 +19,116 @@ const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2tza3hsazR0MGVkazJ2
 const API_ENDPOINT = `https://api.usecash.com/v1`
 // const API_ENDPOINT = `http://localhost:9090/v1`
 
-class MyCustomControl {
+const USER_INPUT_DELAY = 500 // 0.5 seconds
+
+/**
+ * Search Map
+ *
+ * Searches all merchants and venues, based on user input.
+ */
+const searchMap = (_term) => {
+    console.log('SEARCHING FOR', _term)
+}
+
+/**
+ * Search Box
+ *
+ * A universal search box with geo-location (proximity) results.
+ */
+class SearchBox {
+    constructor(_vue) {
+        this.vue = _vue
+    }
+
+    onAdd(_map) {
+        /* Set map. */
+        this.map = _map
+
+        this.isTyping = false
+
+        /* Set div container. */
+        this.container = document.createElement('div')
+
+        /* Add control class. */
+        // NOTE: Required for events.
+        this.container.className = 'mapboxgl-ctrl'
+
+        const search = document.createElement('input')
+
+        /* Add Tailwind styling. */
+        search.classList.add('search-box') // NOTE: Using a CSS class.
+        search.classList.add('w-64')
+        search.classList.add('sm:w-96')
+        search.classList.add('h-10')
+        search.classList.add('px-3')
+        search.classList.add('py-5')
+        search.classList.add('border-4')
+        search.classList.add('border-cyan-600')
+        search.classList.add('bg-cyan-800')
+        search.classList.add('text-lg')
+        search.classList.add('font-bold')
+        search.classList.add('text-gray-200')
+        search.classList.add('rounded-xl')
+        search.classList.add('shadow-lg')
+        search.placeholder='what are you looking for?'
+        this.container.appendChild(search)
+
+        /* Handle user input. */
+        // TODO: Handle pasted text (via keyboard & mouse).
+        search.addEventListener('keyup', (_evt) => {
+            // console.log('WHAT KEY', search.value, _evt)
+
+            clearTimeout(this.isTyping)
+
+            if (_evt.keyCode === 27) {
+                /* Clear search box. */
+                return search.value = ''
+            }
+
+            if (_evt.keyCode === 13) {
+                // console.log('SEARCH FOR', search.value)
+
+                if (!search.value || search.value.length === 0) {
+                    return alert(`I can't read your mind.\nYou MUST enter a search term to continue.`)
+                }
+
+                if (search.value.length < 3) {
+                    return alert(`Oops! [ ${search.value} ] won't do.\nPlease enter a least 3 characters to begin searching.`)
+                }
+
+                /* Search map. */
+                searchMap(search.value)
+
+                /* Clear search box. */
+                return search.value = ''
+            }
+
+            if (search.value && search.value.length >= 3) {
+                /* Handle user input delay. */
+                this.isTyping = setTimeout(() => {
+                    // console.log('SEARCH FOR', search.value)
+
+                    /* Search map. */
+                    searchMap(search.value)
+                }, USER_INPUT_DELAY)
+            }
+        })
+
+        return this.container
+    }
+
+    onRemove(){
+        this.container.parentNode.removeChild(this.container)
+        this.map = undefined
+    }
+}
+
+/**
+ * Side Panel Menu Button
+ *
+ * Used to toggle the sliding side panel.
+ */
+class SidePanelMenuBtn {
     constructor(_vue) {
         this.vue = _vue
     }
@@ -31,23 +140,23 @@ class MyCustomControl {
         /* Set div container. */
         this.container = document.createElement('div')
 
-        const img = document.createElement('img')
-        img.src = 'https://i.imgur.com/BvoXJUJ.png'
-        img.classList.add('w-6')
-        this.container.appendChild(img)
-
         /* Add control class. */
         // NOTE: Required for events.
         this.container.className = 'mapboxgl-ctrl'
 
+        const img = document.createElement('img')
+        img.src = 'https://i.imgur.com/BvoXJUJ.png'
+        this.container.appendChild(img)
+
         /* Add Tailwind styling. */
+        this.container.classList.add('w-12')
         this.container.classList.add('px-2')
-        this.container.classList.add('py-1')
+        this.container.classList.add('py-2')
         this.container.classList.add('border-2')
-        this.container.classList.add('border-blue-300')
-        this.container.classList.add('bg-blue-100')
+        this.container.classList.add('border-cyan-800')
+        this.container.classList.add('bg-cyan-600')
         this.container.classList.add('text-xl')
-        this.container.classList.add('text-pink-500')
+        // this.container.classList.add('text-pink-500')
         this.container.classList.add('rounded-xl')
         this.container.classList.add('shadow-lg')
         this.container.classList.add('cursor-pointer')
@@ -70,8 +179,6 @@ class MyCustomControl {
 
             this.container.classList.remove('font-bold')
         })
-
-        // this.container.textContent = 'MENU'
 
         return this.container
     }
@@ -143,11 +250,14 @@ export default {
                 visualizePitch: false,
             }), 'bottom-right')
 
-            // const that = this
-            this.map.addControl(new MyCustomControl(this))
+            /* Add side panel menu button. */
+            this.map.addControl(new SidePanelMenuBtn(this), 'top-right')
+
+            /* Add search box. */
+            this.map.addControl(new SearchBox(this), 'top-left')
 
             /* Handle map movement. */
-            this.map.on('moveend', async () => {
+            this.map.on('moveend', () => {
                 /* Manage map. */
                 this.mapManager()
             })
@@ -157,8 +267,6 @@ export default {
                 // When a click event occurs on a feature in the vendors layer, open a popup at the
                 // location of the feature, with description HTML from its properties.
                 this.map.on('click', 'unclustered-atm-point', (e) => {
-                    // console.log('CLICKED POINT', e)
-
                     /* Set vendor id. */
                     const vendorid = e.features[0].properties.id
 
@@ -175,22 +283,9 @@ export default {
 
                     /* Open (modal) popup. */
                     this.$emit('openPopup', vendorid, coordinates)
-
-                    /* Add popup. */
-                    // new Mapbox.Popup({
-                    //     className: 'mapbox-popup',
-                    //     maxWidth: '90%',
-                    //     closeButton: false,
-                    //     anchor: 'bottom',
-                    // })
-                    // .setLngLat(coordinates)
-                    // .setHTML(description)
-                    // .addTo(this.map)
                 })
 
                 this.map.on('click', 'unclustered-bch-point', (e) => {
-                    // console.log('CLICKED POINT', e)
-
                     /* Set vendor id. */
                     const vendorid = e.features[0].properties.id
 
@@ -207,22 +302,9 @@ export default {
 
                     /* Open (modal) popup. */
                     this.$emit('openPopup', vendorid, coordinates)
-
-                    /* Add popup. */
-                    // new Mapbox.Popup({
-                    //     className: 'mapbox-popup',
-                    //     maxWidth: '90%',
-                    //     closeButton: false,
-                    //     anchor: 'bottom',
-                    // })
-                    // .setLngLat(coordinates)
-                    // .setHTML(description)
-                    // .addTo(this.map)
                 })
 
                 this.map.on('click', 'unclustered-exclusive-point', (e) => {
-                    // console.log('CLICKED POINT', e)
-
                     /* Set vendor id. */
                     const vendorid = e.features[0].properties.id
 
@@ -239,17 +321,6 @@ export default {
 
                     /* Open (modal) popup. */
                     this.$emit('openPopup', vendorid, coordinates)
-
-                    /* Add popup. */
-                    // new Mapbox.Popup({
-                    //     className: 'mapbox-popup',
-                    //     maxWidth: '90%',
-                    //     closeButton: false,
-                    //     anchor: 'bottom',
-                    // })
-                    // .setLngLat(coordinates)
-                    // .setHTML(description)
-                    // .addTo(this.map)
                 })
 
                 // inspect a cluster on click
@@ -793,3 +864,10 @@ export default {
     },
 }
 </script>
+
+<style>
+.search-box::-webkit-input-placeholder {
+    /* color: #b2cde0; */
+    color: #efefef;
+}
+</style>
