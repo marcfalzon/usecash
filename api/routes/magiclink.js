@@ -98,7 +98,7 @@ const magic = async function (req, res) {
     }).catch(err => {
         console.error('DATA ERROR:', err)
     })
-    console.log('USERS RESULT (byEmail)', util.inspect(results, false, null, true))
+    // console.log('USERS RESULT (byEmail)', util.inspect(results, false, null, true))
 
     if (!results || results.total_rows === 0) {
         id = uuidv4()
@@ -116,7 +116,7 @@ const magic = async function (req, res) {
             .catch(err => {
                 console.error('USERS ERROR:', err)
             })
-        console.log('RESULT (new user)', util.inspect(results, false, null, true))
+        // console.log('RESULT (new user)', util.inspect(results, false, null, true))
     }
 
     /* Set (created) timestamp. */

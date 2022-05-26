@@ -1,31 +1,31 @@
 <template>
     <main class="page-container">
-        <!-- <Basic
+        <Basic
             v-if="magicUser"
             :magicUser="magicUser"
             :profile="profile"
-        /> -->
+        />
 
         <Signin v-if="!magicUser" />
 
-        <Signout v-if="magicUser" />
+        <!-- <Signout v-if="magicUser" /> -->
     </main>
 </template>
 
 <script>
 /* Import components. */
-// import Basic from '@/components/profile/Basic'
+import Basic from '@/components/profile/Basic'
 import Signin from '@/components/profile/Signin'
-import Signout from '@/components/profile/Signout'
+// import Signout from '@/components/profile/Signout'
 
 export default {
     props: {
         magicUser: Object,
     },
     components: {
-        // Basic,
+        Basic,
         Signin,
-        Signout,
+        // Signout,
     },
     data: () => ({
         // profileid: null,

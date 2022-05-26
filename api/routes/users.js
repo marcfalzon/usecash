@@ -16,8 +16,8 @@ const logsDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/lo
  * Users Module
  */
 const users = async function (req, res) {
-    const userid = req.params.id
-    console.log('USER ID', userid)
+    const address = req.params.address
+    console.log('USER ADDRESS', address)
 
     const body = req.body
     console.log('BODY', body)
@@ -40,38 +40,39 @@ const users = async function (req, res) {
 
 
     if (req.method === 'GET') {
-        let endpoint = `http://127.0.0.1:9200/coinmap/_search`
-        console.log('ENDPOINT', endpoint)
+        if (address) {
+            /* Request existing user. */
+            results = await usersDb.query('api/byAddress', {
+                key: address,
+                include_docs: true,
+            }).catch(err => {
+                console.error('DATA ERROR:', err)
+            })
+            console.log('USERS RESULT (byEmail)', util.inspect(results, false, null, true))
 
-        const dslQuery = {
-            query: {
-                // match: { id }
-                match_all: {}
+            if (!results) {
+                /* Set status. */
+                res.status(400)
+
+                /* Return error. */
+                return res.json({
+                    error: 'User not found.'
+                })
             }
+
+            let user = results.rows[0].doc
+
+            let pkg = {
+                address: user.address,
+                email: user.email,
+                createdAt: user.createdAt,
+            }
+
+            /* Return results. */
+            return res.json(pkg)
         }
-        console.log('\nDSL QUERY', dslQuery)
 
-        /* Request Elasticsearch query. */
-        let response = await superagent
-            .post(endpoint)
-            .send(dslQuery)
-            .set('accept', 'json')
-        console.log('\nRESPONSE', response.body)
-
-        const hits = response.body.hits.hits
-        console.log('\nHITS', hits)
-
-        const source = hits[0]._source
-        console.log('\nSOURCE', source)
-
-        /* Aggregate results from hits. */
-        const results = hits.map(hit => {
-            return hit._source
-        })
-
-        /* Return results. */
-        return res.json(results)
-
+        return res.json({})
     } else if (req.method === 'POST') {
         /* Initialize email. */
         let email

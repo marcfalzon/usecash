@@ -63,8 +63,8 @@ app.post('/v1/merchants/:id', require('./routes/merchants'))
 app.post('/v1/merchants', require('./routes/merchants'))
 
 /* Initialize Users route. */
-app.get('/v1/users/:id', require('./routes/users'))
-app.post('/v1/users/:id', require('./routes/users'))
+app.get('/v1/users/:address', require('./routes/users'))
+app.post('/v1/users/:address', require('./routes/users'))
 
 /* Initialize Search route. */
 app.get('/v1/search/autocomplete/:query', require('./routes/autoComplete'))
