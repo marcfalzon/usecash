@@ -38,20 +38,20 @@
 
                     <button @click="add" class="sm:mr-3 bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none">
                         <span class="sr-only">Add a new merchant</span>
-                        <svg class="w-10 h-10 text-gray-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
+                        <svg class="w-12 h-12 text-gray-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
                     </button>
 
                     <button @click="info" class="sm:mr-2 bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none">
                         <span class="sr-only">Learn more about crypto</span>
-                        <svg class="w-10 h-10 text-gray-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                        <svg class="w-12 h-12 text-gray-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
                     </button>
 
                     <!-- Profile dropdown -->
                     <div class="ml-2 mr-2 relative">
-                        <button @click="profile" type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                        <button @click="profile" type="button" class="p-1 bg-gray-100 flex rounded-full focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                             <span class="sr-only">Open profile menu</span>
 
-                            <img v-if="avatar" class="h-8 w-8 object-cover rounded-full" :src="avatar" alt="">
+                            <img v-if="avatar" class="h-8 w-8 object-cover" :src="avatar" alt="">
 
                             <svg v-else class="w-8 h-8 text-gray-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                         </button>

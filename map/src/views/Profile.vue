@@ -1,5 +1,5 @@
 <template>
-    <main class="page-container">
+    <main class="px-3">
         <Basic
             v-if="magicUser"
             :magicUser="magicUser"

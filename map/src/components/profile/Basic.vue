@@ -1,6 +1,5 @@
 <template>
-    <main class="py-10">
-        <!-- Page header -->
+    <main class="py-5">
         <div class="flex flex-col max-w-3xl mx-auto px-4 sm:px-6 md:flex md:items-center md:justify-between md:space-x-5 lg:max-w-7xl lg:px-8">
             <div class="flex items-center space-x-5">
                 <div class="flex-shrink-0">
@@ -16,13 +15,13 @@
                     </h1>
                     <!-- <p class="text-sm font-medium text-gray-500">Applied for <a href="javascript://" class="text-gray-900">Front End Developer</a> on <time datetime="2020-08-25">August 25, 2020</time></p> -->
 
-                    <p class="text-sm font-medium text-gray-500">
+                    <p class="text-base font-medium text-gray-500">
                         {{magicUser.email}}
                     </p>
 
-                    <p class="text-sm font-medium text-gray-500">
+                    <p class="text-sm italic font-medium text-gray-500">
                         User since {{displayAge}}
-                        <a href="javascript://" class="text-blue-500 hover:underline">(show activity)</a>
+                        <!-- <a href="javascript://" class="text-blue-500 hover:underline">(show activity)</a> -->
                     </p>
                 </div>
             </div>
@@ -222,20 +221,17 @@
 
         </section>
 
-        <ActivityFeed />
+        <ActivityFeed :profile="profile" class="mt-3" />
 
         <section class="mt-8 space-y-6">
             <input type="hidden" name="remember" value="true">
 
-            <button @click="signout" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button @click="signout" class="group relative w-full flex justify-center py-2 px-4 border border-transparent rounded-md bg-red-700 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                    <!-- Heroicon name: solid/lock-closed -->
-                    <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-                    </svg>
+                    <svg class="w-6 h-6 text-gray-100 font-bold" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"></path></svg>
                 </span>
 
-                <span class="text-xl">
+                <span class="text-xl text-gray-100 font-bold">
                     Sign Out
                 </span>
             </button>
