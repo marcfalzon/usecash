@@ -51,6 +51,7 @@ app.get('/', (req, res) => {
 
 /* Initialize Administration route. */
 app.post('/v1/admin/media', require('./routes/admin/media'))
+app.post('/v1/admin/users', require('./routes/admin/users'))
 
 /* Initialize Sessions route. */
 app.get('/v1/sessions', require('./routes/sessions'))
