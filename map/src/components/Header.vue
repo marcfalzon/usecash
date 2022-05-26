@@ -50,7 +50,10 @@
                     <div class="ml-2 mr-2 relative">
                         <button @click="profile" type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                             <span class="sr-only">Open profile menu</span>
-                            <img class="h-8 w-8 object-cover rounded-full" :src="avatar" alt="">
+
+                            <img v-if="avatar" class="h-8 w-8 object-cover rounded-full" :src="avatar" alt="">
+
+                            <svg v-else class="w-8 h-8 text-gray-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                         </button>
 
                         <div v-if="showMenu" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
@@ -118,7 +121,7 @@ export default {
             if (this.gravatarUrl) {
                 return this.gravatarUrl
             } else {
-                return 'https://i.imgur.com/EQzgTPo.png'
+                return null
             }
         },
         selected()  {

@@ -39,10 +39,13 @@ export default new Vuex.Store({
         async signin({ commit }, _email) {
             // FIXME: Add email verification.
 
+            /* Convert email. */
+            const email = _email.toLowerCase()
+
             try {
                 /* Request magic login. */
-                const did = await magicKey.auth.loginWithMagicLink(_email)
-                console.log('DID TOKEN', did)
+                const did = await magicKey.auth.loginWithMagicLink(email)
+                // console.log('DID TOKEN', did)
 
                 /* Send DID token to server. */
                 const result = await superagent
@@ -51,7 +54,11 @@ export default new Vuex.Store({
                     .send({ did })
                     .set('accept', 'json')
                     .catch(err => console.error(err))
-                console.log('DID TOKEN??? (result):', result)
+                // console.log('DID TOKEN??? (result):', result)
+
+                if (!result) {
+                    return alert('Login error!')
+                }
 
                 const data = await magicKey.user.getMetadata()
                 console.log('MAGIC LOGIN (data):', data)

@@ -10,8 +10,9 @@ const { Magic } = require('@magic-sdk/admin')
 const magicAdmin = new Magic(process.env.MAGIC_LINK_KEY)
 
 /* Initialize databases. */
-const sessionsDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/sessions`)
 const logsDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/logs`)
+const sessionsDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/sessions`)
+const usersDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/users`)
 
 /**
  * Magic Module
@@ -19,6 +20,9 @@ const logsDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/lo
 const magic = async function (req, res) {
     console.log('SESSIONS BODY', req.body)
 
+    let createdAt
+    let id
+    let pkg
     let results
 
     const body = req.body
@@ -26,10 +30,10 @@ const magic = async function (req, res) {
 
     /* Validate body. */
     if (body) {
-        const id = uuidv4()
-        const createdAt = moment().unix()
+        id = uuidv4()
+        createdAt = moment().unix()
 
-        const pkg = {
+        pkg = {
             _id: id,
             src: 'magic',
             ...body,
@@ -60,6 +64,16 @@ const magic = async function (req, res) {
     /* Set (public) address. */
     const address = magicAdmin.token.getPublicAddress(did)
 
+    if (!address) {
+        /* Set status. */
+        res.status(400)
+
+        /* Return error. */
+        return res.json({
+            error: 'Missing user (account) address.'
+        })
+    }
+
     /* Set issuer metadata. */
     const metadata = await magicAdmin.users.getMetadataByIssuer(issuer)
     console.log('MAGIC LOGIN (data):', JSON.stringify(metadata, null, 4))
@@ -67,11 +81,49 @@ const magic = async function (req, res) {
     /* Set email address. */
     const email = metadata.email
 
+    if (!email) {
+        /* Set status. */
+        res.status(400)
+
+        /* Return error. */
+        return res.json({
+            error: 'Missing user email.'
+        })
+    }
+
+    /* Request existing user. */
+    results = await usersDb.query('api/byEmail', {
+        key: email,
+        include_docs: true,
+    }).catch(err => {
+        console.error('DATA ERROR:', err)
+    })
+    console.log('USERS RESULT (byEmail)', util.inspect(results, false, null, true))
+
+    if (!results || results.total_rows === 0) {
+        id = uuidv4()
+        createdAt = moment().unix()
+
+        pkg = {
+            _id: id,
+            address,
+            email,
+            createdAt,
+        }
+
+        /* Retrieve results. */
+        results = await usersDb.put(pkg)
+            .catch(err => {
+                console.error('USERS ERROR:', err)
+            })
+        console.log('RESULT (new user)', util.inspect(results, false, null, true))
+    }
+
     /* Set (created) timestamp. */
-    const createdAt = moment().unix()
+    createdAt = moment().unix()
 
     /* Build (data) package. */
-    const pkg = {
+    pkg = {
         _id: uuidv4(),
         issuer,
         address,
