@@ -81,7 +81,7 @@ export default {
                 this.events.push({
                     id: '7a903fba-79a0-42bd-a1c2-f30334d2eeb3',
                     icon: this.iconUser,
-                    description: `Registered a new account @ UseCash.com`,
+                    description: `Registered a NEW Use Cash account.`,
                     timestamp: moment.unix(this.profile.createdAt).fromNow(),
                 })
             }

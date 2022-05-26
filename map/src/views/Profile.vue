@@ -7,8 +7,6 @@
         />
 
         <Signin v-if="!magicUser" />
-
-        <!-- <Signout v-if="magicUser" /> -->
     </main>
 </template>
 
@@ -20,7 +18,6 @@ import superagent from 'superagent'
 /* Import components. */
 import Basic from '@/components/profile/Basic'
 import Signin from '@/components/profile/Signin'
-// import Signout from '@/components/profile/Signout'
 
 const API_ENDPOINT = `https://api.usecash.com/v1`
 // const API_ENDPOINT = `http://localhost:9090/v1`
@@ -32,7 +29,6 @@ export default {
     components: {
         Basic,
         Signin,
-        // Signout,
     },
     data: () => ({
         // profileid: null,
