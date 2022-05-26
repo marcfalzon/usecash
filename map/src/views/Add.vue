@@ -7,7 +7,7 @@
                         Add New Merchant
                     </h3>
 
-                    <p class="mt-1 text-sm text-gray-500">
+                    <p class="mt-1 text-sm text-red-500 font-medium">
                         This information will be displayed publicly so be careful what you share.
                     </p>
                 </div>

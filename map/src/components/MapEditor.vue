@@ -10,9 +10,11 @@
             Please place a pin on the location of the merchant you are adding to our database.
 
             <div class="block text-xs text-gray-500">
-                LAT: <strong class="text-base text-red-500">{{pinLat ? pinLat.toFixed(4) : 'n/a'}}</strong>
-                &bullet; &middot; &bullet;
-                LON: <strong class="text-base text-red-500">{{pinLng ? pinLng.toFixed(4) : 'n/a'}}</strong>
+                LATITUDE: <strong class="text-base text-red-500">{{pinLat ? pinLat.toFixed(4) : 'n/a'}}</strong>
+            </div>
+
+            <div class="block text-xs text-gray-500">
+                LONGITUDE: <strong class="text-base text-red-500">{{pinLng ? pinLng.toFixed(4) : 'n/a'}}</strong>
             </div>
         </div>
 
@@ -161,7 +163,7 @@ export default {
 
                     this.$emit('updateLoc', position)
                 } else {
-                    alert('Invalid pin position.\nYou MUST travel closer to the merchant.')
+                    alert('Invalid pin position.\nYou MUST travel closer to that merchant.\n\nPlease disable any VPNs for an accurate location.')
                 }
             })
 
@@ -182,7 +184,7 @@ export default {
 
                     this.$emit('updateLoc', position)
                 } else {
-                    alert('Invalid pin position.\nYou MUST travel closer to the merchant.')
+                    alert('Invalid pin position.\nYou MUST travel closer to that merchant.\n\nPlease disable any VPNs for an accurate location.')
                 }
             })
 

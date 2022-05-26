@@ -1,25 +1,25 @@
 <template>
     <main class="py-5">
-        <div class="flex flex-col max-w-3xl mx-auto px-4 sm:px-6 md:flex md:items-center md:justify-between md:space-x-5 lg:max-w-7xl lg:px-8">
+        <div class="flex flex-col max-w-3xl mx-auto px-4 sm:px-6 md:flex md:justify-between md:space-x-5 lg:max-w-7xl lg:px-8">
             <div class="flex items-center space-x-5">
                 <div class="flex-shrink-0">
                     <div class="relative">
-                        <img class="h-16 w-16 object-cover rounded-full" :src="avatar" alt="" />
+                        <img class="h-16 w-16 sm:h-24 sm:w-24 object-cover rounded-full" :src="avatar" alt="" />
                         <span class="absolute inset-0 shadow-inner rounded-full" aria-hidden="true"></span>
                     </div>
                 </div>
 
                 <div>
-                    <h1 class="text-2xl font-bold text-gray-900">
-                        {{magicUser.address}}
+                    <h1 class="text-base sm:text-2xl font-bold text-gray-900">
+                        {{abbr(magicUser.publicAddress)}}
                     </h1>
                     <!-- <p class="text-sm font-medium text-gray-500">Applied for <a href="javascript://" class="text-gray-900">Front End Developer</a> on <time datetime="2020-08-25">August 25, 2020</time></p> -->
 
-                    <p class="text-base font-medium text-gray-500">
+                    <p class="text-base sm:text-xl font-medium text-gray-500">
                         {{magicUser.email}}
                     </p>
 
-                    <p class="text-sm italic font-medium text-gray-500">
+                    <p class="text-sm sm:text-base italic font-medium text-gray-500">
                         User since {{displayAge}}
                         <!-- <a href="javascript://" class="text-blue-500 hover:underline">(show activity)</a> -->
                     </p>
@@ -324,6 +324,10 @@ export default {
         signout() {
             /* Request login. */
             this.$store.dispatch('logout')
+        },
+
+        abbr(_address) {
+            return _address.slice(0, 12) + '...' + _address.slice(-10)
         },
 
     },

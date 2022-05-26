@@ -16,7 +16,7 @@
                 From: "translate-x-0"
                 To: "translate-x-full"
             -->
-                    <div class="pointer-events-auto w-screen max-w-md transform transition ease-in-out duration-500 sm:duration-700" :class="ani">
+                    <div class="pointer-events-auto w-screen max-w-md sm:max-w-3xl transform transition ease-in-out duration-500 sm:duration-700" :class="ani">
                         <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                             <div class="px-4 py-6 sm:px-6">
                                 <div class="flex items-start justify-between">
@@ -46,6 +46,7 @@
                             />
 
                             <router-view
+                                class="p-3 sm:p-8"
                                 :magicUser="magicUser"
                             />
 

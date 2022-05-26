@@ -1,6 +1,5 @@
 <template>
-    <main class="px-3">
-
+    <main class="">
         <div class="h-screen flex overflow-hidden">
             <Menu
                 :isOpen="isOpen"

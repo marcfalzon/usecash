@@ -1,6 +1,6 @@
 <template>
     <main class="bg-white">
-        <div class="max-w-7xl mx-auto py-16 px-4">
+        <div class="max-w-7xl mx-auto">
             <div class="max-w-2xl lg:mx-auto lg:text-center">
                 <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                     Frequently asked questions
@@ -8,7 +8,7 @@
 
                 <p class="mt-4 text-lg text-gray-500">
                     Do you have any questions or comments about Use Cash Maps?
-                    We'd love to hear from you.
+                    <br class="hidden sm:block" />We'd love to hear from you.
                 </p>
             </div>
 

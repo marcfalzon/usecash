@@ -1,6 +1,6 @@
 <template>
     <main>
-        <section class="p-3 flex flex-col gap-4">
+        <section class="flex flex-col gap-4">
             <h1 class="text-2xl font-bold">
                 Welcome!
             </h1>
