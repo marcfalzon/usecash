@@ -100,7 +100,7 @@ const magic = async function (req, res) {
     })
     // console.log('USERS RESULT (byEmail)', util.inspect(results, false, null, true))
 
-    if (!results || results.total_rows === 0) {
+    if (!results || results.rows.length === 0) {
         id = uuidv4()
         createdAt = moment().unix()
 

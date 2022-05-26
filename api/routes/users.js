@@ -48,9 +48,9 @@ const users = async function (req, res) {
             }).catch(err => {
                 console.error('DATA ERROR:', err)
             })
-            console.log('USERS RESULT (byEmail)', util.inspect(results, false, null, true))
+            console.log('USERS RESULT (byAddress)', util.inspect(results, false, null, true))
 
-            if (!results) {
+            if (!results || results.rows.length === 0) {
                 /* Set status. */
                 res.status(400)
 

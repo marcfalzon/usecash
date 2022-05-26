@@ -9,16 +9,26 @@
                         <span class="absolute inset-0 shadow-inner rounded-full" aria-hidden="true"></span>
                     </div>
                 </div>
+
                 <div>
-                    <h1 class="text-2xl font-bold text-gray-900">{{displayName}}</h1>
+                    <h1 class="text-2xl font-bold text-gray-900">
+                        {{magicUser.address}}
+                    </h1>
                     <!-- <p class="text-sm font-medium text-gray-500">Applied for <a href="javascript://" class="text-gray-900">Front End Developer</a> on <time datetime="2020-08-25">August 25, 2020</time></p> -->
-                    <p class="text-sm font-medium text-gray-500">User for 1 year</p>
-                    <p class="text-sm font-medium text-gray-500">Last online 1 day ago <a href="javascript://">(show activity)</a></p>
+
+                    <p class="text-sm font-medium text-gray-500">
+                        {{magicUser.email}}
+                    </p>
+
+                    <p class="text-sm font-medium text-gray-500">
+                        User since {{displayAge}}
+                        <a href="javascript://" class="text-blue-500 hover:underline">(show activity)</a>
+                    </p>
                 </div>
             </div>
         </div>
 
-        <div class="mt-8">
+        <section class="hidden mt-8">
             <div class="space-y-6 lg:col-start-1 lg:col-span-2">
                 <!-- Description lismax-w-3xl mx-auto sm:px-6 lg:max-w-7xlt-->
                 <section aria-labelledby="applicant-information-title">
@@ -73,6 +83,7 @@
                                             <label for="company-website" class="block text-sm font-medium text-gray-700">
                                                 Bitcoin Cash Address
                                             </label>
+
                                             <div class="mt-1 flex rounded-md shadow-sm">
                                                 <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                                     bitcoincash:
@@ -209,24 +220,42 @@
                 <!-- <Comments /> -->
             </div>
 
-            <div class="lg:col-span-2">
-                <ActivityFeed />
+        </section>
 
-                <!-- <Follow /> -->
-            </div>
-        </div>
+        <ActivityFeed />
+
+        <section class="mt-8 space-y-6">
+            <input type="hidden" name="remember" value="true">
+
+            <button @click="signout" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                    <!-- Heroicon name: solid/lock-closed -->
+                    <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                    </svg>
+                </span>
+
+                <span class="text-xl">
+                    Sign Out
+                </span>
+            </button>
+        </section>
     </main>
 </template>
 
 <script>
 /* Import modules. */
 import gravatar from 'gravatar'
+import moment from 'moment'
 
 /* Import components. */
 import ActivityFeed from '@/components/profile/ActivityFeed'
 // import Comments from '@/components/profile/Comments'
 // import Follow from '@/components/profile/Follow'
 import Onboarding from '@/components/profile/Onboarding'
+
+// const API_ENDPOINT = `https://api.usecash.com/v1`
+// const API_ENDPOINT = `http://localhost:9090/v1`
 
 export default {
     props: {
@@ -241,23 +270,19 @@ export default {
         Onboarding,
     },
     data: () => ({
-        gravatarUrl: null,
+        // gravatarUrl: null,
+        // profile: null,
     }),
-    watch: {
-        magicUser: function (_user) {
-            this.gravatarUrl = gravatar.url(_user.email)
-            console.log('GRAVATAR (url) CHANGED:', this.gravatarUrl)
-
-        }
-    },
     computed: {
         avatar() {
             if (this.profile && this.profile.avatar) {
                 return this.profile.avatar
-            } else if (this.gravatarUrl) {
-                return this.gravatarUrl
+            } else if (this.magicUser.email) {
+                const gravatarUrl = gravatar.url(this.magicUser.email)
+
+                return gravatarUrl
             } else {
-                return 'https://i.imgur.com/EQzgTPo.png'
+                return null
             }
         },
 
@@ -290,12 +315,24 @@ export default {
             return 'n/a'
         },
 
+        displayAge() {
+            if (this.profile && this.profile.createdAt) {
+                return moment.unix(this.profile.createdAt).fromNow()
+            }
+
+            return 'n/a'
+        }
+
     },
     methods: {
-        //
+        signout() {
+            /* Request login. */
+            this.$store.dispatch('logout')
+        },
+
     },
     created: function () {
-        console.log('BASIC (magicUser):', this.magicUser)
+        //
     },
     mounted: function () {
         //

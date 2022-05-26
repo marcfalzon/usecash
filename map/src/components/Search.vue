@@ -105,7 +105,9 @@ export default {
         async handleSearch(_val) {
             console.log('HANDLE SEARCH', _val)
 
-            const result = await superagent.get(`${API_ENDPOINT}/search/${_val}`)
+            const result = await superagent
+                .get(`${API_ENDPOINT}/search/${_val}`)
+                .catch(err => console.error(err))
             console.log('RESULT', result)
         }
     },

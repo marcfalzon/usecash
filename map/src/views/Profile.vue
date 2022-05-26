@@ -13,10 +13,17 @@
 </template>
 
 <script>
+/* Import modules. */
+import gravatar from 'gravatar'
+import superagent from 'superagent'
+
 /* Import components. */
 import Basic from '@/components/profile/Basic'
 import Signin from '@/components/profile/Signin'
 // import Signout from '@/components/profile/Signout'
+
+const API_ENDPOINT = `https://api.usecash.com/v1`
+// const API_ENDPOINT = `http://localhost:9090/v1`
 
 export default {
     props: {
@@ -29,7 +36,7 @@ export default {
     },
     data: () => ({
         // profileid: null,
-        // profile: null,
+        profile: null,
     }),
     // beforeRouteEnter (to, from, next) {
     //     console.log('BEFORE ROUTER ENTER', to, from);
@@ -54,10 +61,36 @@ export default {
 
         next()
     },
+    watch: {
+        magicUser: function (_user) {
+            if (_user) {
+                console.log('MAGIC USER CHANGED', _user)
+                this.init()
+            }
+
+        }
+    },
     computed: {
         //
     },
     methods: {
+        async init() {
+            console.log('BASIC (magicUser):', this.magicUser)
+            this.gravatarUrl = gravatar.url(this.magicUser.email)
+
+            const result = await superagent
+                .get(`${API_ENDPOINT}/users/${this.magicUser.publicAddress}`)
+                .catch(err => console.error(err))
+            // console.log('USER RESULT', result)
+
+            if (result && result.body) {
+                let body = result.body
+                console.log('BODY', body)
+
+                this.profile = body
+            }
+        },
+
         // init(_route) {
         //     this.profileid = null
         //     this.profile = null
