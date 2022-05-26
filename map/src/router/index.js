@@ -8,7 +8,7 @@ import Profile from '../views/Profile.vue'
 
 import Mod from '../views/Mod.vue'
 import ModDashboard from '../views/mod/Dashboard.vue'
-import ModMerchants from '../views/mod/Merchants2.vue'
+import ModMerchants from '../views/mod/Merchants.vue'
 import ModUsers from '../views/mod/Users.vue'
 import ModIssues from '../views/mod/Issues.vue'
 import ModNotifs from '../views/mod/Notifs.vue'
