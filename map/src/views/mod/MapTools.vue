@@ -6,7 +6,7 @@
                 <h1 class="text-lg font-medium text-gray-900">Map Tools</h1>
             </div>
 
-            <Flipstarter />
+            <V2 />
         </div>
 
     </main>
@@ -14,11 +14,11 @@
 
 <script>
 /* Import components. */
-import Flipstarter from '@/components/Flipstarter'
+import V2 from '@/components/V2'
 
 export default {
     components: {
-        Flipstarter,
+        V2,
     },
     data: () => ({
         //

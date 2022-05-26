@@ -8,4 +8,4 @@
 
 `/v1/merchants`
 
-eg. https://api.use.cash/v1/merchants
+eg. https://api.usecash.com/v1/merchants
