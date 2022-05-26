@@ -1,9 +1,11 @@
 <template>
     <main class="w-full">
-        <!-- Profile section -->
-        <div class="py-6 px-4 sm:p-6 lg:pb-8">
+        <div class="">
             <div>
-                <h1 class="text-xl leading-6 font-medium text-gray-900">Database Tools</h1>
+                <h1 class="text-2xl leading-6 font-medium text-gray-900">
+                    Database Tools
+                </h1>
+
                 <p class="mt-1 text-sm text-gray-500">
                     A set of useful tools for managing the datastore.
                 </p>
@@ -86,51 +88,13 @@
                 </button>
             </div>
 
-            <!-- <div class="mt-6 grid grid-cols-12 gap-6">
-                <div class="col-span-12 sm:col-span-6">
-                    <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
-                    <input
-                        type="text"
-                        name="first-name"
-                        id="first-name"
-                        autocomplete="given-name"
-                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                    />
-                </div>
-
-                <div class="col-span-12 sm:col-span-6">
-                    <label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label>
-                    <input
-                        type="text"
-                        name="last-name"
-                        id="last-name"
-                        autocomplete="family-name"
-                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                    />
-                </div>
-
-                <div class="col-span-12">
-                    <label for="url" class="block text-sm font-medium text-gray-700">URL</label>
-                    <input type="text" name="url" id="url" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm" />
-                </div>
-
-                <div class="col-span-12 sm:col-span-6">
-                    <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
-                    <input
-                        type="text"
-                        name="company"
-                        id="company"
-                        autocomplete="organization"
-                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                    />
-                </div>
-            </div> -->
         </div>
 
         <div class="relative">
             <div class="absolute inset-0 flex items-center" aria-hidden="true">
                 <div class="w-full border-t border-gray-300"></div>
             </div>
+
             <div class="relative flex justify-center">
                 <span class="relative z-0 inline-flex shadow-sm rounded-md -space-x-px">
                     <button
@@ -143,6 +107,7 @@
                             <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                         </svg>
                     </button>
+
                     <button
                         type="button"
                         class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-400 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
@@ -153,6 +118,7 @@
                             <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
                         </svg>
                     </button>
+
                     <button
                         type="button"
                         class="relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-400 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
@@ -166,27 +132,10 @@
                 </span>
             </div>
         </div>
-        <!-- <div class="relative">
-            <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                <div class="w-full border-t border-gray-300"></div>
-            </div>
-            <div class="relative flex justify-center">
-                <span class="px-2 bg-white text-sm text-gray-500">
-                    Query options
-                </span>
-            </div>
-        </div> -->
 
         <!-- Privacy section -->
-        <!-- <div class="pt-6 divide-y divide-gray-200"> -->
         <div class="pt-6">
             <div class="px-4 sm:px-6">
-                <!-- <div>
-                    <h2 class="text-lg leading-6 font-medium text-gray-900">Query Options</h2>
-                    <p class="mt-1 text-sm text-gray-500">
-                        Customize your query options.
-                    </p>
-                </div> -->
                 <ul class="mt-2 divide-y divide-gray-200">
                     <li class="py-4 flex items-center justify-between">
                         <div class="flex flex-col">
@@ -210,6 +159,7 @@
                             <span aria-hidden="true" class="translate-x-5 inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
                         </button>
                     </li>
+
                     <li class="py-4 flex items-center justify-between">
                         <div class="flex flex-col">
                             <p class="text-sm font-medium text-gray-900" id="privacy-option-3-label">
@@ -232,6 +182,7 @@
                             <span aria-hidden="true" class="translate-x-0 inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
                         </button>
                     </li>
+
                     <li class="py-4 flex items-center justify-between">
                         <div class="flex flex-col">
                             <p class="text-sm font-medium text-gray-900" id="privacy-option-4-label">
@@ -258,6 +209,18 @@
             </div>
 
         </div>
+
+        Nostrud dolor iudicem ne a sunt nisi quae offendit. Id culpa firmissimum.
+        Expetendis quid cernantur, eiusmod fore dolor et eram, aliquip magna expetendis
+        incurreret ad se anim ut nulla an elit ubi cupidatat, export consequat possumus
+        do id aute mandaremus, commodo ea appellat.Doctrina ne culpa occaecat ab non a
+        dolore esse export te anim proident vidisse ubi ad noster coniunctione, tamen
+        senserit ut imitarentur, amet probant quo elit nisi, non probant ubi doctrina do
+        mentitum illum constias. Iudicem elit elit occaecat tamen, commodo illum
+        excepteur expetendis, magna nam qui eram vidisse, singulis ab quid id ita labore
+        export in appellat ea quem laboris iis tamen anim de ad labore te nisi, quae
+        probant iis coniunctione. Ea enim offendit ullamco, se ipsum quorum ab
+        incurreret, offendit arbitrantur de admodum, quae mandaremus excepteur.
     </main>
 </template>
 

@@ -1,9 +1,10 @@
 <template>
     <main class="w-full">
-        <!-- Profile section -->
-        <div class="py-6 px-4 sm:p-6 lg:pb-8">
+        <div class="py-6 px-4">
             <div>
-                <h1 class="text-lg font-medium text-gray-900">Map Tools</h1>
+                <h1 class="text-2xl font-medium text-gray-900">
+                    Map Tools
+                </h1>
             </div>
 
             <V2 />

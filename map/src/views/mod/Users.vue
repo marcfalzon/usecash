@@ -28,20 +28,21 @@
                                     </th>
                                 </tr>
                             </thead>
+
                             <tbody class="divide-y divide-gray-200 bg-white">
-                                <tr>
+                                <tr v-for="user of users" :key="user.address">
                                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm">
                                         <div class="flex items-center">
                                             <div class="h-10 w-10 flex-shrink-0">
                                                 <img
                                                     class="h-10 w-10 rounded-full"
-                                                    src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                    :src="avatar(user.email)"
                                                     alt=""
                                                 />
                                             </div>
                                             <div class="ml-4">
-                                                <div class="font-medium text-gray-900">Lindsay Walton</div>
-                                                <div class="text-gray-500">lindsay.walton@example.com</div>
+                                                <div class="font-medium text-gray-900">{{user.email}}</div>
+                                                <div class="text-xs text-gray-500">{{user.address}}</div>
                                             </div>
                                         </div>
                                     </td>
@@ -69,15 +70,43 @@
 </template>
 
 <script>
+/* Import modules. */
+import gravatar from 'gravatar'
+import superagent from 'superagent'
+
+const API_ENDPOINT = `https://api.usecash.com/v1`
+// const API_ENDPOINT = `http://localhost:9090/v1`
+
 export default {
     data: () => ({
-        //
+        users: null,
     }),
     methods: {
-        //
+        async init() {
+
+            const result = await superagent
+                .post(`${API_ENDPOINT}/admin/users`)
+                .set('authorization', `Bearer ${this.didToken}`)
+                // .send(merchant)
+                .set('accept', 'json')
+            // console.log('USERS RESULT', result)
+
+            if (result && result.body) {
+                const body = result.body
+                console.log('BODY', body)
+
+                this.users = body
+            }
+
+        },
+
+        avatar(_email) {
+            return gravatar.url(_email)
+        },
+
     },
     created: function () {
-        //
+        this.init()
     },
     mounted: function () {
         //

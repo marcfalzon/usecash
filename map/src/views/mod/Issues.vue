@@ -114,17 +114,7 @@
                     </div>
                 </aside>
 
-                <div class="py-3 xl:pt-6 xl:pb-0">
-                    <h2 class="sr-only">Description</h2>
-
-                    <div class="prose max-w-none">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, hic? Commodi cumque similique id tempora molestiae deserunt at suscipit, dolor voluptatem, numquam, harum consequatur laboriosam voluptas
-                            tempore aut voluptatum alias?
-                        </p>
-
-                    </div>
-                </div>
+                <V2 />
             </div>
         </div>
 
@@ -361,7 +351,13 @@
 </template>
 
 <script>
+/* Import components. */
+import V2 from '@/components/V2'
+
 export default {
+    components: {
+        V2,
+    },
     data: () => ({
         //
     }),
