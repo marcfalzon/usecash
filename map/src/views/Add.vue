@@ -97,11 +97,11 @@
                             <option value="grocery">Grocery &amp; Farmers Market</option>
                             <option value="bar">Bar</option>
                             <option value="auto">Automotive Shops &amp; Services</option>
-                            <option value="cafe">Cafe</option>
+                            <option value="cafe">Café</option>
                             <option value="sports">Sports &amp; Outdoor</option>
                             <option value="beauty">Beauty, Barber &amp; Spas</option>
                             <option value="health">Health &amp; Medical</option>
-                            <option value="flower-gifts">Flower and Gifts</option>
+                            <option value="flower-gifts">Flower &amp; Gifts</option>
                             <option value="fast-food">Fast Food</option>
                             <option value="hotels">Hotels &amp; Hostels</option>
                             <option value="home-services">Home Services</option>
@@ -114,32 +114,32 @@
                             <option value="souvenir">Souvenir Store</option>
                             <option value="public-services">Public Services</option>
                             <option value="edu">Education</option>
-                            <option value="real-estate">Real estate</option>
+                            <option value="real-estate">Real Estate</option>
                             <option value="transportation">Transportation</option>
                             <option value="adult">Adult Entertainment</option>
                             <option value="liquor">Liquor Store</option>
-                            <option value="toys">Toys and Hobbies</option>
+                            <option value="toys">Toys &amp; Hobbies</option>
                             <option value="rental-services">Rental Services</option>
-                            <option value="food-truck">Food Truck and Stands</option>
+                            <option value="food-truck">Food Truck &amp; Stands</option>
                             <option value="pets">Pets &amp; Services</option>
                             <option value="taxi">Taxi Services</option>
                             <option value="bike">Bike, Scooter and Motorcycle Shop</option>
-                            <option value="pizza">Pizza and Sandwiches</option>
-                            <option value="books">Books and Magazines</option>
+                            <option value="pizza">Pizza &amp; Sandwiches</option>
+                            <option value="books">Books &amp; Magazines</option>
                             <option value="catering-services">Catering Services</option>
                             <option value="event-planning">Event Planning</option>
                             <option value="brewery">Brewery</option>
-                            <option value="religion">Religion and Spiritual</option>
-                            <option value="music">Music and Video</option>
+                            <option value="religion">Religion &amp; Spiritual</option>
+                            <option value="music">Music &amp; Video</option>
                             <option value="ice-cream">Ice Cream &amp; Frozen Yogurt</option>
                             <option value="jewelry">Jewelry &amp; Watches</option>
                             <option value="event-venue">Event Venue</option>
-                            <option value="lids">Kids</option>
+                            <option value="kids">Kids</option>
                             <option value="mini-marts">Mini-marts &amp; Convenience Stores</option>
                             <option value="nightlife">Nightlife</option>
                             <option value="museum">Museum</option>
                             <option value="comic-books">Comic Books</option>
-                            <option value="travel">Airlines &amp; Charters</option>
+                            <option value="air">Airlines &amp; Charters</option>
                         </select>
                     </div>
                 </div>

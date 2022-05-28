@@ -1,27 +1,25 @@
 <template>
-    <footer v-if="isShown" class="bg-gray-100 py-5 mt-5 border-t-2 border-b-2 border-gray-300">
-        <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
-            <nav class="-mx-5 my-2 flex flex-wrap justify-center" aria-label="Footer">
-                <div class="px-5 py-2">
-                    <a href="javascript://" class="text-base text-gray-500 font-medium hover:text-gray-900 hover:underline">
-                        About
-                    </a>
-                </div>
+    <footer v-if="isShown" class="bg-gray-100 py-5 mt-5 border-2 border-gray-300 rounded-lg">
+        <div class="max-w-7xl mx-auto px-4 overflow-hidden">
+            <nav class="flex flex-row space-x-6 my-2 flex flex-wrap justify-center" aria-label="Footer">
+                <router-link to="/about" class="text-base text-gray-500 font-medium hover:text-gray-900 hover:underline">
+                    About
+                </router-link>
 
-                <div class="px-5 py-2">
-                    <router-link to="/learn" class="text-base text-gray-500 font-medium hover:text-gray-900 hover:underline">
-                        Learn
-                    </router-link>
-                </div>
+                <router-link to="/learn" class="text-base text-gray-500 font-medium hover:text-gray-900 hover:underline">
+                    Learn
+                </router-link>
 
-                <div class="px-5 py-2">
-                    <a href="javascript://" class="text-base text-gray-500 font-medium hover:text-gray-900 hover:underline">
-                        Sponsors
-                    </a>
-                </div>
+                <router-link to="/sponsors" class="text-base text-gray-500 font-medium hover:text-gray-900 hover:underline">
+                    Sponsors
+                </router-link>
+
+                <router-link to="/tos" class="text-base text-gray-500 font-medium hover:text-gray-900 hover:underline">
+                    ToS
+                </router-link>
             </nav>
 
-            <div class="mt-8 flex justify-center space-x-6">
+            <div class="mt-3 flex justify-center space-x-6">
                 <a href="http://www.facebook.com/groups/launchyourfirstblog/" target="_blank" class="text-gray-400 hover:text-gray-500">
                     <span class="sr-only">Facebook</span>
                     <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -65,13 +63,13 @@
                 </a>
             </div>
 
-            <p class="mt-8 text-sm sm:text-base text-gray-400 text-center">
+            <p class="mt-3 text-base text-gray-400 text-center">
                 Copyright &copy; {{curYear}}. Use Cash.
                 <br class="block sm:hidden" />All rights reserved.
             </p>
 
-            <p class="hidden sm:block text-base text-gray-400 xl:text-center">
-                Built and maintained by <a class="text-red-300" href="https://modenero.com/" target="_blank">Modenero</a>
+            <p class="hidden sm:block text-base text-gray-400 text-center">
+                Built and maintained by <a class="text-blue-500 hover:underline" href="https://modenero.com/" target="_blank">Modenero</a>
             </p>
         </div>
     </footer>

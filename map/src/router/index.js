@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import About from '../views/About.vue'
 import Add from '../views/Add.vue'
 import FAQ from '../views/FAQ.vue'
 import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
+import Sponsors from '../views/Sponsors.vue'
+import Terms from '../views/Terms.vue'
 
 import Mod from '../views/Mod.vue'
 import ModDashboard from '../views/mod/Dashboard.vue'
@@ -20,16 +23,27 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        component: Home
+        component: Home,
+    },
+    {
+        path: '/about',
+        component: About,
     },
     {
         path: '/add',
-        component: Add
+        component: Add,
     },
     {
-        /* FAQ */
         path: '/faq',
-        component: FAQ
+        component: FAQ,
+    },
+    {
+        path: '/sponsors',
+        component: Sponsors,
+    },
+    {
+        path: '/tos',
+        component: Terms,
     },
     {
         path: '/mod',
@@ -67,18 +81,18 @@ const routes = [
     },
     {
         path: '/profile',
-        component: Profile
+        component: Profile,
     },
     {
         /* (Wildcard) Account Profile */
         // NOTE: Avoid other wildcard conflicts.
         path: '/@*',
-        component: Profile
+        component: Profile,
     },
     {
         /* 404 Error */
         path: '*',
-        component: Profile
+        component: Profile,
     }
 ]
 
