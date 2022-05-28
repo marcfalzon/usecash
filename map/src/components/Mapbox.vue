@@ -30,54 +30,60 @@ const searchMap = async (_term, _vue) => {
     console.log('SEARCHING FOR', _term)
     const searchResults = document.getElementById('search-results')
 
-    let target
+    // let target
     let result
+    let venues
 
-    result = await fetch
+    result = await fetch(`${API_ENDPOINT}/search/autocomplete/${_term}`)
+        .catch(err => console.error(err))
 
-    // const t1 = (_val) => {
-    //     alert('i see T1 - ' + _val)
-    //     _emit('working!!!')
-    // }
+    result = await result.json()
+    console.log('AUTOCOMPLETE (result):', result)
 
-    const html = `
-<div class="py-2 flex flex-col">
-    <div id='822bc61a-3b5a-4874-85c2-1b0f0fe2f328' javascript:alert('hi there-1') class="my-1 px-3 py-1 bg-yellow-100 border-2 border-yellow-300 rounded-lg cursor-pointer">
-        <span class="text-lg font-medium">
-            this is the first item
-        </span>
-    </div>
+    venues = result.venues
 
-    <div javascript:alert('hi there-1') class="my-1 px-3 py-1 bg-yellow-100 border-2 border-yellow-300 rounded-lg cursor-pointer">
-        <span class="text-lg font-medium">
-            this is the 2nd item
-        </span>
-    </div>
+    let html = ''
+    let count = 0
 
-    <div javascript:t1('yolo') class="my-1 px-3 py-1 bg-yellow-100 border-2 border-yellow-300 rounded-lg cursor-pointer">
-        <span class="text-lg font-medium">
-            this is the third item
-        </span>
-    </div>
-</div>
-    `
+    html += `<div class="py-2 flex flex-col">`
+    venues.forEach(_venue => {
+        if (count++ >= 5) return
+
+        html += `
+        <div id='${_venue.id}' javascript:alert('${_venue.value}') class="flex flex-row my-1 px-3 py-1 bg-yellow-100 border-2 border-yellow-300 rounded-lg cursor-pointer">
+            <svg class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+
+            <span class="ml-2 text-lg font-medium truncate">
+                ${_venue.value}
+            </span>
+        </div>
+        `
+    })
+    html += `</div>`
 
     searchResults.innerHTML = html
     searchResults.style.visibility = 'visible'
 
-    const vendorid = '822bc61a-3b5a-4874-85c2-1b0f0fe2f328'
+    count = 0
 
-    target = `${API_ENDPOINT}/merchants/${vendorid}`
-    result = await fetch(target)
-        .catch(err => console.error(err))
-    // console.log('MERCHANT RESULT', result)
+    venues.forEach(_venue => {
+        if (count++ >= 5) return
 
-    let merchant = await result.json()
-    console.log('MERCHANT (json):', merchant)
-
-    document.getElementById(vendorid).addEventListener('click', () => {
-        _vue.$emit('openPopup', vendorid)
+        document.getElementById(_venue.id).addEventListener('click', () => {
+            _vue.$emit('openPopup', _venue.id)
+        })
     })
+
+    // const vendorid = '822bc61a-3b5a-4874-85c2-1b0f0fe2f328'
+    //
+    // target = `${API_ENDPOINT}/merchants/${vendorid}`
+    // result = await fetch(target)
+    //     .catch(err => console.error(err))
+    // // console.log('MERCHANT RESULT', result)
+    //
+    // let merchant = await result.json()
+    // console.log('MERCHANT (json):', merchant)
+
 }
 
 /**
