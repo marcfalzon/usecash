@@ -26,8 +26,58 @@ const USER_INPUT_DELAY = 500 // 0.5 seconds
  *
  * Searches all merchants and venues, based on user input.
  */
-const searchMap = (_term) => {
+const searchMap = async (_term, _vue) => {
     console.log('SEARCHING FOR', _term)
+    const searchResults = document.getElementById('search-results')
+
+    let target
+    let result
+
+    result = await fetch
+
+    // const t1 = (_val) => {
+    //     alert('i see T1 - ' + _val)
+    //     _emit('working!!!')
+    // }
+
+    const html = `
+<div class="py-2 flex flex-col">
+    <div id='822bc61a-3b5a-4874-85c2-1b0f0fe2f328' javascript:alert('hi there-1') class="my-1 px-3 py-1 bg-yellow-100 border-2 border-yellow-300 rounded-lg cursor-pointer">
+        <span class="text-lg font-medium">
+            this is the first item
+        </span>
+    </div>
+
+    <div javascript:alert('hi there-1') class="my-1 px-3 py-1 bg-yellow-100 border-2 border-yellow-300 rounded-lg cursor-pointer">
+        <span class="text-lg font-medium">
+            this is the 2nd item
+        </span>
+    </div>
+
+    <div javascript:t1('yolo') class="my-1 px-3 py-1 bg-yellow-100 border-2 border-yellow-300 rounded-lg cursor-pointer">
+        <span class="text-lg font-medium">
+            this is the third item
+        </span>
+    </div>
+</div>
+    `
+
+    searchResults.innerHTML = html
+    searchResults.style.visibility = 'visible'
+
+    const vendorid = '822bc61a-3b5a-4874-85c2-1b0f0fe2f328'
+
+    target = `${API_ENDPOINT}/merchants/${vendorid}`
+    result = await fetch(target)
+        .catch(err => console.error(err))
+    // console.log('MERCHANT RESULT', result)
+
+    let merchant = await result.json()
+    console.log('MERCHANT (json):', merchant)
+
+    document.getElementById(vendorid).addEventListener('click', () => {
+        _vue.$emit('openPopup', vendorid)
+    })
 }
 
 /**
@@ -64,7 +114,9 @@ class SearchBox {
         search.classList.add('py-5')
         search.classList.add('border-4')
         search.classList.add('border-cyan-600')
-        search.classList.add('bg-cyan-800')
+        search.classList.add('bg-gradient-to-r')
+        search.classList.add('from-cyan-700')
+        search.classList.add('to-cyan-800')
         search.classList.add('text-lg')
         search.classList.add('font-bold')
         search.classList.add('text-gray-200')
@@ -73,12 +125,33 @@ class SearchBox {
         search.placeholder='what are you looking for?'
         this.container.appendChild(search)
 
+        /* Initialize search results. */
+        const searchResults = document.createElement('div')
+        searchResults.setAttribute('id','search-results')
+        searchResults.style.visibility = 'hidden'
+        searchResults.classList.add('mt-1')
+        searchResults.classList.add('w-64')
+        searchResults.classList.add('sm:w-96')
+        searchResults.classList.add('px-3')
+        searchResults.classList.add('py-2')
+        searchResults.classList.add('border-2')
+        searchResults.classList.add('border-gray-400')
+        searchResults.classList.add('bg-gradient-to-r')
+        searchResults.classList.add('from-gray-200')
+        searchResults.classList.add('to-gray-100')
+        searchResults.classList.add('rounded-xl')
+        searchResults.classList.add('shadow-lg')
+        this.container.appendChild(searchResults)
+
         /* Handle user input. */
         // TODO: Handle pasted text (via keyboard & mouse).
         search.addEventListener('keyup', (_evt) => {
             // console.log('WHAT KEY', search.value, _evt)
-
             clearTimeout(this.isTyping)
+
+            const searchResults = document.getElementById('search-results')
+            searchResults.style.visibility = 'hidden'
+            searchResults.innerHTML = ''
 
             if (_evt.keyCode === 27) {
                 /* Clear search box. */
@@ -97,7 +170,7 @@ class SearchBox {
                 }
 
                 /* Search map. */
-                searchMap(search.value)
+                searchMap(search.value, this.vue)
 
                 /* Clear search box. */
                 return search.value = ''
@@ -109,7 +182,7 @@ class SearchBox {
                     // console.log('SEARCH FOR', search.value)
 
                     /* Search map. */
-                    searchMap(search.value)
+                    searchMap(search.value, this.vue)
                 }, USER_INPUT_DELAY)
             }
         })
@@ -788,6 +861,10 @@ export default {
                 }
             })
 
+        },
+
+        selectMerchant(_merchantid) {
+            alert('clicked merchant - ' + _merchantid)
         },
 
     },
