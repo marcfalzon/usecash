@@ -40,7 +40,11 @@ const searchMap = async (_term, _vue) => {
     result = await result.json()
     console.log('AUTOCOMPLETE (result):', result)
 
-    venues = result.venues
+    venues = [
+        ...result.coinmap,
+        ...result.merchants,
+    ]
+    console.log('VENUES', venues)
 
     let html = ''
     let count = 0
