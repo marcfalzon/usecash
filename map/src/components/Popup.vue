@@ -198,7 +198,39 @@ export default {
         },
 
         report() {
-            alert('send email report')
+            const address = 'hello@usecash.com'
+            const subject = 'Use Cash: Merchant Report'
+
+            let body = '\n\n'
+
+            body += '________________________________________'
+            body += '\nPlease provide your report details above ☝\n\n'
+
+            if (this.name) {
+                body += 'Merchant Name: ' + this.name + '\n'
+            }
+
+            if (this.streetAddress) {
+                body += 'Street Address: ' + this.streetAddress + '\n'
+            }
+
+            if (this.city) {
+                body += 'City: ' + this.city + '\n'
+            }
+
+            if (this.state) {
+                body += 'State: ' + this.state + '\n'
+            }
+
+            if (this.postalCode) {
+                body += 'Postal Code: ' + this.postalCode + '\n'
+            }
+
+            if (this.country) {
+                body += 'Country: ' + this.country + '\n'
+            }
+
+            window.open(`mailto:${address}?subject=${subject}&body=${encodeURIComponent(body)}`)
         },
 
         directions() {
