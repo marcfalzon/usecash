@@ -86,8 +86,7 @@
 
                     <footer class="mt-5 sm:mt-4 p-4 sm:flex sm:flex-row-reverse sm:justify-around sm:bg-gray-200 sm:border-t-2 sm:border-gray-300 sm:shadow-inner">
                         <button
-                            @click.stop="doSomething"
-                            type="button"
+                            @click="directions"
                             class="px-4 py-2 w-full sm:w-auto inline-flex justify-center items-center rounded-md border border-transparent shadow-sm bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                         >
                             <svg class="w-5 h-5 text-gray-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
@@ -150,6 +149,8 @@ export default {
         phone: null,
         website: null,
         description: null,
+        lat: null,
+        lng: null,
     }),
     computed: {
         banner() {
@@ -167,8 +168,21 @@ export default {
         },
 
         location() {
+            if (!this.city || !this.state || !this.postalCode) {
+                return 'n/a'
+            }
+
             return `${this.city}, ${this.state} ${this.postalCode}`
         },
+
+        // geo() {
+        //     if (!this.lat || !this.lng) {
+        //         return null
+        //     }
+        //
+        //     return `geo:${this.lat},${this.lng}`
+        // },
+
     },
     methods: {
         close() {
@@ -185,6 +199,18 @@ export default {
 
         report() {
             alert('send email report')
+        },
+
+        directions() {
+            if (
+                (navigator.platform.indexOf('iPhone') != -1)
+                || (navigator.platform.indexOf('iPad') != -1)
+                || (navigator.platform.indexOf('iPod') != -1)
+            ) {
+                window.open(`maps://maps.google.com/maps?daddr=${this.lat},${this.lng}&amp;ll=`)
+            } else { /* else use Google */
+                window.open(`https://maps.google.com/maps?daddr=${this.lat},${this.lng}&amp;ll=`)
+            }
         },
 
     },
@@ -246,6 +272,16 @@ export default {
             /* Handle description. */
             if (body.description) {
                 this.description = body.description
+            }
+
+            /* Handle latitude. */
+            if (body.lat) {
+                this.lat = body.lat
+            }
+
+            /* Handle longitude. */
+            if (body.lng) {
+                this.lng = body.lng
             }
 
         }
