@@ -73,8 +73,29 @@
                                                 </span>
 
                                                 <div class="flex flex-row gap-2 justify-center">
-                                                    <cryptoicon symbol="bch" size="24" />
-                                                    <cryptoicon symbol="btc" size="24" />
+                                                    <cryptoicon
+                                                        v-if="accepting.includes('BCH')"
+                                                        symbol="bch"
+                                                        size="24"
+                                                    />
+
+                                                    <cryptoicon
+                                                        v-if="accepting.includes('BTC')"
+                                                        symbol="btc"
+                                                        size="24"
+                                                    />
+
+                                                    <cryptoicon
+                                                        v-if="accepting.includes('ETH')"
+                                                        symbol="eth"
+                                                        size="24"
+                                                    />
+
+                                                    <cryptoicon
+                                                        v-if="accepting.includes('DASH')"
+                                                        symbol="dash"
+                                                        size="24"
+                                                    />
                                                 </div>
                                             </div>
 
@@ -173,6 +194,7 @@ export default {
         phone: null,
         website: null,
         description: null,
+        crypto: null,
         lat: null,
         lng: null,
         lastActivity: null,
@@ -206,6 +228,32 @@ export default {
 
             return this.description
         },
+
+        accepting() {
+            let coins = []
+
+            if (this.crypto && this.crypto['BCH']) {
+                coins.push('BCH')
+            }
+
+            if (this.crypto && this.crypto['BTC']) {
+                coins.push('BTC')
+            }
+
+            if (this.crypto && this.crypto['ETH']) {
+                coins.push('ETH')
+            }
+
+            if (this.crypto && this.crypto['DASH']) {
+                coins.push('DASH')
+            }
+
+            if (coins.length === 0) {
+                coins.push('BCH')
+            }
+
+            return coins
+        }
 
     },
     methods: {
@@ -328,6 +376,11 @@ export default {
             /* Handle description. */
             if (body.description) {
                 this.description = body.description
+            }
+
+            /* Handle crypto. */
+            if (body.crypto) {
+                this.crypto = body.crypto
             }
 
             /* Handle latitude. */
