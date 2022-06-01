@@ -3,9 +3,9 @@
         <div class="space-y-8">
             <section>
                 <div>
-                    <h3 class="text-2xl leading-6 font-medium text-gray-900">
+                    <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                         Add New Merchant
-                    </h3>
+                    </h1>
 
                     <p class="mt-1 text-sm text-red-500 font-medium">
                         This information will be displayed publicly so be careful what you share.

@@ -2,19 +2,19 @@
     <main class="w-full">
         <div class="">
             <div>
-                <h1 class="text-2xl leading-6 font-medium text-gray-900">
-                    Database Tools
+                <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">
+                    Database Toolkit
                 </h1>
 
                 <p class="mt-1 text-sm text-gray-500">
-                    A set of useful tools for managing the datastore.
+                    A complete set of tools for managing the data storage.
                 </p>
             </div>
 
             <div class="mt-6 flex flex-col lg:flex-row">
                 <div class="flex-grow space-y-6">
                     <div>
-                        <label for="username" class="block text-sm font-medium text-gray-700">
+                        <label for="username" class="ml-1 block text-xs font-medium text-gray-500 uppercase">
                             Database Location
                         </label>
                         <div class="mt-1 rounded-md shadow-sm flex">
@@ -32,13 +32,13 @@
                                 port:9200
                             </span>
                         </div>
-                        <p class="mt-2 text-sm text-gray-500">
+                        <p class="mt-2 ml-2 text-xs text-gray-500">
                             NOTE: Elasticsearch is currently the DEFAULT datastore.
                         </p>
                     </div>
 
                     <div>
-                        <label for="about" class="block text-sm font-medium text-gray-700">
+                        <label for="about" class="ml-1 block text-xs font-medium text-gray-500 uppercase">
                             Database query
                         </label>
 
@@ -58,15 +58,15 @@
                             <textarea :value="displayQuery" rows="4" class="shadow-sm focus:ring-sky-500 focus:border-sky-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
                         </div>
 
-                        <p class="mt-2 text-sm text-gray-500">
+                        <p class="mt-2 ml-2 text-xs text-gray-500">
                             NOTE: Consider using
                             <a href="https://www.elastic.co/kibana/" target="_blank"><strong>
                                 Kibana
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 inline text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                 </svg>
                             </strong></a>
-                            for a full set of advanced features.
+                            for a complete set of advanced tools.
                         </p>
                     </div>
                 </div>
@@ -133,94 +133,12 @@
             </div>
         </div>
 
-        <!-- Privacy section -->
-        <div class="pt-6">
-            <div class="px-4 sm:px-6">
-                <ul class="mt-2 divide-y divide-gray-200">
-                    <li class="py-4 flex items-center justify-between">
-                        <div class="flex flex-col">
-                            <p class="text-sm font-medium text-gray-900" id="privacy-option-2-label">
-                                Make account private
-                            </p>
-                            <p class="text-sm text-gray-500" id="privacy-option-2-description">
-                                Pharetra morbi dui mi mattis tellus sollicitudin cursus pharetra.
-                            </p>
-                        </div>
-                        <!-- Enabled: "bg-teal-500", Not Enabled: "bg-gray-200" -->
-                        <button
-                            type="button"
-                            class="bg-blue-500 ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-                            role="switch"
-                            aria-checked="false"
-                            aria-labelledby="privacy-option-2-label"
-                            aria-describedby="privacy-option-2-description"
-                        >
-                            <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
-                            <span aria-hidden="true" class="translate-x-5 inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
-                        </button>
-                    </li>
+        <section>
+            <p class="p-5 text-gray-500 font-light italic">
+                Database query results will be shown here.
+            </p>
+        </section>
 
-                    <li class="py-4 flex items-center justify-between">
-                        <div class="flex flex-col">
-                            <p class="text-sm font-medium text-gray-900" id="privacy-option-3-label">
-                                Allow commenting
-                            </p>
-                            <p class="text-sm text-gray-500" id="privacy-option-3-description">
-                                Integer amet, nunc hendrerit adipiscing nam. Elementum ame
-                            </p>
-                        </div>
-                        <!-- Enabled: "bg-teal-500", Not Enabled: "bg-gray-200" -->
-                        <button
-                            type="button"
-                            class="bg-gray-200 ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-                            role="switch"
-                            aria-checked="true"
-                            aria-labelledby="privacy-option-3-label"
-                            aria-describedby="privacy-option-3-description"
-                        >
-                            <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
-                            <span aria-hidden="true" class="translate-x-0 inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
-                        </button>
-                    </li>
-
-                    <li class="py-4 flex items-center justify-between">
-                        <div class="flex flex-col">
-                            <p class="text-sm font-medium text-gray-900" id="privacy-option-4-label">
-                                Allow mentions
-                            </p>
-                            <p class="text-sm text-gray-500" id="privacy-option-4-description">
-                                Adipiscing est venenatis enim molestie commodo eu gravid
-                            </p>
-                        </div>
-                        <!-- Enabled: "bg-teal-500", Not Enabled: "bg-gray-200" -->
-                        <button
-                            type="button"
-                            class="bg-gray-200 ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-                            role="switch"
-                            aria-checked="true"
-                            aria-labelledby="privacy-option-4-label"
-                            aria-describedby="privacy-option-4-description"
-                        >
-                            <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
-                            <span aria-hidden="true" class="translate-x-0 inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
-                        </button>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-
-        Nostrud dolor iudicem ne a sunt nisi quae offendit. Id culpa firmissimum.
-        Expetendis quid cernantur, eiusmod fore dolor et eram, aliquip magna expetendis
-        incurreret ad se anim ut nulla an elit ubi cupidatat, export consequat possumus
-        do id aute mandaremus, commodo ea appellat.Doctrina ne culpa occaecat ab non a
-        dolore esse export te anim proident vidisse ubi ad noster coniunctione, tamen
-        senserit ut imitarentur, amet probant quo elit nisi, non probant ubi doctrina do
-        mentitum illum constias. Iudicem elit elit occaecat tamen, commodo illum
-        excepteur expetendis, magna nam qui eram vidisse, singulis ab quid id ita labore
-        export in appellat ea quem laboris iis tamen anim de ad labore te nisi, quae
-        probant iis coniunctione. Ea enim offendit ullamco, se ipsum quorum ab
-        incurreret, offendit arbitrantur de admodum, quae mandaremus excepteur.
     </main>
 </template>
 
