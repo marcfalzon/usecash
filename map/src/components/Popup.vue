@@ -45,9 +45,8 @@
                         </div>
 
                         <div class="sm:flex sm:items-start">
-                            <div class="sm:mt-7 h-12 w-12 mx-auto flex-shrink-0 flex items-center justify-center rounded-full bg-yellow-200 shadow-md">
-                                <!-- <div v-html="icon" /> -->
-                                <font-awesome-icon :icon="icon" class="w-8 h-8 text-yellow-600" />
+                            <div class="sm:mt-7 h-12 w-12 mx-auto flex-shrink-0 flex items-center justify-center border-2 border-gray-800 rounded-full bg-gray-600 shadow-md">
+                                <font-awesome-icon :icon="icon" class="w-8 h-8 text-gray-200" />
                             </div>
 
                             <div class="mt-3 text-center sm:mt-1 sm:ml-4 sm:text-left">
@@ -55,7 +54,7 @@
                                     {{name}}
 
                                     <h3 class="block text-sm text-gray-400 uppercase">
-                                        {{category}}
+                                        {{category === '' || category === 'default' ? 'Merchant' : category}}
                                     </h3>
                                 </h1>
 
@@ -68,11 +67,11 @@
                                             />
 
                                             <div class="mt-2 pl-3">
-                                                <span class="text-xs text-gray-500 font-medium">
-                                                    NOW ACCEPTING
+                                                <span class="text-xs text-gray-500 font-medium uppercase">
+                                                    Now Accepting
                                                 </span>
 
-                                                <div class="flex flex-row gap-2 justify-center">
+                                                <div class="flex flex-row gap-2 justify-center sm:justify-start">
                                                     <cryptoicon
                                                         v-if="accepting.includes('BCH')"
                                                         symbol="bch"
@@ -101,7 +100,7 @@
 
                                             <div class="mt-2 pt-1 pl-3 border-t border-gray-200">
                                                 <span class="text-xs text-gray-500 font-medium uppercase">
-                                                    Last <strong class="text-green-600">Bitcoin</strong> Checkout
+                                                    Last <strong class="text-green-600">Bitcoin</strong> Activity
                                                 </span>
 
                                                 <h3 class="text-sm text-gray-700 font-medium">
@@ -128,7 +127,7 @@
                         </div>
                     </section>
 
-                    <footer class="mt-5 sm:mt-4 p-4 sm:flex sm:flex-row-reverse sm:justify-around sm:bg-gradient-to-r from-gray-300 to-gray-100 sm:border-t-2 sm:border-gray-400 sm:shadow-inner">
+                    <footer class="p-4 sm:flex sm:flex-row-reverse sm:justify-around sm:bg-gradient-to-r from-gray-300 to-gray-100 sm:border-t-2 sm:border-gray-400 sm:shadow-inner">
                         <button
                             @click="directions"
                             class="px-4 py-2 w-full sm:w-auto inline-flex justify-center items-center rounded-md border border-transparent shadow-md bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -209,8 +208,23 @@ export default {
         },
 
         icon() {
-            // return `fa-solid fa-map-location-dot`
-            return `fa-brands fa-twitter`
+            if (this.category === 'atm') {
+                return `fa-solid fa-piggy-bank`
+            }
+
+            if (this.category === 'food') {
+                return `fa-solid fa-utensils`
+            }
+
+            if (this.category === 'shopping') {
+                return `fa-solid fa-bag-shopping`
+            }
+
+            if (this.category === 'sports') {
+                return `fa-solid fa-person-running`
+            }
+
+            return `fa-solid fa-store`
         },
 
         location() {

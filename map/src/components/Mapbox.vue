@@ -471,13 +471,14 @@ export default {
                 /* Add image. */
                 await this.addImage(
                     'bch-marker',
-                    'https://i.imgur.com/9zOS6wv.png',
+                    'https://i.imgur.com/R2thD6K.png',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'exclusive-marker',
-                    'https://i.imgur.com/1r1YifH.png',
+                    // 'https://i.imgur.com/1r1YifH.png',
+                    'https://i.imgur.com/9zOS6wv.png',
                 )
 
                 /* Manage map. */

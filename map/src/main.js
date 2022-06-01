@@ -15,10 +15,15 @@ import 'tailwindcss/tailwind.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 /* Add free solid styles. */
+import { faBagShopping } from '@fortawesome/free-solid-svg-icons'
 import { faCompass } from '@fortawesome/free-solid-svg-icons'
 import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { faPersonRunning } from '@fortawesome/free-solid-svg-icons'
+import { faPiggyBank } from '@fortawesome/free-solid-svg-icons'
 import { faRoute } from '@fortawesome/free-solid-svg-icons'
+import { faStore } from '@fortawesome/free-solid-svg-icons'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { faUtensils } from '@fortawesome/free-solid-svg-icons'
 
 /* Add free brand styles. */
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
@@ -30,10 +35,15 @@ import Cryptoicon from 'vue-cryptoicon'
 import { Bch, Btc, Eth, Dash, Xrp, Bnb } from 'vue-cryptoicon/src/icons'
 
 library.add(
+    faBagShopping,
     faCompass,
     faMapLocationDot,
+    faPersonRunning,
+    faPiggyBank,
     faRoute,
+    faStore,
     faUserSecret,
+    faUtensils,
 
     faTwitter,
 )
