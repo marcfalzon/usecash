@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="sm:flex sm:items-start">
-                            <div class="h-12 w-12 mx-auto flex-shrink-0 flex items-center justify-center rounded-full bg-yellow-200">
+                            <div class="sm:mt-7 h-12 w-12 mx-auto flex-shrink-0 flex items-center justify-center rounded-full bg-yellow-200 shadow-md">
                                 <!-- <div v-html="icon" /> -->
                                 <font-awesome-icon :icon="icon" class="w-8 h-8 text-yellow-600" />
                             </div>
@@ -62,29 +62,41 @@
                                 <section class="mt-3 w-full">
                                     <div class="grid grid-cols-5 gap-4 rounded-xl">
                                         <div class="col-span-3">
-                                            <img class="p-1 border-2 border-gray-300 rounded" :src="banner" />
+                                            <img
+                                                class="p-1 border-2 border-gray-300 shadow-md shadow-inner rounded"
+                                                :src="banner"
+                                            />
 
-                                            <div class="mt-1 pl-2 text-xs">
-                                                {{description}}
+                                            <div class="mt-2 pl-3">
+                                                <span class="text-xs text-gray-500 font-medium">
+                                                    NOW ACCEPTING
+                                                </span>
+
+                                                <div class="block">
+                                                    BCH, BTC, DASH
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-2 pt-1 pl-3 border-t border-gray-200">
+                                                <span class="text-xs text-gray-500 font-medium uppercase">
+                                                    Last <strong class="text-green-600">Bitcoin</strong> Checkout
+                                                </span>
+
+                                                <h3 class="text-sm text-gray-700 font-medium">
+                                                    {{lastActivity}}
+                                                </h3>
                                             </div>
                                         </div>
 
                                         <div class="col-span-2">
-                                            <p class="text-right">
-                                                <a class="mt-3 leading-3 text-blue-500 text-right hover:underline font-extrabold" href="https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=123 Main Street<br>New York, NY 10012<br>" target="_blank">
-                                                    {{streetAddress}}
-                                                    <span class="block">{{location}}</span>
-                                                </a>
-                                            </p>
+                                            <a @click="directions" href="javascript://"  class="mt-3 leading-3 text-blue-500 text-center hover:underline font-extrabold">
+                                                {{streetAddress}}
+                                                 —
+                                                {{location}}
+                                            </a>
 
-                                            <p class="mt-2 text-right">
-                                                <strong>ACCEPTING</strong>
-                                                <br />BCH, BTC, DASH
-                                            </p>
-
-                                            <div class="mt-2 text-right">
-                                                Last <strong>BITCOIN</strong> Transaction
-                                                <h2>an hour ago <small></small></h2>
+                                            <div class="mt-1 pt-2 text-xs border-t border-gray-200">
+                                                {{summary}}
                                             </div>
                                         </div>
                                     </div>
@@ -94,14 +106,15 @@
                         </div>
                     </section>
 
-                    <footer class="mt-5 sm:mt-4 p-4 sm:flex sm:flex-row-reverse sm:justify-around sm:bg-gray-200 sm:border-t-2 sm:border-gray-300 sm:shadow-inner">
+                    <footer class="mt-5 sm:mt-4 p-4 sm:flex sm:flex-row-reverse sm:justify-around sm:bg-gradient-to-r from-gray-300 to-gray-100 sm:border-t-2 sm:border-gray-400 sm:shadow-inner">
                         <button
                             @click="directions"
-                            class="px-4 py-2 w-full sm:w-auto inline-flex justify-center items-center rounded-md border border-transparent shadow-sm bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                            class="px-4 py-2 w-full sm:w-auto inline-flex justify-center items-center rounded-md border border-transparent shadow-md bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
-                            <svg class="w-5 h-5 text-gray-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                            <!-- <font-awesome-icon icon="fa-solid fa-route" class="w-5 h-5 text-gray-100" /> -->
+                            <font-awesome-icon icon="fa-solid fa-compass" class="w-5 h-5 text-gray-100" />
 
-                            <span class="ml-3 text-xl sm:text-lg font-medium text-gray-100">
+                            <span class="ml-3 text-2xl sm:text-xl font-medium text-gray-100">
                                 Directions
                             </span>
                         </button>
@@ -109,11 +122,11 @@
                         <a
                             v-if="phone"
                             :href="'tel:' + phone"
-                            class="sm:mt-0 sm:w-auto mt-3 w-full inline-flex justify-center items-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            class="sm:mt-0 sm:w-auto mt-3 w-full inline-flex justify-center items-center rounded-md border border-gray-300 shadow-md px-4 py-2 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
                             <svg class="w-5 h-5 text-gray-700" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.924 2.617a.997.997 0 00-.215-.322l-.004-.004A.997.997 0 0017 2h-4a1 1 0 100 2h1.586l-3.293 3.293a1 1 0 001.414 1.414L16 5.414V7a1 1 0 102 0V3a.997.997 0 00-.076-.383z"></path><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
 
-                            <span class="ml-3 text-xl sm:text-lg font-medium text-gray-700">
+                            <span class="ml-3 text-2xl sm:text-xl font-medium text-gray-700">
                                 Call
                             </span>
                         </a>
@@ -121,11 +134,11 @@
                         <a
                             v-if="website"
                             :href="website" target="_blank"
-                            class="sm:mt-0 sm:w-auto mt-3 w-full inline-flex justify-center items-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            class="sm:mt-0 sm:w-auto mt-3 w-full inline-flex justify-center items-center rounded-md border border-gray-300 shadow-md px-4 py-2 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
                             <svg class="w-5 h-5 text-gray-700" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
 
-                            <span class="ml-3 text-xl sm:text-lg font-medium text-gray-700">
+                            <span class="ml-3 text-2xl sm:text-xl font-medium text-gray-700">
                                 Visit Website
                             </span>
                         </a>
@@ -161,6 +174,7 @@ export default {
         description: null,
         lat: null,
         lng: null,
+        lastActivity: null,
     }),
     computed: {
         banner() {
@@ -174,7 +188,6 @@ export default {
         icon() {
             // return `fa-solid fa-map-location-dot`
             return `fa-brands fa-twitter`
-            // return `<font-awesome-icon icon="fa-solid fa-map-location-dot" class="w-8 h-8 text-yellow-600" />`
         },
 
         location() {
@@ -185,13 +198,13 @@ export default {
             return `${this.city}, ${this.state} ${this.postalCode}`
         },
 
-        // geo() {
-        //     if (!this.lat || !this.lng) {
-        //         return null
-        //     }
-        //
-        //     return `geo:${this.lat},${this.lng}`
-        // },
+        summary() {
+            if (!this.description) {
+                return `no summary available`
+            }
+
+            return this.description
+        },
 
     },
     methods: {
@@ -324,6 +337,13 @@ export default {
             /* Handle longitude. */
             if (body.lng) {
                 this.lng = body.lng
+            }
+
+            /* Handle longitude. */
+            if (body.updatedAt) {
+                this.lastActivity = body.updatedAt
+            } else {
+                this.lastActivity = `not available`
             }
 
         }

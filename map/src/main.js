@@ -14,15 +14,26 @@ import 'tailwindcss/tailwind.css'
 /* add fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 
-/* add some free styles */
-import { faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+/* Add free solid styles. */
+import { faCompass } from '@fortawesome/free-solid-svg-icons'
 import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { faRoute } from '@fortawesome/free-solid-svg-icons'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+
+/* Add free brand styles. */
+import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faTwitter, faUserSecret, faMapLocationDot)
+library.add(
+    faCompass,
+    faMapLocationDot,
+    faRoute,
+    faUserSecret,
+
+    faTwitter,
+)
 
 /* add font awesome icon component */
 Vue.component('font-awesome-icon', FontAwesomeIcon)
