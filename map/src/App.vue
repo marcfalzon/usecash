@@ -58,6 +58,12 @@ export default {
         isPanelHidden: null,
         showMagicLinkWin: null,
     }),
+    watch: {
+        '$route.params': function () {
+            /* Open (side panel) menu on page change. */
+            this.openMenu()
+        },
+    },
     computed: {
         isPanelVisible() {
             return this.isPanelOpen ? 'opacity-100' : 'opacity-0'
@@ -85,11 +91,17 @@ export default {
         openMenu() {
             // console.log('OPEN MENU');
             this.isPanelOpen = true
+
+            this.isPanelHidden = false
         },
 
         closeMenu() {
             // console.log('CLOSE MENU');
             this.isPanelOpen = false
+
+            setTimeout(() => {
+                this.isPanelHidden = true
+            }, 500) // NOTE: Delay for animation duration.
         },
 
         openPopup(_vendorid) {
@@ -102,14 +114,10 @@ export default {
         },
 
         toggleMenu() {
-            this.isPanelOpen = !this.isPanelOpen
-
             if (this.isPanelOpen) {
-                this.isPanelHidden = false
+                this.closeMenu()
             } else {
-                setTimeout(() => {
-                    this.isPanelHidden = true
-                }, 500)
+                this.openMenu()
             }
         },
     },

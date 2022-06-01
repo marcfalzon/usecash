@@ -245,7 +245,6 @@ class SidePanelMenuBtn {
         this.container.classList.add('cursor-pointer')
 
         this.container.addEventListener('click', () => {
-            // this.vue.toggleMenu()
             this.vue.$emit('toggleMenu')
         })
 
