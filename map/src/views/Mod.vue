@@ -84,7 +84,7 @@ export default {
         /* Validate magic login. */
         const isLoggedIn = await magicKey.user.isLoggedIn()
             .catch(err => console.error(err))
-        console.log('MAGIC (isLoggedIn):', isLoggedIn)
+        // console.log('MOD (isLoggedIn):', isLoggedIn)
 
         /* Validate user login. */
         if (isLoggedIn) {
@@ -94,31 +94,9 @@ export default {
         }
     },
     created: async function () {
-        /* Validate magic login. */
-        // this.isLoggedIn = await magicKey.user.isLoggedIn()
-        //     .catch(err => console.error(err))
-        // console.log('MAGIC (isLoggedIn):', this.isLoggedIn)
-
-        /* Request magic user data. */
-        // this.magicUser = await magicKey.user.getMetadata()
-        //     .catch(err => console.error(err))
-        // console.log('MAGIC (user):', this.magicUser)
-
         /* Initialize menu state. */
         this.isOpen = false
 
-        // const route = this.$route
-        // console.log('ROUTE', route)
-
-        // if (route && route.params) {
-        //     const params = route.params
-        //     console.log('PARAMS', params)
-        //
-        //     if (params && params.pageid) {
-        //         const pageid = params.pageid
-        //         console.log('PAGE ID', pageid)
-        //     }
-        // }
     },
     mounted: function () {
         //

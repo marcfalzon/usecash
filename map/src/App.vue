@@ -72,7 +72,7 @@ export default {
             /* Validate magic login. */
             const isLoggedIn = await magicKey.user.isLoggedIn()
                 .catch(err => console.error(err))
-            console.log('MAGIC (isLoggedIn):', isLoggedIn)
+            console.log('APP (isLoggedIn):', isLoggedIn)
 
             if (isLoggedIn) {
                 /* Request magic user data. */

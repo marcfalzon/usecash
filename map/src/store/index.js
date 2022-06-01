@@ -39,6 +39,14 @@ export default new Vuex.Store({
             return false
         },
 
+        hasAuth(_state) {
+            if (_state.magicUser !== null) {
+                return true
+            }
+
+            return false
+        },
+
     },
     actions: {
         async signin({ commit }, _params) {
@@ -101,6 +109,9 @@ export default new Vuex.Store({
 
             /* Clear user. */
             commit('saveMagicUser', null)
+
+            /* Clear DID. */
+            commit('saveDid', null)
 
             /* Clear email. */
             commit('saveEmail', null)

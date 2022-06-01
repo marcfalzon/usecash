@@ -29,10 +29,10 @@
 
                     <!-- Profile dropdown -->
                     <div class="ml-2 mr-2 relative">
-                        <button @click="profile" type="button" class="p-1 bg-gray-100 flex rounded-full focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                        <button @click="profile" type="button" class="p-1 bg-gray-100 flex rounded-full overflow-hidden focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                             <span class="sr-only">Open profile menu</span>
 
-                            <img v-if="avatar" class="h-8 w-8 object-cover" :src="avatar" alt="">
+                            <img v-if="avatar" class="h-8 w-8 object-cover rounded-full" :src="avatar" alt="">
 
                             <svg v-else class="w-8 h-8 text-gray-800" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                         </button>

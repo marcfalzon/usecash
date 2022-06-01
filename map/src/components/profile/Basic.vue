@@ -327,7 +327,7 @@ export default {
         },
 
         abbr(_address) {
-            return _address.slice(0, 12) + '...' + _address.slice(-10)
+            return _address.slice(0, 10) + '...' + _address.slice(-8)
         },
 
     },

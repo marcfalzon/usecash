@@ -1,6 +1,6 @@
 <template>
-    <main class="mt-5 p-3 border-2 bg-yellow-100 border-yellow-300 rounded-lg shadow-lg">
-        <h1 class="my-2 text-2xl text-yellow-700 font-bold text-center opacity-40">
+    <main class="mt-5 p-3 border-2 border-yellow-300 bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-lg shadow-lg">
+        <h1 class="my-1 text-xl text-yellow-700 font-bold text-center opacity-30">
             CATEGORY FILTER
         </h1>
 
