@@ -294,16 +294,20 @@
         </div>
 
         <div class="mt-10">
-            <div class="flex justify-center">
-                <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Cancel
+            <div class="flex flex-col sm:flex-row justify-center">
+                <button type="button" class="w-full bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <span class="text-lg font-medium text-gray-700">
+                        Cancel
+                    </span>
                 </button>
 
                 <button
                     @click="addMerchant"
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    class="w-full mt-3 sm:mt-0 sm:ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm rounded-md bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                    Submit New Merchant
+                    <span class="text-lg font-medium text-white">
+                        Submit New Merchant
+                    </span>
                 </button>
             </div>
         </div>

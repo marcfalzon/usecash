@@ -26,11 +26,21 @@
           -->
                 <div @click.stop="noop" class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
                     <section @click.stop="noop" class="px-4 pt-5 pb-4 sm:p-6">
-                        <div class="absolute top-0 right-0 pt-3 pr-3">
+                        <div class="absolute top-0 left-0 pt-3 pl-3">
                             <button @click="report" type="button" class="flex items-center bg-white rounded-md text-xs text-gray-400 hover:text-gray-500">
                                 <span class="sr-only">Report</span>
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path></svg>
                                 REPORT
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path></svg>
+                            </button>
+                        </div>
+
+                        <div class="absolute top-0 right-0 pt-3 pr-3">
+                            <button @click="close" type="button" class="flex items-center bg-white rounded-md text-xs text-gray-400 hover:text-gray-500">
+                                <span class="sr-only">Close details</span>
+                                CLOSE
+                                <svg class="h-4 w-4 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
                             </button>
                         </div>
 
@@ -204,7 +214,7 @@ export default {
             let body = '\n\n'
 
             body += '________________________________________'
-            body += '\nPlease provide your report details above ☝\n\n'
+            body += '\nPlease enter the report details above ☝\n\n'
 
             if (this.name) {
                 body += 'Merchant Name: ' + this.name + '\n'

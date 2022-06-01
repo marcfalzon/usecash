@@ -6,16 +6,12 @@
                     About
                 </router-link>
 
-                <router-link to="/learn" class="text-base text-gray-500 font-medium hover:text-gray-900 hover:underline">
-                    Learn
-                </router-link>
-
                 <router-link to="/sponsors" class="text-base text-gray-500 font-medium hover:text-gray-900 hover:underline">
                     Sponsors
                 </router-link>
 
                 <router-link to="/tos" class="text-base text-gray-500 font-medium hover:text-gray-900 hover:underline">
-                    ToS
+                    Terms
                 </router-link>
             </nav>
 

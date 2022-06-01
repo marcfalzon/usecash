@@ -1,6 +1,8 @@
 <template>
     <main>
-        <h1>Our Sponsors</h1>
+        <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            Our sponsors
+        </h1>
 
         <p>
             ...

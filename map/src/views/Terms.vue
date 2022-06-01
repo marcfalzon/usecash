@@ -1,6 +1,8 @@
 <template>
     <main>
-        <h1>Terms of Service</h1>
+        <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            Terms of service
+        </h1>
 
         <p>
             ...
