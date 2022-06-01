@@ -72,8 +72,9 @@
                                                     NOW ACCEPTING
                                                 </span>
 
-                                                <div class="block">
-                                                    BCH, BTC, DASH
+                                                <div class="flex flex-row gap-2 justify-center">
+                                                    <cryptoicon symbol="bch" size="24" />
+                                                    <cryptoicon symbol="btc" size="24" />
                                                 </div>
                                             </div>
 

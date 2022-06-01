@@ -26,6 +26,9 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+import Cryptoicon from 'vue-cryptoicon'
+import { Bch, Btc, Eth, Xrp, Bnb } from 'vue-cryptoicon/src/icons'
+
 library.add(
     faCompass,
     faMapLocationDot,
@@ -37,6 +40,9 @@ library.add(
 
 /* add font awesome icon component */
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+Cryptoicon.add([ Bch, Btc, Eth, Xrp, Bnb ])
+Vue.use(Cryptoicon)
 
 Vue.config.productionTip = false
 
