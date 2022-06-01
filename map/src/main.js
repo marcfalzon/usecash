@@ -11,7 +11,7 @@ import 'leaflet/dist/leaflet.css'
 /* Import tailwind. */
 import 'tailwindcss/tailwind.css'
 
-/* add fontawesome core */
+/* Add fontawesome core. */
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 /* Add free solid styles. */
@@ -23,7 +23,7 @@ import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 /* Add free brand styles. */
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
-/* import font awesome icon component */
+/* Import font awesome icon component. */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import Cryptoicon from 'vue-cryptoicon'
