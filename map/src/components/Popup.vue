@@ -45,11 +45,11 @@
                         </div>
 
                         <div class="sm:flex sm:items-start">
-                            <div class="sm:mt-7 h-12 w-12 mx-auto flex-shrink-0 flex items-center justify-center border-2 border-gray-800 rounded-full bg-gray-600 shadow-md">
+                            <div class="sm:mt-8 h-12 w-12 mx-auto flex-shrink-0 flex items-center justify-center border-2 border-gray-800 rounded-full bg-gray-600 shadow-md">
                                 <font-awesome-icon :icon="icon" class="w-8 h-8 text-gray-200" />
                             </div>
 
-                            <div class="mt-3 text-center sm:mt-1 sm:ml-4 sm:text-left">
+                            <div class="mt-3 text-center sm:mt-2 sm:ml-4 sm:text-left">
                                 <h1 class="text-2xl sm:text-3xl leading-7 font-medium text-gray-900" id="modal-title">
                                     {{name}}
 
@@ -212,8 +212,32 @@ export default {
                 return `fa-solid fa-piggy-bank`
             }
 
+            if (this.category === 'attraction') {
+                return `fa-solid fa-map-location-dot`
+            }
+
+            if (this.category === 'cafe') {
+                return `fa-solid fa-mug-saucer`
+            }
+
             if (this.category === 'food') {
                 return `fa-solid fa-utensils`
+            }
+
+            if (this.category === 'grocery') {
+                return `fa-solid fa-basket-shopping`
+            }
+
+            if (this.category === 'lodging') {
+                return `fa-solid fa-bed`
+            }
+
+            if (this.category === 'nightlife') {
+                return `fa-solid fa-champagne-glasses`
+            }
+
+            if (this.category === 'services') {
+                return `fa-solid fa-bell-concierge`
             }
 
             if (this.category === 'shopping') {
@@ -222,6 +246,10 @@ export default {
 
             if (this.category === 'sports') {
                 return `fa-solid fa-person-running`
+            }
+
+            if (this.category === 'transport') {
+                return `fa-solid fa-truck-plane`
             }
 
             return `fa-solid fa-store`
