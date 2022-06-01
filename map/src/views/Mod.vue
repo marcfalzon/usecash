@@ -15,7 +15,7 @@
 
                     <div class="ml-3">
                         <p class="text-lg text-red-700">
-                            Moderation Mode is currently ONLY available on Desktop
+                            Moderation Mode is currently ONLY available in Desktop View
                         </p>
                     </div>
                 </div>

@@ -76,7 +76,7 @@ export default {
         signin() {
             /* Request login. */
             this.$store.dispatch('signin', {
-                email: this.email,
+                email: this.email.toLowerCase(),
             })
         },
 

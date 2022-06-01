@@ -36,15 +36,13 @@ export default new Vuex.Store({
 
     },
     actions: {
-        async signin({ commit }, _email) {
+        async signin({ commit }, _params) {
+            // console.log('SIGNIN PARAMS', _params)
             // FIXME: Add email verification.
-
-            /* Convert email. */
-            const email = _email.toLowerCase()
 
             try {
                 /* Request magic login. */
-                const did = await magicKey.auth.loginWithMagicLink(email)
+                const did = await magicKey.auth.loginWithMagicLink(_params)
                 // console.log('DID TOKEN', did)
 
                 /* Send DID token to server. */
