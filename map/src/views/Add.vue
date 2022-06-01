@@ -171,6 +171,16 @@
                         <input type="text" v-model="website" autocomplete="website" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
                     </div>
                 </div>
+
+                <div class="">
+                    <label for="phone" class="block text-lg font-medium text-gray-500">
+                        Phone Number
+                    </label>
+
+                    <div class="mt-1">
+                        <input type="tel" v-model="phone" autocomplete="tel" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md" />
+                    </div>
+                </div>
             </section>
 
             <section class="p-3 bg-yellow-100 border-4 border-yellow-500 rounded-xl">
@@ -365,7 +375,7 @@ export default {
         crypto: null,
         notifs: null,
         website: null,
-
+        phone: null,
     }),
     watch: {
         // merchantStorefrontPhoto(_val) {
@@ -748,6 +758,7 @@ export default {
                 postalCode: this.postal,
                 country: this.country,
                 website: this.website,
+                phone: this.phone,
                 media: {
                     storefront: `${API_ENDPOINT}/media/${this.merchantStorefrontPhotoId}.jpg`,
                 },

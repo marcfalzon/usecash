@@ -19,9 +19,8 @@
 
         <section class="mt-5">
             <p>
-                Aute aliquip aut culpa anim aut id id graviterque, non quo summis eram culpa, o
-                id despicationes, doctrina fore nulla ea nulla, nisi appellat ab vidisse, export
-                distinguantur occaecat illum proident, labore o ne tempor cupidatat.
+                Please don't hesitate to reach out to our team for any questions you have or just to give us feedback.
+                <a href="mailto:hello@usecash.com" class="text-blue-500 font-bold hover:underline">hello@usecash.com</a>
             </p>
         </section>
 
