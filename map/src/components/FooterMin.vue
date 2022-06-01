@@ -59,7 +59,7 @@
                 </a>
             </div>
 
-            <p class="mt-3 text-base text-gray-400 text-center">
+            <p class="mt-3 text-sm sm:text-base text-gray-400 text-center">
                 Copyright &copy; {{curYear}}. Use Cash.
                 <br class="block sm:hidden" />All rights reserved.
             </p>

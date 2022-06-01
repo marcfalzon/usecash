@@ -1,5 +1,9 @@
 <template>
     <main class="mt-5 p-3 border-2 bg-yellow-100 border-yellow-300 rounded-lg shadow-lg">
+        <h1 class="my-2 text-2xl text-yellow-700 font-bold text-center opacity-40">
+            CATEGORY FILTER
+        </h1>
+
         <h1 class="sm:hidden text-base text-gray-700 font-bold">
             Discover where to spend your Bitcoin Cash <strong class="text-yellow-700">ANYWHERE</strong> in the world:
         </h1>

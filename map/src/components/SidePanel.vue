@@ -3,7 +3,7 @@
         <!-- Background backdrop, show/hide based on slide-over state. -->
         <div class="fixed inset-0 bg-blue-500 opacity-80"></div>
 
-        <div class="fixed inset-0 overflow-hidden">
+        <div class="fixed inset-0 overflow-hidden" @click="$emit('toggleMenu')">
             <div class="absolute inset-0 overflow-hidden">
                 <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
                     <!--
@@ -16,7 +16,7 @@
                 From: "translate-x-0"
                 To: "translate-x-full"
             -->
-                    <div class="pointer-events-auto w-screen max-w-md sm:max-w-3xl transform transition ease-in-out duration-500 sm:duration-700" :class="ani">
+                    <div @click.stop="noop" class="pointer-events-auto w-screen max-w-md sm:max-w-3xl transform transition ease-in-out duration-500 sm:duration-700" :class="ani">
                         <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                             <div class="px-4 py-6 sm:px-6">
                                 <div class="flex items-start justify-between">
@@ -85,6 +85,12 @@ export default {
                 }, 10)
             }
         }
+    },
+    methods: {
+        noop() {
+            //
+        },
+        
     },
     created: function () {
         // this.ani = 'translate-x-0'
