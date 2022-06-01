@@ -72,7 +72,7 @@ const merchants = async function (req, res) {
             /* Build data package. */
             const pkg = {
                 category: results.category,
-                crypto: results.crypto,
+                crypto: results.crypto || results.coins,
                 name: results.name,
                 streetAddress: results.streetAddress || results.street,
                 city: results.city,
