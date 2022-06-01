@@ -1,10 +1,14 @@
 <template>
     <main class="w-full">
-        <div class="py-6 px-4">
+        <div class="">
             <div>
-                <h1 class="text-2xl font-medium text-gray-900">
-                    Map Tools
+                <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">
+                    Map Toolkit
                 </h1>
+
+                <p class="mt-1 text-sm text-gray-500">
+                    Complete set of tools for managing map &amp; location data
+                </p>
             </div>
 
             <V2 />

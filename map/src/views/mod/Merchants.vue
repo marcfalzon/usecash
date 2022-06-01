@@ -1,8 +1,14 @@
 <template>
     <main class="">
-        <h1 class="text-2xl font-bold">
-            Merchants
-        </h1>
+        <div>
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">
+                Merchants
+            </h1>
+
+            <p class="mt-1 text-sm text-gray-500">
+                List of all the merchant profiles
+            </p>
+        </div>
 
         <div class="my-3 -mx-6">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

@@ -1,15 +1,13 @@
 <template>
     <main class="">
-        <div class="">
-            <div class="">
-                <h1 class="text-2xl font-semibold text-gray-900">
-                    Users
-                </h1>
+        <div>
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">
+                Users
+            </h1>
 
-                <p class="mt-2 text-sm text-gray-700">
-                    A list of all the users in your account including their name, title, email and role.</p>
-            </div>
-
+            <p class="mt-1 text-sm text-gray-500">
+                List of all the user profiles
+            </p>
         </div>
 
         <div class="mt-8 flex flex-col">

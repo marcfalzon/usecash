@@ -7,7 +7,7 @@
                 </h1>
 
                 <p class="mt-1 text-sm text-gray-500">
-                    A complete set of tools for managing the data storage.
+                    Complete set of tools for managing the data storage
                 </p>
             </div>
 
