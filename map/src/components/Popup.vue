@@ -103,9 +103,15 @@
                                                     Last <strong class="text-green-600">Bitcoin</strong> Activity
                                                 </span>
 
-                                                <h3 class="text-sm text-gray-700 font-medium">
-                                                    {{lastActivity}}
-                                                </h3>
+                                                <div class="flex flex-row items-center">
+                                                    <h3 class="text-sm text-gray-700 font-medium">
+                                                        {{lastActivity}}
+                                                    </h3>
+
+                                                    <button @click="updateVendor" class="ml-2 text-sm text-blue-400 hover:underline" href="javascript://">
+                                                        (update)
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -358,6 +364,12 @@ export default {
                 window.open(`https://maps.google.com/maps?daddr=${this.lat},${this.lng}&amp;ll=`)
             }
         },
+
+        updateVendor() {
+            if (window.confirm(`Please click OK to report that this merchant has recently accepted a crypto payment.`)) {
+                alert('Thank you for contributing to our platform.')
+            }
+        }
 
     },
     created: async function () {

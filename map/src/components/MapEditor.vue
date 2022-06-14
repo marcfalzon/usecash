@@ -150,7 +150,7 @@ export default {
             this.map.on('click', (event) => {
                 /* Set pin position. */
                 const position = event.latlng
-                // console.log('POSITION', position)
+                console.log('POSITION (click):', position)
 
                 /* Update pin position. */
                 // NOTE: This flag is set when the user clicks within the circle region.
@@ -171,7 +171,7 @@ export default {
             this.marker.on('dragend', () => {
                 /* Set pin position. */
                 const position = this.marker.getLatLng()
-                // console.log('POSITION', position)
+                console.log('POSITION (drag):', position)
 
                 /* Update pin position. */
                 // NOTE: This flag is set when the user clicks within the circle region.
