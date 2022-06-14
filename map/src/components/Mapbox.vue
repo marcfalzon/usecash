@@ -471,14 +471,54 @@ export default {
                 /* Add image. */
                 await this.addImage(
                     'bch-marker',
-                    'https://i.imgur.com/R2thD6K.png',
+                    // 'https://i.imgur.com/R2thD6K.png', // BCH logo (bw)
+                    // 'https://i.imgur.com/R2thD6K.png',
+                    'https://ipfs.io/ipfs/QmZpc7RY6FucgnDpegEWBocqSjNxFFGyc8a8mSuWCK86bg', // merchant-bw
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'exclusive-marker',
-                    // 'https://i.imgur.com/1r1YifH.png',
-                    'https://i.imgur.com/9zOS6wv.png',
+                    // 'https://i.imgur.com/1r1YifH.png', // Multi-chain logo
+                    // 'https://i.imgur.com/9zOS6wv.png', // BCH logo (color)
+                    'https://ipfs.io/ipfs/QmdBxQYku37VM2tetSvBuVxWtDRtsyRkp7Ax3y1nheCdMB', // merchant
+                    // 'https://ipfs.io/ipfs/QmVV9DhwjXm7Db2i6YeBM11ZR9tEsZtSRbf2zHAXnc846H', // shopping
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-lodging',
+                    'https://ipfs.io/ipfs/QmPXbjmGxj2Ax3mUtkiH7JS7kj9uQduEBxz8cn3uif6J7Z',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-featured-lodging',
+                    'https://ipfs.io/ipfs/QmP2BmvqNnHGbBYNWSZJh27u18XtJi2CFny9gRPq3eCftJ',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-merchant',
+                    'https://ipfs.io/ipfs/QmZpc7RY6FucgnDpegEWBocqSjNxFFGyc8a8mSuWCK86bg',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-featured-merchant',
+                    'https://ipfs.io/ipfs/QmdBxQYku37VM2tetSvBuVxWtDRtsyRkp7Ax3y1nheCdMB',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-shopping',
+                    'https://ipfs.io/ipfs/QmVRKqynUCtEBNuWBw3jTERidYFTaXFYiTPMHmXJTeDa4v',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-featured-shopping',
+                    'https://ipfs.io/ipfs/QmVV9DhwjXm7Db2i6YeBM11ZR9tEsZtSRbf2zHAXnc846H',
                 )
 
                 /* Manage map. */
@@ -692,7 +732,7 @@ export default {
                     this.vendors.push({
                         id: vendor._id,
                         cat: vendor.category,
-                        isExclusive: vendor.users ? true : false, // FIXME: Is this a sufficient flag.
+                        isFeatured: vendor.users ? true : false, // FIXME: Change based on `updatedAt`
                         lat: vendor.lat,
                         lng: vendor.lng,
                         latlng: [ vendor.lat, vendor.lng ],
@@ -712,8 +752,7 @@ export default {
                         'properties': {
                             'id': _vendor.id,
                             'category': _vendor.cat,
-                            // 'description': _vendor.display,
-                            'isExclusive': _vendor.isExclusive,
+                            'isFeatured': _vendor.isFeatured,
                         },
                         'geometry': {
                             'type': 'Point',
@@ -815,6 +854,7 @@ export default {
                 }
             })
 
+            /* Cluster circles. */
             this.map.addLayer({
                 id: 'cluster-count',
                 type: 'symbol',
@@ -827,6 +867,7 @@ export default {
                 }
             })
 
+            /* ATM (OLD). */
             this.map.addLayer({
                 id: 'unclustered-atm-point',
                 type: 'symbol',
@@ -841,6 +882,7 @@ export default {
                 }
             })
 
+            /* Merchant (OLD). */
             this.map.addLayer({
                 id: 'unclustered-bch-point',
                 type: 'symbol',
@@ -848,7 +890,7 @@ export default {
                 filter: ['all',
                     ['!', ['has', 'point_count']],
                     ['!=', ['get', 'category'], 'atm'],
-                    ['!=', ['get', 'isExclusive'], true],
+                    ['!=', ['get', 'isFeatured'], true],
                 ],
                 layout: {
                     'icon-image': 'bch-marker',
@@ -856,6 +898,7 @@ export default {
                 }
             })
 
+            /* Featured merchant (OLD). */
             this.map.addLayer({
                 id: 'unclustered-exclusive-point',
                 type: 'symbol',
@@ -863,10 +906,58 @@ export default {
                 filter: ['all',
                     ['!', ['has', 'point_count']],
                     ['!=', ['get', 'category'], 'atm'],
-                    ['==', ['get', 'isExclusive'], true],
+                    ['==', ['get', 'isFeatured'], true],
                 ],
                 layout: {
                     'icon-image': 'exclusive-marker',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Lodging. */
+            this.map.addLayer({
+                id: 'unclustered-lodging-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'lodging'],
+                    ['==', ['get', 'isFeatured'], false],
+                ],
+                layout: {
+                    'icon-image': 'marker-lodging',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Shopping. */
+            this.map.addLayer({
+                id: 'unclustered-shopping-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'shopping'],
+                    ['==', ['get', 'isFeatured'], false],
+                ],
+                layout: {
+                    'icon-image': 'marker-shopping',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Featured Shopping. */
+            this.map.addLayer({
+                id: 'unclustered-featured-shopping-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'shopping'],
+                    ['==', ['get', 'isFeatured'], true],
+                ],
+                layout: {
+                    'icon-image': 'marker-featured-shopping',
                     'icon-allow-overlap': true,
                 }
             })
