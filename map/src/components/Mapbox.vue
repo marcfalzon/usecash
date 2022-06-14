@@ -464,25 +464,42 @@ export default {
 
                 /* Add image. */
                 await this.addImage(
-                    'atm-marker',
-                    'https://i.imgur.com/A9jVeq1.png',
-                )
-
-                /* Add image. */
-                await this.addImage(
                     'bch-marker',
-                    // 'https://i.imgur.com/R2thD6K.png', // BCH logo (bw)
-                    // 'https://i.imgur.com/R2thD6K.png',
                     'https://ipfs.io/ipfs/QmZpc7RY6FucgnDpegEWBocqSjNxFFGyc8a8mSuWCK86bg', // merchant-bw
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'exclusive-marker',
-                    // 'https://i.imgur.com/1r1YifH.png', // Multi-chain logo
-                    // 'https://i.imgur.com/9zOS6wv.png', // BCH logo (color)
                     'https://ipfs.io/ipfs/QmdBxQYku37VM2tetSvBuVxWtDRtsyRkp7Ax3y1nheCdMB', // merchant
-                    // 'https://ipfs.io/ipfs/QmVV9DhwjXm7Db2i6YeBM11ZR9tEsZtSRbf2zHAXnc846H', // shopping
+                )
+
+
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-atm',
+                    // 'https://i.imgur.com/A9jVeq1.png',
+                    'https://ipfs.io/ipfs/Qmd96SGXeNVoVKAw5DYhQBQVE1jsFoBW5guVztAwbeCq9C',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-featured-atm',
+                    // 'https://i.imgur.com/A9jVeq1.png',
+                    'https://ipfs.io/ipfs/QmSULGHNmyp4VBWpdBSwYbeqcMVeb7dmUcsaNF9DaSR2f1',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-food',
+                    'https://ipfs.io/ipfs/QmdyUzbk2gKcP3nDcgGtTzTwomsqTUc5Hr25sn8HpsxRDV',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-featured-food',
+                    'https://ipfs.io/ipfs/QmZ36fB9RspqZ81fRWHUqTqLamqUJtkaZAPtckQLQK2uGm',
                 )
 
                 /* Add image. */
@@ -867,21 +884,6 @@ export default {
                 }
             })
 
-            /* ATM (OLD). */
-            this.map.addLayer({
-                id: 'unclustered-atm-point',
-                type: 'symbol',
-                source: 'vendors',
-                filter: ['all',
-                    ['!', ['has', 'point_count']],
-                    ['==', ['get', 'category'], 'atm'],
-                ],
-                layout: {
-                    'icon-image': 'atm-marker',
-                    'icon-allow-overlap': true,
-                }
-            })
-
             /* Merchant (OLD). */
             this.map.addLayer({
                 id: 'unclustered-bch-point',
@@ -890,7 +892,7 @@ export default {
                 filter: ['all',
                     ['!', ['has', 'point_count']],
                     ['!=', ['get', 'category'], 'atm'],
-                    ['!=', ['get', 'isFeatured'], true],
+                    ['==', ['get', 'isFeatured'], false],
                 ],
                 layout: {
                     'icon-image': 'bch-marker',
@@ -914,6 +916,72 @@ export default {
                 }
             })
 
+
+
+            /* ATM. */
+            this.map.addLayer({
+                id: 'unclustered-atm-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'atm'],
+                    ['==', ['get', 'isFeatured'], false],
+                ],
+                layout: {
+                    'icon-image': 'marker-atm',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Featured ATM. */
+            this.map.addLayer({
+                id: 'unclustered-featured-atm-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'atm'],
+                    ['==', ['get', 'isFeatured'], true],
+                ],
+                layout: {
+                    'icon-image': 'marker-featured-atm',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Food. */
+            this.map.addLayer({
+                id: 'unclustered-food-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'food'],
+                    ['==', ['get', 'isFeatured'], false],
+                ],
+                layout: {
+                    'icon-image': 'marker-food',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Featured food. */
+            this.map.addLayer({
+                id: 'unclustered-featured-food-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'food'],
+                    ['==', ['get', 'isFeatured'], true],
+                ],
+                layout: {
+                    'icon-image': 'marker-featured-food',
+                    'icon-allow-overlap': true,
+                }
+            })
+
             /* Lodging. */
             this.map.addLayer({
                 id: 'unclustered-lodging-point',
@@ -926,6 +994,22 @@ export default {
                 ],
                 layout: {
                     'icon-image': 'marker-lodging',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Featured lodging. */
+            this.map.addLayer({
+                id: 'unclustered-featured-lodging-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'lodging'],
+                    ['==', ['get', 'isFeatured'], true],
+                ],
+                layout: {
+                    'icon-image': 'marker-featured-lodging',
                     'icon-allow-overlap': true,
                 }
             })

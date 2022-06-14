@@ -46,7 +46,8 @@
 
                         <div class="sm:flex sm:items-start">
                             <div class="sm:mt-8 h-12 w-12 mx-auto flex-shrink-0 flex items-center justify-center border-2 border-gray-800 rounded-full bg-gray-600 shadow-md">
-                                <font-awesome-icon :icon="icon" class="w-8 h-8 text-gray-200" />
+                                <font-awesome-icon v-if="icon" :icon="icon" class="w-8 h-8 text-gray-200" />
+                                <img v-else :src="require('@/assets/atm.png')" class="w-8 h-8 text-gray-200" />
                             </div>
 
                             <div class="mt-3 text-center sm:mt-2 sm:ml-4 sm:text-left">
@@ -215,7 +216,7 @@ export default {
 
         icon() {
             if (this.category === 'atm') {
-                return `fa-solid fa-piggy-bank`
+                return null // will default to `assets` atm.png
             }
 
             if (this.category === 'attraction') {
@@ -258,7 +259,7 @@ export default {
                 return `fa-solid fa-truck-plane`
             }
 
-            return `fa-solid fa-store`
+            return `fa-solid fa-store` // default merchant icon
         },
 
         location() {
