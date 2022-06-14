@@ -35,7 +35,8 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
+
+                            <tr v-for="merchant of merchants" :key="merchant.id">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-10 w-10">
@@ -47,17 +48,17 @@
                                         </div>
                                         <div class="ml-4">
                                             <div class="text-sm font-medium text-gray-900">
-                                                NocRoom Voice &amp; Data
+                                                {{merchant.name}}
                                             </div>
-                                            <div class="text-sm text-gray-500">
-                                                info@e.nocroom.com
+                                            <div class="text-sm text-gray-500 uppercase">
+                                                {{merchant.category}}
                                             </div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">Horatio Street 14</div>
-                                    <div class="text-sm text-gray-500">10014 New York City</div>
+                                    <div class="text-sm text-gray-900">{{merchant.streetAddress}}</div>
+                                    <div class="text-sm text-gray-500">{{merchant.city}} {{merchant.state}}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -72,155 +73,6 @@
                                 </td>
                             </tr>
 
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-10 w-10">
-                                            <img
-                                                class="h-10 w-10 rounded-full"
-                                                src="https://i.imgur.com/CWca7ZC.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">
-                                                Armani Exchange
-                                            </div>
-                                            <div class="text-sm text-gray-500">
-                                                https://www.coinsetter.com
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">3rd Avenue 708</div>
-                                    <div class="text-sm text-gray-500">10017 New York</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        Active
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    Default
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="javascript://" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-10 w-10">
-                                            <img
-                                                class="h-10 w-10 rounded-full"
-                                                src="https://i.imgur.com/CWca7ZC.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">
-                                                World Class Domina
-                                            </div>
-                                            <div class="text-sm text-gray-500">
-                                                +1 646 807 5467
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">East 79th Street 508</div>
-                                    <div class="text-sm text-gray-500">NY 10075 New York</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        Active
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    Default
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="javascript://" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-10 w-10">
-                                            <img
-                                                class="h-10 w-10 rounded-full"
-                                                src="https://i.imgur.com/CWca7ZC.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">
-                                                Baron Fig Notebooks
-                                            </div>
-                                            <div class="text-sm text-gray-500">
-                                                212-390-0103
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">4301 21st Street Suite 205A</div>
-                                    <div class="text-sm text-gray-500">11101 Long Island City</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        Active
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    Default
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="javascript://" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-10 w-10">
-                                            <img
-                                                class="h-10 w-10 rounded-full"
-                                                src="https://i.imgur.com/CWca7ZC.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">
-                                                The Eco Laundry Company
-                                            </div>
-                                            <div class="text-sm text-gray-500">
-                                                info@ecolaundrycompany.com
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">3rd Ave. 236</div>
-                                    <div class="text-sm text-gray-500">10003 New York City</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        Active
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    Default
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="javascript://" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                </td>
-                            </tr>
-
-                            <!-- More people... -->
                         </tbody>
                     </table>
                 </div>
@@ -230,15 +82,43 @@
 </template>
 
 <script>
+/* Import modules. */
+import gravatar from 'gravatar'
+import superagent from 'superagent'
+
+const API_ENDPOINT = `https://api.usecash.com/v1`
+// const API_ENDPOINT = `http://localhost:9090/v1`
+
 export default {
     data: () => ({
-        //
+        merchants: null,
     }),
     methods: {
-        //
+        async init() {
+
+            const result = await superagent
+                .post(`${API_ENDPOINT}/admin/merchants`)
+                .set('authorization', `Bearer ${this.didToken}`)
+                // .send(merchant)
+                .set('accept', 'json')
+            console.log('MERCHANTS RESULT', result)
+
+            if (result && result.body) {
+                const body = result.body
+                console.log('BODY', body)
+
+                this.merchants = body
+            }
+
+        },
+
+        avatar(_email) {
+            return gravatar.url(_email)
+        },
+
     },
     created: function () {
-        //
+        this.init()
     },
     mounted: function () {
         //
