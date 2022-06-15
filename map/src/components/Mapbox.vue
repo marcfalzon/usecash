@@ -10,7 +10,6 @@
 <script>
 /* Import modules. */
 import Mapbox from 'mapbox-gl'
-import moment from 'moment'
 import superagent from 'superagent'
 
 // const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2t0eHAxY2JjMDh3MTJ0b3FleGdhYWk4bSJ9.2WOkhBYSiCSd6mW74ocbcQ' // prod
@@ -77,17 +76,6 @@ const searchMap = async (_term, _vue) => {
             _vue.$emit('openPopup', _venue.id)
         })
     })
-
-    // const vendorid = '822bc61a-3b5a-4874-85c2-1b0f0fe2f328'
-    //
-    // target = `${API_ENDPOINT}/merchants/${vendorid}`
-    // result = await fetch(target)
-    //     .catch(err => console.error(err))
-    // // console.log('MERCHANT RESULT', result)
-    //
-    // let merchant = await result.json()
-    // console.log('MERCHANT (json):', merchant)
-
 }
 
 /**
@@ -345,7 +333,6 @@ export default {
             })
 
             const _handleMarker = (e) => {
-                console.log('HANDLE MARKER', e)
                 /* Set vendor id. */
                 const vendorid = e.features[0].properties.id
 
@@ -366,34 +353,107 @@ export default {
 
             /* Handle loaded map. */
             this.map.on('load', async () => {
-                // When a click event occurs on a feature in the vendors layer, open a popup at the
-                // location of the feature, with description HTML from its properties.
                 this.map.on('click', 'unclustered-atm-point', (e) => {
-                    console.log('CLICKED ATM POINT');
-                    _handleMarker.bind(e)
+                    _handleMarker.bind(this)(e)
+                })
+                this.map.on('click', 'unclustered-featured-atm-point', (e) => {
+                    _handleMarker.bind(this)(e)
                 })
 
-                this.map.on('click', 'unclustered-bch-point', (e) => {
-                    /* Set vendor id. */
-                    const vendorid = e.features[0].properties.id
+                // this.map.on('click', 'unclustered-bch-point', (e) => {
+                //     /* Set vendor id. */
+                //     const vendorid = e.features[0].properties.id
+                //
+                //     // Copy coordinates array.
+                //     const coordinates = e.features[0].geometry.coordinates.slice()
+                //     // const description = e.features[0].properties.description
+                //
+                //     // Ensure that if the map is zoomed out such that multiple
+                //     // copies of the feature are visible, the popup appears
+                //     // over the copy being pointed to.
+                //     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                //         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
+                //     }
+                //
+                //     /* Open (modal) popup. */
+                //     this.$emit('openPopup', vendorid, coordinates)
+                // })
 
-                    // Copy coordinates array.
-                    const coordinates = e.features[0].geometry.coordinates.slice()
-                    // const description = e.features[0].properties.description
-
-                    // Ensure that if the map is zoomed out such that multiple
-                    // copies of the feature are visible, the popup appears
-                    // over the copy being pointed to.
-                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
-                    }
-
-                    /* Open (modal) popup. */
-                    this.$emit('openPopup', vendorid, coordinates)
+                this.map.on('click', 'unclustered-attraction-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+                this.map.on('click', 'unclustered-featured-attraction-point', (e) => {
+                    _handleMarker.bind(this)(e)
                 })
 
-                this.map.on('click', 'unclustered-exclusive-point', (e) => {
-                    _handleMarker.bind(e)
+                this.map.on('click', 'unclustered-cafe-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+                this.map.on('click', 'unclustered-featured-cafe-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+
+                this.map.on('click', 'unclustered-food-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+                this.map.on('click', 'unclustered-featured-food-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+
+                this.map.on('click', 'unclustered-grocery-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+                this.map.on('click', 'unclustered-featured-grocery-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+
+                this.map.on('click', 'unclustered-lodging-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+                this.map.on('click', 'unclustered-featured-lodging-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+
+                this.map.on('click', 'unclustered-default-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+                this.map.on('click', 'unclustered-featured-default-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+
+                this.map.on('click', 'unclustered-nightlife-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+                this.map.on('click', 'unclustered-featured-nightlife-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+
+                this.map.on('click', 'unclustered-services-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+                this.map.on('click', 'unclustered-featured-services-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+
+                this.map.on('click', 'unclustered-shopping-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+                this.map.on('click', 'unclustered-featured-shopping-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+
+                this.map.on('click', 'unclustered-sports-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+                this.map.on('click', 'unclustered-featured-sports-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+
+                this.map.on('click', 'unclustered-transport-point', (e) => {
+                    _handleMarker.bind(this)(e)
+                })
+                this.map.on('click', 'unclustered-featured-transport-point', (e) => {
+                    _handleMarker.bind(this)(e)
                 })
 
                 // inspect a cluster on click
@@ -530,16 +590,16 @@ export default {
                 })
 
                 /* Handle mouse events. */
-                this.map.on('mouseenter', 'unclustered-merchant-point', () => {
+                this.map.on('mouseenter', 'unclustered-default-point', () => {
                     this.map.getCanvas().style.cursor = 'pointer'
                 })
-                this.map.on('mouseleave', 'unclustered-merchant-point', () => {
+                this.map.on('mouseleave', 'unclustered-default-point', () => {
                     this.map.getCanvas().style.cursor = ''
                 })
-                this.map.on('mouseenter', 'unclustered-featured-merchant-point', () => {
+                this.map.on('mouseenter', 'unclustered-featured-default-point', () => {
                     this.map.getCanvas().style.cursor = 'pointer'
                 })
-                this.map.on('mouseleave', 'unclustered-featured-merchant-point', () => {
+                this.map.on('mouseleave', 'unclustered-featured-default-point', () => {
                     this.map.getCanvas().style.cursor = ''
                 })
 
@@ -616,159 +676,205 @@ export default {
                 /* Add image. */
                 // await this.addImage(
                 //     'bch-marker',
-                //     'https://ipfs.io/ipfs/QmZpc7RY6FucgnDpegEWBocqSjNxFFGyc8a8mSuWCK86bg', // merchant-bw
+                //     'https://ipfs.io/ipfs/QmZpc7RY6FucgnDpegEWBocqSjNxFFGyc8a8mSuWCK86bg', // default-bw
                 // )
 
                 /* Add image. */
                 // await this.addImage(
                 //     'exclusive-marker',
-                //     'https://ipfs.io/ipfs/QmdBxQYku37VM2tetSvBuVxWtDRtsyRkp7Ax3y1nheCdMB', // merchant
+                //     'https://ipfs.io/ipfs/QmdBxQYku37VM2tetSvBuVxWtDRtsyRkp7Ax3y1nheCdMB', // default
                 // )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-atm',
-                    // 'https://i.imgur.com/A9jVeq1.png',
-                    'https://ipfs.io/ipfs/Qmd96SGXeNVoVKAw5DYhQBQVE1jsFoBW5guVztAwbeCq9C',
+                    // 'https://map.usecash.com/img/markers/atm-bw.png',
+                    // 'https://ipfs.io/ipfs/Qmd96SGXeNVoVKAw5DYhQBQVE1jsFoBW5guVztAwbeCq9C',
+                    'https://ipfs.filebase.io/ipfs/Qmd96SGXeNVoVKAw5DYhQBQVE1jsFoBW5guVztAwbeCq9C',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-atm',
-                    // 'https://i.imgur.com/A9jVeq1.png',
-                    'https://ipfs.io/ipfs/QmSULGHNmyp4VBWpdBSwYbeqcMVeb7dmUcsaNF9DaSR2f1',
+                    // 'https://map.usecash.com/img/markers/atm.png',
+                    // 'https://ipfs.io/ipfs/QmSULGHNmyp4VBWpdBSwYbeqcMVeb7dmUcsaNF9DaSR2f1',
+                    'https://ipfs.filebase.io/ipfs/QmSULGHNmyp4VBWpdBSwYbeqcMVeb7dmUcsaNF9DaSR2f1',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-attraction',
-                    'https://ipfs.io/ipfs/QmYSeshnckTQAKWnfqHWzsUpy1ziuHD9jHyCbuns34EStB',
+                    // 'https://map.usecash.com/img/markers/attraction-bw.png',
+                    // 'https://ipfs.io/ipfs/QmYSeshnckTQAKWnfqHWzsUpy1ziuHD9jHyCbuns34EStB',
+                    'https://ipfs.filebase.io/ipfs/QmYSeshnckTQAKWnfqHWzsUpy1ziuHD9jHyCbuns34EStB',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-attraction',
-                    'https://ipfs.io/ipfs/QmPMt5qkLZCbrJCB96uWZA5TMSbeDaZLhjFjDibYLNewHU',
+                    // 'https://map.usecash.com/img/markers/attraction.png',
+                    // 'https://ipfs.io/ipfs/QmPMt5qkLZCbrJCB96uWZA5TMSbeDaZLhjFjDibYLNewHU',
+                    'https://ipfs.filebase.io/ipfs/QmPMt5qkLZCbrJCB96uWZA5TMSbeDaZLhjFjDibYLNewHU',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-cafe',
-                    'https://ipfs.io/ipfs/QmToWkbDsGcBy81RbXoQXbzUKg52cASTWfDehG7vjt1NKY',
+                    // 'https://map.usecash.com/img/markers/cafe-bw.png',
+                    // 'https://ipfs.io/ipfs/QmToWkbDsGcBy81RbXoQXbzUKg52cASTWfDehG7vjt1NKY',
+                    'https://ipfs.filebase.io/ipfs/QmToWkbDsGcBy81RbXoQXbzUKg52cASTWfDehG7vjt1NKY',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-cafe',
-                    'https://ipfs.io/ipfs/QmRVeGXiQVpboRZtRJSAtt854etY1aa7usytn7JTTT1SSC',
+                    // 'https://map.usecash.com/img/markers/cafe.png',
+                    // 'https://ipfs.io/ipfs/QmRVeGXiQVpboRZtRJSAtt854etY1aa7usytn7JTTT1SSC',
+                    'https://ipfs.filebase.io/ipfs/QmRVeGXiQVpboRZtRJSAtt854etY1aa7usytn7JTTT1SSC',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-food',
-                    'https://ipfs.io/ipfs/QmdyUzbk2gKcP3nDcgGtTzTwomsqTUc5Hr25sn8HpsxRDV',
+                    // 'https://map.usecash.com/img/markers/food-bw.png',
+                    // 'https://ipfs.io/ipfs/QmdyUzbk2gKcP3nDcgGtTzTwomsqTUc5Hr25sn8HpsxRDV',
+                    'https://ipfs.filebase.io/ipfs/QmdyUzbk2gKcP3nDcgGtTzTwomsqTUc5Hr25sn8HpsxRDV',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-food',
-                    'https://ipfs.io/ipfs/QmZ36fB9RspqZ81fRWHUqTqLamqUJtkaZAPtckQLQK2uGm',
+                    // 'https://map.usecash.com/img/markers/food.png',
+                    // 'https://ipfs.io/ipfs/QmZ36fB9RspqZ81fRWHUqTqLamqUJtkaZAPtckQLQK2uGm',
+                    'https://ipfs.filebase.io/ipfs/QmZ36fB9RspqZ81fRWHUqTqLamqUJtkaZAPtckQLQK2uGm',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-grocery',
-                    'https://ipfs.io/ipfs/Qmf26YC4A33iqy8HsUXgPsh59eeZhn6KmubFRdFnzdZGUX',
+                    // 'https://map.usecash.com/img/markers/grocery-bw.png',
+                    // 'https://ipfs.io/ipfs/Qmf26YC4A33iqy8HsUXgPsh59eeZhn6KmubFRdFnzdZGUX',
+                    'https://ipfs.filebase.io/ipfs/Qmf26YC4A33iqy8HsUXgPsh59eeZhn6KmubFRdFnzdZGUX',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-grocery',
-                    'https://ipfs.io/ipfs/QmQMf9PS2LnJLY4toB4v9r3nS2i5YZkYccZPBX1dZrhuyp',
+                    // 'https://map.usecash.com/img/markers/grocery.png',
+                    // 'https://ipfs.io/ipfs/QmQMf9PS2LnJLY4toB4v9r3nS2i5YZkYccZPBX1dZrhuyp',
+                    'https://ipfs.filebase.io/ipfs/QmQMf9PS2LnJLY4toB4v9r3nS2i5YZkYccZPBX1dZrhuyp',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-lodging',
-                    'https://ipfs.io/ipfs/QmPXbjmGxj2Ax3mUtkiH7JS7kj9uQduEBxz8cn3uif6J7Z',
+                    // 'https://map.usecash.com/img/markers/lodging-bw.png',
+                    // 'https://ipfs.io/ipfs/QmPXbjmGxj2Ax3mUtkiH7JS7kj9uQduEBxz8cn3uif6J7Z',
+                    'https://ipfs.filebase.io/ipfs/QmPXbjmGxj2Ax3mUtkiH7JS7kj9uQduEBxz8cn3uif6J7Z',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-lodging',
-                    'https://ipfs.io/ipfs/QmP2BmvqNnHGbBYNWSZJh27u18XtJi2CFny9gRPq3eCftJ',
+                    // 'https://map.usecash.com/img/markers/lodging.png',
+                    // 'https://ipfs.io/ipfs/QmP2BmvqNnHGbBYNWSZJh27u18XtJi2CFny9gRPq3eCftJ',
+                    'https://ipfs.filebase.io/ipfs/QmP2BmvqNnHGbBYNWSZJh27u18XtJi2CFny9gRPq3eCftJ',
                 )
 
                 /* Add image. */
                 await this.addImage(
-                    'marker-merchant',
-                    'https://ipfs.io/ipfs/QmZpc7RY6FucgnDpegEWBocqSjNxFFGyc8a8mSuWCK86bg',
+                    'marker-default',
+                    // 'https://map.usecash.com/img/markers/default-bw.png',
+                    // 'https://ipfs.io/ipfs/QmZpc7RY6FucgnDpegEWBocqSjNxFFGyc8a8mSuWCK86bg',
+                    'https://ipfs.filebase.io/ipfs/QmZpc7RY6FucgnDpegEWBocqSjNxFFGyc8a8mSuWCK86bg',
                 )
 
                 /* Add image. */
                 await this.addImage(
-                    'marker-featured-merchant',
-                    'https://ipfs.io/ipfs/QmdBxQYku37VM2tetSvBuVxWtDRtsyRkp7Ax3y1nheCdMB',
+                    'marker-featured-default',
+                    // 'https://map.usecash.com/img/markers/default.png',
+                    // 'https://ipfs.io/ipfs/QmdBxQYku37VM2tetSvBuVxWtDRtsyRkp7Ax3y1nheCdMB',
+                    'https://ipfs.filebase.io/ipfs/QmdBxQYku37VM2tetSvBuVxWtDRtsyRkp7Ax3y1nheCdMB',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-nightlife',
-                    'https://ipfs.io/ipfs/QmTZAJc5rCf8diYomXgfrWRTMhRx8TtVQfE33jiTQgDfS7',
+                    // 'https://map.usecash.com/img/markers/nightlife-bw.png',
+                    // 'https://ipfs.io/ipfs/QmTZAJc5rCf8diYomXgfrWRTMhRx8TtVQfE33jiTQgDfS7',
+                    'https://ipfs.filebase.io/ipfs/QmTZAJc5rCf8diYomXgfrWRTMhRx8TtVQfE33jiTQgDfS7',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-nightlife',
-                    'https://ipfs.io/ipfs/QmfXegfnoBM8EqQdu91mqFgvKZRzeQNpHentbVntn3n4H5',
+                    // 'https://map.usecash.com/img/markers/nightlife.png',
+                    // 'https://ipfs.io/ipfs/QmfXegfnoBM8EqQdu91mqFgvKZRzeQNpHentbVntn3n4H5',
+                    'https://ipfs.filebase.io/ipfs/QmfXegfnoBM8EqQdu91mqFgvKZRzeQNpHentbVntn3n4H5',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-services',
-                    'https://ipfs.io/ipfs/QmcmxAFK8m5aA4D14nXTBHuRFBtj53AtT9aa4uVNcxGXXP',
+                    // 'https://map.usecash.com/img/markers/services-bw.png',
+                    // 'https://ipfs.io/ipfs/QmcmxAFK8m5aA4D14nXTBHuRFBtj53AtT9aa4uVNcxGXXP',
+                    'https://ipfs.filebase.io/ipfs/QmcmxAFK8m5aA4D14nXTBHuRFBtj53AtT9aa4uVNcxGXXP',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-services',
-                    'https://ipfs.io/ipfs/QmVizkHobokzN4k1Vbv5hfb1MKZDMoxCX7epZUaNaWFnBF',
+                    // 'https://map.usecash.com/img/markers/services.png',
+                    // 'https://ipfs.io/ipfs/QmVizkHobokzN4k1Vbv5hfb1MKZDMoxCX7epZUaNaWFnBF',
+                    'https://ipfs.filebase.io/ipfs/QmVizkHobokzN4k1Vbv5hfb1MKZDMoxCX7epZUaNaWFnBF',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-shopping',
-                    'https://ipfs.io/ipfs/QmVRKqynUCtEBNuWBw3jTERidYFTaXFYiTPMHmXJTeDa4v',
+                    // 'https://map.usecash.com/img/markers/shopping-bw.png',
+                    // 'https://ipfs.io/ipfs/QmVRKqynUCtEBNuWBw3jTERidYFTaXFYiTPMHmXJTeDa4v',
+                    'https://ipfs.filebase.io/ipfs/QmVRKqynUCtEBNuWBw3jTERidYFTaXFYiTPMHmXJTeDa4v',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-shopping',
-                    'https://ipfs.io/ipfs/QmVV9DhwjXm7Db2i6YeBM11ZR9tEsZtSRbf2zHAXnc846H',
+                    // 'https://map.usecash.com/img/markers/shopping.png',
+                    // 'https://ipfs.io/ipfs/QmVV9DhwjXm7Db2i6YeBM11ZR9tEsZtSRbf2zHAXnc846H',
+                    'https://ipfs.filebase.io/ipfs/QmVV9DhwjXm7Db2i6YeBM11ZR9tEsZtSRbf2zHAXnc846H',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-sports',
-                    'https://ipfs.io/ipfs/QmViMM4UHUTVQ4g1uVFQr6bAoMw5QAiXh4MnaS53pfomyU',
+                    // 'https://map.usecash.com/img/markers/sports-bw.png',
+                    // 'https://ipfs.io/ipfs/QmViMM4UHUTVQ4g1uVFQr6bAoMw5QAiXh4MnaS53pfomyU',
+                    'https://ipfs.filebase.io/ipfs/QmViMM4UHUTVQ4g1uVFQr6bAoMw5QAiXh4MnaS53pfomyU',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-sports',
-                    'https://ipfs.io/ipfs/QmYBxRwV1jUpdkUhuPKePCKg4hiaVVdhKgNhf8yLoimHGE',
+                    // 'https://map.usecash.com/img/markers/sports.png',
+                    // 'https://ipfs.io/ipfs/QmYBxRwV1jUpdkUhuPKePCKg4hiaVVdhKgNhf8yLoimHGE',
+                    'https://ipfs.filebase.io/ipfs/QmYBxRwV1jUpdkUhuPKePCKg4hiaVVdhKgNhf8yLoimHGE',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-transport',
-                    'https://ipfs.io/ipfs/QmcoYrZWCAzNCfVdptohFQbDfA1VAYShXYdDhSeMXsBVot',
+                    // 'https://map.usecash.com/img/markers/transport-bw.png',
+                    // 'https://ipfs.io/ipfs/QmcoYrZWCAzNCfVdptohFQbDfA1VAYShXYdDhSeMXsBVot',
+                    'https://ipfs.filebase.io/ipfs/QmcoYrZWCAzNCfVdptohFQbDfA1VAYShXYdDhSeMXsBVot',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-transport',
-                    'https://ipfs.io/ipfs/QmUnUbhuXj82Qb9J7bYxPyVTG2QuRxeoyZV32ZeWKEhKZT',
+                    // 'https://map.usecash.com/img/markers/transport.png',
+                    // 'https://ipfs.io/ipfs/QmUnUbhuXj82Qb9J7bYxPyVTG2QuRxeoyZV32ZeWKEhKZT',
+                    'https://ipfs.filebase.io/ipfs/QmUnUbhuXj82Qb9J7bYxPyVTG2QuRxeoyZV32ZeWKEhKZT',
                 )
 
                 /* Manage map. */
@@ -847,137 +953,6 @@ export default {
                 this.vendors = []
 
                 vendors.forEach(vendor => {
-                    /* Initialize display. */
-                    let address = ''
-                    let display
-                    let lastTxTime
-                    let mapLink
-                    let name
-                    let storefront
-                    let summary
-
-                    if (vendor.name) {
-                        name = vendor.name
-                    } else if (vendor.companyName) {
-                        name = vendor.companyName
-                    }
-
-                    if (vendor.media && vendor.media.storefront) {
-                        storefront = vendor.media.storefront
-                    } else {
-                        storefront = 'https://i.imgur.com/cCEY2PM.png'
-                    }
-
-                    if (vendor.summary) {
-                        summary = vendor.summary
-                    } else {
-                        summary = 'not available'
-                    }
-
-                    if (vendor.houseno && vendor.street) {
-                        address += `${vendor.houseno} ${vendor.street}<br>`
-                    } else if (vendor.streetAddress) {
-                        address += `${vendor.streetAddress}<br>`
-                    } else if (vendor.street) {
-                        address += `${vendor.street}<br>`
-                    }
-
-                    if (vendor.city && vendor.state && vendor.postcode) {
-                        address += `${vendor.city}, ${vendor.state} ${vendor.postcode}<br>`
-                    } else if (vendor.city && vendor.state && vendor.postalCode) {
-                        address += `${vendor.city}, ${vendor.state} ${vendor.postalCode}<br>`
-                    }
-
-                    if (address) {
-                        /* Handle iOS devices. */
-                        if( (navigator.platform.indexOf('iPhone') != -1)
-                            || (navigator.platform.indexOf('iPod') != -1)
-                            || (navigator.platform.indexOf('iPad') != -1)
-                        ) {
-                            // FIXME: We should use Apple Maps.
-                            mapLink = `maps://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${address}`
-                        } else {
-                            // FIXME: Make sure this works with alternative Android maps.
-                            mapLink = `https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${address}`
-                        }
-                    }
-
-                    const cryptos = `BCH, BTC, DASH`
-
-                    const lastTxCurrency = 'BITCOIN'
-
-                    // const lastTxTime = '8'
-                    const lastTxTimeDetail = ''
-
-                    if (vendor.updated_on) {
-                        lastTxTime = moment.unix(vendor.updated_on).fromNow()
-                    } else if (vendor.updatedAt) {
-                        lastTxTime = moment.unix(vendor.updatedAt).fromNow()
-                    } else if (vendor.createdAt) {
-                        lastTxTime = moment.unix(vendor.createdAt).fromNow()
-                    } else {
-                        lastTxTime = 'Unknown'
-                    }
-
-
-                    /* Start building the display. */
-                    display = `
-                    <div @click="innerClick" class="w-3/12 bg-pink-500 grid grid-cols-5 gap-4 rounded-xl">
-                        <div class="col-span-3">
-                            <h1 class="text-center text-lg text-gray-800 font-extrabold uppercase leading-5">
-                                ${name}
-                            </h1>
-
-                            <h3 class="-mt-1 text-center text-xs text-gray-500 font-medium uppercase">
-                                ${vendor.category === 'default' ? 'BUSINESS' : Array.isArray(vendor.category) ? vendor.category[0] : vendor.category}
-                            </h3>
-
-                            <img class="p-1 border-2 border-gray-300 rounded" src="${storefront}" />
-
-                            <div class="mt-1 pl-2 text-xs">
-                                ${summary}
-                            </div>
-                        </div>
-
-                        <div class="col-span-2">
-                            <p class="text-right">
-                                <a class="mt-3 leading-3 text-blue-500 text-right hover:underline font-extrabold" href="${mapLink}" target="_blank">
-                                    ${address}
-                                </a>
-                            </p>
-
-                            <p class="mt-2 text-right">
-                                <strong>ACCEPTING</strong>
-                                <br />${cryptos}
-                            </p>
-
-                            <div class="mt-2 text-right">
-                                Last <strong>${lastTxCurrency}</strong> Transaction
-                                <h2>${lastTxTime} <small>${lastTxTimeDetail}</small></h2>
-                            </div>
-                        </div>
-                    </div>
-
-                    `
-
-                    if (vendor === 'abc') {
-
-                        if (vendor.phone) {
-                            display += `<a class="text-blue-500 hover:underline" href="tel:${vendor.phone}">${vendor.phone}</a><br>`
-                        }
-
-                        if (vendor.email) {
-                            display += `<a class="text-blue-500 hover:underline" href="mailto:${vendor.email}">${vendor.email}</a><br>`
-                        }
-
-                        if (vendor.googleBusiness) {
-                            display += `<div class="text-center"><a class="text-blue-500 hover:underline text-base font-bold" href="${vendor.googleBusiness}" target="_blank">Google Business (link)</a></div>`
-                        }
-
-                        display += '</main>'
-
-                    }
-
                     /* Add vendor to array. */
                     this.vendors.push({
                         id: vendor._id,
@@ -986,9 +961,7 @@ export default {
                         lat: vendor.lat,
                         lng: vendor.lng,
                         latlng: [ vendor.lat, vendor.lng ],
-                        display,
                     })
-
                 })
 
                 /* Initialize features. */
@@ -1309,6 +1282,38 @@ export default {
                 }
             })
 
+            /* Merchant (default). */
+            this.map.addLayer({
+                id: 'unclustered-default-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'default'],
+                    ['==', ['get', 'isFeatured'], false],
+                ],
+                layout: {
+                    'icon-image': 'marker-default',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Featured merchant (default). */
+            this.map.addLayer({
+                id: 'unclustered-featured-default-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'default'],
+                    ['==', ['get', 'isFeatured'], true],
+                ],
+                layout: {
+                    'icon-image': 'marker-featured-default',
+                    'icon-allow-overlap': true,
+                }
+            })
+
             /* Nightlife. */
             this.map.addLayer({
                 id: 'unclustered-nightlife-point',
@@ -1501,10 +1506,6 @@ export default {
                 }
             })
 
-        },
-
-        selectMerchant(_merchantid) {
-            alert('clicked merchant - ' + _merchantid)
         },
 
     },
