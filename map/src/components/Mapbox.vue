@@ -344,27 +344,33 @@ export default {
                 this.mapManager()
             })
 
+            const _handleMarker = (e) => {
+                console.log('HANDLE MARKER', e)
+                /* Set vendor id. */
+                const vendorid = e.features[0].properties.id
+
+                // Copy coordinates array.
+                const coordinates = e.features[0].geometry.coordinates.slice()
+                // const description = e.features[0].properties.description
+
+                // Ensure that if the map is zoomed out such that multiple
+                // copies of the feature are visible, the popup appears
+                // over the copy being pointed to.
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
+                }
+
+                /* Open (modal) popup. */
+                this.$emit('openPopup', vendorid, coordinates)
+            }
+
             /* Handle loaded map. */
             this.map.on('load', async () => {
                 // When a click event occurs on a feature in the vendors layer, open a popup at the
                 // location of the feature, with description HTML from its properties.
                 this.map.on('click', 'unclustered-atm-point', (e) => {
-                    /* Set vendor id. */
-                    const vendorid = e.features[0].properties.id
-
-                    // Copy coordinates array.
-                    const coordinates = e.features[0].geometry.coordinates.slice()
-                    // const description = e.features[0].properties.description
-
-                    // Ensure that if the map is zoomed out such that multiple
-                    // copies of the feature are visible, the popup appears
-                    // over the copy being pointed to.
-                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
-                    }
-
-                    /* Open (modal) popup. */
-                    this.$emit('openPopup', vendorid, coordinates)
+                    console.log('CLICKED ATM POINT');
+                    _handleMarker.bind(e)
                 })
 
                 this.map.on('click', 'unclustered-bch-point', (e) => {
@@ -387,22 +393,7 @@ export default {
                 })
 
                 this.map.on('click', 'unclustered-exclusive-point', (e) => {
-                    /* Set vendor id. */
-                    const vendorid = e.features[0].properties.id
-
-                    // Copy coordinates array.
-                    const coordinates = e.features[0].geometry.coordinates.slice()
-                    // const description = e.features[0].properties.description
-
-                    // Ensure that if the map is zoomed out such that multiple
-                    // copies of the feature are visible, the popup appears
-                    // over the copy being pointed to.
-                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
-                    }
-
-                    /* Open (modal) popup. */
-                    this.$emit('openPopup', vendorid, coordinates)
+                    _handleMarker.bind(e)
                 })
 
                 // inspect a cluster on click
@@ -445,36 +436,194 @@ export default {
                 this.map.on('mouseleave', 'unclustered-atm-point', () => {
                     this.map.getCanvas().style.cursor = ''
                 })
-
-                /* Handle mouse events. */
-                this.map.on('mouseenter', 'unclustered-bch-point', () => {
+                this.map.on('mouseenter', 'unclustered-featured-atm-point', () => {
                     this.map.getCanvas().style.cursor = 'pointer'
                 })
-                this.map.on('mouseleave', 'unclustered-bch-point', () => {
+                this.map.on('mouseleave', 'unclustered-featured-atm-point', () => {
                     this.map.getCanvas().style.cursor = ''
                 })
 
                 /* Handle mouse events. */
-                this.map.on('mouseenter', 'unclustered-exclusive-point', () => {
+                // this.map.on('mouseenter', 'unclustered-bch-point', () => {
+                //     this.map.getCanvas().style.cursor = 'pointer'
+                // })
+                // this.map.on('mouseleave', 'unclustered-bch-point', () => {
+                //     this.map.getCanvas().style.cursor = ''
+                // })
+
+                /* Handle mouse events. */
+                // this.map.on('mouseenter', 'unclustered-exclusive-point', () => {
+                //     this.map.getCanvas().style.cursor = 'pointer'
+                // })
+                // this.map.on('mouseleave', 'unclustered-exclusive-point', () => {
+                //     this.map.getCanvas().style.cursor = ''
+                // })
+
+                /* Handle mouse events. */
+                this.map.on('mouseenter', 'unclustered-attraction-point', () => {
                     this.map.getCanvas().style.cursor = 'pointer'
                 })
-                this.map.on('mouseleave', 'unclustered-exclusive-point', () => {
+                this.map.on('mouseleave', 'unclustered-attraction-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+                this.map.on('mouseenter', 'unclustered-featured-attraction-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-featured-attraction-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+
+                /* Handle mouse events. */
+                this.map.on('mouseenter', 'unclustered-cafe-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-cafe-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+                this.map.on('mouseenter', 'unclustered-featured-cafe-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-featured-cafe-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+
+                /* Handle mouse events. */
+                this.map.on('mouseenter', 'unclustered-food-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-food-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+                this.map.on('mouseenter', 'unclustered-featured-food-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-featured-food-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+
+                /* Handle mouse events. */
+                this.map.on('mouseenter', 'unclustered-grocery-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-grocery-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+                this.map.on('mouseenter', 'unclustered-featured-grocery-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-featured-grocery-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+
+                /* Handle mouse events. */
+                this.map.on('mouseenter', 'unclustered-lodging-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-lodging-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+                this.map.on('mouseenter', 'unclustered-featured-lodging-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-featured-lodging-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+
+                /* Handle mouse events. */
+                this.map.on('mouseenter', 'unclustered-merchant-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-merchant-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+                this.map.on('mouseenter', 'unclustered-featured-merchant-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-featured-merchant-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+
+                /* Handle mouse events. */
+                this.map.on('mouseenter', 'unclustered-nightlife-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-nightlife-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+                this.map.on('mouseenter', 'unclustered-featured-nightlife-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-featured-nightlife-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+
+                /* Handle mouse events. */
+                this.map.on('mouseenter', 'unclustered-services-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-services-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+                this.map.on('mouseenter', 'unclustered-featured-services-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-featured-services-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+
+                /* Handle mouse events. */
+                this.map.on('mouseenter', 'unclustered-shopping-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-shopping-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+                this.map.on('mouseenter', 'unclustered-featured-shopping-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-featured-shopping-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+
+                /* Handle mouse events. */
+                this.map.on('mouseenter', 'unclustered-sports-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-sports-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+                this.map.on('mouseenter', 'unclustered-featured-sports-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-featured-sports-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+
+                /* Handle mouse events. */
+                this.map.on('mouseenter', 'unclustered-transport-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-transport-point', () => {
+                    this.map.getCanvas().style.cursor = ''
+                })
+                this.map.on('mouseenter', 'unclustered-featured-transport-point', () => {
+                    this.map.getCanvas().style.cursor = 'pointer'
+                })
+                this.map.on('mouseleave', 'unclustered-featured-transport-point', () => {
                     this.map.getCanvas().style.cursor = ''
                 })
 
                 /* Add image. */
-                await this.addImage(
-                    'bch-marker',
-                    'https://ipfs.io/ipfs/QmZpc7RY6FucgnDpegEWBocqSjNxFFGyc8a8mSuWCK86bg', // merchant-bw
-                )
+                // await this.addImage(
+                //     'bch-marker',
+                //     'https://ipfs.io/ipfs/QmZpc7RY6FucgnDpegEWBocqSjNxFFGyc8a8mSuWCK86bg', // merchant-bw
+                // )
 
                 /* Add image. */
-                await this.addImage(
-                    'exclusive-marker',
-                    'https://ipfs.io/ipfs/QmdBxQYku37VM2tetSvBuVxWtDRtsyRkp7Ax3y1nheCdMB', // merchant
-                )
-
-
+                // await this.addImage(
+                //     'exclusive-marker',
+                //     'https://ipfs.io/ipfs/QmdBxQYku37VM2tetSvBuVxWtDRtsyRkp7Ax3y1nheCdMB', // merchant
+                // )
 
                 /* Add image. */
                 await this.addImage(
@@ -492,6 +641,30 @@ export default {
 
                 /* Add image. */
                 await this.addImage(
+                    'marker-attraction',
+                    'https://ipfs.io/ipfs/QmYSeshnckTQAKWnfqHWzsUpy1ziuHD9jHyCbuns34EStB',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-featured-attraction',
+                    'https://ipfs.io/ipfs/QmPMt5qkLZCbrJCB96uWZA5TMSbeDaZLhjFjDibYLNewHU',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-cafe',
+                    'https://ipfs.io/ipfs/QmToWkbDsGcBy81RbXoQXbzUKg52cASTWfDehG7vjt1NKY',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-featured-cafe',
+                    'https://ipfs.io/ipfs/QmRVeGXiQVpboRZtRJSAtt854etY1aa7usytn7JTTT1SSC',
+                )
+
+                /* Add image. */
+                await this.addImage(
                     'marker-food',
                     'https://ipfs.io/ipfs/QmdyUzbk2gKcP3nDcgGtTzTwomsqTUc5Hr25sn8HpsxRDV',
                 )
@@ -500,6 +673,18 @@ export default {
                 await this.addImage(
                     'marker-featured-food',
                     'https://ipfs.io/ipfs/QmZ36fB9RspqZ81fRWHUqTqLamqUJtkaZAPtckQLQK2uGm',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-grocery',
+                    'https://ipfs.io/ipfs/Qmf26YC4A33iqy8HsUXgPsh59eeZhn6KmubFRdFnzdZGUX',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-featured-grocery',
+                    'https://ipfs.io/ipfs/QmQMf9PS2LnJLY4toB4v9r3nS2i5YZkYccZPBX1dZrhuyp',
                 )
 
                 /* Add image. */
@@ -528,6 +713,30 @@ export default {
 
                 /* Add image. */
                 await this.addImage(
+                    'marker-nightlife',
+                    'https://ipfs.io/ipfs/QmTZAJc5rCf8diYomXgfrWRTMhRx8TtVQfE33jiTQgDfS7',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-featured-nightlife',
+                    'https://ipfs.io/ipfs/QmfXegfnoBM8EqQdu91mqFgvKZRzeQNpHentbVntn3n4H5',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-services',
+                    'https://ipfs.io/ipfs/QmcmxAFK8m5aA4D14nXTBHuRFBtj53AtT9aa4uVNcxGXXP',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-featured-services',
+                    'https://ipfs.io/ipfs/QmVizkHobokzN4k1Vbv5hfb1MKZDMoxCX7epZUaNaWFnBF',
+                )
+
+                /* Add image. */
+                await this.addImage(
                     'marker-shopping',
                     'https://ipfs.io/ipfs/QmVRKqynUCtEBNuWBw3jTERidYFTaXFYiTPMHmXJTeDa4v',
                 )
@@ -536,6 +745,30 @@ export default {
                 await this.addImage(
                     'marker-featured-shopping',
                     'https://ipfs.io/ipfs/QmVV9DhwjXm7Db2i6YeBM11ZR9tEsZtSRbf2zHAXnc846H',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-sports',
+                    'https://ipfs.io/ipfs/QmViMM4UHUTVQ4g1uVFQr6bAoMw5QAiXh4MnaS53pfomyU',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-featured-sports',
+                    'https://ipfs.io/ipfs/QmYBxRwV1jUpdkUhuPKePCKg4hiaVVdhKgNhf8yLoimHGE',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-transport',
+                    'https://ipfs.io/ipfs/QmcoYrZWCAzNCfVdptohFQbDfA1VAYShXYdDhSeMXsBVot',
+                )
+
+                /* Add image. */
+                await this.addImage(
+                    'marker-featured-transport',
+                    'https://ipfs.io/ipfs/QmUnUbhuXj82Qb9J7bYxPyVTG2QuRxeoyZV32ZeWKEhKZT',
                 )
 
                 /* Manage map. */
@@ -885,38 +1118,36 @@ export default {
             })
 
             /* Merchant (OLD). */
-            this.map.addLayer({
-                id: 'unclustered-bch-point',
-                type: 'symbol',
-                source: 'vendors',
-                filter: ['all',
-                    ['!', ['has', 'point_count']],
-                    ['!=', ['get', 'category'], 'atm'],
-                    ['==', ['get', 'isFeatured'], false],
-                ],
-                layout: {
-                    'icon-image': 'bch-marker',
-                    'icon-allow-overlap': true,
-                }
-            })
+            // this.map.addLayer({
+            //     id: 'unclustered-bch-point',
+            //     type: 'symbol',
+            //     source: 'vendors',
+            //     filter: ['all',
+            //         ['!', ['has', 'point_count']],
+            //         ['!=', ['get', 'category'], 'atm'],
+            //         ['==', ['get', 'isFeatured'], false],
+            //     ],
+            //     layout: {
+            //         'icon-image': 'bch-marker',
+            //         'icon-allow-overlap': true,
+            //     }
+            // })
 
             /* Featured merchant (OLD). */
-            this.map.addLayer({
-                id: 'unclustered-exclusive-point',
-                type: 'symbol',
-                source: 'vendors',
-                filter: ['all',
-                    ['!', ['has', 'point_count']],
-                    ['!=', ['get', 'category'], 'atm'],
-                    ['==', ['get', 'isFeatured'], true],
-                ],
-                layout: {
-                    'icon-image': 'exclusive-marker',
-                    'icon-allow-overlap': true,
-                }
-            })
-
-
+            // this.map.addLayer({
+            //     id: 'unclustered-exclusive-point',
+            //     type: 'symbol',
+            //     source: 'vendors',
+            //     filter: ['all',
+            //         ['!', ['has', 'point_count']],
+            //         ['!=', ['get', 'category'], 'atm'],
+            //         ['==', ['get', 'isFeatured'], true],
+            //     ],
+            //     layout: {
+            //         'icon-image': 'exclusive-marker',
+            //         'icon-allow-overlap': true,
+            //     }
+            // })
 
             /* ATM. */
             this.map.addLayer({
@@ -946,6 +1177,70 @@ export default {
                 ],
                 layout: {
                     'icon-image': 'marker-featured-atm',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Attraction. */
+            this.map.addLayer({
+                id: 'unclustered-attraction-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'attraction'],
+                    ['==', ['get', 'isFeatured'], false],
+                ],
+                layout: {
+                    'icon-image': 'marker-attraction',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Featured attraction. */
+            this.map.addLayer({
+                id: 'unclustered-featured-attraction-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'attraction'],
+                    ['==', ['get', 'isFeatured'], true],
+                ],
+                layout: {
+                    'icon-image': 'marker-featured-attraction',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Cafe. */
+            this.map.addLayer({
+                id: 'unclustered-cafe-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'cafe'],
+                    ['==', ['get', 'isFeatured'], false],
+                ],
+                layout: {
+                    'icon-image': 'marker-cafe',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Featured cafe. */
+            this.map.addLayer({
+                id: 'unclustered-featured-cafe-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'cafe'],
+                    ['==', ['get', 'isFeatured'], true],
+                ],
+                layout: {
+                    'icon-image': 'marker-featured-cafe',
                     'icon-allow-overlap': true,
                 }
             })
@@ -982,6 +1277,70 @@ export default {
                 }
             })
 
+            /* Grocery. */
+            this.map.addLayer({
+                id: 'unclustered-grocery-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'grocery'],
+                    ['==', ['get', 'isFeatured'], false],
+                ],
+                layout: {
+                    'icon-image': 'marker-grocery',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Featured grocery. */
+            this.map.addLayer({
+                id: 'unclustered-featured-grocery-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'grocery'],
+                    ['==', ['get', 'isFeatured'], true],
+                ],
+                layout: {
+                    'icon-image': 'marker-featured-grocery',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Nightlife. */
+            this.map.addLayer({
+                id: 'unclustered-nightlife-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'nightlife'],
+                    ['==', ['get', 'isFeatured'], false],
+                ],
+                layout: {
+                    'icon-image': 'marker-nightlife',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Featured nightlife. */
+            this.map.addLayer({
+                id: 'unclustered-featured-nightlife-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'nightlife'],
+                    ['==', ['get', 'isFeatured'], true],
+                ],
+                layout: {
+                    'icon-image': 'marker-featured-nightlife',
+                    'icon-allow-overlap': true,
+                }
+            })
+
             /* Lodging. */
             this.map.addLayer({
                 id: 'unclustered-lodging-point',
@@ -1014,6 +1373,38 @@ export default {
                 }
             })
 
+            /* Services. */
+            this.map.addLayer({
+                id: 'unclustered-services-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'services'],
+                    ['==', ['get', 'isFeatured'], false],
+                ],
+                layout: {
+                    'icon-image': 'marker-services',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Featured services. */
+            this.map.addLayer({
+                id: 'unclustered-featured-services-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'services'],
+                    ['==', ['get', 'isFeatured'], true],
+                ],
+                layout: {
+                    'icon-image': 'marker-featured-services',
+                    'icon-allow-overlap': true,
+                }
+            })
+
             /* Shopping. */
             this.map.addLayer({
                 id: 'unclustered-shopping-point',
@@ -1030,7 +1421,7 @@ export default {
                 }
             })
 
-            /* Featured Shopping. */
+            /* Featured shopping. */
             this.map.addLayer({
                 id: 'unclustered-featured-shopping-point',
                 type: 'symbol',
@@ -1042,6 +1433,70 @@ export default {
                 ],
                 layout: {
                     'icon-image': 'marker-featured-shopping',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Sports. */
+            this.map.addLayer({
+                id: 'unclustered-sports-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'sports'],
+                    ['==', ['get', 'isFeatured'], false],
+                ],
+                layout: {
+                    'icon-image': 'marker-sports',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Featured sports. */
+            this.map.addLayer({
+                id: 'unclustered-featured-sports-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'sports'],
+                    ['==', ['get', 'isFeatured'], true],
+                ],
+                layout: {
+                    'icon-image': 'marker-featured-sports',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Transport. */
+            this.map.addLayer({
+                id: 'unclustered-transport-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'transport'],
+                    ['==', ['get', 'isFeatured'], false],
+                ],
+                layout: {
+                    'icon-image': 'marker-transport',
+                    'icon-allow-overlap': true,
+                }
+            })
+
+            /* Featured transport. */
+            this.map.addLayer({
+                id: 'unclustered-featured-transport-point',
+                type: 'symbol',
+                source: 'vendors',
+                filter: ['all',
+                    ['!', ['has', 'point_count']],
+                    ['==', ['get', 'category'], 'transport'],
+                    ['==', ['get', 'isFeatured'], true],
+                ],
+                layout: {
+                    'icon-image': 'marker-featured-transport',
                     'icon-allow-overlap': true,
                 }
             })
