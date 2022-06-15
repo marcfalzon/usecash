@@ -766,14 +766,14 @@ export default {
                 lng: this.lng,
                 notifs: this.notifs,
             }
-            console.log('MERCHANT', merchant)
+            // console.log('MERCHANT', merchant)
 
             const result = await superagent
                 .post(`${API_ENDPOINT}/merchants`)
                 .set('authorization', `Bearer ${this.didToken}`)
                 .send(merchant)
                 .set('accept', 'json')
-            console.log('ADD MERCHANT RESULT', result)
+            // console.log('ADD MERCHANT RESULT', result)
 
             /* Validate result. */
             if (result) {
@@ -863,8 +863,8 @@ export default {
         //     //     });
         // },
         async filesChange(fieldName, fileList) {
-            console.log('FILES CHANGED (fieldName):', fieldName)
-            console.log('FILES CHANGED (fileList):', fileList)
+            // console.log('FILES CHANGED (fieldName):', fieldName)
+            // console.log('FILES CHANGED (fileList):', fileList)
             // handle file changes
             // const formData = new FormData();
 
@@ -878,7 +878,11 @@ export default {
                 .set('authorization', `Bearer ${this.didToken}`)
                 .attach('storefront', fileList[0], this.merchantStorefrontPhotoId)
                 .catch(console.error)
-            console.log('RESPONSE', response)
+            // console.log('RESPONSE', response)
+
+            if (!response) {
+                alert('Oops! Something went wrong!')
+            }
         }
 
     },
@@ -901,11 +905,11 @@ export default {
         /* Validate magic login. */
         this.isLoggedIn = await magicKey.user.isLoggedIn()
             .catch(err => console.error(err))
-        console.log('MAGIC (isLoggedIn):', this.isLoggedIn)
+        // console.log('MAGIC (isLoggedIn):', this.isLoggedIn)
 
         this.didToken = await magicKey.user.getIdToken()
             .catch(err => console.error(err))
-        console.log('MAGIC (didToken):', this.didToken)
+        // console.log('MAGIC (didToken):', this.didToken)
     },
     mounted: function () {
         this.requestLocation()

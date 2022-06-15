@@ -12,6 +12,7 @@
 
         <Popup
             v-if="vendorid"
+            :geoPos="geoPos"
             :vendorid="vendorid"
             @close="closePopup"
         />
@@ -57,6 +58,8 @@ export default {
         isPanelOpen: null,
         isPanelHidden: null,
         showMagicLinkWin: null,
+
+        geoPos: null,
     }),
     watch: {
         '$route.params': function () {
@@ -120,6 +123,49 @@ export default {
                 this.openMenu()
             }
         },
+
+        requestLocation() {
+            navigator.geolocation.getCurrentPosition(position => {
+                /* Set latitude. */
+                const latitude = position.coords.latitude
+
+                /* Set longitude. */
+                const longitude = position.coords.longitude
+
+                /* Set altitude. */
+                const altitude = position.coords.altitude
+
+                /* Set accuracy. */
+                const accuracy = position.coords.accuracy
+
+                /* Set altitude accuracy. */
+                const altitudeAccuracy = position.coords.altitudeAccuracy
+
+                /* Set heading. */
+                const heading = position.coords.height
+
+                /* Set speed. */
+                const speed = position.coords.speed
+
+                /* Set timestamp. */
+                const timestamp = position.timestamp
+
+                console.info(
+                    'Latitude', latitude,
+                    'Longitude', longitude,
+                    'Altitude', altitude,
+                    'Accuracy', accuracy,
+                    'Altitude Accuracy', altitudeAccuracy,
+                    'Heading', heading,
+                    'Speed', speed,
+                    'Timestamp', timestamp,
+                )
+
+                /* Set geo(-location) position. */
+                this.geoPos = latitude + ',' + longitude
+            })
+        },
+
     },
     created: function () {
         this.isPanelHidden = true
@@ -127,6 +173,9 @@ export default {
 
         /* Initialization. */
         this.init()
+    },
+    mounted: function () {
+        this.requestLocation()
     },
 }
 </script>

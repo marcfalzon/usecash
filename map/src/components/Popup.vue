@@ -101,7 +101,7 @@
 
                                             <div class="mt-2 pt-1 pl-3 border-t border-gray-200">
                                                 <span class="text-xs text-gray-500 font-medium uppercase">
-                                                    Last <strong class="text-green-600">Bitcoin</strong> Activity
+                                                    Last <strong class="text-green-600">{{lastCrypto}}</strong> Activity
                                                 </span>
 
                                                 <div class="flex flex-row items-center">
@@ -185,9 +185,13 @@ import superagent from 'superagent'
 const API_ENDPOINT = `https://api.usecash.com/v1`
 // const API_ENDPOINT = `http://localhost:9090/v1`
 
+const LAT_TOLERANCE = 0.0095
+const LNG_TOLERANCE = 0.0127
+
 export default {
     props: {
         vendorid: String,
+        geoPos: String,
     },
     data: () => ({
         name: null,
@@ -204,6 +208,7 @@ export default {
         lat: null,
         lng: null,
         lastActivity: null,
+        lastCrypto: null,
     }),
     computed: {
         banner() {
@@ -367,13 +372,40 @@ export default {
         },
 
         updateVendor() {
-            if (window.confirm(`Please click OK to report that this merchant has recently accepted a crypto payment.`)) {
-                alert('Thank you for contributing to our platform.')
+            // console.log('geoPos', this.geoPos)
+
+            const lat = this.geoPos.split(',')[0]
+            const lng = this.geoPos.split(',')[1]
+
+            // console.log('lat/lng', this.lat, this.lng)
+
+            const latDiff = Math.abs(lat - this.lat)
+            // console.log('LAT DIFF', latDiff, (latDiff < LAT_TOLERANCE))
+
+            const lngDiff = Math.abs(lng - this.lng)
+            // console.log('LNG DIFF', lngDiff, (lngDiff < LNG_TOLERANCE))
+
+            /* Validate proximiity to merchant. */
+            if ((latDiff < LAT_TOLERANCE) && (lngDiff < LNG_TOLERANCE)) {
+                if (window.confirm(`Please click OK to report that this merchant has recently accepted a crypto payment.`)) {
+                    console.log('UPDATE', this.vendorid)
+
+                    alert('Thank you for contributing to our platform.')
+                } else {
+                    console.log('no worries, try again next time..')
+                }
+            } else {
+                alert(`Sorry, but you're too far away from this merchant to submit an update.\n\nPlease move closer and try again OR we'll see you on your next visit.`)
             }
         }
 
     },
     created: async function () {
+        console.log('POPUP (geoPos):', this.geoPos)
+
+        /* Initialize last crypto (activity). */
+        this.lastCrypto = 'Bitcoin'
+
         const result = await superagent
             .get(`${API_ENDPOINT}/merchants/${this.vendorid}`)
             .catch(err => console.error(err))
