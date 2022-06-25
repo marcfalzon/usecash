@@ -377,38 +377,6 @@ export default {
         website: null,
         phone: null,
     }),
-    watch: {
-        // merchantStorefrontPhoto(_val) {
-        //     // console.log('MERCHANT STOREFRONT PHOTO CHANGED', _val)
-        //
-        //     if (_val && _val[0]) {
-        //         const fileReader = new FileReader()
-        //         fileReader.addEventListener('load', async () => {
-        //             this.merchantStorefrontPhotoUrl = fileReader.result
-        //
-        //             this.merchantStorefrontPhotoId = uuidv4()
-        //
-        //             const imageBuffer = this.dataUrlToBlob(this.merchantStorefrontPhotoUrl)
-        //             console.log('IMAGE BUFFER', imageBuffer)
-        //
-        //             const response = await superagent
-        //                 .post(`${API_ENDPOINT}/admin/media`)
-        //                 .attach('storefront', imageBuffer, this.merchantStorefrontPhotoId)
-        //                 .catch(console.error)
-        //             console.log('RESPONSE', response)
-        //
-        //             if (!response) {
-        //                 // FIXME: We need to better handle errors AND completion success.
-        //                 alert('Upload failed!')
-        //             }
-        //         })
-        //         fileReader.readAsDataURL(this.merchantStorefrontPhoto[0])
-        //     } else {
-        //         this.merchantStorefrontPhotoUrl = null
-        //     }
-        // },
-
-    },
     computed: {
         countries() {
             return [
@@ -747,7 +715,6 @@ export default {
             }
 
             const merchant = {
-                // id: uuidv4(),
                 category: this.category,
                 crypto: this.crypto,
                 name: this.merchantName,

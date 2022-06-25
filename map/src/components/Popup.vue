@@ -180,6 +180,7 @@
 
 <script>
 /* Import modules. */
+import { Magic } from 'magic-sdk'
 import superagent from 'superagent'
 
 const API_ENDPOINT = `https://api.usecash.com/v1`
@@ -188,12 +189,18 @@ const API_ENDPOINT = `https://api.usecash.com/v1`
 const LAT_TOLERANCE = 0.0095
 const LNG_TOLERANCE = 0.0127
 
+/* Initialize magic key. */
+const magicKey = new Magic(process.env.VUE_APP_MAGIC_API_KEY)
+
 export default {
     props: {
         vendorid: String,
         geoPos: String,
     },
     data: () => ({
+        isLoggedIn: null,
+        didToken: null,
+
         name: null,
         category: null,
         media: null,
@@ -371,8 +378,13 @@ export default {
             }
         },
 
-        updateVendor() {
+        async updateVendor() {
             // console.log('geoPos', this.geoPos)
+
+            /* Validate user. */
+            if (!this.isLoggedIn) {
+                return alert(`You MUST first sign in to UPDATE a existing merchant.`)
+            }
 
             const lat = this.geoPos.split(',')[0]
             const lng = this.geoPos.split(',')[1]
@@ -390,7 +402,23 @@ export default {
                 if (window.confirm(`Please click OK to report that this merchant has recently accepted a crypto payment.`)) {
                     console.log('UPDATE', this.vendorid)
 
-                    alert('Thank you for contributing to our platform.')
+                    const merchant = {
+                        id: this.vendorid,
+                    }
+                    // console.log('MERCHANT', merchant)
+
+                    const result = await superagent
+                        .post(`${API_ENDPOINT}/merchants`)
+                        .set('authorization', `Bearer ${this.didToken}`)
+                        .send(merchant)
+                        .set('accept', 'json')
+
+                    /* Validate result. */
+                    if (result) {
+                        console.log('UPDATE MERCHANT RESULT', result.body)
+                        alert('Thank you for contributing to our platform.')
+                    }
+
                 } else {
                     console.log('no worries, try again next time..')
                 }
@@ -488,6 +516,15 @@ export default {
             }
 
         }
+
+        /* Validate magic login. */
+        this.isLoggedIn = await magicKey.user.isLoggedIn()
+            .catch(err => console.error(err))
+        // console.log('MAGIC (isLoggedIn):', this.isLoggedIn)
+
+        this.didToken = await magicKey.user.getIdToken()
+            .catch(err => console.error(err))
+        // console.log('MAGIC (didToken):', this.didToken)
 
     },
     mounted: function () {

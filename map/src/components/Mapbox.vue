@@ -942,7 +942,7 @@ export default {
 
             /* Set vendors. */
             const vendors = result.body
-            // console.log('VENDORS:', vendors)
+            console.log('VENDORS:', vendors)
 
             /* Validate vendors. */
             if (vendors) {
@@ -957,7 +957,8 @@ export default {
                     this.vendors.push({
                         id: vendor._id,
                         cat: vendor.category,
-                        isFeatured: vendor.users ? true : false, // FIXME: Change based on `updatedAt`
+                        // isFeatured: vendor.users ? true : false, // FIXME: Change based on `updatedAt`
+                        isFeatured: vendor.updatedAt ? true : false, // FIXME: Change based on `updatedAt`
                         lat: vendor.lat,
                         lng: vendor.lng,
                         latlng: [ vendor.lat, vendor.lng ],
