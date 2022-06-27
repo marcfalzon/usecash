@@ -290,20 +290,6 @@ class App {
         return merchantName;
     }
 
-    static setMerchantID(value) {
-        const localStorage = window.localStorage;
-        localStorage.setItem("merchantID", value);
-    }
-
-    static getMerchantID() {
-        const localStorage = window.localStorage;
-
-        const merchantID = localStorage.getItem("merchantID");
-        if (merchantID == null) { return ""; }
-
-        return merchantID;
-    }
-
     static setDestinationAddress(value) {
         const localStorage = window.localStorage;
         localStorage.setItem("destinationAddress", value);
@@ -371,6 +357,20 @@ class App {
     static setDoubleSpendCheckIsEnabled(isEnabled) {
         const localStorage = window.localStorage;
         return localStorage.setItem("doubleSpendCheckIsEnabled", (isEnabled ? 1 : 0));
+    }
+
+    static setReportingID(value) {
+        const localStorage = window.localStorage;
+        localStorage.setItem("reportingID", value);
+    }
+
+    static getReportingID() {
+        const localStorage = window.localStorage;
+
+        const reportingID = localStorage.getItem("reportingID");
+        if (reportingID == null) { return ""; }
+
+        return reportingID;
     }
 
     static isAddressValid(addressString) {

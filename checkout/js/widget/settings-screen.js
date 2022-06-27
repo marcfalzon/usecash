@@ -153,29 +153,6 @@ class SettingsScreen {
         };
         widget.addWidget(merchantNameSetting);
 
-        // Merchant ID Setting Widget
-        const merchantID = App.getMerchantID();
-        const merchantIDSetting = Setting.create(App.getString("settings-screen", "merchant-id"), "/img/merchant.png", merchantID || "...");
-        merchantIDSetting.setValue(merchantID);
-        merchantIDSetting.onClick = function() {
-            const label = merchantIDSetting.getLabel();
-            const value = merchantIDSetting.getValue();
-
-            const dialogTemplate = SettingsScreen.editMerchantIDDialogTemplate;
-            const dialogWidget = SettingsScreen.createEditDialog(dialogTemplate, label, value);
-            dialogWidget.onComplete = function(value) {
-                merchantIDSetting.setValue(value);
-                merchantIDSetting.setDisplayValue(value || "...");
-                App.setMerchantID(value);
-            };
-
-            closeDialogOnEscape(dialogWidget);
-
-            clearDialog();
-            widget.appendChild(dialogWidget);
-        };
-        widget.addWidget(merchantIDSetting);
-
         const cameraViewport = widget.querySelector(".camera-viewport");
 
         // Destination Address Setting Widget
@@ -405,6 +382,29 @@ class SettingsScreen {
         };
         widget.addWidget(doubleSpendCheckSetting);
 
+        // Reporting ID Setting Widget
+        const reportingID = App.getReportingID();
+        const reportingIDSetting = Setting.create(App.getString("settings-screen", "reporting-id"), "/img/business.png", reportingID || "...");
+        reportingIDSetting.setValue(reportingID);
+        reportingIDSetting.onClick = function() {
+            const label = reportingIDSetting.getLabel();
+            const value = reportingIDSetting.getValue();
+
+            const dialogTemplate = SettingsScreen.editReportingIDDialogTemplate;
+            const dialogWidget = SettingsScreen.createEditDialog(dialogTemplate, label, value);
+            dialogWidget.onComplete = function(value) {
+                reportingIDSetting.setValue(value);
+                reportingIDSetting.setDisplayValue(value || "...");
+                App.setReportingID(value);
+            };
+
+            closeDialogOnEscape(dialogWidget);
+
+            clearDialog();
+            widget.appendChild(dialogWidget);
+        };
+        widget.addWidget(reportingIDSetting);
+
         // Reset Settings Widget
         const resetSetting = Setting.create(App.getString("settings-screen", "reset-data"), "/img/trash.png", App.getString("settings-screen", "reset-data-value"));
         resetSetting.onClick = function() {
@@ -457,10 +457,10 @@ App.addOnLoad(function() {
     const templates = document.getElementById("templates");
     SettingsScreen.template = templates.querySelector(".settings-screen");
     SettingsScreen.editMerchantDialogTemplate = templates.querySelector(".settings-screen-dialog.edit-merchant");
-    SettingsScreen.editMerchantIDDialogTemplate = templates.querySelector(".settings-screen-dialog.edit-merchant-id");
     SettingsScreen.editDestinationAddressDialogTemplate = templates.querySelector(".settings-screen-dialog.edit-destination-address");
     SettingsScreen.editLocalCurrencyDialogTemplate = templates.querySelector(".settings-screen-dialog.edit-local-currency");
     SettingsScreen.currencyListItemTemplate = templates.querySelector(".currency-list-item");
     SettingsScreen.editDoubleSpendCheckDialogTemplate = templates.querySelector(".settings-screen-dialog.edit-double-spend-check");
+    SettingsScreen.editReportingIDDialogTemplate = templates.querySelector(".settings-screen-dialog.edit-reporting-id");
     SettingsScreen.editResetDialogTemplate = templates.querySelector(".settings-screen-dialog.reset-data");
 });

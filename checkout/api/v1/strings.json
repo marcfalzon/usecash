@@ -23,7 +23,6 @@
         "settings-screen": {
             "title": "Settings",
             "merchant-name": "Merchant Name",
-            "merchant-id": "Merchant ID",
             "destination-address": "Destination Address",
             "local-currency": "Country",
             "pin-code": "PIN Code",
@@ -39,7 +38,8 @@
             "enable-double-spend-check": "Double Spend Check",
             "enable-double-spend-check-description": "Enable checking for fraudulent payments from customers. Enabling this option will cause a 3 second delay during checkout.",
             "enable-double-spend-check-no": "Disabled",
-            "enable-double-spend-check-yes": "Enabled"
+            "enable-double-spend-check-yes": "Enabled",
+            "reporting-id": "Reporting ID"
         },
         "payment-screen": {
             "payment-label": "Scan to Pay",
@@ -80,7 +80,6 @@
         "settings-screen": {
             "title": "Configuraciones",
             "merchant-name": "Nombre del comercio",
-            "merchant-id": "ID del comercio",
             "destination-address": "Dirección de destino",
             "local-currency": "País",
             "pin-code": "Código PIN",
@@ -96,7 +95,8 @@
             "enable-double-spend-check": "Cheque de Doble Gasto",
             "enable-double-spend-check-description": "Habilite la comprobación de pagos fraudulentos de clientes. Habilitar esta opción causará un retraso de 3 segundos durante el proceso de pago.",
             "enable-double-spend-check-no": "Desactivar",
-            "enable-double-spend-check-yes": "Permitir"
+            "enable-double-spend-check-yes": "Permitir",
+            "reporting-id": "identificación de informes"
         },
         "payment-screen": {
             "payment-label": "Escanear para pagar",
@@ -137,7 +137,6 @@
         "settings-screen": {
             "title": "設定",
             "merchant-name": "店舗名",
-            "merchant-id": "店舗名ID",
             "destination-address": "送金先アドレス",
             "local-currency": "所在国",
             "pin-code": "PINコード",
@@ -153,7 +152,8 @@
             "enable-double-spend-check": "二重支払いチェック",
             "enable-double-spend-check-description": "不正な支払いをチェックする機能を有効にします。このオプションを有効にすると、会計時に3秒間の遅延が発生します。",
             "enable-double-spend-check-no": "無効",
-            "enable-double-spend-check-yes": "有効"
+            "enable-double-spend-check-yes": "有効",
+            "reporting-id": "報告ID"
         },
         "payment-screen": {
             "payment-label": "スキャンしてください。",
