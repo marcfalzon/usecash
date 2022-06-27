@@ -1,0 +1,173 @@
+{
+    "english": {
+        "checkout-screen": {
+            "checkout-label": "Enter an amount.",
+            "checkout-button": "Checkout",
+            "toast-invalid-amount": "Invalid amount.",
+            "toast-invalid-address": "Destination address is not set."
+        },
+        "menu": {
+            "transactions": "Transactions",
+            "settings": "Settings",
+            "pin-label": "Enter PIN Code",
+            "close-button": "Close",
+            "toast-invalid-pin": "Incorrect PIN Code."
+        },
+        "transactions-screen": {
+            "title": "Transactions",
+            "empty": "No transactions.",
+            "today-button": "Today",
+            "yesterday-button": "Yesterday",
+            "all-button": "All"
+        },
+        "settings-screen": {
+            "title": "Settings",
+            "merchant-name": "Merchant Name",
+            "merchant-id": "Merchant ID",
+            "destination-address": "Destination Address",
+            "local-currency": "Country",
+            "pin-code": "PIN Code",
+            "reset-data": "Reset Data",
+            "reset-data-value": "Clear all app data.",
+            "reset-data-text": "Reset/clear all settings?",
+            "advertise": "Advertise",
+            "advertise-value": "Add your business to map.bitcoin.com.",
+            "save-button": "Save & Exit",
+            "toast-invalid-address": "Invalid address.",
+            "toast-address-copied": "Address copied.",
+            "no-camera-found": "Unable to initialize camera.",
+            "enable-double-spend-check": "Double Spend Check",
+            "enable-double-spend-check-description": "Enable checking for fraudulent payments from customers. Enabling this option will cause a 3 second delay during checkout.",
+            "enable-double-spend-check-no": "Disabled",
+            "enable-double-spend-check-yes": "Enabled"
+        },
+        "payment-screen": {
+            "payment-label": "Scan to Pay",
+            "toast-copy-payment": "Text copied."
+        },
+        "payment-received-screen": {
+            "success-label": "Payment complete. Thank you.",
+            "failure-label": "Payment was not received.",
+            "double-spend-checker-label": "Waiting for payment to finalize...",
+            "done-button": "Done"
+        },
+        "pin-screen": {
+            "pin-label": "Create PIN Code",
+            "confirm-pin-label": "Confirm PIN Code"
+        }
+    },
+    "spanish": {
+        "checkout-screen": {
+            "checkout-label": "Ingresar monto",
+            "checkout-button": "Cobrar",
+            "toast-invalid-amount": "Monto inválido",
+            "toast-invalid-address": "La dirección de destino no está configurada"
+        },
+        "menu": {
+            "transactions": "Transacciones",
+            "settings": "Configuraciones",
+            "pin-label": "Ingresar el código PIN",
+            "close-button": "Cerrar",
+            "toast-invalid-pin": "Código PIN incorrecto"
+        },
+        "transactions-screen": {
+            "title": "Transacciones",
+            "empty": "No hay transacciones.",
+            "today-button": "Hoy dia",
+            "yesterday-button": "Ayer",
+            "all-button": "Todos"
+        },
+        "settings-screen": {
+            "title": "Configuraciones",
+            "merchant-name": "Nombre del comercio",
+            "merchant-id": "ID del comercio",
+            "destination-address": "Dirección de destino",
+            "local-currency": "País",
+            "pin-code": "Código PIN",
+            "reset-data": "Reiniciar datos",
+            "reset-data-value": "Borrar todos los datos de la aplicación.",
+            "reset-data-text": "Restablecer / Borrar todas las configuraciones?",
+            "advertise": "Anunciarse",
+            "advertise-value": "Agregar su negocio a map.bitcoin.com",
+            "save-button": "Guardar & Salir",
+            "toast-invalid-address": "Dirección inválida",
+            "toast-address-copied": "Dirección copiada",
+            "no-camera-found": "No se puede inicializar la cámara.",
+            "enable-double-spend-check": "Cheque de Doble Gasto",
+            "enable-double-spend-check-description": "Habilite la comprobación de pagos fraudulentos de clientes. Habilitar esta opción causará un retraso de 3 segundos durante el proceso de pago.",
+            "enable-double-spend-check-no": "Desactivar",
+            "enable-double-spend-check-yes": "Permitir"
+        },
+        "payment-screen": {
+            "payment-label": "Escanear para pagar",
+            "toast-copy-payment": "Texto copiado"
+        },
+        "payment-received-screen": {
+            "success-label": "Pago completado.  Gracias.",
+            "failure-label": "No se recibió el pago.",
+            "double-spend-checker-label": "Esperando a que finalice el pago...",
+            "done-button": "Hecho"
+        },
+        "pin-screen": {
+            "pin-label": "Crear código PIN",
+            "confirm-pin-label": "Confirmar código PIN"
+        }
+    },
+    "japanese": {
+        "checkout-screen": {
+            "checkout-label": "金額を入力してください",
+            "checkout-button": "会計する",
+            "toast-invalid-amount": "金額をお確かめください",
+            "toast-invalid-address": "送金先アドレスが指定されていません"
+        },
+        "menu": {
+            "transactions": "取引履歴",
+            "settings": "設定",
+            "pin-label": "PINコードを入力",
+            "close-button": "閉じる",
+            "toast-invalid-pin": "PINコードが違います"
+        },
+        "transactions-screen": {
+            "title": "取引履歴",
+            "empty": "取引の記録はありません",
+            "today-button": "今日",
+            "yesterday-button": "昨日",
+            "all-button": "全て"
+        },
+        "settings-screen": {
+            "title": "設定",
+            "merchant-name": "店舗名",
+            "merchant-id": "店舗名ID",
+            "destination-address": "送金先アドレス",
+            "local-currency": "所在国",
+            "pin-code": "PINコード",
+            "reset-data": "リセット",
+            "reset-data-value": "アプリ内全てのデータを消去",
+            "reset-data-text": "設定を全てリセットしますか？",
+            "advertise": "宣伝する",
+            "advertise-value": "お店をmap.bitcoin.comに登録しましょう",
+            "save-button": "保存して閉じる",
+            "toast-invalid-address": "無効なアドレス",
+            "toast-address-copied": "アドレスをコピーしました",
+            "no-camera-found": "カメラの初期化に失敗しました",
+            "enable-double-spend-check": "二重支払いチェック",
+            "enable-double-spend-check-description": "不正な支払いをチェックする機能を有効にします。このオプションを有効にすると、会計時に3秒間の遅延が発生します。",
+            "enable-double-spend-check-no": "無効",
+            "enable-double-spend-check-yes": "有効"
+        },
+        "payment-screen": {
+            "payment-label": "スキャンしてください。",
+            "toast-copy-payment": "テキストをコピーしました"
+        },
+        "payment-received-screen": {
+            "success-label": "支払い完了しました。ありがとうございました",
+            "failure-label": "支払いを完了出来ませんでした",
+            "double-spend-checker-label": "支払い確認中です",
+            "done-button": "完了"
+        },
+        "pin-screen": {
+            "pin-label": "PINコードを作成",
+            "confirm-pin-label": "PINコードを確認"
+        }
+    }
+}

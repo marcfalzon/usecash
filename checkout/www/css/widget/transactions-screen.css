@@ -1,0 +1,218 @@
+
+.transactions-screen .navigation-container {
+    cursor: pointer;
+    display: inline-block;
+    padding-right: 2em;
+}
+.transactions-screen .navigation-container .transactions-back-icon {
+    display: inline-block;
+    padding: 1em;
+    line-height: 2em;
+}
+
+.transactions-screen .completed-payments-list {
+    border-radius: 1em;
+    background-color: #303030;
+    padding: 1em;
+
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.transactions-screen .completed-payments-list .completed-payment-item {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5em;
+}
+.transactions-screen .completed-payments-list .completed-payment-item:nth-child(even) {
+    background-color: #FFFFFF10;
+}
+.transactions-screen .completed-payments-list .completed-payment-item .item-left {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+}
+.transactions-screen .completed-payments-list .completed-payment-item .item-right {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-align: right;
+}
+.transactions-screen .completed-payment-item .amount-fiat {
+}
+.transactions-screen .completed-payment-item .amount-bch {
+    font-size: 0.5em;
+}
+.transactions-screen .completed-payment-item .timestamp {
+    flex-direction: column;
+    flex-grow: 1;
+    text-align: right;
+    justify-content: center;
+    display: flex;
+}
+
+.transactions-screen .print {
+    display: block;
+    margin: auto;
+    margin-top: 1em;
+    width: 3em;
+    cursor: pointer;
+    background-color: #303030;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    position: absolute;
+    top: 0;
+    right: 5em;
+}
+.transactions-screen .print:hover {
+    background-color: #3A3A3A;
+}
+
+.transactions-screen .date-filter {
+    display: flex;
+}
+.transactions-screen .date-filter > div {
+    display: inline-block;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    width: 50%;
+    box-sizing: border-box;
+}
+.transactions-screen .date-filter > div:last-child {
+    text-align: right;
+}
+
+.transactions-screen .helper-buttons {
+    display: flex;
+    width: auto;
+}
+.transactions-screen .helper-buttons span {
+    user-select: none;
+    padding: 0.25em;
+    min-width: 5em;
+    border: 0;
+    text-align: center;
+    letter-spacing: 1px;
+    border-radius: 0.25em;
+    background-color: #3D3D3D;
+    color: #AAAAAA;
+    border-color: #303030;
+    margin: 0.5em;
+    line-height: 1.25em;
+    cursor: pointer;
+}
+.transactions-screen .helper-buttons span.active {
+    background-color: #09C58A;
+    color: #303030;
+}
+
+.transactions-screen .date-filter .clear,
+.transactions-screen .date-filter .ampm-toggle,
+.transactions-screen .date-filter input {
+    user-select: none;
+    padding: 0.25em;
+    width: 6.5em;
+    border: 0;
+    text-align: center;
+    letter-spacing: 1px;
+    border-radius: 0.25em;
+    background-color: #3D3D3D;
+    color: #AAAAAA;
+    border-color: #303030;
+    margin: 0.5em;
+    line-height: 1.25em;
+    cursor: pointer;
+}
+.transactions-screen .date-filter .time-input {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 3em;
+    box-sizing: border-box;
+}
+.transactions-screen .date-filter .time-input .up,
+.transactions-screen .date-filter .time-input .down {
+    user-select: none;
+    position: absolute;
+    background-color: #3D3D3D;
+    border-radius: 0.25em;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #252525;
+    color: #555555;
+    cursor: pointer;
+}
+.transactions-screen .date-filter .time-input .up {
+    top: -1.5em;
+}
+.transactions-screen .date-filter .time-input .down {
+    bottom: -1.5em;
+}
+.transactions-screen .date-filter .time-input input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+}
+.transactions-screen .date-filter .ampm-toggle {
+    line-height: 1em;
+    font-size: 0.8em;
+    padding: 0.25em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+.transactions-screen .date-filter .clear {
+    display: inline-block;
+    color: #FF4D4D;
+    width: 1.25em;
+    font-weight: bold;
+    font-size: 0.75em;
+    margin-left: 1em;
+}
+.transactions-screen .date-filter .picker-container {
+    position: absolute;
+    z-index: 1;
+}
+.transactions-screen .date-filter .picker-container.hidden {
+    display: none;
+}
+
+@media (max-width: 850px) {
+    .transactions-screen .date-filter {
+        display: block;
+    }
+
+    .transactions-screen .date-filter > div {
+        display: block;
+        width: auto;
+        margin-top: 2em;
+        text-align: center;
+    }
+
+    .transactions-screen .date-filter > div:last-child {
+        margin-top: 3em;
+        text-align: center;
+    }
+}
+
+@media print {
+    .transactions-screen .date-filter {
+        display: none !important;
+    }
+
+    .transactions-screen .navigation-container,
+    .transactions-screen .print {
+        display: none !important;
+    }
+
+    .transactions-screen .helper-buttons {
+        display: none !important;
+    }
+
+    * {
+        background-color: #FFFFFF !important;
+        color: #000000 !important;
+    }
+}

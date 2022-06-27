@@ -1,0 +1,232 @@
+.settings-screen .active-widget {
+    border-radius: 1em;
+    background-color: #303030;
+    padding: 1em;
+}
+
+.settings-screen .active-widget .setting {
+    margin-bottom: 2em;
+}
+
+.settings-screen .navigation-container {
+    cursor: pointer;
+    display: inline-block;
+    padding-right: 2em;
+}
+.settings-screen .navigation-container .settings-back-icon {
+    display: inline-block;
+    padding: 1em;
+    line-height: 2em;
+}
+
+.settings-screen .camera-viewport {
+    position: absolute;
+    top: calc(50vh - 25vh);
+    left: calc(50vw - 25vw);
+    left: calc(50vw - min(25vw, 300px));
+    width: 50vw;
+    max-width: 600px;
+    height: 20em;
+    background: #202020;
+    padding: 1em;
+    border-radius: 0.5em;
+    z-index: 2;
+    display: flex;
+}
+.settings-screen .camera-viewport.hidden {
+    display: none;
+}
+.settings-screen .camera-viewport > * {
+    flex-grow: 1;
+}
+
+.settings-screen .footer {
+    text-align: center;
+}
+
+.settings-screen .save-button {
+    display: inline-block;
+    margin: auto;
+    margin-top: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    line-height: 2em;
+    font-size: 2em;
+    background-color: #09C58A;
+    border-radius: 1em;
+    color: #202020;
+    cursor: pointer;
+}
+
+.settings-screen-dialog {
+    position: absolute;
+    top: calc(50vh - 25vh);
+    left: calc(50vw - 25vw);
+    left: calc(50vw - min(25vw, 300px));
+    width: 50vw;
+    max-width: 600px;
+    height: 20em;
+    background: #101010;
+    background: linear-gradient(23deg, #000000, #000000C0);
+    padding: 1em;
+    border-radius: 0.5em;
+    z-index: 1;
+}
+
+.settings-screen-dialog .dialog-label {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 1.5em;
+}
+
+.settings-screen-dialog .text {
+    padding: 0.5em;
+    text-align: center;
+}
+
+.settings-screen-dialog .dialog-input {
+    width: 85%;
+    margin: auto;
+    margin-top: 2em;
+    display: block;
+    box-sizing: border-box;
+    background-color: #FFFFFFBB;
+    border: solid 1px #FFFFFFCC;
+    padding: 0.25em;
+    font-size: 1.5em;
+    border-radius: 0.25em;
+}
+
+.settings-screen-dialog .buttons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    text-align: right;
+}
+
+.settings-screen-dialog .buttons .button {
+    width: 25%;
+    display: inline-block;
+    box-sizing: border-box;
+    border: solid 1px #FFFFFF;
+    border-radius: 0.5em;
+    background-color: #EEEEEE;
+    line-height: 3em;
+    margin: 1em;
+    margin-left: 0.5em;
+    text-align: center;
+    cursor: pointer;
+}
+.settings-screen-dialog .buttons .button:hover {
+    background-color: #F0F0F0 !important;
+}
+.settings-screen-dialog .buttons .button.confirm {
+    color: #202020;
+    background-color: #09C58A;
+    border-color: #6EF4B2;
+}
+.settings-screen-dialog .buttons .button.destroy {
+    color: #202020;
+    background-color: #C45858;
+    border-color: #202020;
+}
+.settings-screen-dialog .buttons .button.cancel {
+    background-color: #CCCCCC;
+    color: #858585;
+}
+.settings-screen-dialog .buttons .button.left {
+    position: absolute;
+    left: 0.5em;
+}
+
+.settings-screen-dialog.edit-local-currency {
+    position: fixed; /* Input field without fixed misbehaves on mobile. */
+}
+.settings-screen-dialog .currency-list {
+    overflow-y: scroll;
+    height: 50%;
+    background-color: #FFFFFF10;
+    padding: 0.5em;
+}
+.settings-screen-dialog .currency-list-search {
+    color: #EAEAEA;
+    background-color: #505050;
+    border: none;
+    border-radius: 0.25em;
+    font-size: 1em;
+    box-sizing: border-box;
+    width: 95%;
+    margin: auto;
+    display: block;
+    margin-bottom: 0.75em;
+    margin-top: -0.75em;
+    padding: 0.25em;
+}
+.settings-screen-dialog .currency-list .currency-list-item {
+    border-bottom: solid 2px #000000;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    cursor: pointer;
+}
+.settings-screen-dialog .currency-list .currency-list-item:nth-child(even) {
+    background-color: #00000020;
+}
+.settings-screen-dialog .currency-list .currency-list-item .country-icon {
+    float: left;
+    clear: both;
+    margin-right: 1em;
+    margin-top: -0.2em;
+    width: 3em;
+    height: 3em;
+}
+.settings-screen-dialog .currency-list .currency-list-item .country-name {
+    font-weight: 800;
+}
+.settings-screen-dialog .currency-list .currency-list-item .currency-name {
+    font-style: italic;
+    font-size: 0.90em;
+}
+
+.settings-screen-dialog.edit-destination-address .dialog-input {
+    font-size: 1em;
+    line-height: 1.5em;
+    margin-top: 3em;
+    padding: 0.375em;
+    border-radius: 0.375em;
+}
+
+.settings-screen-dialog .scan-qr-code-button {
+    display: inline-block;
+    float: left;
+    width: 3em;
+    margin-left: 1em;
+    margin-top: 1em;
+    cursor: pointer;
+    background-color: #202020;
+    border-radius: 0.5em;
+}
+.settings-screen-dialog .scan-qr-code-button.hidden {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .settings-screen .camera-viewport {
+        top: 25vh;
+        bottom: 25vh;
+        left: 5vw;
+        right: 5vw;
+        width: auto;
+        margin: 0;
+        padding: 0;
+    }
+
+    .settings-screen-dialog {
+        top: 25vh;
+        left: 5vw;
+        right: 5vw;
+        width: auto;
+        height: 50vh;
+    }
+}

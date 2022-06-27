@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link href="/css/font.css" rel="stylesheet" />
+
+        <link rel="icon" type="image/png" href="/img/favicon.png">
+
+        <script>window.onerror = function (msg, url, lineNo, columnNo, error) { window.alert(msg + "\n" + url + ":" + lineNo); };</script>
+
+        <script src="/js/http.js"></script>
+        <script src="/js/libauth.js"></script>
+        <script src="/js/qr-code.js"></script>
+        <script src="/js/jsqr.js"></script>
+        <script src="/js/qr-code-scanner.js"></script>
+
+        <link rel="stylesheet" href="/css/core.css" />
+        <script src="/js/core.js"></script>
+
+        <link rel="stylesheet" href="/css/widget/keyboard.css" />
+        <script src="/js/widget/keyboard.js"></script>
+
+        <link rel="stylesheet" href="/css/widget/pin.css" />
+        <script src="/js/widget/pin.js"></script>
+
+        <link rel="stylesheet" href="/css/widget/pin-screen.css" />
+        <script src="/js/widget/pin-screen.js"></script>
+
+        <link rel="stylesheet" href="/css/widget/setting.css" />
+        <script src="/js/widget/setting.js"></script>
+
+        <link rel="stylesheet" href="/css/widget/settings-screen.css" />
+        <script src="/js/widget/settings-screen.js"></script>
+
+        <link rel="stylesheet" href="/css/widget/checkout-screen.css" />
+        <script src="/js/widget/checkout-screen.js"></script>
+
+        <link rel="stylesheet" href="/css/widget/payment-screen.css" />
+        <script src="/js/widget/payment-screen.js"></script>
+
+        <link rel="stylesheet" href="/css/widget/payment-received-screen.css" />
+        <script src="/js/widget/payment-received-screen.js"></script>
+
+        <link rel="stylesheet" href="/css/widget/transactions-screen.css" />
+        <script src="/js/widget/transactions-screen.js"></script>
+
+        <link rel="stylesheet" href="/css/widget/menu.css" />
+        <script src="/js/widget/menu.js"></script>
+
+        <link rel="stylesheet" href="/css/datepicker.css" />
+        <script src="/js/datepicker.js"></script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+        <title>BCH Merchant POS</title>
+    </head>
+
+    <body>
+        <div id="main"></div>
+
+        <div id="templates">
+            <div class="pin">
+                <div class="pin-input">
+                    <input type="password" pattern="[0-9]*" inputmode="numeric" maxlength="1" autocomplete="off" readonly />
+                    <input type="password" pattern="[0-9]*" inputmode="numeric" maxlength="1" autocomplete="off" readonly />
+                    <input type="password" pattern="[0-9]*" inputmode="numeric" maxlength="1" autocomplete="off" readonly />
+                    <input type="password" pattern="[0-9]*" inputmode="numeric" maxlength="1" autocomplete="off" readonly />
+                </div>
+                <div class="pin-label">Create PIN Code</div>
+                <div class="keyboard-container"></div>
+            </div>
+            <div class="pin-screen">
+                <div class="active-widget"></div>
+                <div class="keyboard-container"></div>
+                <div class="error-message hidden"></div>
+            </div>
+            <div class="setting">
+                <img class="setting-icon" />
+                <div class="setting-label"></div>
+                <div class="setting-value"></div>
+            </div>
+            <div class="settings-screen">
+                <div class="navigation-container"><span class="settings-back-icon">&#8592;</span><span class="text">Settings</span></div>
+                <div class="active-widget"></div>
+                <div class="camera-viewport hidden"></div>
+                <div class="footer">
+                    <div class="save-button">Save &amp; Exit</div>
+                </div>
+            </div>
+            <div class="settings-screen-dialog edit-merchant edit-merchant-id edit-destination-address">
+                <div class="dialog-label"></div>
+                <input class="dialog-input" />
+                <div class="buttons">
+                    <img class="scan-qr-code-button hidden" src="/img/address.png" />
+                    <div class="button cancel">Cancel</div>
+                    <div class="button confirm">Ok</div>
+                </div>
+            </div>
+            <div class="settings-screen-dialog edit-local-currency">
+                <div class="dialog-label"></div>
+                <input class="currency-list-search" />
+                <div class="currency-list"></div>
+                <div class="buttons">
+                    <div class="button cancel">Cancel</div>
+                </div>
+            </div>
+            <div class="currency-list-item">
+                <img class="country-icon" />
+                <div class="country-name"></div>
+                <div class="currency-name"></div>
+            </div>
+            <div class="settings-screen-dialog edit-double-spend-check">
+                <div class="dialog-label"></div>
+                <div class="text"></div>
+                <div class="buttons">
+                    <div class="button cancel left">Cancel</div>
+                    <div class="button disable destroy">Disable</div>
+                    <div class="button enable confirm">Enable</div>
+                </div>
+            </div>
+            <div class="settings-screen-dialog reset-data">
+                <div class="dialog-label"></div>
+                <div class="text"></div>
+                <div class="buttons">
+                    <div class="button cancel left">Cancel</div>
+                    <div class="button enable confirm">Reset</div>
+                </div>
+            </div>
+            <div class="checkout-screen">
+                <div class="menu-container"></div>
+                <div class="checkout-content">
+                    <div class="checkout-amount">$0</div>
+                    <div class="checkout-amount-bch">0 BCH</div>
+                    <div class="checkout-label">Enter an amount.</div>
+                    <div class="keyboard-container"></div>
+                    <div class="checkout-button">Checkout</div>
+                </div>
+            </div>
+            <div class="payment-screen">
+                <img class="cancel-button" src="/img/cancel.png" />
+                <div class="payment-content">
+                    <div class="payment-amount">$0</div>
+                    <div class="payment-amount-bch">0 BCH</div>
+                    <div class="payment-label">Scan to Pay</div>
+                    <div class="qr-code"></div>
+                </div>
+            </div>
+            <div class="payment-received-screen">
+                <div class="success-icon">&#10003;</div>
+                <div class="success-label">Payment complete. Thank you.</div>
+                <div class="failure-icon">&#10007;</div>
+                <div class="failure-label">Payment was not received.</div>
+                <div class="double-spend-checker">
+                    <div class="double-spend-countdown">3</div>
+                    <div class="double-spend-checker-label">Waiting for payment to finalize...</div>
+                </div>
+                <div class="done-button">Done</div>
+            </div>
+            <div class="transactions-screen">
+                <div class="navigation-container"><span class="transactions-back-icon">&#8592;</span><span class="text">Transactions</span></div>
+                <div class="date-filter">
+                    <div class="start">
+                        <input type="text" class="date" placeholder="Start Date" readonly />
+                        <div class="time-input hour">
+                            <input type="text" class="hour" value="12" readonly />
+                            <span class="up">&#8963;</span>
+                            <span class="down">&#8964;</span>
+                        </div>
+                        :
+                        <div class="time-input minute">
+                            <input class="minute" type="text" value="00" readonly />
+                            <span class="up">&#8963;</span>
+                            <span class="down">&#8964;</span>
+                        </div>
+                        <span class="ampm-toggle">AM</span>
+                        <span class="clear">X</span>
+                        <div class="picker-container"></div>
+                    </div>
+                    <div class="end">
+                        <input type="text" class="date" placeholder="End Date" readonly />
+                        <div class="time-input hour">
+                            <input type="text" class="hour" value="12" readonly />
+                            <span class="up">&#8963;</span>
+                            <span class="down">&#8964;</span>
+                        </div>
+                        :
+                        <div class="time-input minute">
+                            <input class="minute" type="text" value="00" readonly />
+                            <span class="up">&#8963;</span>
+                            <span class="down">&#8964;</span>
+                        </div>
+                        <span class="ampm-toggle">AM</span>
+                        <span class="clear">X</span>
+                        <div class="picker-container"></div>
+                    </div>
+                </div>
+                <div class="helper-buttons">
+                    <span class="today"></span>
+                    <span class="yesterday"></span>
+                    <span class="all"></span>
+                </div>
+                <div class="completed-payments-list"></div>
+                <img class="print" title="Print" src="/img/print.png" />
+            </div>
+            <div class="completed-payment-item">
+                <div class="item-left">
+                    <div class="amount-fiat"></div>
+                    <div class="amount-bch"></div>
+                </div>
+                <div class="item-right">
+                    <div class="timestamp"></div>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <img class="menu-merchant-icon" src="/img/merchant.png" />
+                        <div class="menu-merchant-name"></div>
+                    </div>
+                    <div class="menu-list"></div>
+                    <div class="close-button">Close</div>
+                </div>
+                <img class="menu-icon" src="/img/menu-white.png" />
+            </div>
+            <div class="menu-list-item">
+                <img class="menu-item-icon" />
+                <div class="menu-item-label"></div>
+            </div>
+            <div class="qr-code-scanner">
+                <img class="cancel-button" src="/img/cancel.png" />
+                <div class="video"></div>
+            </div>
+            <div class="keyboard">
+                <div class="row">
+                    <div class="button number">1</div>
+                    <div class="button number">2</div>
+                    <div class="button number">3</div>
+                </div>
+                <div class="row">
+                    <div class="button number">4</div>
+                    <div class="button number">5</div>
+                    <div class="button number">6</div>
+                </div>
+                <div class="row">
+                    <div class="button number">7</div>
+                    <div class="button number">8</div>
+                    <div class="button number">9</div>
+                </div>
+                <div class="row">
+                    <div class="button decimal">.</div>
+                    <div class="button number">0</div>
+                    <div class="button delete">&#9249;</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="attribution" class="hidden">
+            <div></div>
+        </div>
+
+        <div id="toast" class="hidden"></div>
+
+        <script src="/js/init.js" defer></script>
+    </body>
+</html>

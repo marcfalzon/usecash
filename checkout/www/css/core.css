@@ -1,0 +1,84 @@
+html, body {
+    background-color: #202020;
+    color: #AAAAAA;
+}
+body {
+    margin: auto;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    width: 75%;
+
+    font-family: 'Open Sans', sans-serif;
+}
+
+html, body, #main { }
+
+a, a:active, a:visited {
+    text-decoration: none;
+    color: #09C58A;
+}
+
+#templates {
+    display: none;
+}
+
+#attribution {
+    margin-top: 5em;
+    padding-bottom: 0.5em;
+    text-align: center;
+    font-size: 0.75em;
+    color: #757575;
+}
+
+#attribution.hidden {
+    display: none;
+}
+
+#toast {
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0.5em;
+    text-align: center;
+    background-color: #09C58A;
+    color: #202020;
+}
+#toast.error {
+    background-color: #EB4949;
+}
+#toast.hidden {
+    display: none;
+}
+
+.qr-code-scanner {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    margin: 1em;
+}
+.qr-code-scanner .video {
+    /* Fill the container in height/width for the camera rendering. */
+    flex-grow: 1;
+}
+.qr-code-scanner .cancel-button {
+    position: absolute;
+    top: 0.25em;
+    right: 0.25em;
+    width: 3em;
+    background-color: #202020;
+    border-radius: 0.5em;
+    cursor: pointer;
+    z-index: 1;
+    padding: 0.5em;
+}
+
+@media (max-width: 600px) {
+    body {
+        width: 100%;
+        padding-top: 1em;
+    }
+}
