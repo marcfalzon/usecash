@@ -3,6 +3,7 @@
         <Map
             :magicUser="magicUser"
             :isPanelOpen="isPanelOpen"
+            :categories="categories"
             @closeMenu="closeMenu"
             @toggleMenu="toggleMenu"
             @openPopup="openPopup"
@@ -25,6 +26,7 @@
             :magicUser="magicUser"
             :isPanelOpen="isPanelOpen"
             @toggleMenu="toggleMenu"
+            @updateCat="updateCat"
         />
     </main>
 </template>
@@ -60,6 +62,7 @@ export default {
         showMagicLinkWin: null,
 
         geoPos: null,
+        categories: null,
     }),
     watch: {
         '$route.params': function () {
@@ -164,6 +167,27 @@ export default {
                 /* Set geo(-location) position. */
                 this.geoPos = latitude + ',' + longitude
             })
+        },
+
+        updateCat(_newCat) {
+            console.log('NEW CATEGORES (App):', _newCat)
+            // this.categories = _newCat
+            // this.categories = 'hi there!'
+
+            let categories = ''
+
+            Object.keys(_newCat).forEach(_cat => {
+                if (_newCat[_cat]) {
+                    categories += _cat + ','
+                }
+            })
+
+            if (categories !== '') {
+                console.log('GOT IT', categories.slice(0, categories.length - 1));
+                this.categories = categories.slice(0, categories.length - 1)
+            } else {
+                this.categories = null
+            }
         },
 
     },

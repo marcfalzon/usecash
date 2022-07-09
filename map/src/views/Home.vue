@@ -19,7 +19,9 @@
             <img :src="require('@/assets/lottie-files/70445-bitcoin-market.gif')" class="hidden sm:flex w-32 h-32" />
         </div>
 
-        <Categories />
+        <Categories
+            @updateCat="updateCat"
+        />
 
         <section class="mt-5">
             <p>
@@ -49,7 +51,11 @@ export default {
         //
     },
     methods: {
-        //
+        updateCat(_newCat) {
+            // console.log('NEW CATEGORES (Home):', _newCat)
+            this.$emit('updateCat', _newCat)
+        },
+
     },
     created: function () {
         //

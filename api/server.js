@@ -69,12 +69,14 @@ app.get('/v1/users/:address', require('./routes/users'))
 app.post('/v1/users/:address', require('./routes/users'))
 
 /* Initialize Search route. */
+// app.get('/v1/search/autocomplete/:query', require('./routes/autoComplete-CouchDB'))
 app.get('/v1/search/autocomplete/:query', require('./routes/autoComplete-Elasticsearch'))
 app.get('/v1/search/map/:lat/:lng/:zoom', require('./routes/search'))
 app.get('/v1/search/:index/:type/:query', require('./routes/search'))
 app.get('/v1/search/:index/:query', require('./routes/search'))
 app.get('/v1/search/:query', require('./routes/search'))
-app.post('/v1/search/map', require('./routes/mapBounds-Elasticsearch'))
+app.post('/v1/search/map', require('./routes/mapBounds-CouchDB'))
+// app.post('/v1/search/map', require('./routes/mapBounds-Elasticsearch'))
 
 /* Initialize Magic (Email) Link route. */
 // app.get('/v1/magiclink', require('./routes/magiclink'))

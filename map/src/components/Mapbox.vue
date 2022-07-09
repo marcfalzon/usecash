@@ -261,6 +261,7 @@ class SidePanelMenuBtn {
 
 export default {
     props: {
+        categories: String,
         startPos: String,
         startZoom: Number,
         isEmbedded: Boolean,
@@ -289,6 +290,13 @@ export default {
 
             /* Set map center. */
             this.map.setCenter(center)
+        },
+
+        categories: function (_cat) {
+            console.log('CATEGORIES UPDATED (Mapbox):', _cat)
+
+            /* Manage map. */
+            this.mapManager()
         },
     },
     data() {
@@ -689,192 +697,216 @@ export default {
                 await this.addImage(
                     'marker-atm',
                     // 'https://map.usecash.com/img/markers/atm-bw.png',
+                    'https://usecash-media.modenero.dev/markers/atm-bw.png',
                     // 'https://ipfs.io/ipfs/Qmd96SGXeNVoVKAw5DYhQBQVE1jsFoBW5guVztAwbeCq9C',
-                    'https://ipfs.filebase.io/ipfs/Qmd96SGXeNVoVKAw5DYhQBQVE1jsFoBW5guVztAwbeCq9C',
+                    // 'https://ipfs.filebase.io/ipfs/Qmd96SGXeNVoVKAw5DYhQBQVE1jsFoBW5guVztAwbeCq9C',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-atm',
                     // 'https://map.usecash.com/img/markers/atm.png',
+                    'https://usecash-media.modenero.dev/markers/atm.png',
                     // 'https://ipfs.io/ipfs/QmSULGHNmyp4VBWpdBSwYbeqcMVeb7dmUcsaNF9DaSR2f1',
-                    'https://ipfs.filebase.io/ipfs/QmSULGHNmyp4VBWpdBSwYbeqcMVeb7dmUcsaNF9DaSR2f1',
+                    // 'https://ipfs.filebase.io/ipfs/QmSULGHNmyp4VBWpdBSwYbeqcMVeb7dmUcsaNF9DaSR2f1',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-attraction',
                     // 'https://map.usecash.com/img/markers/attraction-bw.png',
+                    'https://usecash-media.modenero.dev/markers/attraction-bw.png',
                     // 'https://ipfs.io/ipfs/QmYSeshnckTQAKWnfqHWzsUpy1ziuHD9jHyCbuns34EStB',
-                    'https://ipfs.filebase.io/ipfs/QmYSeshnckTQAKWnfqHWzsUpy1ziuHD9jHyCbuns34EStB',
+                    // 'https://ipfs.filebase.io/ipfs/QmYSeshnckTQAKWnfqHWzsUpy1ziuHD9jHyCbuns34EStB',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-attraction',
                     // 'https://map.usecash.com/img/markers/attraction.png',
+                    'https://usecash-media.modenero.dev/markers/attraction.png',
                     // 'https://ipfs.io/ipfs/QmPMt5qkLZCbrJCB96uWZA5TMSbeDaZLhjFjDibYLNewHU',
-                    'https://ipfs.filebase.io/ipfs/QmPMt5qkLZCbrJCB96uWZA5TMSbeDaZLhjFjDibYLNewHU',
+                    // 'https://ipfs.filebase.io/ipfs/QmPMt5qkLZCbrJCB96uWZA5TMSbeDaZLhjFjDibYLNewHU',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-cafe',
                     // 'https://map.usecash.com/img/markers/cafe-bw.png',
+                    'https://usecash-media.modenero.dev/markers/cafe-bw.png',
                     // 'https://ipfs.io/ipfs/QmToWkbDsGcBy81RbXoQXbzUKg52cASTWfDehG7vjt1NKY',
-                    'https://ipfs.filebase.io/ipfs/QmToWkbDsGcBy81RbXoQXbzUKg52cASTWfDehG7vjt1NKY',
+                    // 'https://ipfs.filebase.io/ipfs/QmToWkbDsGcBy81RbXoQXbzUKg52cASTWfDehG7vjt1NKY',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-cafe',
                     // 'https://map.usecash.com/img/markers/cafe.png',
+                    'https://usecash-media.modenero.dev/markers/cafe.png',
                     // 'https://ipfs.io/ipfs/QmRVeGXiQVpboRZtRJSAtt854etY1aa7usytn7JTTT1SSC',
-                    'https://ipfs.filebase.io/ipfs/QmRVeGXiQVpboRZtRJSAtt854etY1aa7usytn7JTTT1SSC',
+                    // 'https://ipfs.filebase.io/ipfs/QmRVeGXiQVpboRZtRJSAtt854etY1aa7usytn7JTTT1SSC',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-food',
                     // 'https://map.usecash.com/img/markers/food-bw.png',
+                    'https://usecash-media.modenero.dev/markers/food-bw.png',
                     // 'https://ipfs.io/ipfs/QmdyUzbk2gKcP3nDcgGtTzTwomsqTUc5Hr25sn8HpsxRDV',
-                    'https://ipfs.filebase.io/ipfs/QmdyUzbk2gKcP3nDcgGtTzTwomsqTUc5Hr25sn8HpsxRDV',
+                    // 'https://ipfs.filebase.io/ipfs/QmdyUzbk2gKcP3nDcgGtTzTwomsqTUc5Hr25sn8HpsxRDV',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-food',
                     // 'https://map.usecash.com/img/markers/food.png',
+                    'https://usecash-media.modenero.dev/markers/food.png',
                     // 'https://ipfs.io/ipfs/QmZ36fB9RspqZ81fRWHUqTqLamqUJtkaZAPtckQLQK2uGm',
-                    'https://ipfs.filebase.io/ipfs/QmZ36fB9RspqZ81fRWHUqTqLamqUJtkaZAPtckQLQK2uGm',
+                    // 'https://ipfs.filebase.io/ipfs/QmZ36fB9RspqZ81fRWHUqTqLamqUJtkaZAPtckQLQK2uGm',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-grocery',
                     // 'https://map.usecash.com/img/markers/grocery-bw.png',
+                    'https://usecash-media.modenero.dev/markers/grocery-bw.png',
                     // 'https://ipfs.io/ipfs/Qmf26YC4A33iqy8HsUXgPsh59eeZhn6KmubFRdFnzdZGUX',
-                    'https://ipfs.filebase.io/ipfs/Qmf26YC4A33iqy8HsUXgPsh59eeZhn6KmubFRdFnzdZGUX',
+                    // 'https://ipfs.filebase.io/ipfs/Qmf26YC4A33iqy8HsUXgPsh59eeZhn6KmubFRdFnzdZGUX',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-grocery',
                     // 'https://map.usecash.com/img/markers/grocery.png',
+                    'https://usecash-media.modenero.dev/markers/grocery.png',
                     // 'https://ipfs.io/ipfs/QmQMf9PS2LnJLY4toB4v9r3nS2i5YZkYccZPBX1dZrhuyp',
-                    'https://ipfs.filebase.io/ipfs/QmQMf9PS2LnJLY4toB4v9r3nS2i5YZkYccZPBX1dZrhuyp',
+                    // 'https://ipfs.filebase.io/ipfs/QmQMf9PS2LnJLY4toB4v9r3nS2i5YZkYccZPBX1dZrhuyp',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-lodging',
                     // 'https://map.usecash.com/img/markers/lodging-bw.png',
+                    'https://usecash-media.modenero.dev/markers/lodging-bw.png',
                     // 'https://ipfs.io/ipfs/QmPXbjmGxj2Ax3mUtkiH7JS7kj9uQduEBxz8cn3uif6J7Z',
-                    'https://ipfs.filebase.io/ipfs/QmPXbjmGxj2Ax3mUtkiH7JS7kj9uQduEBxz8cn3uif6J7Z',
+                    // 'https://ipfs.filebase.io/ipfs/QmPXbjmGxj2Ax3mUtkiH7JS7kj9uQduEBxz8cn3uif6J7Z',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-lodging',
                     // 'https://map.usecash.com/img/markers/lodging.png',
+                    'https://usecash-media.modenero.dev/markers/lodging.png',
                     // 'https://ipfs.io/ipfs/QmP2BmvqNnHGbBYNWSZJh27u18XtJi2CFny9gRPq3eCftJ',
-                    'https://ipfs.filebase.io/ipfs/QmP2BmvqNnHGbBYNWSZJh27u18XtJi2CFny9gRPq3eCftJ',
+                    // 'https://ipfs.filebase.io/ipfs/QmP2BmvqNnHGbBYNWSZJh27u18XtJi2CFny9gRPq3eCftJ',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-default',
                     // 'https://map.usecash.com/img/markers/default-bw.png',
+                    'https://usecash-media.modenero.dev/markers/default-bw.png',
                     // 'https://ipfs.io/ipfs/QmZpc7RY6FucgnDpegEWBocqSjNxFFGyc8a8mSuWCK86bg',
-                    'https://ipfs.filebase.io/ipfs/QmZpc7RY6FucgnDpegEWBocqSjNxFFGyc8a8mSuWCK86bg',
+                    // 'https://ipfs.filebase.io/ipfs/QmZpc7RY6FucgnDpegEWBocqSjNxFFGyc8a8mSuWCK86bg',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-default',
                     // 'https://map.usecash.com/img/markers/default.png',
+                    'https://usecash-media.modenero.dev/markers/default.png',
                     // 'https://ipfs.io/ipfs/QmdBxQYku37VM2tetSvBuVxWtDRtsyRkp7Ax3y1nheCdMB',
-                    'https://ipfs.filebase.io/ipfs/QmdBxQYku37VM2tetSvBuVxWtDRtsyRkp7Ax3y1nheCdMB',
+                    // 'https://ipfs.filebase.io/ipfs/QmdBxQYku37VM2tetSvBuVxWtDRtsyRkp7Ax3y1nheCdMB',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-nightlife',
                     // 'https://map.usecash.com/img/markers/nightlife-bw.png',
+                    'https://usecash-media.modenero.dev/markers/nightlife-bw.png',
                     // 'https://ipfs.io/ipfs/QmTZAJc5rCf8diYomXgfrWRTMhRx8TtVQfE33jiTQgDfS7',
-                    'https://ipfs.filebase.io/ipfs/QmTZAJc5rCf8diYomXgfrWRTMhRx8TtVQfE33jiTQgDfS7',
+                    // 'https://ipfs.filebase.io/ipfs/QmTZAJc5rCf8diYomXgfrWRTMhRx8TtVQfE33jiTQgDfS7',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-nightlife',
                     // 'https://map.usecash.com/img/markers/nightlife.png',
+                    'https://usecash-media.modenero.dev/markers/nightlife.png',
                     // 'https://ipfs.io/ipfs/QmfXegfnoBM8EqQdu91mqFgvKZRzeQNpHentbVntn3n4H5',
-                    'https://ipfs.filebase.io/ipfs/QmfXegfnoBM8EqQdu91mqFgvKZRzeQNpHentbVntn3n4H5',
+                    // 'https://ipfs.filebase.io/ipfs/QmfXegfnoBM8EqQdu91mqFgvKZRzeQNpHentbVntn3n4H5',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-services',
                     // 'https://map.usecash.com/img/markers/services-bw.png',
+                    'https://usecash-media.modenero.dev/markers/services-bw.png',
                     // 'https://ipfs.io/ipfs/QmcmxAFK8m5aA4D14nXTBHuRFBtj53AtT9aa4uVNcxGXXP',
-                    'https://ipfs.filebase.io/ipfs/QmcmxAFK8m5aA4D14nXTBHuRFBtj53AtT9aa4uVNcxGXXP',
+                    // 'https://ipfs.filebase.io/ipfs/QmcmxAFK8m5aA4D14nXTBHuRFBtj53AtT9aa4uVNcxGXXP',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-services',
                     // 'https://map.usecash.com/img/markers/services.png',
+                    'https://usecash-media.modenero.dev/markers/services.png',
                     // 'https://ipfs.io/ipfs/QmVizkHobokzN4k1Vbv5hfb1MKZDMoxCX7epZUaNaWFnBF',
-                    'https://ipfs.filebase.io/ipfs/QmVizkHobokzN4k1Vbv5hfb1MKZDMoxCX7epZUaNaWFnBF',
+                    // 'https://ipfs.filebase.io/ipfs/QmVizkHobokzN4k1Vbv5hfb1MKZDMoxCX7epZUaNaWFnBF',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-shopping',
                     // 'https://map.usecash.com/img/markers/shopping-bw.png',
+                    'https://usecash-media.modenero.dev/markers/shopping-bw.png',
                     // 'https://ipfs.io/ipfs/QmVRKqynUCtEBNuWBw3jTERidYFTaXFYiTPMHmXJTeDa4v',
-                    'https://ipfs.filebase.io/ipfs/QmVRKqynUCtEBNuWBw3jTERidYFTaXFYiTPMHmXJTeDa4v',
+                    // 'https://ipfs.filebase.io/ipfs/QmVRKqynUCtEBNuWBw3jTERidYFTaXFYiTPMHmXJTeDa4v',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-shopping',
                     // 'https://map.usecash.com/img/markers/shopping.png',
+                    'https://usecash-media.modenero.dev/markers/shopping.png',
                     // 'https://ipfs.io/ipfs/QmVV9DhwjXm7Db2i6YeBM11ZR9tEsZtSRbf2zHAXnc846H',
-                    'https://ipfs.filebase.io/ipfs/QmVV9DhwjXm7Db2i6YeBM11ZR9tEsZtSRbf2zHAXnc846H',
+                    // 'https://ipfs.filebase.io/ipfs/QmVV9DhwjXm7Db2i6YeBM11ZR9tEsZtSRbf2zHAXnc846H',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-sports',
                     // 'https://map.usecash.com/img/markers/sports-bw.png',
+                    'https://usecash-media.modenero.dev/markers/sports-bw.png',
                     // 'https://ipfs.io/ipfs/QmViMM4UHUTVQ4g1uVFQr6bAoMw5QAiXh4MnaS53pfomyU',
-                    'https://ipfs.filebase.io/ipfs/QmViMM4UHUTVQ4g1uVFQr6bAoMw5QAiXh4MnaS53pfomyU',
+                    // 'https://ipfs.filebase.io/ipfs/QmViMM4UHUTVQ4g1uVFQr6bAoMw5QAiXh4MnaS53pfomyU',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-sports',
                     // 'https://map.usecash.com/img/markers/sports.png',
+                    'https://usecash-media.modenero.dev/markers/sports.png',
                     // 'https://ipfs.io/ipfs/QmYBxRwV1jUpdkUhuPKePCKg4hiaVVdhKgNhf8yLoimHGE',
-                    'https://ipfs.filebase.io/ipfs/QmYBxRwV1jUpdkUhuPKePCKg4hiaVVdhKgNhf8yLoimHGE',
+                    // 'https://ipfs.filebase.io/ipfs/QmYBxRwV1jUpdkUhuPKePCKg4hiaVVdhKgNhf8yLoimHGE',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-transport',
                     // 'https://map.usecash.com/img/markers/transport-bw.png',
+                    'https://usecash-media.modenero.dev/markers/transport-bw.png',
                     // 'https://ipfs.io/ipfs/QmcoYrZWCAzNCfVdptohFQbDfA1VAYShXYdDhSeMXsBVot',
-                    'https://ipfs.filebase.io/ipfs/QmcoYrZWCAzNCfVdptohFQbDfA1VAYShXYdDhSeMXsBVot',
+                    // 'https://ipfs.filebase.io/ipfs/QmcoYrZWCAzNCfVdptohFQbDfA1VAYShXYdDhSeMXsBVot',
                 )
 
                 /* Add image. */
                 await this.addImage(
                     'marker-featured-transport',
                     // 'https://map.usecash.com/img/markers/transport.png',
+                    'https://usecash-media.modenero.dev/markers/transport.png',
                     // 'https://ipfs.io/ipfs/QmUnUbhuXj82Qb9J7bYxPyVTG2QuRxeoyZV32ZeWKEhKZT',
-                    'https://ipfs.filebase.io/ipfs/QmUnUbhuXj82Qb9J7bYxPyVTG2QuRxeoyZV32ZeWKEhKZT',
+                    // 'https://ipfs.filebase.io/ipfs/QmUnUbhuXj82Qb9J7bYxPyVTG2QuRxeoyZV32ZeWKEhKZT',
                 )
 
                 /* Manage map. */
@@ -929,7 +961,7 @@ export default {
             // console.log('BOUNDS', 'ne', bounds.ne, 'sw', bounds.sw)
 
             const pkg = {
-                // cat: 'atm',
+                cat: this.categories || '',
                 bounds,
             }
             // console.log('PKG', pkg)
@@ -1513,6 +1545,8 @@ export default {
     created: function () {
         /* Set Mapbox access token. */
         Mapbox.accessToken = MAPBOX_ACCESS_TOKEN
+
+        // window.mapUpdate.on('')
 
     },
     mounted: function () {

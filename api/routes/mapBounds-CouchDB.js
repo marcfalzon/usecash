@@ -55,6 +55,7 @@ const mapBounds = async function (req, res) {
 
     /* Set category. */
     const category = body.cat
+    // console.log('CATEGORY', category)
 
     /* Request coinmap venues. */
     results = await coinmapDb.query('api/byLat', {
@@ -82,12 +83,26 @@ const mapBounds = async function (req, res) {
         /* Set venue. */
         const venue = _venue.doc
 
-        /* Parse longitude. */
-        if (venue.lon >= parseFloat(sw.lng) && venue.lon <= parseFloat(ne.lng)) {
-            return true
+        if (category) {
+            /* Parse longitude. */
+            if (
+                venue.lon >= parseFloat(sw.lng)
+                && venue.lon <= parseFloat(ne.lng)
+                && category.includes(venue.category)
+            ) {
+                return true
+            } else {
+                return false
+            }
         } else {
-            return false
+            /* Parse longitude. */
+            if (venue.lon >= parseFloat(sw.lng) && venue.lon <= parseFloat(ne.lng)) {
+                return true
+            } else {
+                return false
+            }
         }
+
     })
 
     /* Update venues. */

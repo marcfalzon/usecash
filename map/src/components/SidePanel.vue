@@ -48,6 +48,7 @@
                             <router-view
                                 class="p-3 sm:p-8"
                                 :magicUser="magicUser"
+                                @updateCat="updateCat"
                             />
 
                         </div>
@@ -64,6 +65,7 @@ import Header from '@/components/Header'
 
 export default {
     props: {
+        categories: String,
         magicUser: Object,
         isPanelOpen: Boolean,
     },
@@ -84,13 +86,18 @@ export default {
                     this.ani = 'translate-x-full'
                 }, 10)
             }
-        }
+        },
     },
     methods: {
         noop() {
             //
         },
-        
+
+        updateCat(_newCat) {
+            // console.log('NEW CATEGORES (App):', _newCat)
+            this.$emit('updateCat', _newCat)
+        },
+
     },
     created: function () {
         // this.ani = 'translate-x-0'

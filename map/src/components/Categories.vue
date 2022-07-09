@@ -111,6 +111,15 @@ export default {
     data: () => ({
         filter: null,
     }),
+    watch: {
+        filter: {
+            handler(_cat){
+                // console.log('NEW CATEGORY FILTER', _cat)
+                this.$emit('updateCat', _cat)
+            },
+            deep: true
+        },
+    },
     computed: {
         //
     },
