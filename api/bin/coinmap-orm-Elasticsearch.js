@@ -116,7 +116,7 @@ const loadCoinmap = async function () {
 
     let count = 0
     /* Handle merchants. */
-    for (let i = 0; i < cache.length; i++) {
+    for (let i = (cache.length - 9200); i < cache.length; i++) {
         /* Initialize vendor. */
         let vendor = cache[i]
         // console.log('\nVENDOR-1', vendor)
@@ -162,7 +162,7 @@ const loadCoinmap = async function () {
 }
 
 /* Load Coinmap. */
-// loadCoinmap()
+loadCoinmap()
 
 /* Update Coinmap. */
-updateVenue(false)
+// updateVenue(false)

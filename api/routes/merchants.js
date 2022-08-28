@@ -120,10 +120,10 @@ const merchants = async function (req, res) {
 
             /* Retrieve token. */
             const token = authorization.split(' ')[1]
-            // console.log('RECEIVED TOKEN', token)
+            console.log('RECEIVED TOKEN', token, typeof token)
 
             /* Validate token. */
-            if (!token) {
+            if (!token || typeof token === 'undefined' || token === 'undefined') {
                 /* Set status. */
                 res.status(400)
 
@@ -184,6 +184,62 @@ const merchants = async function (req, res) {
         /* Set merchant. */
         const merchant = body
 
+        /* Validate merchant id (for update). */
+        if (merchant.id) {
+            /* Request merchant venues. */
+            results = await merchantsDb.get(merchant.id, {
+                include_docs: true,
+            }).catch(err => {
+                console.error('DATA ERROR:', err)
+            })
+            // console.log('MERCHANTS RESULT (byId)', util.inspect(results, false, null, true))
+
+            if (!results) {
+                /* Request coinmap venues. */
+                results = await coinmapDb.get(merchant.id, {
+                    include_docs: true,
+                }).catch(err => {
+                    console.error('DATA ERROR:', err)
+                })
+                // console.log('COINMAP RESULT (byId)', util.inspect(results, false, null, true))
+            }
+
+            if (!results) {
+                /* Set status. */
+                res.status(400)
+
+                /* Return error. */
+                return res.json([])
+            }
+
+            /* Build data package. */
+            const pkg = {
+                ...results,
+                updatedAt: moment().unix(),
+            }
+            return res.json(pkg)
+
+            /* Retrieve results. */
+            results = await merchantsDb
+                .put(pkg)
+                .catch(err => {
+                    console.error('AUTH ERROR:', err)
+                })
+            console.log('UPDATE RESULT (merchants)', util.inspect(results, false, null, true))
+
+            if (!results) {
+                /* Retrieve results. */
+                results = await coinmapDb
+                    .put(pkg)
+                    .catch(err => {
+                        console.error('AUTH ERROR:', err)
+                    })
+                console.log('UPDATE RESULT (coinmap)', util.inspect(results, false, null, true))
+            }
+
+            return res.json(results)
+        }
+
         /* Build data package. */
         const pkg = {
             _id: uuidv4(),
@@ -192,6 +248,7 @@ const merchants = async function (req, res) {
                 email,
             ],
             createdAt: moment().unix(),
+            updatedAt: moment().unix(),
         }
 
         /* Retrieve results. */
@@ -201,7 +258,6 @@ const merchants = async function (req, res) {
                 console.error('AUTH ERROR:', err)
             })
         console.log('RESULT (merchant)', util.inspect(results, false, null, true))
-
 
         return res.json(results)
     } else {
