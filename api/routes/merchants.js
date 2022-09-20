@@ -88,7 +88,7 @@ const merchants = async function (req, res) {
                 twitter: results.twitter,
                 instagram: results.instagram,
                 createdAt: results.createdAt,
-                updateAt: results.updateAt || results.updated_on,
+                updatedAt: results.updatedAt || results.updated_on,
             }
 
             return res.json(pkg)

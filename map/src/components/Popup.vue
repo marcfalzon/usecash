@@ -181,6 +181,7 @@
 <script>
 /* Import modules. */
 import { Magic } from 'magic-sdk'
+import moment from 'moment'
 import superagent from 'superagent'
 
 const API_ENDPOINT = `https://api.usecash.com/v1`
@@ -514,7 +515,7 @@ export default {
 
             /* Handle longitude. */
             if (body.updatedAt) {
-                this.lastActivity = body.updatedAt
+                this.lastActivity = moment.unix(body.updatedAt).fromNow()
             } else {
                 this.lastActivity = `not available`
             }
