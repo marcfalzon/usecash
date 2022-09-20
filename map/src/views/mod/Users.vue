@@ -10,19 +10,27 @@
             </p>
         </div>
 
-        <div class="mt-8 flex flex-col">
+        <div class="w-full mt-8 flex flex-col">
             <div class="-my-2 overflow-x-auto">
                 <div class="inline-block min-w-full py-2 align-middle">
                     <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                         <table class="min-w-full divide-y divide-gray-300">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Name</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Title</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Role</th>
-                                    <th scope="col" class="relative py-3.5 pl-3 pr-4">
-                                        <span class="sr-only">Edit</span>
+                                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">
+                                        Name
+                                    </th>
+
+                                    <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">
+                                        Title
+                                    </th>
+
+                                    <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">
+                                        Status
+                                    </th>
+
+                                    <th scope="col" class="px-3 py-3.5 text-right text-sm font-semibold text-gray-900">
+                                        Role
                                     </th>
                                 </tr>
                             </thead>
@@ -40,20 +48,22 @@
                                             </div>
                                             <div class="ml-4">
                                                 <div class="font-medium text-gray-900">{{user.email}}</div>
-                                                <div class="text-xs text-gray-500">{{user.address}}</div>
+                                                <div class="text-xs text-gray-500">{{abbr(user.address)}}</div>
                                             </div>
                                         </div>
                                     </td>
+
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <div class="text-gray-900">Front-end Developer</div>
                                         <div class="text-gray-500">Optimization</div>
                                     </td>
+
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
                                     </td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Member</td>
-                                    <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
-                                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></a>
+
+                                    <td class="whitespace-nowrap pl-3 py-4 text-sm text-right text-gray-500">
+                                        Member
                                     </td>
                                 </tr>
 
@@ -100,6 +110,10 @@ export default {
         avatar(_email) {
             return gravatar.url(_email)
         },
+
+        abbr(_address) {
+            return _address.slice(0, 14) + ' ... ' + _address.slice(-12)
+        }
 
     },
     created: function () {

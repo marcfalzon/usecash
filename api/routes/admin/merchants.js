@@ -92,10 +92,11 @@ const merchants = async function (req, res) {
         console.log('MERCHANTS RESULT (byAddress)', util.inspect(results, false, null, true))
 
         if (results && results.rows.length > 0) {
-            const merchants = results.rows.map(_user => {
-                const doc = _user.doc
+            const merchants = results.rows.map(_merchant => {
+                const doc = _merchant.doc
 
                 return {
+                    id: doc._id,
                     name: doc.name,
                     category: doc.category,
                     media: doc.media,
@@ -103,6 +104,8 @@ const merchants = async function (req, res) {
                     city: doc.city,
                     state: doc.state,
                     postalCode: doc.postalCode,
+                    lat: doc.lat,
+                    lng: doc.lng,
                     createdAt: doc.createdAt,
                 }
             })
