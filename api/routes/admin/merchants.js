@@ -16,15 +16,26 @@ const logsDb = new PouchDB(`http://${process.env.COUCHDB_AUTH}@localhost:5984/lo
  * Users Module
  */
 const merchants = async function (req, res) {
-    const body = req.body
-    console.log('BODY', body)
+    let authorization
+    let body
+    let createdAt
+    let doc
+    let email
+    let headers
+    let id
+    let merchants
+    let pkg
+    let token
+
+    body = req.body
+    // console.log('BODY', body)
 
     /* Validate body. */
     if (body) {
-        const id = uuidv4()
-        const createdAt = moment().unix()
+        id = uuidv4()
+        createdAt = moment().unix()
 
-        const pkg = {
+        pkg = {
             _id: id,
             src: 'admin-merchants',
             ...body,
@@ -35,16 +46,13 @@ const merchants = async function (req, res) {
             .catch(err => console.error('LOGS ERROR:', err))
     }
 
-    /* Initialize email. */
-    let email
-
     /* Set headers. */
-    const headers = req.headers
+    headers = req.headers
 
     /* Validate headers. */
     if (headers) {
         /* Set authorization. */
-        const authorization = headers.authorization
+        authorization = headers.authorization
 
         /* Validate authorization. */
         if (!authorization) {
@@ -58,7 +66,7 @@ const merchants = async function (req, res) {
         }
 
         /* Retrieve token. */
-        const token = authorization.split(' ')[1]
+        token = authorization.split(' ')[1]
         // console.log('RECEIVED TOKEN', token)
 
         /* Validate token. */
@@ -82,7 +90,31 @@ const merchants = async function (req, res) {
         //         error: 'Unauthorized user.'
         //     })
         // }
+    }
 
+    /* Validate revision id (DB UPDATE). */
+    if (body.rev) {
+        /* Create (updated) merchant package. */
+        merchant = {
+            _id: body.id,
+            _rev: body.rev,
+            ...body,
+            updatedAt: moment().unix(),
+        }
+
+        /* Delete (duplicate) revision. */
+        delete merchant.rev
+
+        /* Request existing user. */
+        results = await merchantsDb
+            .put(merchant)
+            .catch(err => {
+            console.error('DATA ERROR:', err)
+        })
+        console.log('MERCHANTS RESULT (byAddress)', util.inspect(results, false, null, true))
+
+        return res.json(results)
+    } else {
         /* Request existing user. */
         results = await merchantsDb.query('api/byName', {
             include_docs: true,
@@ -92,30 +124,32 @@ const merchants = async function (req, res) {
         console.log('MERCHANTS RESULT (byAddress)', util.inspect(results, false, null, true))
 
         if (results && results.rows.length > 0) {
-            const merchants = results.rows.map(_merchant => {
-                const doc = _merchant.doc
+            merchants = results.rows.map(_merchant => {
+                doc = _merchant.doc
 
                 return {
                     id: doc._id,
-                    name: doc.name,
+                    rev: doc._rev,
                     category: doc.category,
-                    media: doc.media,
+                    crypto: doc.crypto,
+                    name: doc.name,
                     streetAddress: doc.streetAddress,
                     city: doc.city,
                     state: doc.state,
                     postalCode: doc.postalCode,
+                    country: doc.country,
+                    website: doc.website,
+                    media: doc.media,
                     lat: doc.lat,
                     lng: doc.lng,
+                    users: doc.users,
                     createdAt: doc.createdAt,
+                    updatedAt: doc.updatedAt,
                 }
             })
 
             return res.json(merchants)
         }
-
-        return res.json({
-            error: 'Bad request',
-        })
     }
 
     return res.json({

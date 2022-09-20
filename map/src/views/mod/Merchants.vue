@@ -20,6 +20,7 @@
                 type="text"
                 v-model="searchTerm"
                 @keyup="activeMerchant = null"
+                @focus="activeMerchant = null"
                 placeholder="Search by name, location or type."
             />
 
@@ -67,7 +68,10 @@
             </div>
 
             <div class="mt-2 flex justify-end">
-                <button class="py-1 px-3 bg-blue-500 border-2 border-blue-700 text-blue-50 font-medium rounded-md hover:bg-blue-400">
+                <button
+                    class="py-1 px-3 bg-blue-500 border-2 border-blue-700 text-blue-50 font-medium rounded-md hover:bg-blue-400"
+                    @click="updateMerchant"
+                >
                     Update Merchant
                 </button>
             </div>
@@ -209,7 +213,33 @@ export default {
 
                 this.merchants = body
             }
+        },
 
+        /**
+         * Update Merchant
+         *
+         * Save merchant data changes to the database.
+         */
+        async updateMerchant() {
+            /* Request merchants from Admin. */
+            const result = await superagent
+                .post(`${API_ENDPOINT}/admin/merchants`)
+                .set('authorization', `Bearer ${this.didToken}`)
+                .send(this.activeMerchant)
+                .set('accept', 'json')
+            // console.log('MERCHANTS RESULT', result)
+
+            if (result && result.body) {
+                const body = result.body
+                console.log('BODY', body)
+
+                /* Validate db update. */
+                if (body.ok) {
+                    alert('Merchant updated successfully!')
+                } else {
+                    alert('Merchant update FAILED!!')
+                }
+            }
         },
 
         /**
