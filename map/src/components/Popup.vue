@@ -363,6 +363,10 @@ export default {
                 body += 'Country: ' + this.country + '\n'
             }
 
+            /* Add reporting id. */
+            body += '\nReporting ID: ' + this.vendorid + '\n'
+            body += '( Use the above ID to track activity in POS.cash )\n\n'
+
             window.open(`mailto:${address}?subject=${subject}&body=${encodeURIComponent(body)}`)
         },
 
