@@ -23,7 +23,9 @@ const merchants = async function (req, res) {
     let email
     let headers
     let id
+    let issuer
     let merchants
+    let metadata
     let pkg
     let token
 
@@ -70,7 +72,7 @@ const merchants = async function (req, res) {
         // console.log('RECEIVED TOKEN', token)
 
         /* Validate token. */
-        if (!token) {
+        if (!token || typeof token === 'undefined' || token === 'undefined') {
             /* Set status. */
             res.status(400)
 
@@ -80,16 +82,53 @@ const merchants = async function (req, res) {
             })
         }
 
+        /* Set issuer. */
+        issuer = magicAdmin.token
+            .getIssuer(token)
+
+        /* Validate issuer. */
+        if (!issuer) {
+            /* Set status. */
+            res.status(400)
+
+            /* Return error. */
+            return res.json({
+                error: 'Could NOT retrieve this issuer.'
+            })
+        }
+
+        /* Set issuer metadata. */
+        metadata = await magicAdmin.users
+            .getMetadataByIssuer(issuer)
+        // console.log('MAGIC LOGIN (data):', JSON.stringify(metadata, null, 4))
+
+        /* Validate metadata. */
+        if (!metadata) {
+            /* Set status. */
+            res.status(400)
+
+            /* Return error. */
+            return res.json({
+                error: 'Could NOT retrieve the email for this issuer.'
+            })
+        }
+
+        /* Set email address. */
+        email = metadata.email
+        // console.log('MAGIC LOGIN (email):', email)
+
         /* Validate email. */
-        // if (!email) {
-        //     /* Set status. */
-        //     res.status(401)
-        //
-        //     /* Return error. */
-        //     return res.json({
-        //         error: 'Unauthorized user.'
-        //     })
-        // }
+        if (!email) {
+            /* Set status. */
+            res.status(401)
+
+            /* Return error. */
+            return res.json({
+                error: 'Unauthorized user.'
+            })
+        }
+
+        // TODO: Create an ACL for moderators.
     }
 
     /* Validate revision id (DB UPDATE). */

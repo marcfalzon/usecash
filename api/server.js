@@ -79,8 +79,12 @@ app.post('/v1/search/map', require('./routes/mapBounds-CouchDB'))
 // app.post('/v1/search/map', require('./routes/mapBounds-Elasticsearch'))
 
 /* Initialize Magic (Email) Link route. */
-// app.get('/v1/magiclink', require('./routes/magiclink'))
 app.post('/v1/magiclink', require('./routes/magiclink'))
+
+/* Initialize Point-of-Sale route. */
+// FIXME: This should be using POST.
+// app.post('/v1/pos', require('./routes/pos'))
+app.get('/v1/pos/:id', require('./routes/pos'))
 
 /* Initialize media. */
 app.get('/v1/media/:mediaid', require('./routes/media'))

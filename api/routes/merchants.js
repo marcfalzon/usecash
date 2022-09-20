@@ -129,7 +129,7 @@ const merchants = async function (req, res) {
 
                 /* Return error. */
                 return res.json({
-                    error: 'You MUST provide a DID token.'
+                    error: 'You MUST provide an authorization token.'
                 })
             }
 
@@ -178,14 +178,13 @@ const merchants = async function (req, res) {
                     error: 'Unauthorized user.'
                 })
             }
-
         }
 
         /* Set merchant. */
         const merchant = body
 
         /* Validate merchant id (for update). */
-        if (merchant.id) {
+        if (merchant && merchant.id) {
             /* Request merchant venues. */
             results = await merchantsDb.get(merchant.id, {
                 include_docs: true,
@@ -217,7 +216,6 @@ const merchants = async function (req, res) {
                 ...results,
                 updatedAt: moment().unix(),
             }
-            return res.json(pkg)
 
             /* Retrieve results. */
             results = await merchantsDb
@@ -240,7 +238,7 @@ const merchants = async function (req, res) {
             return res.json(results)
         }
 
-        /* Build data package. */
+        /* Build NEW MERCHANT data package. */
         const pkg = {
             _id: uuidv4(),
             ...merchant,

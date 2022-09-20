@@ -678,6 +678,18 @@ class App {
 
         const localStorage = window.localStorage;
         localStorage.setItem("payments", JSON.stringify(completedPayments));
+
+        // If reporting ID is available, then call Use Cash API
+        const reportingID = App.getReportingID()
+        if (reportingID) {
+            console.log('Call Use Cash reporting api w/ id ->', reportingID);
+
+            Http.get("https://api.usecash.com/v1/pos/" + reportingID, { }, function(data) {
+                console.log('Reporting API response', data);
+            });
+        } else {
+            console.log('Real-time reporting is unavailable.');
+        }
     }
 
     static onPaymentReceived(transactionHash, bchAmount) {
